@@ -10,6 +10,6 @@ Participants for this Team project are:
 5. Lifu Hsiao 
 
 
-Could you guys please clone and update (your fullnames) this section. I'm kinda terrible at name and lazy as well as of now.
+
 
 
