@@ -126,3 +126,50 @@ def parse_file(path,encode = 'utf-8'):
 
             age = calculate_age(indi[key]['BIRT'])
             indiTable.add_row([indi[key]['id'],indi[key]['name'],indi[key]['sex'], birth_str, age, death_str, alive_str, child, spouse])
+        
+        """Pretty table info for family relations"""
+
+        famTable =pt(['ID','Married','Divorced','Husband ID','Husband Name','Wife ID','Wife name','Children'])
+        for key in fam.keys():
+            if 'DIV' in fam[key]:
+                div = datetime.strptime(fam[key]['DIV'],'%d%b%Y')
+                div_str = div.strftime('%Y-%m-%d')
+
+            else: 
+                div_str = "NA"
+
+            if "HUSB" in fam[key]:
+                hubID = fam[key]['HUSB']
+                hubName = indi[hubID]['name']
+            else:
+                hubID = "NA"
+                hubName = "NA"
+
+            if "WIFE" in fam[key]:
+                wifeID = fam[key]['WIFE']
+                wifeName = indi[wifeID]['name']
+            else:
+                wifeID = "NA"
+                wifeName = "NA"
+
+            if 'CHIL' in fam[key] :
+                chil = fam[key]['CHIL']
+            else:
+                chil = "NA"
+
+            if 'MARR' in fam[key]:
+                marr = datetime.strptime(fam[key]['MARR'],'%d%b%Y')
+                marr_str = marr.strftime('%Y-%m-%d')
+            else:
+                marr_str = "NA"
+
+            famTable.add_row([key, marr_str, div_str, hubID, hubName, wifeID, wifeName, chil])
+        
+        print(indiTable)
+        print(famTable)
+
+    return {'fam':fam, 'indi':indi}
+
+
+define_your_file_here = parse_file('My-Family-9-Sep-2019-696.ged')
+            
