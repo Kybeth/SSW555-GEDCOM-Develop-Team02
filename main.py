@@ -167,7 +167,7 @@ def parse_file(path,encode = 'utf-8'):
         print(indiTable)
         print(famTable)
 
-        # US07 Less then 150 years old
+        # US07 Less then 150 years old - By Lifu
         for i in indi:
             if 'DEAT' in indi[i].keys():
                 if indi[i]['DEAT'] - indi[i]['BIRT'] > timedelta(days = 54750):
@@ -175,6 +175,22 @@ def parse_file(path,encode = 'utf-8'):
             else:
                 if datetime.today() - indi[i]['BIRT'] > timedelta(days = 54750):
                     print('ERROR: INDIVIDUAL: US07: ' + indi[i]['id'] + ' More than 150 years old - Birth '  + indi[i]['BIRT'].strftime('%Y-%m-%d'))
+
+        # US09 Birth before death of parents - by Yuan
+        for i in indi:
+            if 'FAMC' in indi[i].keys():
+                child_birt = indi[i]['BIRT']
+                fam_id = ''.join(indi[i]['FAMC'])
+                mom_id = fam[fam_id]['WIFE']
+                dad_id = fam[fam_id]['HUSB']
+                if 'DEAT' in indi[mom_id].keys():
+                    mom_deat = indi[mom_id]['DEAT']
+                    if child_birt > mom_deat:
+                        print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + indi[i]['id'] + ' born ' + indi[i]['BIRT'].strftime('%Y-%m-%d') + " after mother's death on " + mom_deat.strftime('%Y-%m-%d'))
+                if 'DEAT' in indi[dad_id].keys():
+                    dad_deat = indi[dad_id]['DEAT']
+                    if dad_deat - child_birt < timedelta(days = 270):
+                        print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + indi[i]['id'] + ' born ' + indi[i]['BIRT'].strftime('%Y-%m-%d') + " after nine months after father's death on " + dad_deat.strftime('%Y-%m-%d'))
 
     return {'fam':fam, 'indi':indi}
 
