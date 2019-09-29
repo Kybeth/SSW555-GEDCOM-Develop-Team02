@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from prettytable import PrettyTable as pt
 
 """Define all the valid tags"""
@@ -12,9 +12,8 @@ valid = {
 def calculate_age(birthday):
     """ Calculate the induviduals date and DOB """
 
-    birthdate = datetime.strptime(birthday, '%d%b%Y')  #Year/ Month/ Date
     current = datetime.today()
-    return current.year - birthdate.year - ((current.month, current.day) < (birthdate.month, birthdate.day))
+    return current.year - birthday.year - ((current.month, current.day) < (birthday.month, birthday.day))
 
 def parse_file(path,encode = 'utf-8'):
     """Reads the file from the path and stores all the information in a dictionary. Uses Pretty table to print out further information about the family.
@@ -62,7 +61,7 @@ def parse_file(path,encode = 'utf-8'):
                     if level == '1' and tag == 'BIRT' or tag == 'DEAT':
                         currentDate = tag 
                     if level == '2' and currentDate != '' and tag == 'DATE':
-                        indi[currentInd][currentDate] = arguments   
+                        indi[currentInd][currentDate] = datetime.strptime(arguments,'%d%b%Y')   
 
                     if level == '1' and tag == 'SEX':
                         indi[currentInd]['sex'] = arguments   
@@ -95,19 +94,19 @@ def parse_file(path,encode = 'utf-8'):
         indiTable = pt(["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"])
         
         for key in indi.keys():
-            birth = datetime.strptime(indi[key]['BIRT'],'%d%b%Y')  # print birth date
-            birth_str = birth.strftime('%Y-%m-%d')
+            # print birth date
+            birth_str = indi[key]['BIRT'].strftime('%Y-%m-%d')
             
             """Condition for alive"""
             if 'DEAT' in indi[key]:
-                death = datetime.strptime(indi[key]['DEAT'],'%d%b%Y')
+                death = indi[key]['DEAT']
                 death_str = 'False'
             else:
                 death_str ='True'
 
             """Condition for Death column"""  #Note that I am using same "deat" keyword for alive and dead
             if 'DEAT' in indi[key]:
-                alive = datetime.strptime(indi[key]['DEAT'],'%d%b%Y')
+                alive = indi[key]['DEAT']
                 alive_str = death.strftime('%Y-%m-%d')
             else:
                 alive_str ='NA'
@@ -167,6 +166,15 @@ def parse_file(path,encode = 'utf-8'):
         
         print(indiTable)
         print(famTable)
+
+        # US07 Less then 150 years old
+        for i in indi:
+            if 'DEAT' in indi[i].keys():
+                if indi[i]['DEAT'] - indi[i]['BIRT'] > timedelta(days = 54750):
+                    print('ERROR: INDIVIDUAL: US07: ' + indi[i]['id'] + ' More than 150 years old at death - Birth ' + indi[i]['BIRT'].strftime('%Y-%m-%d') + ' Death ' + indi[i]['DEAT'].strftime('%Y-%m-%d'))
+            else:
+                if datetime.today() - indi[i]['BIRT'] > timedelta(days = 54750):
+                    print('ERROR: INDIVIDUAL: US07: ' + indi[i]['id'] + ' More than 150 years old - Birth '  + indi[i]['BIRT'].strftime('%Y-%m-%d'))
 
     return {'fam':fam, 'indi':indi}
 
