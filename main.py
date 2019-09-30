@@ -80,7 +80,7 @@ def parse_file(path,encode = 'utf-8'):
                     if level == '1' and family[1] == 'MARR' or family[1] == 'DIV':
                         currentDate = tag
                     if level == '2' and tag == 'DATE':
-                        fam[currentFam][currentDate] =arguments
+                        fam[currentFam][currentDate] =datetime.strptime(arguments,'%d%b%Y')
                     if level == '1' and tag in ('HUSB','WIFE'):
                         fam[currentFam][tag] = arguments
                     if level == '1' and tag == 'CHIL':
@@ -131,8 +131,7 @@ def parse_file(path,encode = 'utf-8'):
         famTable =pt(['ID','Married','Divorced','Husband ID','Husband Name','Wife ID','Wife name','Children'])
         for key in fam.keys():
             if 'DIV' in fam[key]:
-                div = datetime.strptime(fam[key]['DIV'],'%d%b%Y')
-                div_str = div.strftime('%Y-%m-%d')
+                div_str = fam[key]['DIV'].strftime('%Y-%m-%d')
 
             else: 
                 div_str = "NA"
@@ -157,8 +156,7 @@ def parse_file(path,encode = 'utf-8'):
                 chil = "NA"
 
             if 'MARR' in fam[key]:
-                marr = datetime.strptime(fam[key]['MARR'],'%d%b%Y')
-                marr_str = marr.strftime('%Y-%m-%d')
+                marr_str = fam[key]['MARR'].strftime('%Y-%m-%d')
             else:
                 marr_str = "NA"
 
@@ -175,6 +173,20 @@ def parse_file(path,encode = 'utf-8'):
             else:
                 if datetime.today() - indi[i]['BIRT'] > timedelta(days = 54750):
                     print('ERROR: INDIVIDUAL: US07: ' + indi[i]['id'] + ' More than 150 years old - Birth '  + indi[i]['BIRT'].strftime('%Y-%m-%d'))
+        
+        # US08 Birth before marriage of parents - By Lifu
+        for i in indi:
+            if "FAMC" in indi[i].keys():
+                child_birt = indi[i]['BIRT']
+                fam_id = ''.join(indi[i]['FAMC'])
+                if 'MARR' in fam[fam_id].keys():
+                    marry_date = fam[fam_id]['MARR']
+                    if marry_date > child_birt:
+                        print('ANOMALY: FAMILY: US08: ' + fam[fam_id]['fam'] + ' Child ' + indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
+                if 'DIV' in fam[fam_id].keys():
+                    div_date = fam[fam_id]['DIV']
+                    if div_date < child_birt:
+                        print('ANOMALY: FAMILY: US08: ' + fam[fam_id]['fam'] + ' Child ' + indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' after divorce on ' + div_date.strftime('%Y-%m-%d'))
 
         # US09 Birth before death of parents - by Yuan
         for i in indi:
