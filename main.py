@@ -221,5 +221,5 @@ def parse_file(path,encode = 'utf-8'):
     return {'fam':fam, 'indi':indi}
 
 
-define_your_file_here = parse_file('My-Family-9-Sep-2019-696.ged')
+define_your_file_here = parse_file('My-Family-1-Oct-2019-939.ged')
             
