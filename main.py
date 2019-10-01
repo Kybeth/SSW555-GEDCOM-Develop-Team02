@@ -203,6 +203,20 @@ def parse_file(path,encode = 'utf-8'):
                     dad_deat = indi[dad_id]['DEAT']
                     if dad_deat - child_birt < timedelta(days = 270):
                         print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + indi[i]['id'] + ' born ' + indi[i]['BIRT'].strftime('%Y-%m-%d') + " after nine months after father's death on " + dad_deat.strftime('%Y-%m-%d'))
+        
+        # US10 Marriage after 14 - by Yuan
+        for i in fam:
+            if 'MARR'in fam[i].keys():
+                marry_date = fam[i]['MARR']
+                fam_id = i
+                husb_id = fam[i]['HUSB']
+                wife_id = fam[i]['WIFE']
+                husb_birt = indi[husb_id]['BIRT']
+                wife_birt = indi[wife_id]['BIRT']
+                if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
+                    print('ERROR: FAMILY: US10: ' + fam_id + ' Husband ' + indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
+                if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
+                    print('ERROR: FAMILY: US10: ' + fam_id + ' Wife ' + indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
 
     return {'fam':fam, 'indi':indi}
 
