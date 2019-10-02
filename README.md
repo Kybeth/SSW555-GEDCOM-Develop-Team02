@@ -9,7 +9,7 @@ Participants for this Team project are:
 2. Vignesh Mohan
 3. Yuan Zhang
 4. Tanvi Hanamshet 
-5. Lifu Hsiao 
+5. Lifu Xiao
 
 
 
