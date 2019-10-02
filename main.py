@@ -167,23 +167,27 @@ def parse_file(path,encode = 'utf-8'):
 
         #US05 Marriage before death - By Tanvi
         for i in indi:
+            if 'DEAT' in indi[i].keys():
+                death_dt = indi[i]['DEAT']
             if "FAMC" in indi[i].keys():
                 fam_id = ''.join(indi[i]['FAMC'])
-                marriage_dt = fam[fam_id]['MARR']
-                if 'DEAT' in fam[fam_id].keys():
-                    death_dt = fam[fam_id]['DEAT']
+                
+                if 'MARR' in fam[fam_id].keys():
+                    marriage_dt = fam[fam_id]['MARR']
                     if  death_dt > marriage_dt:
                         print('US05: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
 
         #US06 Divorce before death - By Tanvi
         for i in indi:
+            if 'DEAT' in indi[i].keys():
+                death_dt = indi[i]['DEAT']
             if "FAMC" in indi[i].keys():
                 fam_id = ''.join(indi[i]['FAMC'])
-                divorce_dt = fam[fam_id]['DIV']
-                if 'DEAT' in fam[fam_id].keys():
-                    death_dt = fam[fam_id]['DEAT']
-                    if death_dt > divorce_dt:
-                        print('US06: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Divorce ' + divorce_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+                
+                if 'DIV' in fam[fam_id].keys():
+                    div_dt = fam[fam_id]['MARR']
+                    if  death_dt > marriage_dt:
+                        print('US06: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + div_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
 
 
 
