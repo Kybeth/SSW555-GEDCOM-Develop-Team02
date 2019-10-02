@@ -1,6 +1,9 @@
 from datetime import datetime, timedelta
 from prettytable import PrettyTable as pt
 
+from datetime import datetime
+from datetime import timedelta
+
 """Define all the valid tags"""
 valid = {
     '0':(['INDI','FAM'],'HEAD','TRLR','NOTE'),
@@ -165,6 +168,18 @@ def parse_file(path,encode = 'utf-8'):
         print(indiTable)
         print(famTable)
 
+        #US01 - Dates before current date
+
+        #getting todays date 
+        today = datetime.now()
+        end_date1 =  today - timedelta(days=30)
+        end_date2 =  today + timedelta(days=30)
+
+        date_type = ''
+
+        for individual_id in indi:
+            individual = indi[individual_id]
+
         #US02 - Birth before marriage of an individual
         for i in indi:
             if "FAMC" in indi[i].keys():
@@ -172,8 +187,8 @@ def parse_file(path,encode = 'utf-8'):
                 fam_id = ''.join(indi[i]['FAMC'])
                 if 'MARR' in fam[fam_id].keys():
                     marry_date = fam[fam_id]['MARR']
-                    if marry_date < child_birt:
-                        print('ANOMALY: FAMILY: US02: ' + fam[fam_id]['fam'] + ' Child ' + indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
+                    if marry_date > child_birt:
+                        print('ANOMALY: FAMILY: US02: ' + fam[fam_id]['fam'] + ' individual ' + indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
                 
 
         # US 03 - Birth before death of individual - Anirudh
