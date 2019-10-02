@@ -168,8 +168,8 @@ def parse_file(path,encode = 'utf-8'):
         #US05 Marriage before death - By Tanvi
         for i in indi:
             if "FAMC" in indi[i].keys():
-                marriage_dt = indi[i]['MARR']
                 fam_id = ''.join(indi[i]['FAMC'])
+                marriage_dt = fam[fam_id]['MARR']
                 if 'DEAT' in fam[fam_id].keys():
                     death_dt = fam[fam_id]['DEAT']
                     if  death_dt > marriage_dt:
@@ -178,8 +178,8 @@ def parse_file(path,encode = 'utf-8'):
         #US06 Divorce before death - By Tanvi
         for i in indi:
             if "FAMC" in indi[i].keys():
-                divorce_dt = indi[i]['DIV']
                 fam_id = ''.join(indi[i]['FAMC'])
+                divorce_dt = fam[fam_id]['DIV']
                 if 'DEAT' in fam[fam_id].keys():
                     death_dt = fam[fam_id]['DEAT']
                     if death_dt > divorce_dt:
