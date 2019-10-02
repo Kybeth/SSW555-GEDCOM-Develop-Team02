@@ -165,15 +165,28 @@ def parse_file(path,encode = 'utf-8'):
         print(indiTable)
         print(famTable)
 
-        #US05 Marriage before death - By Tanvi
+        # US02 Birth before marriage of individual - By Vignesh Mohan
         for i in indi:
             if "FAMC" in indi[i].keys():
-                marriage_dt = indi[i]['MARR']
+                child_birth = indi[i]['BIRT']
+                fam_id = ''.join(indi[i]['FAMC'])
+                if 'MARR' in fam[fam_id].keys():
+                    marry_date = fam[fam_id]['MARR']
+                    if child_birth < marry_date:
+                        print('ANOMALY: FAMILY: US02: ' + fam[fam_id]['fam'] + ' Child ' + indi[i]['id'] + ' born ' + child_birth.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
+                
+        
+        #US05 Marriage before death - By Tanvi
+        '''
+        for i in indi:
+            if "FAMC" in indi[i].keys():
+                marry_date = indi[i]['MARR']
                 fam_id = ''.join(indi[i]['FAMC'])
                 if 'DEAT' in fam[fam_id].keys():
                     death_dt = fam[fam_id]['DEAT']
-                    if  death_dt > marriage_dt:
-                        print('US05: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+                    if  death_dt > marry_date:
+                        print('US05: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + marry_date.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+        
 
         #US06 Divorce before death - By Tanvi
         for i in indi:
@@ -184,8 +197,7 @@ def parse_file(path,encode = 'utf-8'):
                     death_dt = fam[fam_id]['DEAT']
                     if death_dt > divorce_dt:
                         print('US06: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Divorce ' + divorce_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
-
-
+        '''
 
         # US07 Less then 150 years old - By Lifu
         for i in indi:
@@ -246,5 +258,5 @@ def parse_file(path,encode = 'utf-8'):
     return {'fam':fam, 'indi':indi}
 
 
-define_your_file_here = parse_file('My-Family-1-Oct-2019-939.ged')
+define_your_file_here = parse_file('My-Family-1-Oct-2019-278.ged')
             
