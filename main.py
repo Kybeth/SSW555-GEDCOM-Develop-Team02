@@ -165,6 +165,17 @@ def parse_file(path,encode = 'utf-8'):
         print(indiTable)
         print(famTable)
 
+        #US02 - Birth before marriage of an individual
+        for i in indi:
+            if "FAMC" in indi[i].keys():
+                child_birt = indi[i]['BIRT']
+                fam_id = ''.join(indi[i]['FAMC'])
+                if 'MARR' in fam[fam_id].keys():
+                    marry_date = fam[fam_id]['MARR']
+                    if marry_date < child_birt:
+                        print('ANOMALY: FAMILY: US02: ' + fam[fam_id]['fam'] + ' Child ' + indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
+                
+
         # US 03 - Birth before death of individual - Anirudh
         for i in indi:
             if 'BIRT' in indi.keys():
