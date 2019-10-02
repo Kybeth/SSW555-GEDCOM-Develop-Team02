@@ -217,7 +217,7 @@ def parse_file(path,encode = 'utf-8'):
                 if 'MARR' in fam[fam_id].keys():
                     marriage_dt = fam[fam_id]['MARR']
                     if  death_dt > marriage_dt:
-                        print('US05: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+                        print('ANOMALY: FAMILY: US05: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
 
         #US06 Divorce before death - By Tanvi
         for i in indi:
@@ -229,7 +229,7 @@ def parse_file(path,encode = 'utf-8'):
                 if 'DIV' in fam[fam_id].keys():
                     div_dt = fam[fam_id]['MARR']
                     if  death_dt > marriage_dt:
-                        print('US06: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + div_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+                        print('ANOMALY: FAMILY: US06: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + div_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
 
 
 
