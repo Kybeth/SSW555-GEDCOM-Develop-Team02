@@ -179,7 +179,7 @@ def parse_file(path,encode = 'utf-8'):
                 if 'DIV' in fam[i].keys():
                     div_date = fam[i]['DIV']
                     if marry_date < div_date:
-                        print('ERROR: FAMILY: US02: ' + fam[i]['fam']  +  'Married before'  + fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + fam[i]['DIV'].strftime('%Y-%m-%d'))
+                        print('ERROR: FAMILY: US04: ' + fam[i]['fam']  +  'Married before'  + fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + fam[i]['DIV'].strftime('%Y-%m-%d'))
 
         #US05 Marriage before death - By Tanvi
         for i in indi:
