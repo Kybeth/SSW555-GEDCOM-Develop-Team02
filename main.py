@@ -165,6 +165,22 @@ def parse_file(path,encode = 'utf-8'):
         print(indiTable)
         print(famTable)
 
+        # US 03 - Birth before death of individual - Anirudh
+        for i in indi:
+            if 'BIRT' in indi.keys():
+                child_birt = indi[i]['BIRT']
+                if indi[i]['BIRT'] < indi[i]['DEAT']:
+                    print('ERROR: INDIVIDUAL: US03:' + indi[i]['id'] + indi[i]['BIRT'].strftime('%Y-%m-%d') + 'was born before' + indi[i]['DEAT'].strftime('%Y-%m-%d'))
+        
+        #US 04 - Marriage before Divorce of Parents by Anirudh
+        for i in fam:
+            if 'MARR'in fam[i].keys():
+                marry_date = fam[i]['MARR']
+                if 'DIV' in fam[i].keys():
+                    div_date = fam[i]['DIV']
+                    if marry_date < div_date:
+                        print('ERROR: FAMILY: US02: ' + fam[i]['fam']  +  'Married before'  + fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + fam[i]['DIV'].strftime('%Y-%m-%d'))
+
         #US05 Marriage before death - By Tanvi
         for i in indi:
             if 'DEAT' in indi[i].keys():
