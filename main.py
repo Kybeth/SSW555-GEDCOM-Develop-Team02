@@ -165,6 +165,28 @@ def parse_file(path,encode = 'utf-8'):
         print(indiTable)
         print(famTable)
 
+        #US05 Marriage before death - By Tanvi
+        for i in indi:
+            if "FAMC" in indi[i].keys():
+                marriage_dt = indi[i]['MARR']
+                fam_id = ''.join(indi[i]['FAMC'])
+                if 'DEAT' in fam[fam_id].keys():
+                    death_dt = fam[fam_id]['DEAT']
+                    if  death_dt > marriage_dt:
+                        print('US05: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+
+        #US06 Divorce before death - By Tanvi
+        for i in indi:
+            if "FAMC" in indi[i].keys():
+                divorce_dt = indi[i]['DIV']
+                fam_id = ''.join(indi[i]['FAMC'])
+                if 'DEAT' in fam[fam_id].keys():
+                    death_dt = fam[fam_id]['DEAT']
+                    if death_dt > divorce_dt:
+                        print('US06: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Divorce ' + divorce_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+
+
+
         # US07 Less then 150 years old - By Lifu
         for i in indi:
             if 'DEAT' in indi[i].keys():
@@ -217,6 +239,9 @@ def parse_file(path,encode = 'utf-8'):
                     print('ERROR: FAMILY: US10: ' + fam_id + ' Husband ' + indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
                 if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
                     print('ERROR: FAMILY: US10: ' + fam_id + ' Wife ' + indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
+
+
+        
 
     return {'fam':fam, 'indi':indi}
 
