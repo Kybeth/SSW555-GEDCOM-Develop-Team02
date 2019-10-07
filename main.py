@@ -183,32 +183,32 @@ class Gedcom(object):
         print(famTable)
     
     def US01(self): #  US01 - Dates before current date - By Vignesh Mohan
-        '''
+        
         #getting todays date 
-        today = datetime.today()
+        today = datetime.today().strftime('%Y-%m-%d')
         
         for i in self.indi:
 
             individual = self.indi[i]
             if 'BIRT' in self.indi[i].keys():
-                birt_dt = self.indi[i]['BIRT']
+                birt_dt = self.indi[i]['BIRT'].date()
             if 'DEAT' in self.indi[i].keys():
-                death_dt = self.indi[i]['DEAT']
+                death_dt = self.indi[i]['DEAT'].date()
         
             if 'BIRT' in individual.keys():
-                Bdate = today.strptime(birt_dt,"%d %b %Y") 
+                Bdate = birt_dt.strftime('%Y-%m-%d')
                 if Bdate > today:
-                    print("Error US01:-Birthdate ",Bdate,"is after current date \n")
+                    print("Error US01:-Birthdate ",Bdate,"is after current date")
             
             if 'DEAT' in individual.keys():
-                Ddate = today.strptime(death_dt,"%d %b %Y")
+                Ddate = death_dt.strftime('%Y-%m-%d')
                 if Ddate > today:
-                    print("Error US01:- Deathdate ",Ddate,"is after current date \n")
+                    print("Error US01:- Deathdate ",Ddate,"is after current date")
     
             for i in self.fam:
                 family = self.fam[i]
 
-                if "FAMC" in self.indi[i].keys():
+                if "FAMC" in self.fam[i].keys():
                     fam_id = ''.join(self.indi[i]['FAMC'])
                     
                     if 'MARR'in self.fam[i].keys():
@@ -228,15 +228,15 @@ class Gedcom(object):
                         if family not in ['DIV']: div_date = family['DIV']
             
                         if marry_date:
-                            WD =datetime.strptime(marry_date,"%d %b %Y")
+                            WD = marry_date.strftime('%Y-%m-%d')
                             if WD > today:
-                                print("Error US01:- marriageDate ",WD,"is after current date \n")
+                                print("Error US01:- marriageDate ",WD,"is after current date")
                         
                         if div_date:
-                            DD =datetime.strptime(marry_date,"%d %b %Y")
+                            DD = div_date.strftime('%Y-%m-%d')
                             if DD > today:
-                                print("Error US01:- marriageDate ",DD,"is after current date \n")
-    '''
+                                print("Error US01:- marriageDate ",DD,"is after current date")
+    
     def US02(self): #  US02 - Birth before marriage of an individual - By Vignesh Mohan
         error = list()
         for i in self.indi:
@@ -351,7 +351,7 @@ class Gedcom(object):
                     print('ERROR: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
 
 def main():
-    my_family = Gedcom('My-Family-1-Oct-2019-939.ged')
+    my_family = Gedcom('My-Family-7-Oct-2019-205.ged')
     my_family.print_table()
 
     my_family.US01()

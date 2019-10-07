@@ -22,5 +22,6 @@ class UserStoryTest(unittest.TestCase):
         expect = [['ERROR US07', '@I22@'], ['ERROR US07', '@I23@']]
         result = UserStoryTest.test_file.US07()
         self.assertEqual(expect, result)
+        
 if __name__ == '__main__':
     unittest.main(exit=False, verbosity=2)
