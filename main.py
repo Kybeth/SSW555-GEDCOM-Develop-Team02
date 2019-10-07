@@ -182,7 +182,7 @@ class Gedcom(object):
         print(indiTable)
         print(famTable)
 
-    def US01(self): #  US01 - Dates before current date
+    def US01(self): #  US01 - Dates before current date - By Vignesh Mohan
         today = datetime.now()
         end_date1 =  today - timedelta(days=30)
         end_date2 =  today + timedelta(days=30)
@@ -192,7 +192,7 @@ class Gedcom(object):
         for individual_id in self.indi:
             individual = self.indi[individual_id]
 
-    def US02(self): #  US02 - Birth before marriage of an individual
+    def US02(self): #  US02 - Birth before marriage of an individual - By Vignesh Mohan
         for i in self.indi:
             if "FAMC" in self.indi[i].keys():
                 child_birt = self.indi[i]['BIRT']
@@ -246,14 +246,18 @@ class Gedcom(object):
 
 
     def US07(self): #  US07 Less then 150 years old - By Lifu
+        error = list()
         for i in self.indi:
             if 'DEAT' in self.indi[i].keys():
                 if self.indi[i]['DEAT'] - self.indi[i]['BIRT'] > timedelta(days = 54750):
+                    error.append(['ERROR US07', self.indi[i]['id']])
                     print('ERROR: INDIVIDUAL: US07: ' + self.indi[i]['id'] + ' More than 150 years old at death - Birth ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + ' Death ' + self.indi[i]['DEAT'].strftime('%Y-%m-%d'))
             else:
                 if datetime.today() - self.indi[i]['BIRT'] > timedelta(days = 54750):
                     print('ERROR: INDIVIDUAL: US07: ' + self.indi[i]['id'] + ' More than 150 years old - Birth '  + self.indi[i]['BIRT'].strftime('%Y-%m-%d'))
-        
+                    error.append(['ERROR US07', self.indi[i]['id']])
+        return error
+
     def US08(self): #  US08 Birth before marriage of parents - By Lifu
         for i in self.indi:
             if "FAMC" in self.indi[i].keys():
