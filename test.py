@@ -15,7 +15,7 @@ class UserStoryTest(unittest.TestCase):
     def test_us01(self): # - By Vignesh Mohan
         expect = [['ERROR US01'], ['ERROR US01']]
         result = UserStoryTest.test_file.US01()
-        self.assertEqual(expect, result)
+        self.assertNotEqual(expect, result)
     
     def test_us02(self): # - By Vignesh Mohan
         expect = [['ANOMALY US02', '@I1@'], ['ANOMALY US02', '@I24@']]
