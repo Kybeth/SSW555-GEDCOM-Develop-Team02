@@ -186,7 +186,9 @@ class Gedcom(object):
         
         #getting todays date 
         today = datetime.today().strftime('%Y-%m-%d')
-        
+
+        error = list()
+
         for i in self.indi:
 
             individual = self.indi[i]
@@ -198,11 +200,13 @@ class Gedcom(object):
             if 'BIRT' in individual.keys():
                 Bdate = birt_dt.strftime('%Y-%m-%d')
                 if Bdate > today:
+                    error.append(['ERROR US01', self.indi[i]['id']])
                     print("Error US01:-Birthdate ",Bdate,"is after current date")
             
             if 'DEAT' in individual.keys():
                 Ddate = death_dt.strftime('%Y-%m-%d')
                 if Ddate > today:
+                    error.append(['ERROR US01', self.indi[i]['id']])
                     print("Error US01:- Deathdate ",Ddate,"is after current date")
     
             for i in self.fam:
@@ -230,12 +234,15 @@ class Gedcom(object):
                         if marry_date:
                             WD = marry_date.strftime('%Y-%m-%d')
                             if WD > today:
+                                error.append(['ERROR US01', self.indi[i]['id']])
                                 print("Error US01:- marriageDate ",WD,"is after current date")
                         
                         if div_date:
                             DD = div_date.strftime('%Y-%m-%d')
                             if DD > today:
+                                error.append(['ERROR US01', self.indi[i]['id']])
                                 print("Error US01:- marriageDate ",DD,"is after current date")
+        return error
     
     def US02(self): #  US02 - Birth before marriage of an individual - By Vignesh Mohan
         error = list()
