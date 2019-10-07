@@ -181,9 +181,9 @@ class Gedcom(object):
         
         print(indiTable)
         print(famTable)
-
+    
     def US01(self): #  US01 - Dates before current date - By Vignesh Mohan
-        
+        '''
         #getting todays date 
         today = datetime.today()
         
@@ -236,8 +236,9 @@ class Gedcom(object):
                             DD =datetime.strptime(marry_date,"%d %b %Y")
                             if DD > today:
                                 print("Error US01:- marriageDate ",DD,"is after current date \n")
-
+    '''
     def US02(self): #  US02 - Birth before marriage of an individual - By Vignesh Mohan
+        error = list()
         for i in self.indi:
             if "FAMC" in self.indi[i].keys():
                 child_birt = self.indi[i]['BIRT']
@@ -245,7 +246,9 @@ class Gedcom(object):
                 if 'MARR' in self.fam[fam_id].keys():
                     marry_date = self.fam[fam_id]['MARR']
                     if marry_date > child_birt:
+                        error.append(['ANOMALY US02', self.indi[i]['id']])
                         print('ANOMALY: FAMILY: US02: ' + self.fam[fam_id]['fam'] + ' individual ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
+        return error
 
     def US03(self): #  US 03 - Birth before death of individual - Anirudh
         for i in self.indi:
@@ -348,7 +351,7 @@ class Gedcom(object):
                     print('ERROR: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
 
 def main():
-    my_family = Gedcom('My-Family-2-Oct-2019-387.ged')
+    my_family = Gedcom('My-Family-1-Oct-2019-939.ged')
     my_family.print_table()
 
     my_family.US01()
