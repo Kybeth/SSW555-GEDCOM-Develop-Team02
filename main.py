@@ -1,6 +1,9 @@
 from datetime import datetime, timedelta
 from prettytable import PrettyTable as pt
 
+from datetime import datetime
+from datetime import timedelta
+
 """Define all the valid tags"""
 valid = {
     '0':(['INDI','FAM'],'HEAD','TRLR','NOTE'),
@@ -165,39 +168,71 @@ def parse_file(path,encode = 'utf-8'):
         print(indiTable)
         print(famTable)
 
-        # US02 Birth before marriage of individual - By Vignesh Mohan
+        #US01 - Dates before current date
+
+        #getting todays date 
+        today = datetime.now()
+        end_date1 =  today - timedelta(days=30)
+        end_date2 =  today + timedelta(days=30)
+
+        date_type = ''
+
+        for individual_id in indi:
+            individual = indi[individual_id]
+
+        #US02 - Birth before marriage of an individual
         for i in indi:
             if "FAMC" in indi[i].keys():
-                child_birth = indi[i]['BIRT']
+                child_birt = indi[i]['BIRT']
                 fam_id = ''.join(indi[i]['FAMC'])
                 if 'MARR' in fam[fam_id].keys():
                     marry_date = fam[fam_id]['MARR']
-                    if child_birth < marry_date:
-                        print('ANOMALY: FAMILY: US02: ' + fam[fam_id]['fam'] + ' Child ' + indi[i]['id'] + ' born ' + child_birth.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
+                    if marry_date > child_birt:
+                        print('ANOMALY: FAMILY: US02: ' + fam[fam_id]['fam'] + ' individual ' + indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
                 
-        
-        #US05 Marriage before death - By Tanvi
-        '''
+
+        # US 03 - Birth before death of individual - Anirudh
         for i in indi:
-            if "FAMC" in indi[i].keys():
-                marry_date = indi[i]['MARR']
-                fam_id = ''.join(indi[i]['FAMC'])
-                if 'DEAT' in fam[fam_id].keys():
-                    death_dt = fam[fam_id]['DEAT']
-                    if  death_dt > marry_date:
-                        print('US05: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + marry_date.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+            if 'BIRT' in indi.keys():
+                child_birt = indi[i]['BIRT']
+                if indi[i]['BIRT'] < indi[i]['DEAT']:
+                    print('ERROR: INDIVIDUAL: US03:' + indi[i]['id'] + indi[i]['BIRT'].strftime('%Y-%m-%d') + 'was born before' + indi[i]['DEAT'].strftime('%Y-%m-%d'))
         
+        #US 04 - Marriage before Divorce of Parents by Anirudh
+        for i in fam:
+            if 'MARR'in fam[i].keys():
+                marry_date = fam[i]['MARR']
+                if 'DIV' in fam[i].keys():
+                    div_date = fam[i]['DIV']
+                    if marry_date < div_date:
+                        print('ERROR: FAMILY: US04: ' + fam[i]['fam']  +  'Married before'  + fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + fam[i]['DIV'].strftime('%Y-%m-%d'))
+
+        #US05 Marriage before death - By Tanvi
+        
+        for i in indi:
+            if 'DEAT' in indi[i].keys():
+                death_dt = indi[i]['DEAT']
+            if "FAMC" in indi[i].keys():
+                fam_id = ''.join(indi[i]['FAMC'])
+                
+                if 'MARR' in fam[fam_id].keys():
+                    marriage_dt = fam[fam_id]['MARR']
+                    if  death_dt > marriage_dt:
+                        print('ANOMALY: FAMILY: US05: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
 
         #US06 Divorce before death - By Tanvi
         for i in indi:
+            if 'DEAT' in indi[i].keys():
+                death_dt = indi[i]['DEAT']
             if "FAMC" in indi[i].keys():
-                divorce_dt = indi[i]['DIV']
                 fam_id = ''.join(indi[i]['FAMC'])
-                if 'DEAT' in fam[fam_id].keys():
-                    death_dt = fam[fam_id]['DEAT']
-                    if death_dt > divorce_dt:
-                        print('US06: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Divorce ' + divorce_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
-        '''
+                
+                if 'DIV' in fam[fam_id].keys():
+                    div_dt = fam[fam_id]['MARR']
+                    if  death_dt > marriage_dt:
+                        print('ANOMALY: FAMILY: US06: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + div_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+
+
 
         # US07 Less then 150 years old - By Lifu
         for i in indi:

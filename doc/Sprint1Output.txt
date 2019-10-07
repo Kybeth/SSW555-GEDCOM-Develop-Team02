@@ -1,0 +1,66 @@
++-------+----------------------+--------+------------+-----+-------+------------+----------+------------------+
+|   ID  |         Name         | Gender |  Birthday  | Age | Alive |   Death    |  Child   |      Spouse      |
++-------+----------------------+--------+------------+-----+-------+------------+----------+------------------+
+|  @I1@ |   Surinder/Kapoor/   |   M    | 1925-12-23 |  93 | False | 2011-09-24 | {'@F2@'} |     {'@F1@'}     |
+|  @I2@ |    Nirmal/Kapoor/    |   F    | 1931-08-12 |  88 | False | 2016-07-09 |   None   |     {'@F1@'}     |
+|  @I3@ |    Boney/Kapoor/     |   M    | 1983-09-10 |  36 |  True |     NA     | {'@F1@'} | {'@F3@', '@F4@'} |
+|  @I4@ |     Anil/Kapoor/     |   M    | 1956-12-24 |  62 |  True |     NA     | {'@F1@'} |     {'@F5@'}     |
+|  @I5@ |    Sanjay/Kapoor/    |   M    | 1965-10-17 |  53 |  True |     NA     | {'@F1@'} |     {'@F6@'}     |
+|  @I6@ |    Sunita/Kapoor/    |   F    | 1965-08-20 |  54 |  True |     NA     |   None   |     {'@F5@'}     |
+|  @I7@ |    Sonam/Kapoor/     |   F    | 1985-06-09 |  34 |  True |     NA     | {'@F5@'} |        NA        |
+|  @I8@ |     Rhea/Kapoor/     |   F    | 1987-03-05 |  32 |  True |     NA     | {'@F5@'} |        NA        |
+|  @I9@ | Harshvardhan/Kapoor/ |   M    | 1990-11-09 |  28 |  True |     NA     | {'@F5@'} |        NA        |
+| @I10@ |    Maheep/Sandhu/    |   F    | 1970-07-10 |  49 |  True |     NA     |   None   |     {'@F6@'}     |
+| @I11@ |   Shanaya/Kapoor/    |   F    | 1999-11-03 |  19 |  True |     NA     | {'@F6@'} |        NA        |
+| @I12@ |    Jahaan/Kapoor/    |   M    | 2005-07-08 |  14 |  True |     NA     | {'@F6@'} |        NA        |
+| @I13@ |    Mona/Shourie/     |   F    | 1964-02-03 |  55 | False | 2012-03-25 |   None   |     {'@F4@'}     |
+| @I14@ |    Arjun/Kapoor/     |   M    | 1985-06-26 |  34 |  True |     NA     | {'@F4@'} |        NA        |
+| @I15@ |   Anshula/Kapoor/    |   F    | 1992-12-29 |  26 |  True |     NA     | {'@F4@'} |        NA        |
+| @I16@ |   Sridevi/Kapoor/    |   F    | 1963-08-13 |  56 | False | 2018-02-24 |   None   |     {'@F3@'}     |
+| @I17@ |    Khushi/Kapoor/    |   F    | 2000-11-05 |  18 |  True |     NA     | {'@F3@'} |        NA        |
+| @I18@ |    Janhvi/Kapoor/    |   F    | 1997-03-06 |  22 |  True |     NA     | {'@F3@'} |     {'@F7@'}     |
+| @I19@ |    Allen/Kapoor/     |   M    | 2018-03-03 |  1  |  True |     NA     | {'@F3@'} |     {'@F8@'}     |
+| @I20@ |     Lily/Kapoor/     |   F    | 2012-09-03 |  7  |  True |     NA     | {'@F1@'} |     {'@F8@'}     |
+| @I21@ |     John/Kapoor/     |   M    | 1996-02-01 |  23 |  True |     NA     | {'@F6@'} |     {'@F7@'}     |
+| @I22@ |      Vu/Kapoor/      |   M    | 1850-04-11 | 169 | False | 2010-08-08 |   None   |     {'@F2@'}     |
+| @I23@ |     Sue/Kapoor/      |   F    | 1850-08-06 | 169 |  True |     NA     |   None   |     {'@F2@'}     |
++-------+----------------------+--------+------------+-----+-------+------------+----------+------------------+
++------+------------+------------+------------+------------------+---------+-----------------+-----------------------------------+
+|  ID  |  Married   |  Divorced  | Husband ID |   Husband Name   | Wife ID |    Wife name    |              Children             |
++------+------------+------------+------------+------------------+---------+-----------------+-----------------------------------+
+| @F1@ |     NA     |     NA     |    @I1@    | Surinder/Kapoor/ |   @I2@  |  Nirmal/Kapoor/ | {'@I4@', '@I3@', '@I5@', '@I20@'} |
+| @F2@ | 1940-09-07 |     NA     |   @I22@    |    Vu/Kapoor/    |  @I23@  |   Sue/Kapoor/   |              {'@I1@'}             |
+| @F3@ | 1995-10-15 |     NA     |    @I3@    |  Boney/Kapoor/   |  @I16@  | Sridevi/Kapoor/ |    {'@I17@', '@I19@', '@I18@'}    |
+| @F4@ | 1982-08-12 | 1993-07-28 |    @I3@    |  Boney/Kapoor/   |  @I13@  |  Mona/Shourie/  |         {'@I15@', '@I14@'}        |
+| @F5@ | 1982-06-06 |     NA     |    @I4@    |   Anil/Kapoor/   |   @I6@  |  Sunita/Kapoor/ |      {'@I9@', '@I7@', '@I8@'}     |
+| @F6@ | 1995-06-22 |     NA     |    @I5@    |  Sanjay/Kapoor/  |  @I10@  |  Maheep/Sandhu/ |    {'@I12@', '@I11@', '@I21@'}    |
+| @F7@ | 2007-03-03 |     NA     |   @I21@    |   John/Kapoor/   |  @I18@  |  Janhvi/Kapoor/ |                 NA                |
+| @F8@ | 2019-01-01 |     NA     |   @I19@    |  Allen/Kapoor/   |  @I20@  |   Lily/Kapoor/  |                 NA                |
++------+------------+------------+------------+------------------+---------+-----------------+-----------------------------------+
+ANOMALY: FAMILY: US02: @F2@ individual @I1@ born 1925-12-23 before marriage on 1940-09-07
+ERROR: FAMILY: US04: @F4@Married before1982-08-12Divorce1993-07-28
+ANOMALY: FAMILY: US05: @F2@ Person @I1@ Marriage 1940-09-07 before death on 2011-09-24
+ANOMALY: FAMILY: US05: @F5@ Person @I7@ Marriage 1982-06-06 before death on 2016-07-09
+ANOMALY: FAMILY: US05: @F5@ Person @I8@ Marriage 1982-06-06 before death on 2016-07-09
+ANOMALY: FAMILY: US05: @F5@ Person @I9@ Marriage 1982-06-06 before death on 2016-07-09
+ANOMALY: FAMILY: US05: @F6@ Person @I11@ Marriage 1995-06-22 before death on 2016-07-09
+ANOMALY: FAMILY: US05: @F6@ Person @I12@ Marriage 1995-06-22 before death on 2016-07-09
+ANOMALY: FAMILY: US05: @F4@ Person @I14@ Marriage 1982-08-12 before death on 2012-03-25
+ANOMALY: FAMILY: US05: @F4@ Person @I15@ Marriage 1982-08-12 before death on 2012-03-25
+ANOMALY: FAMILY: US05: @F3@ Person @I17@ Marriage 1995-10-15 before death on 2018-02-24
+ANOMALY: FAMILY: US05: @F3@ Person @I18@ Marriage 1995-10-15 before death on 2018-02-24
+ANOMALY: FAMILY: US05: @F3@ Person @I19@ Marriage 1995-10-15 before death on 2018-02-24
+ANOMALY: FAMILY: US05: @F6@ Person @I21@ Marriage 1995-06-22 before death on 2018-02-24
+ANOMALY: FAMILY: US06: @F4@ Person @I14@ Marriage 1982-08-12 before death on 2012-03-25
+ANOMALY: FAMILY: US06: @F4@ Person @I15@ Marriage 1982-08-12 before death on 2012-03-25
+ERROR: INDIVIDUAL: US07: @I22@ More than 150 years old at death - Birth 1850-04-11 Death 2010-08-08
+ERROR: INDIVIDUAL: US07: @I23@ More than 150 years old - Birth 1850-08-06
+ANOMALY: FAMILY: US08: @F2@ Child @I1@ born 1925-12-23 before marriage on 1940-09-07
+ERROR: FAMILY: US09: @F3@ Child @I19@ born 2018-03-03 after mother's death on 2018-02-24
+ERROR: FAMILY: US09: @F1@ Child @I20@ born 2012-09-03 after nine months after father's death on 2011-09-24
+ERROR: FAMILY: US10: @F3@ Husband @I3@ married on 1995-10-15 before 14 years old (born on 1983-09-10)
+ERROR: FAMILY: US10: @F4@ Husband @I3@ married on 1982-08-12 before 14 years old (born on 1983-09-10)
+ERROR: FAMILY: US10: @F7@ Husband @I21@ married on 2007-03-03 before 14 years old (born on 1996-02-01)
+ERROR: FAMILY: US10: @F7@ Wife @I18@ married on 2007-03-03 before 14 years old (born on 1997-03-06)
+ERROR: FAMILY: US10: @F8@ Husband @I19@ married on 2019-01-01 before 14 years old (born on 2018-03-03)
+ERROR: FAMILY: US10: @F8@ Wife @I20@ married on 2019-01-01 before 14 years old (born on 2012-09-03)
