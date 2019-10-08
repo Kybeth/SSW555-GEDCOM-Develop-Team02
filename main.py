@@ -258,6 +258,7 @@ class Gedcom(object):
         return error
 
     def US03(self): #  US 03 - Birth before death of individual - Anirudh
+        error = list()
         for i in self.indi:
             if 'BIRT' in self.indi.keys():
                 child_birt = self.indi[i]['BIRT']
@@ -271,7 +272,8 @@ class Gedcom(object):
                 if 'DIV' in self.fam[i].keys():
                     div_date = self.fam[i]['DIV']
                     if marry_date < div_date:
-                        print('ERROR: FAMILY: US04: ' + self.fam[i]['fam']  +  'Married before'  + self.fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + self.fam[i]['DIV'].strftime('%Y-%m-%d'))
+                        j = print('ERROR: FAMILY: US04: ' + self.fam[i]['fam']  +  'Married before'  + self.fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + self.fam[i]['DIV'].strftime('%Y-%m-%d'))
+        return j
 
     def US05(self): #  US05 Marriage before death - By Tanvi
         for i in self.indi:
