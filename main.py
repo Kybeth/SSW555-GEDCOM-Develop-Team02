@@ -105,6 +105,19 @@ class Gedcom(object):
 
         return {'fam':fam, 'indi':indi}
 
+class Individual:
+    """Defining a class to hold individual tags"""
+    """ID, name, gender, alive, dead, child, spouse are present here"""
+    def __init__(self, id):
+        self.id = id
+        self.name = ''
+        self.gender = ''
+        self.age = ''
+        self.alive = 'TRUE' # set this to true to compare and evaluate metrics on death 
+        self.death = 'NA'   # Death is set to NA 
+        self.child = dict() # store as dictionary or team's preferred choice of action
+        self.spouse = dict()      # same as above, choose any data structure. Vote of dict or set??
+
     def print_table(self):
         """Pretty Table info for induvidual"""
 
