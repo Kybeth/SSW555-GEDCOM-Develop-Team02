@@ -1,16 +1,21 @@
-from datetime import datetime, timedelta
+#Project           : GEDCOM SSW 555 
+#Program name      : main.py
+#Author            : Tanvi Hanamshet, Anirudh Bezzam, Yuan Zhang, Vignesh Mohan, Lifu Xiao
+#Purpose           : User story Implementation of US11, US12, US13, US14, US15, US16, US17, US18, US19, US20
+
+# US11:  No Bigamy
+# US12:  Parents not too old
+# US13:  Siblings spacing
+# US14:  Multiple Births <= 5
+# US15:  Fewer than 15 siblings
+# US16:  Male last name
+# US17:  No marriages to children
+# US18:  Siblings should not marry
+# US19:  First cousins should not marry
+# US20:  Aunts and Uncles
+
+from datetime import date, datetime, timedelta
 from prettytable import PrettyTable as pt
-
-from datetime import datetime
-from datetime import timedelta
-
-"""Define all the valid tags"""
-valid = {
-    '0':(['INDI','FAM'],'HEAD','TRLR','NOTE'),
-    '1':('NAME','SEX','BIRT','DEAT','FAMC','FAMS','MARR','HUSB','WIFE','CHIL','DIV'),
-    '2':('DATE'),
-}
-
 
 def calculate_age(birthday):
     """ Calculate the induviduals date and DOB """
@@ -18,148 +23,170 @@ def calculate_age(birthday):
     current = datetime.today()
     return current.year - birthday.year - ((current.month, current.day) < (birthday.month, birthday.day))
 
-def parse_file(path,encode = 'utf-8'):
-    """Reads the file from the path and stores all the information in a dictionary. Uses Pretty table to print out further information about the family.
-    """
+class Gedcom(object):
+    """Define all the valid tags"""
+    valid = {
+    '0':(['INDI','FAM'],'HEAD','TRLR','NOTE'),
+    '1':('NAME','SEX','BIRT','DEAT','FAMC','FAMS','MARR','HUSB','WIFE','CHIL','DIV'),
+    '2':('DATE'),
+    }
 
-    with open(path,'r',encoding=encode) as gp:  #remember that gp is the file
-        isValid = 'N'
-        IsIND = True
-        indi = {}
-        fam = {}
-        currentDate = ''                        
-        currentInd = ''
-        currentFam = ''
+    def __init__(self, path):
+        self.path = path
+        file = self.parse_file()
+        self.fam = file['fam']
+        self.indi = file['indi']
+
+
+    def parse_file(self):
+        """Reads the file from the path and stores all the information in a dictionary. Uses Pretty table to print out further information about the family.
+        """
+        try:
+            gp = open(self.path, 'r', encoding='utf-8')
+        except FileNotFoundError:
+            raise FileNotFoundError('%s not exist' % (self.path))
+        else:
+            with gp:
+                isValid = 'N'
+                IsIND = True
+                indi = {}
+                fam = {}
+                currentDate = ''                        
+                currentInd = ''
+                currentFam = ''
+                
+                for line in gp:    
+                    family = line.strip().split()
+                    arguments = ''.join(family[2:])
+                    tag = 'NA'
+                    level = 'NA'
+
+                    if len(family) == 1:
+                        level = family[0]
+                    elif len(family) > 1:
+                        level = family[0]
+                        tag = family[1]
+
+                    if len(family) == 3 and family[0] == '0' and family[2] in ('INDI', 'FAM'):
+                        isValid = 'Y'
+                        tag = family[2]
+                    elif len(family) > 1 and level in Gedcom.valid and tag in Gedcom.valid[level]:
+                        isValid = 'Y'
+                    
+                    if isValid == 'Y':
+                        if level== '0' and tag == 'INDI':
+                            currentInd = family[1]
+                            IsIND = True
+
+                            ''' Implement the unique key identifier'''
+                            
+                            indi[currentInd] = {'id':family[1]}
+
+                        if IsIND:
+                            if level == '1' and tag == 'NAME':
+                                indi[currentInd]['name'] = arguments
+                            if level == '1' and tag == 'BIRT' or tag == 'DEAT':
+                                currentDate = tag 
+                            if level == '2' and currentDate != '' and tag == 'DATE':
+                                indi[currentInd][currentDate] = datetime.strptime(arguments,'%d%b%Y')   
+
+                            if level == '1' and tag == 'SEX':
+                                indi[currentInd]['sex'] = arguments   
+                            if level == '1' and tag in ('FAMC','FAMS'):
+                                if tag in indi[currentInd]:
+                                    indi[currentInd][tag].add(arguments)
+                                else:
+                                    indi[currentInd][tag] = {arguments}  
         
-        for line in gp:    
-            family = line.strip().split()
-            arguments = ''.join(family[2:])
-            tag = 'NA'
-            level = 'NA'
+                        if level=='0' and tag == 'FAM':
+                            IsIND = False
+                            currentFam = family[1]
+                            fam[currentFam] = {'fam':currentFam}
+                            
+                        if IsIND == False:
+                            if level == '1' and family[1] == 'MARR' or family[1] == 'DIV':
+                                currentDate = tag
+                            if level == '2' and tag == 'DATE':
+                                fam[currentFam][currentDate] =datetime.strptime(arguments,'%d%b%Y')
+                            if level == '1' and tag in ('HUSB','WIFE'):
+                                fam[currentFam][tag] = arguments
+                            if level == '1' and tag == 'CHIL':
+                                if tag in fam[currentFam]:
+                                    fam[currentFam][tag].add(arguments)
+                                else:
+                                    fam[currentFam][tag] = {arguments}
 
-            if len(family) == 1:
-                level = family[0]
-            elif len(family) > 1:
-                level = family[0]
-                tag = family[1]
+        return {'fam':fam, 'indi':indi}
 
-            if len(family) == 3 and family[0] == '0' and family[2] in ('INDI', 'FAM'):
-                isValid = 'Y'
-                tag = family[2]
-            elif len(family) > 1 and level in valid and tag in valid[level]:
-                isValid = 'Y'
-            
-            if isValid == 'Y':
-                if level== '0' and tag == 'INDI':
-                    currentInd = family[1]
-                    IsIND = True
-
-                    ''' Implement the unique key identifier'''
-                    
-                    indi[currentInd] = {'id':family[1]}
-
-                if IsIND:
-                    if level == '1' and tag == 'NAME':
-                        indi[currentInd]['name'] = arguments
-                    if level == '1' and tag == 'BIRT' or tag == 'DEAT':
-                        currentDate = tag 
-                    if level == '2' and currentDate != '' and tag == 'DATE':
-                        indi[currentInd][currentDate] = datetime.strptime(arguments,'%d%b%Y')   
-
-                    if level == '1' and tag == 'SEX':
-                        indi[currentInd]['sex'] = arguments   
-                    if level == '1' and tag in ('FAMC','FAMS'):
-                        if tag in indi[currentInd]:
-                            indi[currentInd][tag].add(arguments)
-                        else:
-                            indi[currentInd][tag] = {arguments}  
-   
-                if level=='0' and tag == 'FAM':
-                    IsIND = False
-                    currentFam = family[1]
-                    fam[currentFam] = {'fam':currentFam}
-                    
-                if IsIND == False:
-                    if level == '1' and family[1] == 'MARR' or family[1] == 'DIV':
-                        currentDate = tag
-                    if level == '2' and tag == 'DATE':
-                        fam[currentFam][currentDate] =datetime.strptime(arguments,'%d%b%Y')
-                    if level == '1' and tag in ('HUSB','WIFE'):
-                        fam[currentFam][tag] = arguments
-                    if level == '1' and tag == 'CHIL':
-                        if tag in fam[currentFam]:
-                            fam[currentFam][tag].add(arguments)
-                        else:
-                            fam[currentFam][tag] = {arguments}
-
+    def print_table(self):
         """Pretty Table info for induvidual"""
 
         indiTable = pt(["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"])
         
-        for key in indi.keys():
+        for key in self.indi.keys():
             # print birth date
-            birth_str = indi[key]['BIRT'].strftime('%Y-%m-%d')
+            birth_str = self.indi[key]['BIRT'].strftime('%Y-%m-%d')
             
             """Condition for alive"""
-            if 'DEAT' in indi[key]:
-                death = indi[key]['DEAT']
+            if 'DEAT' in self.indi[key]:
+                death = self.indi[key]['DEAT']
                 death_str = 'False'
             else:
                 death_str ='True'
 
             """Condition for Death column"""  #Note that I am using same "deat" keyword for alive and dead
-            if 'DEAT' in indi[key]:
-                alive = indi[key]['DEAT']
+            if 'DEAT' in self.indi[key]:
+                alive = self.indi[key]['DEAT']
                 alive_str = death.strftime('%Y-%m-%d')
             else:
                 alive_str ='NA'
 
             """Condition for Children"""
-            if 'FAMC' in indi[key]:
-                child = indi[key]['FAMC']
+            if 'FAMC' in self.indi[key]:
+                child = self.indi[key]['FAMC']
             else:
                 child = None
             
             """Spouse Situation LOL"""
-            if 'FAMS' in indi[key]:
-                spouse = indi[key]['FAMS']
+            if 'FAMS' in self.indi[key]:
+                spouse = self.indi[key]['FAMS']
             else:
                 spouse = 'NA'
 
-            age = calculate_age(indi[key]['BIRT'])
-            indiTable.add_row([indi[key]['id'],indi[key]['name'],indi[key]['sex'], birth_str, age, death_str, alive_str, child, spouse])
+            age = calculate_age(self.indi[key]['BIRT'])
+            indiTable.add_row([self.indi[key]['id'],self.indi[key]['name'],self.indi[key]['sex'], birth_str, age, death_str, alive_str, child, spouse])
         
         """Pretty table info for family relations"""
 
         famTable =pt(['ID','Married','Divorced','Husband ID','Husband Name','Wife ID','Wife name','Children'])
-        for key in fam.keys():
-            if 'DIV' in fam[key]:
-                div_str = fam[key]['DIV'].strftime('%Y-%m-%d')
+        for key in self.fam.keys():
+            if 'DIV' in self.fam[key]:
+                div_str = self.fam[key]['DIV'].strftime('%Y-%m-%d')
 
             else: 
                 div_str = "NA"
 
-            if "HUSB" in fam[key]:
-                hubID = fam[key]['HUSB']
-                hubName = indi[hubID]['name']
+            if "HUSB" in self.fam[key]:
+                hubID = self.fam[key]['HUSB']
+                hubName = self.indi[hubID]['name']
             else:
                 hubID = "NA"
                 hubName = "NA"
 
-            if "WIFE" in fam[key]:
-                wifeID = fam[key]['WIFE']
-                wifeName = indi[wifeID]['name']
+            if "WIFE" in self.fam[key]:
+                wifeID = self.fam[key]['WIFE']
+                wifeName = self.indi[wifeID]['name']
             else:
                 wifeID = "NA"
                 wifeName = "NA"
 
-            if 'CHIL' in fam[key] :
-                chil = fam[key]['CHIL']
+            if 'CHIL' in self.fam[key] :
+                chil = self.fam[key]['CHIL']
             else:
                 chil = "NA"
 
-            if 'MARR' in fam[key]:
-                marr_str = fam[key]['MARR'].strftime('%Y-%m-%d')
+            if 'MARR' in self.fam[key]:
+                marr_str = self.fam[key]['MARR'].strftime('%Y-%m-%d')
             else:
                 marr_str = "NA"
 
@@ -167,131 +194,44 @@ def parse_file(path,encode = 'utf-8'):
         
         print(indiTable)
         print(famTable)
+    
+    
+    
+    def us15(self): #Fewer than 15 siblings - by Tanvi
+        false = False
+        for key in self.fam.keys():
+            if 'CHIL' in self.fam[key] :
+                chil = self.fam[key]['CHIL']
+                if len(chil) < 15:
+                    print(f"US15: Error: No more than fourteen children should be born in each family.'{len(chil)}' children born in family '{key}'")
+                    false = True
+        return false
 
-        #US01 - Dates before current date
-
-        #getting todays date 
-        today = datetime.now()
-        end_date1 =  today - timedelta(days=30)
-        end_date2 =  today + timedelta(days=30)
-
-        date_type = ''
-
-        for individual_id in indi:
-            individual = indi[individual_id]
-
-        #US02 - Birth before marriage of an individual
-        for i in indi:
-            if "FAMC" in indi[i].keys():
-                child_birt = indi[i]['BIRT']
-                fam_id = ''.join(indi[i]['FAMC'])
-                if 'MARR' in fam[fam_id].keys():
-                    marry_date = fam[fam_id]['MARR']
-                    if marry_date > child_birt:
-                        print('ANOMALY: FAMILY: US02: ' + fam[fam_id]['fam'] + ' individual ' + indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
-                
-
-        # US 03 - Birth before death of individual - Anirudh
-        for i in indi:
-            if 'BIRT' in indi.keys():
-                child_birt = indi[i]['BIRT']
-                if indi[i]['BIRT'] < indi[i]['DEAT']:
-                    print('ERROR: INDIVIDUAL: US03:' + indi[i]['id'] + indi[i]['BIRT'].strftime('%Y-%m-%d') + 'was born before' + indi[i]['DEAT'].strftime('%Y-%m-%d'))
-        
-        #US 04 - Marriage before Divorce of Parents by Anirudh
-        for i in fam:
-            if 'MARR'in fam[i].keys():
-                marry_date = fam[i]['MARR']
-                if 'DIV' in fam[i].keys():
-                    div_date = fam[i]['DIV']
-                    if marry_date < div_date:
-                        print('ERROR: FAMILY: US04: ' + fam[i]['fam']  +  'Married before'  + fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + fam[i]['DIV'].strftime('%Y-%m-%d'))
-
-        #US05 Marriage before death - By Tanvi
-        
-        for i in indi:
-            if 'DEAT' in indi[i].keys():
-                death_dt = indi[i]['DEAT']
-            if "FAMC" in indi[i].keys():
-                fam_id = ''.join(indi[i]['FAMC'])
-                
-                if 'MARR' in fam[fam_id].keys():
-                    marriage_dt = fam[fam_id]['MARR']
-                    if  death_dt > marriage_dt:
-                        print('ANOMALY: FAMILY: US05: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
-
-        #US06 Divorce before death - By Tanvi
-        for i in indi:
-            if 'DEAT' in indi[i].keys():
-                death_dt = indi[i]['DEAT']
-            if "FAMC" in indi[i].keys():
-                fam_id = ''.join(indi[i]['FAMC'])
-                
-                if 'DIV' in fam[fam_id].keys():
-                    div_dt = fam[fam_id]['MARR']
-                    if  death_dt > marriage_dt:
-                        print('ANOMALY: FAMILY: US06: ' + fam[fam_id]['fam'] + ' Person ' + indi[i]['id'] + ' Marriage ' + div_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
-
-
-
-        # US07 Less then 150 years old - By Lifu
-        for i in indi:
-            if 'DEAT' in indi[i].keys():
-                if indi[i]['DEAT'] - indi[i]['BIRT'] > timedelta(days = 54750):
-                    print('ERROR: INDIVIDUAL: US07: ' + indi[i]['id'] + ' More than 150 years old at death - Birth ' + indi[i]['BIRT'].strftime('%Y-%m-%d') + ' Death ' + indi[i]['DEAT'].strftime('%Y-%m-%d'))
-            else:
-                if datetime.today() - indi[i]['BIRT'] > timedelta(days = 54750):
-                    print('ERROR: INDIVIDUAL: US07: ' + indi[i]['id'] + ' More than 150 years old - Birth '  + indi[i]['BIRT'].strftime('%Y-%m-%d'))
-        
-        # US08 Birth before marriage of parents - By Lifu
-        for i in indi:
-            if "FAMC" in indi[i].keys():
-                child_birt = indi[i]['BIRT']
-                fam_id = ''.join(indi[i]['FAMC'])
-                if 'MARR' in fam[fam_id].keys():
-                    marry_date = fam[fam_id]['MARR']
-                    if marry_date > child_birt:
-                        print('ANOMALY: FAMILY: US08: ' + fam[fam_id]['fam'] + ' Child ' + indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
-                if 'DIV' in fam[fam_id].keys():
-                    div_date = fam[fam_id]['DIV']
-                    if div_date < child_birt:
-                        print('ANOMALY: FAMILY: US08: ' + fam[fam_id]['fam'] + ' Child ' + indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' after divorce on ' + div_date.strftime('%Y-%m-%d'))
-
-        # US09 Birth before death of parents - by Yuan
-        for i in indi:
-            if 'FAMC' in indi[i].keys():
-                child_birt = indi[i]['BIRT']
-                fam_id = ''.join(indi[i]['FAMC'])
-                mom_id = fam[fam_id]['WIFE']
-                dad_id = fam[fam_id]['HUSB']
-                if 'DEAT' in indi[mom_id].keys():
-                    mom_deat = indi[mom_id]['DEAT']
-                    if child_birt > mom_deat:
-                        print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + indi[i]['id'] + ' born ' + indi[i]['BIRT'].strftime('%Y-%m-%d') + " after mother's death on " + mom_deat.strftime('%Y-%m-%d'))
-                if 'DEAT' in indi[dad_id].keys():
-                    dad_deat = indi[dad_id]['DEAT']
-                    if dad_deat - child_birt < timedelta(days = 270):
-                        print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + indi[i]['id'] + ' born ' + indi[i]['BIRT'].strftime('%Y-%m-%d') + " after nine months after father's death on " + dad_deat.strftime('%Y-%m-%d'))
-        
-        # US10 Marriage after 14 - by Yuan
-        for i in fam:
-            if 'MARR'in fam[i].keys():
-                marry_date = fam[i]['MARR']
-                fam_id = i
-                husb_id = fam[i]['HUSB']
-                wife_id = fam[i]['WIFE']
-                husb_birt = indi[husb_id]['BIRT']
-                wife_birt = indi[wife_id]['BIRT']
-                if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
-                    print('ERROR: FAMILY: US10: ' + fam_id + ' Husband ' + indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
-                if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
-                    print('ERROR: FAMILY: US10: ' + fam_id + ' Wife ' + indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
-
-
-        
-
-    return {'fam':fam, 'indi':indi}
-
-
-define_your_file_here = parse_file('My-Family-1-Oct-2019-278.ged')
             
+
+
+    def us16(self): #Male last names - Tanvi
+        for i in self.indi:
+            if 'FAMC' in self.indi[i].keys():
+                fam_id = ''.join(self.indi[i]['FAMC'])
+                if self.indi[i]['sex'] == 'M':
+                    first_name = self.indi[i]['name'].split('/')[0]
+                    print(first_name)
+                # if "HUSB" in self.fam[fam_id]:
+                #     hubID = self.fam[fam_id]['HUSB']
+                #     hubName = self.indi[hubID]['name']
+                #     print(hubName)
+
+
+
+
+def main():
+    my_family = Gedcom('My-Family-7-Oct-2019-205.ged')
+    my_family.print_table()
+
+    
+    my_family.us15()
+    my_family.us16()
+
+if __name__ == '__main__':
+    main()
