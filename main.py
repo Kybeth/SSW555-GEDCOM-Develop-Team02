@@ -300,20 +300,24 @@ class Family:
                     if marry_date < div_date:
                         j = print('ERROR: FAMILY: US04: ' + self.fam[i]['fam']  +  'Married before'  + self.fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + self.fam[i]['DIV'].strftime('%Y-%m-%d'))
         return j
-
+    
     def US05(self): #  US05 Marriage before death - By Tanvi
+        j = list()
         for i in self.indi:
             if 'DEAT' in self.indi[i].keys():
                 death_dt = self.indi[i]['DEAT']
             if "FAMC" in self.indi[i].keys():
                 fam_id = ''.join(self.indi[i]['FAMC'])
-                
                 if 'MARR' in self.fam[fam_id].keys():
                     marriage_dt = self.fam[fam_id]['MARR']
                     if  death_dt > marriage_dt:
-                        print('ANOMALY: FAMILY: US05: ' + self.fam[fam_id]['fam'] + ' Person ' + self.indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+                        j.append(['ANOMALY US05', self.indi[i]['id']])
+                        print('ANOMALY: FAMILY: US05: ' + self.fam[fam_id]['fam'] + ' individual ' + self.indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+        return j
 
+   
     def US06(self): #  US06 Divorce before death - By Tanvi
+        error = list()
         for i in self.indi:
             if 'DEAT' in self.indi[i].keys():
                 death_dt = self.indi[i]['DEAT']
@@ -324,8 +328,9 @@ class Family:
                     div_dt = self.fam[fam_id]['MARR']
                     marriage_dt = self.fam[fam_id]['MARR']
                     if  death_dt > marriage_dt:
-                        print('ANOMALY: FAMILY: US06: ' + self.fam[fam_id]['fam'] + ' Person ' + self.indi[i]['id'] + ' Marriage ' + div_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
-
+                        print('ANOMALY: FAMILY: US06: ' + self.fam[fam_id]['fam'] + ' individual ' + self.indi[i]['id'] + ' Marriage ' + div_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+                        error.append(['ANOMALY US06', self.indi[i]['id']])
+        return error
 
 
     def US07(self): #  US07 Less then 150 years old - By Lifu
