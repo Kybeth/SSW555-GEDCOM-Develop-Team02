@@ -347,6 +347,7 @@ class Family:
         return error
 
     def US08(self): #  US08 Birth before marriage of parents - By Lifu
+        error = list()
         for i in self.indi:
             if "FAMC" in self.indi[i].keys():
                 child_birt = self.indi[i]['BIRT']
@@ -354,11 +355,14 @@ class Family:
                 if 'MARR' in self.fam[fam_id].keys():
                     marry_date = self.fam[fam_id]['MARR']
                     if marry_date > child_birt:
+                        error.append(['ERROR US08', self.indi[i]['id']])
                         print('ANOMALY: FAMILY: US08: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
                 if 'DIV' in self.fam[fam_id].keys():
                     div_date = self.fam[fam_id]['DIV']
                     if div_date < child_birt:
+                        error.append(['ERROR US08', self.indi[i]['id']])
                         print('ANOMALY: FAMILY: US08: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' after divorce on ' + div_date.strftime('%Y-%m-%d'))
+        return error
 
     def US09(self): #  US09 Birth before death of parents - by Yuan
         for i in self.indi:

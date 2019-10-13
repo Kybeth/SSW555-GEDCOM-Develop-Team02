@@ -36,7 +36,12 @@ class UserStoryTest(unittest.TestCase):
         expect = [['ERROR US07', '@I22@'], ['ERROR US07', '@I24@'], ['ERROR US07', '@I25@']]
         result = UserStoryTest.test_file.US07()
         self.assertEqual(expect, result)
-        
+    
+    def test_us08(self): # - By Lifu Xiao
+        expect = [['ANOMALY: FAMILY: US08', '@I1@']]
+        result = UserStoryTest.test_file.US08()
+        self.assertEqual(expect, result)
+
     def test_us05(self):
         expect = [['ANOMALY US05', '@I1@'],['ANOMALY US05', '@I7@'],['ANOMALY US05', '@I8@'],['ANOMALY US05', '@I9@'],['ANOMALY US05', '@I11@'],['ANOMALY US05', '@I12@'],['ANOMALY US05', '@I14@'],['ANOMALY US05', '@I15@'],['ANOMALY US05', '@I17@'],['ANOMALY US05', '@I18@'],['ANOMALY US05', '@I19@'],['ANOMALY US05', '@I21@'],['ANOMALY US05', '@I24@']]
         result = UserStoryTest.test_file.US05()
