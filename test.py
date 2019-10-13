@@ -31,6 +31,16 @@ class UserStoryTest(unittest.TestCase):
         expect = [['ANOMALY US04', '@F4@'], ['ANOMALY US04', '@I20@']]
         result = UserStoryTest.test_file.US04()
         self.assertEqual(expect, result)
+
+    def test_us05(self):
+        expect = [['ANOMALY US05', '@I1@'],['ANOMALY US05', '@I7@'],['ANOMALY US05', '@I8@'],['ANOMALY US05', '@I9@'],['ANOMALY US05', '@I11@'],['ANOMALY US05', '@I12@'],['ANOMALY US05', '@I14@'],['ANOMALY US05', '@I15@'],['ANOMALY US05', '@I17@'],['ANOMALY US05', '@I18@'],['ANOMALY US05', '@I19@'],['ANOMALY US05', '@I21@'],['ANOMALY US05', '@I24@']]
+        result = UserStoryTest.test_file.US05()
+        self.assertEqual(expect, result)
+    
+    def test_us06(self):
+        expect = [['ANOMALY US06', '@I14@'],['ANOMALY US06', '@I15@']]
+        result = UserStoryTest.test_file.US06()
+        self.assertEqual(expect, result)
     
     def test_us07(self): # - By Lifu Xiao
         expect = [['ERROR US07', '@I22@'], ['ERROR US07', '@I24@'], ['ERROR US07', '@I25@']]
@@ -42,14 +52,15 @@ class UserStoryTest(unittest.TestCase):
         result = UserStoryTest.test_file.US08()
         self.assertEqual(expect, result)
 
-    def test_us05(self):
-        expect = [['ANOMALY US05', '@I1@'],['ANOMALY US05', '@I7@'],['ANOMALY US05', '@I8@'],['ANOMALY US05', '@I9@'],['ANOMALY US05', '@I11@'],['ANOMALY US05', '@I12@'],['ANOMALY US05', '@I14@'],['ANOMALY US05', '@I15@'],['ANOMALY US05', '@I17@'],['ANOMALY US05', '@I18@'],['ANOMALY US05', '@I19@'],['ANOMALY US05', '@I21@'],['ANOMALY US05', '@I24@']]
-        result = UserStoryTest.test_file.US05()
+    def test_us09(self): # - By Yuan Zhang
+        expect = [['ERROR US09', '@I19@'], ['ERROR US09', '@I20@']]
+        result = UserStoryTest.test_file.US09()
         self.assertEqual(expect, result)
     
-    def test_us06(self):
-        expect = [['ANOMALY US06', '@I14@'],['ANOMALY US06', '@I15@']]
-        result = UserStoryTest.test_file.US06()
+
+    def test_us10(self): # - By Yuan Zhang
+        expect = [['ANOMOLY US10', '@I3@'], ['ANOMOLY US10', '@I21@'], ['ANOMOLY US10', '@I18@'], ['ANOMOLY US10', '@I19@'], ['ANOMOLY US10', '@I20@']]
+        result = UserStoryTest.test_file.US10()
         self.assertEqual(expect, result)
 
 

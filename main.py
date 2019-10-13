@@ -365,6 +365,7 @@ class Family:
         return error
 
     def US09(self): #  US09 Birth before death of parents - by Yuan
+        error = list()
         for i in self.indi:
             if 'FAMC' in self.indi[i].keys():
                 child_birt = self.indi[i]['BIRT']
@@ -374,13 +375,17 @@ class Family:
                 if 'DEAT' in self.indi[mom_id].keys():
                     mom_deat = self.indi[mom_id]['DEAT']
                     if child_birt > mom_deat:
+                        error.append(['ERROR US09', self.indi[i]['id']])
                         print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + self.indi[i]['id'] + ' born ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + " after mother's death on " + mom_deat.strftime('%Y-%m-%d'))
                 if 'DEAT' in self.indi[dad_id].keys():
                     dad_deat = self.indi[dad_id]['DEAT']
                     if dad_deat - child_birt < timedelta(days = 270):
+                        error.append(['ERROR US09', self.indi[i]['id']])
                         print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + self.indi[i]['id'] + ' born ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + " after nine months after father's death on " + dad_deat.strftime('%Y-%m-%d'))
-        
+        return error
+
     def US10(self): #  US10 Marriage after 14 - by Yuan
+        error = list()
         for i in self.fam:
             if 'MARR'in self.fam[i].keys():
                 marry_date = self.fam[i]['MARR']
@@ -390,9 +395,12 @@ class Family:
                 husb_birt = self.indi[husb_id]['BIRT']
                 wife_birt = self.indi[wife_id]['BIRT']
                 if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
-                    print('ERROR: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
+                    error.append(['ANOMOLY US10', self.indi[i]['id']])
+                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
                 if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
-                    print('ERROR: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
+                    error.append(['ANOMOLY US10', self.indi[i]['id']])
+                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
+        return error
 
 def main():
     my_family = Gedcom('My-Family-7-Oct-2019-205.ged')
