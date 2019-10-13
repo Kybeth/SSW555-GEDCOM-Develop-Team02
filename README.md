@@ -2,7 +2,7 @@
 
 A Gedcom parser to read and extract data from a GEDCOM file and note the anolamalies in a family tree.
 
-[![build status of master](https://travis-ci.org/Kybeth/SSW555-GEDCOM-Develop-Team02.svg?branch=sprint1)](https://travis-ci.org/Kybeth/SSW555-GEDCOM-Develop-Team02)
+[![Build Status](https://travis-ci.org/Kybeth/SSW555-GEDCOM-Develop-Team02.svg?branch=master)](https://travis-ci.org/Kybeth/SSW555-GEDCOM-Develop-Team02)
 
 # Primary Code Language: Python 3.7 
 
@@ -12,8 +12,3 @@ Participants for this Team project are:
 3. Yuan Zhang
 4. Tanvi Hanamshet 
 5. Lifu Xiao
-
-
-
-
-
