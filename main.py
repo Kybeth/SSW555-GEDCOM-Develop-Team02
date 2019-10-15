@@ -395,7 +395,7 @@ class Gedcom(object):
                     print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
         return error
     
-    def us15(self): #Fewer than 15 siblings
+    def us15(self): # Fewer than 15 siblings
         false = False
         for key in self.fam.keys():
             if 'CHIL' in self.fam[key] :
@@ -418,6 +418,22 @@ class Gedcom(object):
                 #     print(hubID)
                 #     hubName = self.indi[hubID]['name']
                 #     print(hubName)
+    
+    def us14(self): # By Anirudh Bezzam
+        """ US14 Multiple Births <= 5 - No more than five siblings should be born at the same time """
+        error = list()
+        for i in self.indi:
+            if "FAMC" in self.indi[i].keys():
+                for key in self.fam.keys():
+                    if 'CHIL' in self.fam[key]:
+                        chil = self.fam[key]['CHIL']
+                        child_birt = self.indi[i]['BIRT']
+                        fam_id = ''.join(self.indi[i]['FAMC'])
+                        if len(chil) <= 5:  # Check logic
+                            error.append(['ANOMALY: FAMILY: US14:', self.indi[i]['id']])
+                            print('ANOMALY: FAMILY: US14: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' at the same time on ' + child_birt.strftime('%Y-%m-%d'))
+        return error
+
 
 def main():
     my_family = Gedcom('My-Family-7-Oct-2019-205.ged')
@@ -435,6 +451,7 @@ def main():
     my_family.US10()
     my_family.us15()
     my_family.us16()
+    my_family.us14()
 
 if __name__ == '__main__':
     main()
