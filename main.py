@@ -132,4 +132,156 @@ class Family:
         return [self.id, self.marriage, self.divorced, self.hubby_id, self.hubby_name, self.wife_id,
                 self.wife_name, self.children]
 
+class Repo:
+
+    def __init__(self):
+        """All information about Individual and Family"""
+        self.individual = dict()
+        self.family = dict()
+
+    def add_individual(self, level, args, tag):
+        self.individual[args] = Individual(args)
+
+    def add_family(self, level, args, tag):
+        self.family[args] = Family(args)
+
+    def indi_table(self):
+        pt = PrettyTable(
+            Columns=['ID', 'Name', 'Gender', 'Birthday', 'Age', 'Alive', 'Death', 'Child', 'Spouse'])
+        for key in sorted(self.individual.keys()):
+            pt.add_row(self.individual[key].pt_row())
+        print(pt)
+
+    def family_table(self):
+        pt = PrettyTable(
+            Columns=['ID', 'Married', 'Divorced', 'hubby ID', 'hubby Name', 'Wife ID', 'Wife Name', 'Children'])
+        for key in sorted(self.family.keys()):
+            pt.add_row(self.family[key].pt_row())
+        print(pt)
+
+    def read_file(self, path):
+        for level, tag, args in file_reader(path):
+            result = list()
+            valid_tags = {'NAME': '1', 'SEX': '1', 'MARR': '1',
+                          'BIRT': '1', 'DEAT': '1', 'FAMC': '1', 'FAMS': '1',
+                          'HUSB': '1', 'WIFE': '1', 'CHIL': '1',
+                          'DIV': '1', 'DATE': '2', 'HEAD': '0', 'TRLR': '0', 'NOTE': '0'}
+            special_valid_tags = {'INDI': '0', 'FAM': '0'}
+
+            valid_tag_level = False
+            if args in ['INDI', 'FAM']:
+                special_tags = True
+                for current_tag, current_level in special_valid_tags.items():
+                    if level == current_level and args == current_tag:
+                        valid_tag_level = True
+                        break
+            else:
+                special_tags = False
+                for current_tag, current_level in valid_tags.items():
+                    if level == current_level and tag == current_tag:
+                        valid_tag_level = True
+                        break
+
+            if valid_tag_level and special_tags:
+                result.append(level)
+                result.append(args)
+                result.append("Y")
+                result.append(tag)
+                if args in ["INDI"]:
+                    self.add_individual(level, tag, args)
+                    current_id = tag
+                else:
+                    self.add_family(level, tag, args)
+                    current_id = tag
+            elif not valid_tag_level and not special_tags:
+                result.append(level)
+                result.append(tag)
+                result.append("N")
+                result.append(args)
+            elif valid_tag_level and not special_tags:
+                result.append(level)
+                result.append(tag)
+                result.append("Y")
+                result.append(args)
+                if tag == "NAME":
+                    self.individual[current_id].add_name(args)
+                elif tag == "SEX":
+                    self.individual[current_id].add_gender(args)
+                elif tag == "FAMC":
+                    self.individual[current_id].add_child(args)
+                elif tag == "FAMS":
+                    self.individual[current_id].add_spouse(args)
+                elif tag in "HUSB":
+                    self.family[current_id].add_hubby_id(args)
+                    self.family[current_id].add_hubby_name(self.individual[args].name)
+                elif tag in "WIFE":
+                    self.family[current_id].add_wife_id(args)
+                    self.family[current_id].add_wife_name(self.individual[args].name)
+                elif tag in "CHIL":
+                    self.family[current_id].add_children(args)
+                elif tag in ["BIRT", "DEAT", "DIV", "MARR"]:
+                    check_date_tag = True
+                    previous_tag = tag
+                elif tag == "DATE" and check_date_tag is True:
+                    args = datetime.strptime(args, '%d %b %Y').strftime('%Y-%m-%d')
+                    if previous_tag == "BIRT":
+                        self.individual[current_id].add_birthday(args)
+                        self.individual[current_id].add_age('Birth', args)
+                    elif previous_tag == "DEAT":
+                        self.individual[current_id].add_death(args)
+                        self.individual[current_id].add_alive("False")
+                        self.individual[current_id].add_age('Death', args)
+                    elif previous_tag == "MARR":
+                        self.family[current_id].add_marriage(args)
+                    elif previous_tag == "DIV":
+                        self.family[current_id].add_divorce(args)
+
+            else:
+                result.append(level)
+                result.append(args)
+                result.append("N")
+                result.append(tag)
+    
+    def us15(self): #Fewer than 15 siblings - by Tanvi
+    false = False
+    for key in self.fam.keys():
+        if 'CHIL' in self.fam[key] :
+            chil = self.fam[key]['CHIL']
+            if len(chil) < 15:
+                print(f"US15: Error: No more than fourteen children should be born in each family.'{len(chil)}' children born in family '{key}'")
+                false = True
+    return false
+
+            
+
+
+    def us16(self): #Male last names - Tanvi
+        for i in self.indi:
+            if 'FAMC' in self.indi[i].keys():
+                fam_id = ''.join(self.indi[i]['FAMC'])
+                if self.indi[i]['sex'] == 'M':
+                    first_name = self.indi[i]['name'].split('/')[0]
+                    print(first_name)
+                # if "HUSB" in self.fam[fam_id]:
+                #     hubID = self.fam[fam_id]['HUSB']
+                #     hubName = self.indi[hubID]['name']
+                #     print(hubName)
+
+
+
+
+def main():
+    path = 'My-Family-7-Oct-2019-205.ged'
+    repo = Repo()
+    repo.read_file(path)
+
+    print("\n Individual PrettyTable")
+    repo.indi_table()
+
+    print("\n Family PrettyTable")
+    repo.family_table()
+
+
+if __name__ == '__main__':
+    main()
 
