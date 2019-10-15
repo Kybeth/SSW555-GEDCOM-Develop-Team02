@@ -280,6 +280,10 @@ def main():
 
     print("\n Family PrettyTable")
     repo.family_table()
+    
+    # Test calling
+    my_family.us15()
+    my_family.us16()
 
 
 if __name__ == '__main__':
