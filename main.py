@@ -476,14 +476,9 @@ def main():
     my_family.US10()
     my_family.us15()
     my_family.us16()
-<<<<<<< HEAD
-    my_family.US14()
-=======
     my_family.us14()
     my_family.US19()
-    jjj=1
     
->>>>>>> baa4671d0d4b8f36e40322cc503887feec94cfcb
 
 if __name__ == '__main__':
     main()
