@@ -472,13 +472,16 @@ class Gedcom(object):
                     false = True
         return false
 
-    def us16(self): #Tanvi -Male last names
+    def us16(self): #Tanvi - Male last names
+        error = list()
         for i in self.indi:
             if 'FAMC' in self.indi[i].keys():
                 fam_id = ''.join(self.indi[i]['FAMC'])
                 if self.indi[i]['sex'] == 'M':
-                    j=print(self.indi[i]['name'].split('/')[1])
-        return j
+                    error.append(['ANOMALY US16', i])
+                    last_name_male = self.indi[i]['name'].split('/')[1]
+                    print(f"US15: ANOMALY: Last name of Male {self.indi[i]['id']} is {last_name_male}")
+        return error
 
                 
     
