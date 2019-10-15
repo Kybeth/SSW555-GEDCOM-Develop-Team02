@@ -389,7 +389,6 @@ class Gedcom(object):
                 husb_birt = self.indi[hubID]['BIRT']
                 wife_birt = self.indi[wife_id]['BIRT']
                 if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
-<<<<<<< HEAD
                     error.append(['ANOMOLY US10', self.fam_id])
                     print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' hubID ' + self.indi[hubID]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
                 if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
@@ -420,18 +419,8 @@ class Gedcom(object):
                         if dates_diff > 80:
                             print("US12 ANOMALY: Fam " + self.fam_id + ": The father", self.indi[hubID]['name']," is more than 60 years older than his child," + self.indi[child_birt]['name'],"\n") 
         return error
-
-    def us15(self): #Fewer than 15 siblings
-=======
-                    error.append(['ANOMALY US10', self.fam_id])
-                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
-                if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
-                    error.append(['ANOMALY US10', self.fam_id])
-                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
-        return error
     
     def us15(self): # Fewer than 15 siblings
->>>>>>> 7fb5134d82b7cd32fb48c550bce4237e4aa67b4f
         false = False
         for key in self.fam.keys():
             if 'CHIL' in self.fam[key] :
@@ -535,8 +524,8 @@ def main():
     my_family.US08()
     my_family.US09()
     my_family.US10()
-    my_family.US11()
-    #my_family.US12()
+    #my_family.US11()
+    my_family.US12()
     my_family.us15()
     my_family.us16()
     my_family.US14()
