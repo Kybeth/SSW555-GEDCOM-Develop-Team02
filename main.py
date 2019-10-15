@@ -437,6 +437,31 @@ class Gedcom(object):
             print('ANOMALY: FAMILY: US14: ' + self.fam[fam_id]['fam'] + ' Sibling ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' at the same time on ' + child_birt.strftime('%Y-%m-%d'))
         return error
 
+    def US17(self): # US17: No marriages to children - by Lifu
+        error = list()
+        for i in self.indi:
+            if('FAMS' in self.indi[i].keys()):
+                fam_list = list(self.indi[i]['FAMS'])
+                for j in fam_list:
+                    if('CHIL' in self.fam[j].keys()):
+                        if(self.fam[j]['WIFE'] in self.fam[j]['CHIL'] or self.fam[j]['HUSB'] in self.fam[j]['CHIL']):
+                            error.append(['ERROR: FAMILY: US17'], j)
+                            print('ERROR: FAMILY: US17: Parent ' + i + ' marries with children.')
+        return error
+
+    def US18(self): # US18: Siblings should not marry one another
+        error = list()
+        for i in self.indi:
+            if('FAMS' in self.indi[i].keys() and 'FAMC' in self.indi[i].keys()):
+                fams_list = list(self.indi[i]['FAMS'])
+                famc_list = list(self.indi[i]['FAMC'])
+                for j in fams_list:
+                    for c in famc_list:
+                        if('CHIL' in self.fam[c].keys()):
+                            if(self.fam[j]['WIFE'] in self.fam[c]['CHIL'] and self.fam[j]['HUSB'] in self.fam[c]['CHIL']):
+                                error.append(['ERROR: US18'], self.fam[j]['HUSB'], self.fam[j]['WIFE'])
+                                print('ERROR: US18: Siblings marry Husband: ' + self.fam[j]['HUSB'] + ' Wife: ' + self.fam[j]['WIFE'])
+            return error
 
     def US19(self): # US19 First cousins should not marry - by Yuan
         error = list()
@@ -477,8 +502,9 @@ def main():
     my_family.us15()
     my_family.us16()
     my_family.US14()
+    my_family.US17()
+    my_family.US18()
     my_family.US19()
-    
 
 if __name__ == '__main__':
     main()
