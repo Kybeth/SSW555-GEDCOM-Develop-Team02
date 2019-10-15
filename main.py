@@ -181,7 +181,7 @@ class Gedcom(object):
         
         print(indiTable)
         print(famTable)
-    
+
     def US01(self): #  US01 - Dates before current date - By Vignesh Mohan
         
         #getting todays date 
