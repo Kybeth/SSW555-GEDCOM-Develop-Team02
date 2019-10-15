@@ -10,7 +10,7 @@ from main import Gedcom
 
 
 class UserStoryTest(unittest.TestCase):
-    test_file = Gedcom('My-Family-15-Oct-2019-349.ged')
+    test_file = Gedcom('myfamily.ged')
 
     def test_us01(self):  # - By Vignesh Mohan
         expect = [['ERROR US01'], ['ERROR US01']]
@@ -56,14 +56,14 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(expect, result)
 
     def test_us09(self):  # - By Yuan Zhang
-        expect = [['ERROR US09', '@I4@'], ['ERROR US09', '@I4@'],
-                  ['ERROR US09', '@I19@'], ['ERROR US09', '@I20@']]
+        expect = [['ERROR US09', '@I5@'], ['ERROR US09', '@I5@'],
+                  ['ERROR US09', '@I20@'], ['ERROR US09', '@I21@']]
         result = UserStoryTest.test_file.US09()
         self.assertEqual(expect, result)
 
     def test_us10(self):  # - By Yuan Zhang
-        expect = [['ANOMALY US10', '@F3@'], ['ANOMALY US10', '@F6@'], ['ANOMALY US10', '@F9@'], [
-            'ANOMALY US10', '@F9@'], ['ANOMALY US10', '@F10@'], ['ANOMALY US10', '@F10@']]
+        expect = [['ANOMALY US10', '@F2@'], ['ANOMALY US10', '@F3@'], ['ANOMALY US10', '@F4@'], ['ANOMALY US10', '@F5@'], [
+            'ANOMALY US10', '@F7@'], ['ANOMALY US10', '@F7@'], ['ANOMALY US10', '@F8@'], ['ANOMALY US10', '@F8@']]
         result = UserStoryTest.test_file.US10()
         self.assertEqual(expect, result)
 
@@ -87,8 +87,8 @@ class UserStoryTest(unittest.TestCase):
         expect = []
         result = UserStoryTest.test_file.US14()
         self.assertEqual(expect, result)
-        
-    def test_us15(self): # - By Tanvi Hanamshet
+
+    def test_us15(self):  # - By Tanvi Hanamshet
         expect = [['ERROR US15'], ['ERROR US15']]
         result = UserStoryTest.test_file.us15()
         self.assertNotEqual(expect, result)
@@ -104,12 +104,12 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(expect, result)
 
     def test_us19(self):  # - By Yuan Zhang
-        expect = [['ANOMALY US19', '@F9@']]
+        expect = [['ANOMALY US19', '@F7@']]
         result = UserStoryTest.test_file.US19()
         self.assertEqual(expect, result)
 
     def test_us20(self):  # - By Yuan Zhang
-        expect = [['ANOMALY US20', '@F10@']]
+        expect = [['ANOMALY US20', '@F8@']]
         result = UserStoryTest.test_file.US20()
         self.assertEqual(expect, result)
 

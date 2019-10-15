@@ -557,7 +557,7 @@ class Gedcom(object):
 
 
 def main():
-    my_family = Gedcom('My-Family-15-Oct-2019-349.ged')
+    my_family = Gedcom('myfamily.ged')
     my_family.print_table()
 
     my_family.US01()
