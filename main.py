@@ -1,19 +1,3 @@
-#Project           : GEDCOM SSW 555 
-#Program name      : main.py
-#Author            : Tanvi Hanamshet, Anirudh Bezzam, Yuan Zhang, Vignesh Mohan, Lifu Xiao
-#Purpose           : User story Implementation of US11, US12, US13, US14, US15, US16, US17, US18, US19, US20
-
-# US11:  No Bigamy
-# US12:  Parents not too old
-# US13:  Siblings spacing
-# US14:  Multiple Births <= 5
-# US15:  Fewer than 15 siblings
-# US16:  Male last name
-# US17:  No marriages to children
-# US18:  Siblings should not marry
-# US19:  First cousins should not marry
-# US20:  Aunts and Uncles
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -197,46 +181,219 @@ class Gedcom(object):
         
         print(indiTable)
         print(famTable)
-    
-    
 
-    def us15(self): #Fewer than 15 siblings
-        false = False
-        for key in self.fam.keys():
-            if 'CHIL' in self.fam[key] :
-                chil = self.fam[key]['CHIL']
-                if len(chil) < 15:
-                    print(f"US15: Error: No more than fourteen children should be born in each family.'{len(chil)}' children born in family '{key}'")
-                    false = True
-        return false
+    def US01(self): #  US01 - Dates before current date - By Vignesh Mohan
+        
+        #getting todays date 
+        today = datetime.today().strftime('%Y-%m-%d')
 
-            
+        error = list()
 
-
-    def us16(self): #Male last names
         for i in self.indi:
-            if 'FAMC' in self.indi[i].keys():
+
+            individual = self.indi[i]
+            if 'BIRT' in self.indi[i].keys():
+                birt_dt = self.indi[i]['BIRT'].date()
+            if 'DEAT' in self.indi[i].keys():
+                death_dt = self.indi[i]['DEAT'].date()
+        
+            if 'BIRT' in individual.keys():
+                Bdate = birt_dt.strftime('%Y-%m-%d')
+                if Bdate > today:
+                    error.append(['ERROR US01', self.indi[i]['id']])
+                    print("Error US01:-Birthdate ",Bdate,"is after current date")
+            
+            if 'DEAT' in individual.keys():
+                Ddate = death_dt.strftime('%Y-%m-%d')
+                if Ddate > today:
+                    error.append(['ERROR US01', self.indi[i]['id']])
+                    print("Error US01:- Deathdate ",Ddate,"is after current date")
+    
+            for i in self.fam:
+                family = self.fam[i]
+
+                if "FAMC" in self.fam[i].keys():
+                    fam_id = ''.join(self.indi[i]['FAMC'])
+                    
+                    if 'MARR'in self.fam[i].keys():
+                        marry_date = self.fam[fam_id]['MARR']
+
+                    if 'DIV' in self.fam[i].keys():
+                        div_date = self.fam[fam_id]['DIV']
+                            
+                        self.fam_id = i
+
+                        husb_id = self.fam[i]['HUSB']
+                        wife_id = self.fam[i]['WIFE']
+                    
+                        if family not in ['HUSB']: husb_id = family['HUSB']
+                        if family not in ['WIFE']: wife_id = family['WIFE']
+                        if family not in ['MARR']: marry_date = family['MARR']
+                        if family not in ['DIV']: div_date = family['DIV']
+            
+                        if marry_date:
+                            WD = marry_date.strftime('%Y-%m-%d')
+                            if WD > today:
+                                error.append(['ERROR US01', self.indi[i]['id']])
+                                print("Error US01:- marriageDate ",WD,"is after current date")
+                        
+                        if div_date:
+                            DD = div_date.strftime('%Y-%m-%d')
+                            if DD > today:
+                                error.append(['ERROR US01', self.indi[i]['id']])
+                                print("Error US01:- marriageDate ",DD,"is after current date")
+        return error
+    
+    def US02(self): #  US02 - Birth before marriage of an individual - By Vignesh Mohan
+        error = list()
+        for i in self.indi:
+            if "FAMC" in self.indi[i].keys():
+                child_birt = self.indi[i]['BIRT']
                 fam_id = ''.join(self.indi[i]['FAMC'])
-                if self.indi[i]['sex'] == 'M':
-                    j=print(self.indi[i]['name'].split('/')[0])
+                if 'MARR' in self.fam[fam_id].keys():
+                    marry_date = self.fam[fam_id]['MARR']
+                    if marry_date > child_birt:
+                        error.append(['ANOMALY US02', self.indi[i]['id']])
+                        print('ANOMALY: FAMILY: US02: ' + self.fam[fam_id]['fam'] + ' individual ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
+        return error
+
+    def US03(self): #  US 03 - Birth before death of individual - Anirudh
+        error = list()
+        for i in self.indi:
+            if 'BIRT' in self.indi.keys():
+                child_birt = self.indi[i]['BIRT']
+                if self.indi[i]['BIRT'] > self.indi[i]['DEAT']:
+                    error.append(['ERROR: INDIVIDUAL: US03:', self.indi[i]['id']])
+                    print('ERROR: INDIVIDUAL: US03:' + self.indi[i]['id'] + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + 'was born before' + self.indi[i]['DEAT'].strftime('%Y-%m-%d'))
+        return error
+        
+    def US04(self): #  US 04 - Marriage before Divorce of Parents by Anirudh
+        error = list()
+        for i in self.fam:
+            if 'MARR'in self.fam[i].keys():
+                marry_date = self.fam[i]['MARR']
+                if 'DIV' in self.fam[i].keys():
+                    div_date = self.fam[i]['DIV']
+                    if marry_date < div_date:
+                        error.append(['ERROR: FAMILY: US04: ', self.fam[i]['fam']])
+                        print('ERROR: FAMILY: US04: ' + self.fam[i]['fam']  +  'Married before'  + self.fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + self.fam[i]['DIV'].strftime('%Y-%m-%d'))
+        return error
+    
+    def US05(self): #  US05 Marriage before death - By Tanvi
+        j = list()
+        for i in self.indi:
+            if 'DEAT' in self.indi[i].keys():
+                death_dt = self.indi[i]['DEAT']
+            if "FAMC" in self.indi[i].keys():
+                fam_id = ''.join(self.indi[i]['FAMC'])
+                if 'MARR' in self.fam[fam_id].keys():
+                    marriage_dt = self.fam[fam_id]['MARR']
+                    if  death_dt > marriage_dt:
+                        j.append(['ANOMALY US05', self.indi[i]['id']])
+                        print('ANOMALY: FAMILY: US05: ' + self.fam[fam_id]['fam'] + ' individual ' + self.indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
         return j
 
-                # if "HUSB" in self.fam[i]:
-                #     hubID = self.fam[i]['HUSB']
-                #     print(hubID)
-                #     hubName = self.indi[hubID]['name']
-                #     print(hubName)
+   
+    def US06(self): #  US06 Divorce before death - By Tanvi
+        error = list()
+        for i in self.indi:
+            if 'DEAT' in self.indi[i].keys():
+                death_dt = self.indi[i]['DEAT']
+            if "FAMC" in self.indi[i].keys():
+                fam_id = ''.join(self.indi[i]['FAMC'])
+                
+                if 'DIV' in self.fam[fam_id].keys():
+                    div_dt = self.fam[fam_id]['MARR']
+                    marriage_dt = self.fam[fam_id]['MARR']
+                    if  death_dt > marriage_dt:
+                        print('ANOMALY: FAMILY: US06: ' + self.fam[fam_id]['fam'] + ' individual ' + self.indi[i]['id'] + ' Marriage ' + div_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
+                        error.append(['ANOMALY US06', self.indi[i]['id']])
+        return error
 
 
+    def US07(self): #  US07 Less then 150 years old - By Lifu
+        error = list()
+        for i in self.indi:
+            if 'DEAT' in self.indi[i].keys():
+                if self.indi[i]['DEAT'] - self.indi[i]['BIRT'] > timedelta(days = 54750):
+                    error.append(['ERROR US07', self.indi[i]['id']])
+                    print('ERROR: INDIVIDUAL: US07: ' + self.indi[i]['id'] + ' More than 150 years old at death - Birth ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + ' Death ' + self.indi[i]['DEAT'].strftime('%Y-%m-%d'))
+            else:
+                if datetime.today() - self.indi[i]['BIRT'] > timedelta(days = 54750):
+                    print('ERROR: INDIVIDUAL: US07: ' + self.indi[i]['id'] + ' More than 150 years old - Birth '  + self.indi[i]['BIRT'].strftime('%Y-%m-%d'))
+                    error.append(['ERROR US07', self.indi[i]['id']])
+        return error
 
+    def US08(self): #  US08 Birth before marriage of parents - By Lifu
+        error = list()
+        for i in self.indi:
+            if "FAMC" in self.indi[i].keys():
+                child_birt = self.indi[i]['BIRT']
+                fam_id = ''.join(self.indi[i]['FAMC'])
+                if 'MARR' in self.fam[fam_id].keys():
+                    marry_date = self.fam[fam_id]['MARR']
+                    if marry_date > child_birt:
+                        error.append(['ANOMALY: FAMILY: US08:', self.indi[i]['id']])
+                        print('ANOMALY: FAMILY: US08: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
+                if 'DIV' in self.fam[fam_id].keys():
+                    div_date = self.fam[fam_id]['DIV']
+                    if div_date < child_birt:
+                        error.append(['ANOMALY: FAMILY: US08:', self.indi[i]['id']])
+                        print('ANOMALY: FAMILY: US08: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' after divorce on ' + div_date.strftime('%Y-%m-%d'))
+        return error
+
+    def US09(self): #  US09 Birth before death of parents - by Yuan
+        error = list()
+        for i in self.indi:
+            if 'FAMC' in self.indi[i].keys():
+                child_birt = self.indi[i]['BIRT']
+                fam_id = ''.join(self.indi[i]['FAMC'])
+                mom_id = self.fam[fam_id]['WIFE']
+                dad_id = self.fam[fam_id]['HUSB']
+                if 'DEAT' in self.indi[mom_id].keys():
+                    mom_deat = self.indi[mom_id]['DEAT']
+                    if child_birt > mom_deat:
+                        error.append(['ERROR US09', self.indi[i]['id']])
+                        print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + self.indi[i]['id'] + ' born ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + " after mother's death on " + mom_deat.strftime('%Y-%m-%d'))
+                if 'DEAT' in self.indi[dad_id].keys():
+                    dad_deat = self.indi[dad_id]['DEAT']
+                    if dad_deat - child_birt < timedelta(days = 270):
+                        error.append(['ERROR US09', self.indi[i]['id']])
+                        print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + self.indi[i]['id'] + ' born ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + " after nine months after father's death on " + dad_deat.strftime('%Y-%m-%d'))
+        return error
+
+    def US10(self): #  US10 Marriage after 14 - by Yuan
+        error = list()
+        for i in self.fam:
+            if 'MARR'in self.fam[i].keys():
+                marry_date = self.fam[i]['MARR']
+                self.fam_id = i
+                husb_id = self.fam[i]['HUSB']
+                wife_id = self.fam[i]['WIFE']
+                husb_birt = self.indi[husb_id]['BIRT']
+                wife_birt = self.indi[wife_id]['BIRT']
+                if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
+                    error.append(['ANOMOLY US10', self.fam_id])
+                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
+                if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
+                    error.append(['ANOMOLY US10', self.fam_id])
+                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
+        return error
 
 def main():
     my_family = Gedcom('My-Family-7-Oct-2019-205.ged')
     my_family.print_table()
 
-    
-    my_family.us15()
-    my_family.us16()
+    my_family.US01()
+    my_family.US02()
+    my_family.US03()
+    my_family.US04()
+    my_family.US05()
+    my_family.US06()
+    my_family.US07()
+    my_family.US08()
+    my_family.US09()
+    my_family.US10()
 
 if __name__ == '__main__':
     main()
