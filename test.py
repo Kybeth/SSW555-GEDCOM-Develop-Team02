@@ -23,12 +23,12 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(expect, result)
     
     def test_us03(self): # - By Anirudh Bezzam
-        expect = [['ANOMALY US03', '@I5@'], ['ANOMALY US03', '@I@']]
+        expect = []
         result = UserStoryTest.test_file.US03()
         self.assertEqual(expect, result)
 
     def test_us04(self): # - By Anirudh Bezzam
-        expect = [['ANOMALY US04', '@F4@'], ['ANOMALY US04', '@I20@']]
+        expect = [['ERROR: FAMILY: US04: ', '@F4@']]
         result = UserStoryTest.test_file.US04()
         self.assertEqual(expect, result)
 
@@ -48,18 +48,18 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(expect, result)
     
     def test_us08(self): # - By Lifu Xiao
-        expect = [['ANOMALY: FAMILY: US08', '@I1@']]
+        expect = [['ANOMALY: FAMILY: US08:', '@I1@'], ['ANOMALY: FAMILY: US08:', '@I24@']]
         result = UserStoryTest.test_file.US08()
         self.assertEqual(expect, result)
 
     def test_us09(self): # - By Yuan Zhang
-        expect = [['ERROR US09', '@I19@'], ['ERROR US09', '@I20@']]
+        expect = [['ERROR US09', '@I4@'], ['ERROR US09', '@I4@'], ['ERROR US09', '@I19@'], ['ERROR US09', '@I20@']]
         result = UserStoryTest.test_file.US09()
         self.assertEqual(expect, result)
     
 
     def test_us10(self): # - By Yuan Zhang
-        expect = [['ANOMOLY US10', '@I3@'], ['ANOMOLY US10', '@I21@'], ['ANOMOLY US10', '@I18@'], ['ANOMOLY US10', '@I19@'], ['ANOMOLY US10', '@I20@']]
+        expect = [['ANOMOLY US10', '@F2@'], ['ANOMOLY US10', '@F3@'], ['ANOMOLY US10', '@F4@'], ['ANOMOLY US10', '@F5@'], ['ANOMOLY US10', '@F7@'], ['ANOMOLY US10', '@F7@'], ['ANOMOLY US10', '@F8@'], ['ANOMOLY US10', '@F8@']]
         result = UserStoryTest.test_file.US10()
         self.assertEqual(expect, result)
 

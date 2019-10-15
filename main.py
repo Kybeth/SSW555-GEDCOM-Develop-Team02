@@ -263,17 +263,21 @@ class Gedcom(object):
             if 'BIRT' in self.indi.keys():
                 child_birt = self.indi[i]['BIRT']
                 if self.indi[i]['BIRT'] < self.indi[i]['DEAT']:
+                    error.append(['ERROR: INDIVIDUAL: US03:', self.indi[i]['id']])
                     print('ERROR: INDIVIDUAL: US03:' + self.indi[i]['id'] + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + 'was born before' + self.indi[i]['DEAT'].strftime('%Y-%m-%d'))
+        return error
         
     def US04(self): #  US 04 - Marriage before Divorce of Parents by Anirudh
+        error = list()
         for i in self.fam:
             if 'MARR'in self.fam[i].keys():
                 marry_date = self.fam[i]['MARR']
                 if 'DIV' in self.fam[i].keys():
                     div_date = self.fam[i]['DIV']
                     if marry_date < div_date:
-                        j = print('ERROR: FAMILY: US04: ' + self.fam[i]['fam']  +  'Married before'  + self.fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + self.fam[i]['DIV'].strftime('%Y-%m-%d'))
-        return j
+                        error.append(['ERROR: FAMILY: US04: ', self.fam[i]['fam']])
+                        print('ERROR: FAMILY: US04: ' + self.fam[i]['fam']  +  'Married before'  + self.fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + self.fam[i]['DIV'].strftime('%Y-%m-%d'))
+        return error
     
     def US05(self): #  US05 Marriage before death - By Tanvi
         j = list()
@@ -329,12 +333,12 @@ class Gedcom(object):
                 if 'MARR' in self.fam[fam_id].keys():
                     marry_date = self.fam[fam_id]['MARR']
                     if marry_date > child_birt:
-                        error.append(['ERROR US08', self.indi[i]['id']])
+                        error.append(['ANOMALY: FAMILY: US08:', self.indi[i]['id']])
                         print('ANOMALY: FAMILY: US08: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
                 if 'DIV' in self.fam[fam_id].keys():
                     div_date = self.fam[fam_id]['DIV']
                     if div_date < child_birt:
-                        error.append(['ERROR US08', self.indi[i]['id']])
+                        error.append(['ANOMALY: FAMILY: US08:', self.indi[i]['id']])
                         print('ANOMALY: FAMILY: US08: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' after divorce on ' + div_date.strftime('%Y-%m-%d'))
         return error
 
@@ -369,10 +373,10 @@ class Gedcom(object):
                 husb_birt = self.indi[husb_id]['BIRT']
                 wife_birt = self.indi[wife_id]['BIRT']
                 if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
-                    error.append(['ANOMOLY US10', self.indi[i]['id']])
+                    error.append(['ANOMOLY US10', self.fam_id])
                     print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
                 if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
-                    error.append(['ANOMOLY US10', self.indi[i]['id']])
+                    error.append(['ANOMOLY US10', self.fam_id])
                     print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
         return error
 
