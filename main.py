@@ -1,6 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+#Project           : GEDCOM SSW 555 
+#Program name      : main.py
+#Author            : Tanvi Hanamshet, Anirudh Bezzam, Yuan Zhang, Vignesh Mohan, Lifu Xiao
+#Purpose           : User story Implementation of US11, US12, US13, US14, US15, US16, US17, US18, US19, US20
+# US11:  No Bigamy
+# US12:  Parents not too old
+# US13:  Siblings spacing
+# US14:  Multiple Births <= 5
+# US15:  Fewer than 15 siblings
+# US16:  Male last name
+# US17:  No marriages to children
+# US18:  Siblings should not marry
+# US19:  First cousins should not marry
+# US20:  Aunts and Uncles
+
 from datetime import date, datetime, timedelta
 from prettytable import PrettyTable as pt
 
@@ -379,6 +394,30 @@ class Gedcom(object):
                     error.append(['ANOMOLY US10', self.fam_id])
                     print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
         return error
+    
+    def us15(self): #Fewer than 15 siblings
+        false = False
+        for key in self.fam.keys():
+            if 'CHIL' in self.fam[key] :
+                chil = self.fam[key]['CHIL']
+                if len(chil) < 15:
+                    print(f"US15: Error: No more than fourteen children should be born in each family.'{len(chil)}' children born in family '{key}'")
+                    false = True
+        return false
+
+    def us16(self): #Male last names
+        for i in self.indi:
+            if 'FAMC' in self.indi[i].keys():
+                fam_id = ''.join(self.indi[i]['FAMC'])
+                if self.indi[i]['sex'] == 'M':
+                    j=print(self.indi[i]['name'].split('/')[0])
+        return j
+
+                # if "HUSB" in self.fam[i]:
+                #     hubID = self.fam[i]['HUSB']
+                #     print(hubID)
+                #     hubName = self.indi[hubID]['name']
+                #     print(hubName)
 
 def main():
     my_family = Gedcom('My-Family-7-Oct-2019-205.ged')
@@ -394,6 +433,8 @@ def main():
     my_family.US08()
     my_family.US09()
     my_family.US10()
+    my_family.us15()
+    my_family.us16()
 
 if __name__ == '__main__':
     main()
