@@ -419,7 +419,10 @@ class Gedcom(object):
                 #     hubName = self.indi[hubID]['name']
                 #     print(hubName)
     
-    def us14(self): # By Anirudh Bezzam
+    def US13(self): # By Anirudh Bezzam
+        '''Siblings spacing - Birth Dates of Sibilings should be more than 8 months apart or less than 2 days apart'''
+
+    def US14(self): # By Anirudh Bezzam
         """ US14 Multiple Births <= 5 - No more than five siblings should be born at the same time """
         error = list()
         for i in self.indi:
@@ -429,9 +432,9 @@ class Gedcom(object):
                         chil = self.fam[key]['CHIL']
                         child_birt = self.indi[i]['BIRT']
                         fam_id = ''.join(self.indi[i]['FAMC'])
-                        if len(chil) <= 5:  # Check logic
+                        if len(chil) > 5:  # Check logic
                             error.append(['ANOMALY: FAMILY: US14:', self.indi[i]['id']])
-                            print('ANOMALY: FAMILY: US14: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' at the same time on ' + child_birt.strftime('%Y-%m-%d'))
+            print('ANOMALY: FAMILY: US14: ' + self.fam[fam_id]['fam'] + ' Sibling ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' at the same time on ' + child_birt.strftime('%Y-%m-%d'))
         return error
 
 
