@@ -68,5 +68,10 @@ class UserStoryTest(unittest.TestCase):
         result = UserStoryTest.test_file.US19()
         self.assertEqual(expect, result)
 
+    def test_us20(self): # - By Yuan Zhang
+        expect = [['ANOMALY US20', '@F8@']]
+        result = UserStoryTest.test_file.US20()
+        self.assertEqual(expect, result)
+
 if __name__ == '__main__':
     unittest.main(exit=False, verbosity=2)

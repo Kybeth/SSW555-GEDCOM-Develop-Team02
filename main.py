@@ -439,20 +439,44 @@ class Gedcom(object):
         error = list()
         for f in self.fam: 
             if 'MARR'in self.fam[f].keys():
-                # self.fam_id = i
+                # identify the husband and wife
                 husb_id = self.fam[f]['HUSB']
                 wife_id = self.fam[f]['WIFE']
                 if 'FAMC' in self.indi[husb_id].keys() and 'FAMC' in self.indi[wife_id].keys():
                     husb_fam = ''.join(self.indi[husb_id]['FAMC'])
                     wife_fam = ''.join(self.indi[wife_id]['FAMC'])
-                    # huns's father
+                    # identify the parents of husband and wife to see if they are siblings
                     husb_parents = self.fam[husb_fam]['HUSB'], self.fam[husb_fam]['WIFE']
                     wife_parents = self.fam[wife_fam]['HUSB'], self.fam[wife_fam]['WIFE']
                     for husb_parent in husb_parents:
                         for wife_parent in wife_parents:
                             if 'FAMC' in self.indi[husb_parent].keys() and 'FAMC' in self.indi[wife_parent].keys() and ''.join(self.indi[husb_parent]['FAMC']) == ''.join(self.indi[wife_parent]['FAMC']):
                                 error.append(['ANOMALY US19', f])
-                                print('ANOMALY: FAMILY: US19: In family ' + f + ' husband ' + self.indi[husb_id]['id'] + ' and wife ' + self.indi[wife_id]['id'] + " are cousins ")
+                                print('ANOMALY: FAMILY: US19: ' + f + ' Husband ' + self.indi[husb_id]['id'] + ' and wife ' + self.indi[wife_id]['id'] + " are cousins ")
+        return error
+    
+    def US20(self): # US20 Aunts and uncles - by Yuan
+        error = list()
+        for f in self.fam: 
+            if 'MARR'in self.fam[f].keys():
+                # identify the husband and wife
+                husb_id = self.fam[f]['HUSB']
+                wife_id = self.fam[f]['WIFE']
+                if 'FAMC' in self.indi[husb_id].keys() and 'FAMC' in self.indi[wife_id].keys():
+                    husb_fam = ''.join(self.indi[husb_id]['FAMC'])
+                    wife_fam = ''.join(self.indi[wife_id]['FAMC'])
+                    # identify husband's parents to see if they're the wife's siblings
+                    husb_parents = self.fam[husb_fam]['HUSB'], self.fam[husb_fam]['WIFE']
+                    for husb_parent in husb_parents:
+                        if 'FAMC' in self.indi[husb_parent].keys() and ''.join(self.indi[husb_parent]['FAMC']) == ''.join(self.indi[wife_id]['FAMC']):
+                            error.append(['ANOMALY US20', f])
+                            print('ANOMALY: FAMILY: US20: ' + f + ' Wife ' + self.indi[wife_id]['id']  + ' is husband ' + self.indi[husb_id]['id'] + "'s aunt")
+                    # identify wife's parents to see if they're the husband's siblings
+                    wife_parents = self.fam[wife_fam]['HUSB'], self.fam[wife_fam]['WIFE']
+                    for wife_parent in wife_parents:
+                        if 'FAMC' in self.indi[wife_parent].keys() and ''.join(self.indi[wife_parent]['FAMC']) == ''.join(self.indi[husb_id]['FAMC']):
+                            error.append(['ANOMALY US20', f])
+                            print('ANOMALY: FAMILY: US20: ' + f + 'Husband ' + self.indi[husb_id]['id']  + ' is wife ' + self.indi[wife_id]['id'] + "'s uncle")
         return error
 
     
@@ -471,11 +495,11 @@ def main():
     my_family.US08()
     my_family.US09()
     my_family.US10()
+    my_family.us14()
     my_family.us15()
     my_family.us16()
-    my_family.us14()
     my_family.US19()
-    jjj=1
+    my_family.US20()
     
 
 if __name__ == '__main__':
