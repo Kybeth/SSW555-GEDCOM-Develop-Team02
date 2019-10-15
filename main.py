@@ -384,17 +384,17 @@ class Gedcom(object):
             if 'MARR'in self.fam[i].keys():
                 marry_date = self.fam[i]['MARR']
                 self.fam_id = i
-                hubID = self.fam[i]['HUSB']
+                husb_id = self.fam[i]['HUSB']
                 wife_id = self.fam[i]['WIFE']
-                husb_birt = self.indi[hubID]['BIRT']
+                husb_birt = self.indi[husb_id]['BIRT']
                 wife_birt = self.indi[wife_id]['BIRT']
                 if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
-                    error.append(['ANOMOLY US10', self.fam_id])
-                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' hubID ' + self.indi[hubID]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
+                    error.append(['ANOMALY US10', self.fam_id])
+                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
                 if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
-                    error.append(['ANOMOLY US10', self.fam_id])
-                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
-        return error    
+                    error.append(['ANOMALY US10', self.fam_id])
+                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
+        return error
     
     #def US11(self): # US11 No Bigamy - by Vignesh Mohan
         
@@ -516,7 +516,7 @@ class Gedcom(object):
         error = list()
         for f in self.fam: 
             if 'MARR'in self.fam[f].keys():
-                #identify the husband and wife
+                # identify the husband and wife
                 husb_id = self.fam[f]['HUSB']
                 wife_id = self.fam[f]['WIFE']
                 if 'FAMC' in self.indi[husb_id].keys() and 'FAMC' in self.indi[wife_id].keys():
@@ -531,7 +531,7 @@ class Gedcom(object):
                                 error.append(['ANOMALY US19', f])
                                 print('ANOMALY: FAMILY: US19: ' + f + ' Husband ' + self.indi[husb_id]['id'] + ' and wife ' + self.indi[wife_id]['id'] + " are cousins ")
         return error
-
+    
     def US20(self): # US20 Aunts and uncles - by Yuan
         error = list()
         for f in self.fam: 
@@ -572,13 +572,14 @@ def main():
     my_family.US09()
     my_family.US10()
     #my_family.US11()
-    my_family.US12()
+    #my_family.US12()
     my_family.us15()
     my_family.us16()
     my_family.US14()
     my_family.US17()
     my_family.US18()
     my_family.US19()
+    my_family.US20()
 
 if __name__ == '__main__':
     main()
