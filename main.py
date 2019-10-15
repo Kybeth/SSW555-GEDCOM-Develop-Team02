@@ -388,11 +388,11 @@ class Gedcom(object):
                 husb_birt = self.indi[husb_id]['BIRT']
                 wife_birt = self.indi[wife_id]['BIRT']
                 if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
-                    error.append(['ANOMOLY US10', self.fam_id])
-                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
+                    error.append(['ANOMALY US10', self.fam_id])
+                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
                 if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
-                    error.append(['ANOMOLY US10', self.fam_id])
-                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
+                    error.append(['ANOMALY US10', self.fam_id])
+                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
         return error
     
     def us15(self): # Fewer than 15 siblings
@@ -451,8 +451,8 @@ class Gedcom(object):
                     for husb_parent in husb_parents:
                         for wife_parent in wife_parents:
                             if 'FAMC' in self.indi[husb_parent].keys() and 'FAMC' in self.indi[wife_parent].keys() and ''.join(self.indi[husb_parent]['FAMC']) == ''.join(self.indi[wife_parent]['FAMC']):
-                                error.append(['ERROR US19', f])
-                                print('ANAMOLY: FAMILY: US19: In family ' + f + ' husband ' + self.indi[husb_id]['id'] + ' and wife ' + self.indi[wife_id]['id'] + " are cousins ")
+                                error.append(['ANOMALY US19', f])
+                                print('ANOMALY: FAMILY: US19: In family ' + f + ' husband ' + self.indi[husb_id]['id'] + ' and wife ' + self.indi[wife_id]['id'] + " are cousins ")
         return error
 
     
@@ -475,6 +475,7 @@ def main():
     my_family.us16()
     my_family.us14()
     my_family.US19()
+    jjj=1
     
 
 if __name__ == '__main__':
