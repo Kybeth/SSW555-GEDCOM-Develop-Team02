@@ -449,7 +449,7 @@ class Gedcom(object):
                             print('ERROR: FAMILY: US17: Parent ' + i + ' marries with children.')
         return error
 
-    def US18(self): # US18: Siblings should not marry one another
+    def US18(self): # US18: Siblings should not marry one another - by Lifu
         error = list()
         for i in self.indi:
             if('FAMS' in self.indi[i].keys() and 'FAMC' in self.indi[i].keys()):
