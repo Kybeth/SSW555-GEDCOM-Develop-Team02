@@ -10,7 +10,7 @@ from main import Gedcom
 
 
 class UserStoryTest(unittest.TestCase):
-    test_file = Gedcom('My-Family-15-Oct-2019-314.ged')
+    test_file = Gedcom('My-Family-15-Oct-2019-349.ged')
 
     def test_us01(self): # - By Vignesh Mohan
         expect = [['ERROR US01'], ['ERROR US01']]
@@ -60,6 +60,16 @@ class UserStoryTest(unittest.TestCase):
     def test_us10(self): # - By Yuan Zhang
         expect = [['ANOMALY US10', '@F2@'], ['ANOMALY US10', '@F3@'], ['ANOMALY US10', '@F4@'], ['ANOMALY US10', '@F5@'], ['ANOMALY US10', '@F7@'], ['ANOMALY US10', '@F7@'], ['ANOMALY US10', '@F8@'], ['ANOMALY US10', '@F8@']]
         result = UserStoryTest.test_file.US10()
+        self.assertEqual(expect, result)
+
+    def test_us11(self): # - By Vignesh Mohan
+        expect = []
+        result = UserStoryTest.test_file.US11()
+        self.assertEqual(expect, result)
+    
+    def test_us12(self): # - By Vignesh Mohan
+        expect = []
+        result = UserStoryTest.test_file.US12()
         self.assertEqual(expect, result)
 
     def test_us13(self): # - Anirudh Bezzam
