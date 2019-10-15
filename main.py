@@ -462,7 +462,7 @@ class Gedcom(object):
             print('ANOMALY: FAMILY: US14: ' + self.fam[fam_id]['fam'] + ' Sibling ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' at the same time on ' + child_birt.strftime('%Y-%m-%d'))
         return error
     
-    def us15(self): # Fewer than 15 siblings
+    def us15(self): # Tanvi - Fewer than 15 siblings
         false = False
         for key in self.fam.keys():
             if 'CHIL' in self.fam[key] :
@@ -472,19 +472,15 @@ class Gedcom(object):
                     false = True
         return false
 
-    def us16(self): #Male last names
+    def us16(self): #Tanvi -Male last names
         for i in self.indi:
             if 'FAMC' in self.indi[i].keys():
                 fam_id = ''.join(self.indi[i]['FAMC'])
                 if self.indi[i]['sex'] == 'M':
-                    j=print(self.indi[i]['name'].split('/')[0])
+                    j=print(self.indi[i]['name'].split('/')[1])
         return j
 
-                # if "HUSB" in self.fam[i]:
-                #     hubID = self.fam[i]['HUSB']
-                #     print(hubID)
-                #     hubName = self.indi[hubID]['name']
-                #     print(hubName)
+                
     
     def US17(self): # US17: No marriages to children - by Lifu
         error = list()
