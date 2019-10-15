@@ -389,6 +389,7 @@ class Gedcom(object):
                 husb_birt = self.indi[hubID]['BIRT']
                 wife_birt = self.indi[wife_id]['BIRT']
                 if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
+<<<<<<< HEAD
                     error.append(['ANOMOLY US10', self.fam_id])
                     print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' hubID ' + self.indi[hubID]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
                 if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
@@ -421,6 +422,16 @@ class Gedcom(object):
         return error
 
     def us15(self): #Fewer than 15 siblings
+=======
+                    error.append(['ANOMALY US10', self.fam_id])
+                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
+                if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
+                    error.append(['ANOMALY US10', self.fam_id])
+                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
+        return error
+    
+    def us15(self): # Fewer than 15 siblings
+>>>>>>> 7fb5134d82b7cd32fb48c550bce4237e4aa67b4f
         false = False
         for key in self.fam.keys():
             if 'CHIL' in self.fam[key] :
@@ -443,6 +454,72 @@ class Gedcom(object):
                 #     print(hubID)
                 #     hubName = self.indi[hubID]['name']
                 #     print(hubName)
+    
+    def US13(self): # By Anirudh Bezzam
+        '''Siblings spacing - Birth Dates of Sibilings should be more than 8 months apart or less than 2 days apart'''
+
+    def US14(self): # By Anirudh Bezzam
+        """ US14 Multiple Births <= 5 - No more than five siblings should be born at the same time """
+        error = list()
+        for i in self.indi:
+            if "FAMC" in self.indi[i].keys():
+                for key in self.fam.keys():
+                    if 'CHIL' in self.fam[key]:
+                        chil = self.fam[key]['CHIL']
+                        child_birt = self.indi[i]['BIRT']
+                        fam_id = ''.join(self.indi[i]['FAMC'])
+                        if len(chil) > 5:  # Check logic
+                            error.append(['ANOMALY: FAMILY: US14:', self.indi[i]['id']])
+            print('ANOMALY: FAMILY: US14: ' + self.fam[fam_id]['fam'] + ' Sibling ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' at the same time on ' + child_birt.strftime('%Y-%m-%d'))
+        return error
+
+    def US17(self): # US17: No marriages to children - by Lifu
+        error = list()
+        for i in self.indi:
+            if('FAMS' in self.indi[i].keys()):
+                fam_list = list(self.indi[i]['FAMS'])
+                for j in fam_list:
+                    if('CHIL' in self.fam[j].keys()):
+                        if(self.fam[j]['WIFE'] in self.fam[j]['CHIL'] or self.fam[j]['HUSB'] in self.fam[j]['CHIL']):
+                            error.append(['ERROR: FAMILY: US17'], j)
+                            print('ERROR: FAMILY: US17: Parent ' + i + ' marries with children.')
+        return error
+
+    def US18(self): # US18: Siblings should not marry one another - by Lifu
+        error = list()
+        for i in self.indi:
+            if('FAMS' in self.indi[i].keys() and 'FAMC' in self.indi[i].keys()):
+                fams_list = list(self.indi[i]['FAMS'])
+                famc_list = list(self.indi[i]['FAMC'])
+                for j in fams_list:
+                    for c in famc_list:
+                        if('CHIL' in self.fam[c].keys()):
+                            if(self.fam[j]['WIFE'] in self.fam[c]['CHIL'] and self.fam[j]['HUSB'] in self.fam[c]['CHIL']):
+                                error.append(['ERROR: US18'], self.fam[j]['HUSB'], self.fam[j]['WIFE'])
+                                print('ERROR: US18: Siblings marry Husband: ' + self.fam[j]['HUSB'] + ' Wife: ' + self.fam[j]['WIFE'])
+            return error
+
+    def US19(self): # US19 First cousins should not marry - by Yuan
+        error = list()
+        for f in self.fam: 
+            if 'MARR'in self.fam[f].keys():
+                # self.fam_id = i
+                husb_id = self.fam[f]['HUSB']
+                wife_id = self.fam[f]['WIFE']
+                if 'FAMC' in self.indi[husb_id].keys() and 'FAMC' in self.indi[wife_id].keys():
+                    husb_fam = ''.join(self.indi[husb_id]['FAMC'])
+                    wife_fam = ''.join(self.indi[wife_id]['FAMC'])
+                    # huns's father
+                    husb_parents = self.fam[husb_fam]['HUSB'], self.fam[husb_fam]['WIFE']
+                    wife_parents = self.fam[wife_fam]['HUSB'], self.fam[wife_fam]['WIFE']
+                    for husb_parent in husb_parents:
+                        for wife_parent in wife_parents:
+                            if 'FAMC' in self.indi[husb_parent].keys() and 'FAMC' in self.indi[wife_parent].keys() and ''.join(self.indi[husb_parent]['FAMC']) == ''.join(self.indi[wife_parent]['FAMC']):
+                                error.append(['ANOMALY US19', f])
+                                print('ANOMALY: FAMILY: US19: In family ' + f + ' husband ' + self.indi[husb_id]['id'] + ' and wife ' + self.indi[wife_id]['id'] + " are cousins ")
+        return error
+
+    
 
 def main():
     my_family = Gedcom('My-Family-15-Oct-2019-349.ged')
@@ -462,6 +539,10 @@ def main():
     #my_family.US12()
     my_family.us15()
     my_family.us16()
+    my_family.US14()
+    my_family.US17()
+    my_family.US18()
+    my_family.US19()
 
 if __name__ == '__main__':
     main()
