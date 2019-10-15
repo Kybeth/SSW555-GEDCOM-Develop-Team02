@@ -419,6 +419,28 @@ class Gedcom(object):
                 #     hubName = self.indi[hubID]['name']
                 #     print(hubName)
 
+    def US19(self): # US19 First cousins should not marry - by Yuan
+        error = list()
+        for f in self.fam: 
+            if 'MARR'in self.fam[f].keys():
+                # self.fam_id = i
+                husb_id = self.fam[f]['HUSB']
+                wife_id = self.fam[f]['WIFE']
+                if 'FAMC' in self.indi[husb_id].keys() and 'FAMC' in self.indi[wife_id].keys():
+                    husb_fam = ''.join(self.indi[husb_id]['FAMC'])
+                    wife_fam = ''.join(self.indi[wife_id]['FAMC'])
+                    # huns's father
+                    husb_parents = self.fam[husb_fam]['HUSB'], self.fam[husb_fam]['WIFE']
+                    wife_parents = self.fam[wife_fam]['HUSB'], self.fam[wife_fam]['WIFE']
+                    for husb_parent in husb_parents:
+                        for wife_parent in wife_parents:
+                            if 'FAMC' in self.indi[husb_parent].keys() and 'FAMC' in self.indi[wife_parent].keys() and ''.join(self.indi[husb_parent]['FAMC']) == ''.join(self.indi[wife_parent]['FAMC']):
+                                error.append(['ERROR US19', f])
+                                print('ANAMOLY: FAMILY: US19: In family ' + f + ' husband ' + self.indi[husb_id]['id'] + ' and wife ' + self.indi[wife_id]['id'] + " are cousins ")
+        return error
+
+    
+
 def main():
     my_family = Gedcom('My-Family-7-Oct-2019-205.ged')
     my_family.print_table()
@@ -435,6 +457,7 @@ def main():
     my_family.US10()
     my_family.us15()
     my_family.us16()
+    my_family.US19()
 
 if __name__ == '__main__':
     main()
