@@ -421,6 +421,28 @@ class Gedcom(object):
     
     def US13(self): # By Anirudh Bezzam
         '''Siblings spacing - Birth Dates of Sibilings should be more than 8 months apart or less than 2 days apart'''
+        result = False
+        sibday = []
+        sibmonth = []
+        for key, family in self.fam.items():
+            children_list = list(family.self.fam['CHIL'])
+            if self.indi[list(family.self.fam['CHIL'])[0]].id in family.self.fam['CHIL']:
+                for each_sibiling in children_list:
+                    sib_birthday_month = datetime.today().strptime(self.indi[each_sibiling].birthday, '%Y-%m-%d').month
+                    sib_birthday_day = datetime.today().strptime(self.indi[each_sibiling].birthday,  '%Y-%m-%d').day
+                    sibday.append(sib_birthday_day)
+                    sibmonth.append(sib_birthday_month)
+                    for each_month_element in range(len(sibmonth)-1):
+                        month_diff = sibmonth[each_month_element+1]-sibmonth[each_month_element]
+                        if month_diff > 8:
+                            result = True
+                    for each_day_element in range(len(sibday)-1):
+                        day_diff = sibday[each_day_element+1]-sibday[each_day_element]
+                        print(day_diff)
+                        if day_diff < 2:
+                            result = True
+        return result
+
 
     def US14(self): # By Anirudh Bezzam
         """ US14 Multiple Births <= 5 - No more than five siblings should be born at the same time """
@@ -432,7 +454,7 @@ class Gedcom(object):
                         chil = self.fam[key]['CHIL']
                         child_birt = self.indi[i]['BIRT']
                         fam_id = ''.join(self.indi[i]['FAMC'])
-                        if len(chil) > 5:  # Check logic
+                        if len(chil) >= 5:  # Check logic
                             error.append(['ANOMALY: FAMILY: US14:', self.indi[i]['id']])
             print('ANOMALY: FAMILY: US14: ' + self.fam[fam_id]['fam'] + ' Sibling ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' at the same time on ' + child_birt.strftime('%Y-%m-%d'))
         return error
@@ -476,6 +498,7 @@ def main():
     my_family.US10()
     my_family.us15()
     my_family.us16()
+    my_family.US13()
     my_family.US14()
     my_family.US19()
     
