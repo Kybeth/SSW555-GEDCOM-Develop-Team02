@@ -10,7 +10,7 @@ from main import Gedcom
 
 
 class UserStoryTest(unittest.TestCase):
-    test_file = Gedcom('My-Family-7-Oct-2019-205.ged')
+    test_file = Gedcom('My-Family-15-Oct-2019-314.ged')
 
     def test_us01(self): # - By Vignesh Mohan
         expect = [['ERROR US01'], ['ERROR US01']]

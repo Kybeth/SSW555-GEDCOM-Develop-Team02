@@ -17,6 +17,7 @@
 # US20:  Aunts and Uncles
 
 from datetime import date, datetime, timedelta
+from collections import defaultdict
 from prettytable import PrettyTable as pt
 
 def calculate_age(birthday):
@@ -160,7 +161,7 @@ class Gedcom(object):
         
         """Pretty table info for family relations"""
 
-        famTable =pt(['ID','Married','Divorced','Husband ID','Husband Name','Wife ID','Wife name','Children'])
+        famTable =pt(['ID','Married','Divorced','hubID ID','hubID Name','Wife ID','Wife name','Children'])
         for key in self.fam.keys():
             if 'DIV' in self.fam[key]:
                 div_str = self.fam[key]['DIV'].strftime('%Y-%m-%d')
@@ -176,10 +177,10 @@ class Gedcom(object):
                 hubName = "NA"
 
             if "WIFE" in self.fam[key]:
-                wifeID = self.fam[key]['WIFE']
-                wifeName = self.indi[wifeID]['name']
+                wife_id = self.fam[key]['WIFE']
+                wifeName = self.indi[wife_id]['name']
             else:
-                wifeID = "NA"
+                wife_id = "NA"
                 wifeName = "NA"
 
             if 'CHIL' in self.fam[key] :
@@ -192,7 +193,7 @@ class Gedcom(object):
             else:
                 marr_str = "NA"
 
-            famTable.add_row([key, marr_str, div_str, hubID, hubName, wifeID, wifeName, chil])
+            famTable.add_row([key, marr_str, div_str, hubID, hubName, wife_id, wifeName, chil])
         
         print(indiTable)
         print(famTable)
@@ -238,10 +239,10 @@ class Gedcom(object):
                             
                         self.fam_id = i
 
-                        husb_id = self.fam[i]['HUSB']
+                        hubID = self.fam[i]['HUSB']
                         wife_id = self.fam[i]['WIFE']
                     
-                        if family not in ['HUSB']: husb_id = family['HUSB']
+                        if family not in ['HUSB']: hubID = family['HUSB']
                         if family not in ['WIFE']: wife_id = family['WIFE']
                         if family not in ['MARR']: marry_date = family['MARR']
                         if family not in ['DIV']: div_date = family['DIV']
@@ -363,15 +364,15 @@ class Gedcom(object):
             if 'FAMC' in self.indi[i].keys():
                 child_birt = self.indi[i]['BIRT']
                 fam_id = ''.join(self.indi[i]['FAMC'])
-                mom_id = self.fam[fam_id]['WIFE']
-                dad_id = self.fam[fam_id]['HUSB']
-                if 'DEAT' in self.indi[mom_id].keys():
-                    mom_deat = self.indi[mom_id]['DEAT']
+                wife_id = self.fam[fam_id]['WIFE']
+                hubID = self.fam[fam_id]['HUSB']
+                if 'DEAT' in self.indi[wife_id].keys():
+                    mom_deat = self.indi[wife_id]['DEAT']
                     if child_birt > mom_deat:
                         error.append(['ERROR US09', self.indi[i]['id']])
                         print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + self.indi[i]['id'] + ' born ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + " after mother's death on " + mom_deat.strftime('%Y-%m-%d'))
-                if 'DEAT' in self.indi[dad_id].keys():
-                    dad_deat = self.indi[dad_id]['DEAT']
+                if 'DEAT' in self.indi[hubID].keys():
+                    dad_deat = self.indi[hubID]['DEAT']
                     if dad_deat - child_birt < timedelta(days = 270):
                         error.append(['ERROR US09', self.indi[i]['id']])
                         print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + self.indi[i]['id'] + ' born ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + " after nine months after father's death on " + dad_deat.strftime('%Y-%m-%d'))
@@ -383,18 +384,42 @@ class Gedcom(object):
             if 'MARR'in self.fam[i].keys():
                 marry_date = self.fam[i]['MARR']
                 self.fam_id = i
-                husb_id = self.fam[i]['HUSB']
+                hubID = self.fam[i]['HUSB']
                 wife_id = self.fam[i]['WIFE']
-                husb_birt = self.indi[husb_id]['BIRT']
+                husb_birt = self.indi[hubID]['BIRT']
                 wife_birt = self.indi[wife_id]['BIRT']
                 if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
                     error.append(['ANOMOLY US10', self.fam_id])
-                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
+                    print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' hubID ' + self.indi[hubID]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
                 if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
                     error.append(['ANOMOLY US10', self.fam_id])
                     print('ANOMOLY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
+        return error    
+
+    def US12(self): #US12 - Parents not too old - By Vignesh Mohan 
+        error = list()
+        for i in self.indi:
+            if 'FAMC' in self.indi[i].keys():
+                child_birt = self.indi[i]['BIRT']
+                for key in self.fam.keys():
+                    fam_id = ''.join(self.indi[i]['FAMC'])
+                    if "HUSB" in self.fam[key]:
+                        hubID = self.fam[key]['HUSB']
+                    if "WIFE" in self.fam[key]:
+                        wife_id = self.fam[key]['WIFE']
+                    fam_id = ''.join(self.indi[i]['FAMC'])
+                    husb_birt = self.indi[hubID]['BIRT']
+                    wife_birt = self.indi[wife_id]['BIRT'] 
+                    while wife_id:
+                        dates_diff = (datetime.strptime(self.indi[child_birt],'%Y-%m-%d')).year - (datetime.strptime(self.indi[wife_birt],'%Y-%m-%d')).year
+                        if dates_diff > 60:
+                            print("US12 ANOMALY: Fam " + self.fam_id + ": The mother",self.indi[wife_id]['name']," is more than 60 years older than her child," + self.indi[child_birt]['name'],"\n")
+                    while hubID:
+                        dates_diff = (datetime.strptime(self.indi[child_birt],'%Y-%m-%d')).year - (datetime.strptime(self.indi[husb_birt],'%Y-%m-%d')).year
+                        if dates_diff > 80:
+                            print("US12 ANOMALY: Fam " + self.fam_id + ": The father", self.indi[hubID]['name']," is more than 60 years older than his child," + self.indi[child_birt]['name'],"\n") 
         return error
-    
+
     def us15(self): #Fewer than 15 siblings
         false = False
         for key in self.fam.keys():
@@ -420,7 +445,7 @@ class Gedcom(object):
                 #     print(hubName)
 
 def main():
-    my_family = Gedcom('My-Family-7-Oct-2019-205.ged')
+    my_family = Gedcom('My-Family-15-Oct-2019-349.ged')
     my_family.print_table()
 
     my_family.US01()
@@ -433,6 +458,8 @@ def main():
     my_family.US08()
     my_family.US09()
     my_family.US10()
+    my_family.US11()
+    #my_family.US12()
     my_family.us15()
     my_family.us16()
 
