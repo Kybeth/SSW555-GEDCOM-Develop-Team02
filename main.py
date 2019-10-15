@@ -480,7 +480,7 @@ class Gedcom(object):
                 if self.indi[i]['sex'] == 'M':
                     error.append(['ANOMALY US16', i])
                     last_name_male = self.indi[i]['name'].split('/')[1]
-                    print(f"US15: ANOMALY: Last name of Male {self.indi[i]['id']} is {last_name_male}")
+                    print(f"US16: ANOMALY: Last name of Male {self.indi[i]['id']} is {last_name_male}")
         return error
 
                 
