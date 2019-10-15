@@ -262,7 +262,7 @@ class Gedcom(object):
         for i in self.indi:
             if 'BIRT' in self.indi.keys():
                 child_birt = self.indi[i]['BIRT']
-                if self.indi[i]['BIRT'] < self.indi[i]['DEAT']:
+                if self.indi[i]['BIRT'] > self.indi[i]['DEAT']:
                     error.append(['ERROR: INDIVIDUAL: US03:', self.indi[i]['id']])
                     print('ERROR: INDIVIDUAL: US03:' + self.indi[i]['id'] + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + 'was born before' + self.indi[i]['DEAT'].strftime('%Y-%m-%d'))
         return error
