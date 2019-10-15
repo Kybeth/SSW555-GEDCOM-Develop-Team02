@@ -243,13 +243,13 @@ class Repo:
                 result.append(tag)
     
     def us15(self): #Fewer than 15 siblings - by Tanvi
-    false = False
-    for key in self.fam.keys():
-        if 'CHIL' in self.fam[key] :
-            chil = self.fam[key]['CHIL']
-            if len(chil) < 15:
-                print(f"US15: Error: No more than fourteen children should be born in each family.'{len(chil)}' children born in family '{key}'")
-                false = True
+        false = False
+        for key in self.fam.keys():
+            if 'CHIL' in self.fam[key] :
+                chil = self.fam[key]['CHIL']
+                if len(chil) < 15:
+                    print(f"US15: Error: No more than fourteen children should be born in each family.'{len(chil)}' children born in family '{key}'")
+                    false = True
     return false
 
             
