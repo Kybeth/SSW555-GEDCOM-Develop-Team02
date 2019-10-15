@@ -87,6 +87,11 @@ class UserStoryTest(unittest.TestCase):
         expect = []
         result = UserStoryTest.test_file.US14()
         self.assertEqual(expect, result)
+        
+    def test_us15(self): # - By Tanvi Hanamshet
+        expect = [['ERROR US15'], ['ERROR US15']]
+        result = UserStoryTest.test_file.us15()
+        self.assertNotEqual(expect, result)
 
     def test_us17(self):  # - By Lifu Xiao
         expect = []
