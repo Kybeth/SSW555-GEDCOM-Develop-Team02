@@ -523,11 +523,8 @@ def main():
 
     my_family.us15()
     my_family.us16()
-<<<<<<< HEAD
     my_family.US13()
     my_family.US14()
-=======
->>>>>>> 991edc0fb8222f5cf943cd2d32e7a7f2a701d90d
     my_family.US19()
     my_family.US20()
     
