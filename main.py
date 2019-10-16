@@ -468,7 +468,7 @@ class Gedcom(object):
             if 'CHIL' in self.fam[key] :
                 chil = self.fam[key]['CHIL']
                 if len(chil) < 15:
-                    print(f"US15: Error: No more than fourteen children should be born in each family.'{len(chil)}' children born in family '{key}'")
+                    print(f"Error: FAMILY: US15: Family '{key}'  has '{len(chil)}' number of children. No more than fourteen children should be born in each family.")
                     false = True
         return false
 
@@ -480,7 +480,8 @@ class Gedcom(object):
                 if self.indi[i]['sex'] == 'M':
                     error.append(['ANOMALY US16', i])
                     last_name_male = self.indi[i]['name'].split('/')[1]
-                    print(f"US16: ANOMALY: Last name of Male {self.indi[i]['id']} is {last_name_male}")
+                    print(f" ANOMALY: FAMILY: US16: Male {self.indi[i]['id']} whose last name is {last_name_male}")
+                    
         return error
 
                 
