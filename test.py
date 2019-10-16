@@ -63,7 +63,7 @@ class UserStoryTest(unittest.TestCase):
 
     def test_us10(self):  # - By Yuan Zhang
         expect = [['ANOMALY US10', '@F2@'], ['ANOMALY US10', '@F3@'], ['ANOMALY US10', '@F4@'], ['ANOMALY US10', '@F5@'], [
-            'ANOMALY US10', '@F7@'], ['ANOMALY US10', '@F7@'], ['ANOMALY US10', '@F8@'], ['ANOMALY US10', '@F8@']]
+            'ANOMALY US10', '@F8@'], ['ANOMALY US10', '@F8@'], ['ANOMALY US10', '@F9@'], ['ANOMALY US10', '@F9@']]
         result = UserStoryTest.test_file.US10()
         self.assertEqual(expect, result)
 
@@ -104,12 +104,12 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(expect, result)
 
     def test_us19(self):  # - By Yuan Zhang
-        expect = [['ANOMALY US19', '@F7@']]
+        expect = [['ANOMALY US19', '@F8@']]
         result = UserStoryTest.test_file.US19()
         self.assertEqual(expect, result)
 
     def test_us20(self):  # - By Yuan Zhang
-        expect = [['ANOMALY US20', '@F8@']]
+        expect = [['ANOMALY US20', '@F9@']]
         result = UserStoryTest.test_file.US20()
         self.assertEqual(expect, result)
 
