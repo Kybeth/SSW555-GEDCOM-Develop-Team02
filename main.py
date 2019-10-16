@@ -507,9 +507,9 @@ class Gedcom(object):
                     for c in famc_list:
                         if('CHIL' in self.fam[c].keys()):
                             if(self.fam[j]['WIFE'] in self.fam[c]['CHIL'] and self.fam[j]['HUSB'] in self.fam[c]['CHIL']):
-                                error.append(['ERROR: US18'], self.fam[j]['HUSB'], self.fam[j]['WIFE'])
+                                error.append([['ERROR: US18'], self.fam[j]['HUSB'], self.fam[j]['WIFE']])
                                 print('ERROR: US18: Siblings marry Husband: ' + self.fam[j]['HUSB'] + ' Wife: ' + self.fam[j]['WIFE'])
-            return error
+        return error
 
     def US19(self): # US19 First cousins should not marry - by Yuan
         error = list()
