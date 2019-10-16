@@ -94,9 +94,9 @@ class UserStoryTest(unittest.TestCase):
         self.assertNotEqual(expect, result)
 
     def test_us17(self):  # - By Lifu Xiao
-        expect = []
+        expect = [[['ERROR: US18'], '@I13@'], [['ERROR: US18'], '@I13@']]
         result = UserStoryTest.test_file.US17()
-        self.assertEqual(expect, result)
+        self.assertNotEqual(expect, result)
 
     def test_us18(self):  # - By Lifu Xiao
         expect = [[['ERROR: US18'], '@I13@', '@I12@'], [['ERROR: US18'], '@I13@', '@I12@']]
