@@ -99,7 +99,7 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(expect, result)
 
     def test_us18(self):  # - By Lifu Xiao
-        expect = [[[...], '@I13@', '@I12@'], [[...], '@I13@', '@I12@']]
+        expect = [[['ERROR: US18'], '@I13@', '@I12@'], [['ERROR: US18'], '@I13@', '@I12@']]
         result = UserStoryTest.test_file.US18()
         self.assertEqual(expect, result)
 
