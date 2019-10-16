@@ -92,6 +92,11 @@ class UserStoryTest(unittest.TestCase):
         expect = [['ERROR US15'], ['ERROR US15']]
         result = UserStoryTest.test_file.us15()
         self.assertNotEqual(expect, result)
+        
+    def test_us16(self): # - By Tanvi Hanamshet
+        expect = [['ANOMALY US16', '@I1@'],['ANOMALY US16', '@I3@'], ['ANOMALY US16', '@I4@'], ['ANOMALY US16', '@I5@'], ['ANOMALY US16', '@I9@'], ['ANOMALY US16', '@I12@'], ['ANOMALY US16', '@I14@'], ['ANOMALY US16', '@I19@'], ['ANOMALY US16', '@I21@'], ['ANOMALY US16', '@I24@']]
+        result = UserStoryTest.test_file.us16()
+        self.assertEqual(expect, result)
 
     def test_us17(self):  # - By Lifu Xiao
         expect = [[['ERROR: US18'], '@I13@'], [['ERROR: US18'], '@I13@']]
