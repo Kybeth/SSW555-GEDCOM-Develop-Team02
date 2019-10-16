@@ -433,6 +433,7 @@ class Gedcom(object):
                         if families[family_group[i]].has_key('DIV'):
                             if dates_check(families[family_group[i]]['DIV'], families[family_group[i + 1]]['MARR']): 
                                 continue
+
                             error.append(['ANOMALY: FAMILY: US11:', self.indi[i]['id']])
                             print ("User Story 11 - No bigamy.\n")
                             print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
@@ -613,9 +614,9 @@ def main():
     my_family.US10()
     my_family.US11()
     my_family.US12()
+    my_family.US14()
     my_family.us15()
     my_family.us16()
-    my_family.US14()
     my_family.US17()
     my_family.US18()
     my_family.US19()
