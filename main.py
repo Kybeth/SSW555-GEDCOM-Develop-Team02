@@ -26,6 +26,25 @@ def calculate_age(birthday):
     current = datetime.today()
     return current.year - birthday.year - ((current.month, current.day) < (birthday.month, birthday.day))
 
+months = {"JAN":1,"FEB":2,"MAR":3,"APR":4,"MAY":5,"JUN":6,"JUL":7,"AUG":8,"SEP":9,"OCT":10,"NOV":11,"DEC":12}
+
+def stringToDate(date1):
+    date1year = int(date1[-4:])
+    date1month = date1[-8:-5].upper()
+    date1date = int(date1[:-9])
+    return date(date1year,months[date1month],date1date)
+
+def dateDiff(date1,date2):
+    # Parse dates
+    date1 = stringToDate(date1)
+    date2 = stringToDate(date2)
+
+    difference = date2 - date1
+    return difference.days
+
+def dates_check(date1,date2,diffYear=0):
+    return (dateDiff(date1, date2) - diffYear * 360) >= 0
+
 class Gedcom(object):
     """Define all the valid tags"""
     valid = {
@@ -396,7 +415,28 @@ class Gedcom(object):
                     print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
         return error
     
-    #def US11(self): # US11 No Bigamy - by Vignesh Mohan
+    def US11(self): # US11 No Bigamy - by Vignesh Mohan
+        error = list()
+        for f in self.fam: 
+            if 'MARR'in self.fam[f].keys():
+                bigamy_check = {}
+                families = {}
+                for parent_id in bigamy_check:
+                    family_group = filter(lambda fam: families[fam].has_key("MARR"),bigamy_check[parent_id])
+                    if len(family_group) < 2: 
+                        continue
+                    def sortByMarr(family_id, family_idate2):
+                        return dateDiff(families[family_idate2]['MARR'], families[family_id]['MARR'])
+                    family_group = sorted(family_group, sortByMarr)
+
+                    for i in range(len(family_group) - 1):
+                        if families[family_group[i]].has_key('DIV'):
+                            if dates_check(families[family_group[i]]['DIV'], families[family_group[i + 1]]['MARR']): 
+                                continue
+                            error.append(['ANOMALY: FAMILY: US11:', self.indi[i]['id']])
+                            print ("User Story 11 - No bigamy.\n")
+                            print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
+        return error
         
 
     def US12(self): #US12 - Parents not too old - By Vignesh Mohan 
@@ -558,7 +598,7 @@ class Gedcom(object):
 
 
 def main():
-    my_family = Gedcom('myfamily.ged')
+    my_family = Gedcom('My-Family-15-Oct-2019-228.ged')
     my_family.print_table()
 
     my_family.US01()
@@ -571,8 +611,8 @@ def main():
     my_family.US08()
     my_family.US09()
     my_family.US10()
-    #my_family.US11()
-    #my_family.US12()
+    my_family.US11()
+    my_family.US12()
     my_family.us15()
     my_family.us16()
     my_family.US14()
