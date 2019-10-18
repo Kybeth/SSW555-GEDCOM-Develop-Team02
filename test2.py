@@ -3,6 +3,16 @@ import main2
 from main2 import Repo
 
 class UserStoryTest(unittest.TestCase):
+
+    """US02""" #By - Vignesh Mohan
+    def test_US02(self):
+        """US02 - Birth before Marriage"""
+        path = 'Das.ged'
+        repo = Repo()
+        repo.read_file(path)
+        self.assertEqual(repo.US02(), True)
+        self.assertNotEqual(repo.US02(), False)
+        self.assertTrue(repo.US02())
     
     """US03"""
     def test_US03(self):

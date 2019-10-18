@@ -230,6 +230,18 @@ class Repo:
                 result.append("N")
                 result.append(tag)
 
+    def US02(self):
+        """US03 Birth before Marriage""" # By - Vignesh Mohan 
+        result = False
+        for key, individual in self.individual.items():  #Implementing as a dictionary.
+            for key, family in self.family.items():
+                if individual.birthday != 'NA' or family.marriage != 'NA':
+                    if family.marriage > individual.birthday :
+                        print(
+                            "Error: Individual: US02: " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
+                        result = True
+        return result
+
     def US03(self):
         """US03 Birth before Death of Individual"""
         result = False
@@ -313,6 +325,7 @@ def main():
     print("\n Family Summary")
     repo.family_table()
 
+    repo.US02()
     repo.US03()
     repo.US04()
     repo.US13()
