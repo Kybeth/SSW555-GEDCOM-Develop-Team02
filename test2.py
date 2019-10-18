@@ -4,6 +4,17 @@ from main2 import Repo
 
 class UserStoryTest(unittest.TestCase):
 
+    
+    """US01""" #By - Vignesh Mohan
+    def test_US01(self):
+        """US01 - Dates before current date"""
+        path = 'Das.ged'
+        repo = Repo()
+        repo.read_file(path)
+        self.assertEqual(repo.US01(), True)
+        self.assertNotEqual(repo.US01(), False)
+        self.assertTrue(repo.US01())
+
     """US02""" #By - Vignesh Mohan
     def test_US02(self):
         """US02 - Birth before Marriage"""

@@ -230,6 +230,29 @@ class Repo:
                 result.append("N")
                 result.append(tag)
 
+    def US01(self): 
+        """US01 Dates before current date"""# By - Vignesh Mohan
+
+        #getting todays date 
+        today = datetime.today().strftime('%Y-%m-%d')
+
+        result = False
+        for key, individual in self.individual.items():
+            for key, family in self.family.items():
+                if individual.birthday > today:
+                    print("Error US01:-Birthdate ", individual.birthday ,"is after current date")
+                    result = True
+                if individual.death > today:
+                    print("Error US01:- Deathdate ", individual.death ,"is after current date")
+                    result = True
+                if family.marriage > today:
+                    print("Error US01:- MarriageDate ", family.marriage ,"is after current date")
+                    result = True
+                if family.divorced > today:
+                    print("Error US01:- DivorceDate ", family.divorced,"is after current date")
+                    result = True
+        return result
+ 
     def US02(self):
         """US03 Birth before Marriage""" # By - Vignesh Mohan 
         result = False
@@ -238,7 +261,7 @@ class Repo:
                 if individual.birthday != 'NA' or family.marriage != 'NA':
                     if family.marriage > individual.birthday :
                         print(
-                            "Error: Individual: US02: " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
+                            "ANOMALY: FAMILY: US02: " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
                         result = True
         return result
 
@@ -325,6 +348,7 @@ def main():
     print("\n Family Summary")
     repo.family_table()
 
+    repo.US01()
     repo.US02()
     repo.US03()
     repo.US04()
