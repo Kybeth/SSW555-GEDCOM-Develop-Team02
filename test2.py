@@ -27,7 +27,7 @@ class UserStoryTest(unittest.TestCase):
 
     """US13"""
 
-    def test_validate_sibling_spacing(self):
+    def test_US13(self):
         """US13 - Birth Dates of Sibilings should be more than 8 months apart or less than 2 days apart"""
         path = 'Das.ged'
         repo = Repo()
