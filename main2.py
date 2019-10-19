@@ -306,8 +306,7 @@ class Repo:
                         if month_diff > 8:
                             result = True
                         else:
-                            print(
-                                "Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart",
+                            print("Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart",
                                 key)
 
                     for each_day_element in range(len(sibday) - 1):
@@ -315,8 +314,7 @@ class Repo:
                         if day_diff < 2:
                             result = True
                         else:
-                            print(
-                                "Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart",
+                            print("Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart",
                                 key)
         return result
 
@@ -333,9 +331,45 @@ class Repo:
             if max(list_birthdays) <= 5:
                 result = True
             else:
-                print(
-                    "Error: FAMILY : US14: " + key + "Number of children born in a single birth should not be greater than 5")
+                print("Error: FAMILY : US14: " + key + "Number of children born in a single birth should not be greater than 5")
         return result
+
+    def US25(self): #unique first name in families-Tanvi
+        
+        
+        # for key, family in self.family.items():
+        #     print(family.husband_name[key])
+        # for key, family in self.family.items():
+        for key, individual in self.individual.items():
+            unique_names = []
+            names = []
+            list_of_names = individual.name.split("/")[0]
+            names.append(list_of_names)
+            for i in names:
+                if i not in unique_names:
+                    unique_names.append(i)
+            for name in unique_names:
+                print("ANOMALY: FAMILY : US25: " + key + " Unique name in family: "+ name)
+            # unique_names = []
+            # names = []
+            # list_of_names = family.husband_name.split("/")[0]
+            # list_of_names2 = family.wife_name.split("/")[0]
+            # # list_of_names = family.children.split("/")[0]
+            # names.append(list_of_names)
+            # names.append(list_of_names2)
+            # for i in names:
+            #     if i not in unique_names:
+            #         unique_names.append(i)
+            #         print(key, i)
+            # del names[:]
+            # del unique_names
+                     
+        
+
+            # print(key,family.husband_name)
+
+    # def US26(self): #corresponding enteries
+
 
 def main():
     path = 'Das.ged' 
@@ -354,6 +388,7 @@ def main():
     repo.US04()
     repo.US13()
     repo.US14()
+    repo.US25()
     
 if __name__ == '__main__':
     main()
