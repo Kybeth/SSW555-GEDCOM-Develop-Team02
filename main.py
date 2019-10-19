@@ -222,6 +222,46 @@ class Repo:
                     "Error: FAMILY : US14: " + key + "Number of children born in a single birth should not be greater than 5")
         return result
 
+    """Tanvi Hanamshet"""
+    """unique first name in families"""
+    def US25(self):
+        
+        
+        # for key, family in self.family.items():
+        #     print(family.husband_name[key])
+        # for key, family in self.family.items():
+        for key, individual in self.individual.items():
+            unique_names = []
+            names = []
+            list_of_names = individual.name.split("/")[0]
+            names.append(list_of_names)
+            for i in names:
+                if i not in unique_names:
+                    unique_names.append(i)
+            for name in unique_names:
+                print("ANOMALY: FAMILY : US25: " + key + " Unique name in family: "+ name)
+            # unique_names = []
+            # names = []
+            # list_of_names = family.husband_name.split("/")[0]
+            # list_of_names2 = family.wife_name.split("/")[0]
+            # # list_of_names = family.children.split("/")[0]
+            # names.append(list_of_names)
+            # names.append(list_of_names2)
+            # for i in names:
+            #     if i not in unique_names:
+            #         unique_names.append(i)
+            #         print(key, i)
+            # del names[:]
+            # del unique_names
+                     
+        
+
+            # print(key,family.husband_name)
+
+    # def US26(self): #corresponding enteries
+
+    """Lifu Xiao"""
+    """Yuan Zhang"""
 def main():
     path = 'ged/Das.ged' 
     repo = Repo()
