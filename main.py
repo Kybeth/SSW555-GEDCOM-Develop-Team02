@@ -261,24 +261,32 @@ class Repo:
     # def US26(self): #corresponding enteries
 
     """Lifu Xiao"""
+    def US07(self):
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.age > 150):
+                result.append(key)
+                print("ERROR: INDIVIDUAL: US07: " + key + "  More than 150 years old: Birth date "+ individual.birthday)
+        return result
     """Yuan Zhang"""
 def main():
-    path = 'ged/Das.ged' 
-    repo = Repo()
-    repo.read_file(path)
-
+    repo1 = Repo()
+    repo1.read_file('ged/myfamily.ged')
     print("\n Individual Summary")
-    repo.individual_table()
+    repo1.individual_table()
 
     print("\n Family Summary")
-    repo.family_table()
+    repo1.family_table()
+    repo1.US07()
 
-    repo.US01()
-    repo.US02()
-    repo.US03()
-    repo.US04()
-    repo.US13()
-    repo.US14()
+    repo2 = Repo()
+    repo2.read_file('ged/das.ged')
+    repo2.US03()
+    repo2.US04()
+    repo2.US13()
+    repo2.US14()
+
+
     
 if __name__ == '__main__':
     main()

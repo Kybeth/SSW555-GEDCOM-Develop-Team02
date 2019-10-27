@@ -27,6 +27,7 @@ class Individual:
 
     def __init__(self, id):
         self.id = id
+        self.line_num = 0
         self.name = ''
         self.gender = ''
         self.birthday = ''
