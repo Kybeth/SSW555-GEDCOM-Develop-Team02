@@ -261,13 +261,34 @@ class Repo:
     # def US26(self): #corresponding enteries
 
     """Lifu Xiao"""
-    def US07(self):
+    def US07(self): #  US07 Less then 150 years old
         result = list()
         for key, individual in self.individual.items():
             if(individual.age > 150):
                 result.append(key)
                 print("ERROR: INDIVIDUAL: US07: " + key + "  More than 150 years old: Birth date "+ individual.birthday)
         return result
+
+    def US08(self): #  US08 Birth before marriage of parents
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.child != 'NA'):
+                for c in individual.child:
+                    fam = self.family[c]
+                    if(fam.divorced != 'NA'):
+                        div_date = datetime.strptime(fam.divorced, '%Y-%m-%d')
+                        child_birth_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
+                        if(child_birth_date > div_date):
+                            print('ANOMALY: FAMILY: US08: ' + c + ' Child ' + key + ' born ' + individual.birthday + ' after divorce on ' + fam.divorced)
+                            result.append(key)
+                    if(fam.marriage != 'NA'):
+                        marr_date = datetime.strptime(fam.marriage, '%Y-%m-%d')
+                        child_birth_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
+                        if(marr_date > child_birth_date):
+                            print('ANOMALY: FAMILY: US08: ' + c + ' Child ' + key + ' born ' + individual.birthday + ' before marriage on ' + fam.marriage)
+                            result.append(key)
+        return result
+    
     """Yuan Zhang"""
 def main():
     repo1 = Repo()
@@ -278,6 +299,7 @@ def main():
     print("\n Family Summary")
     repo1.family_table()
     repo1.US07()
+    repo1.US08()
 
     repo2 = Repo()
     repo2.read_file('ged/das.ged')
