@@ -73,5 +73,10 @@ class UserStoryTest(unittest.TestCase):
         repo.read_file("ged/us17.ged")
         self.assertEqual(repo.US17(),['@I1@', '@I3@'])
     
+    def test_US18(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US18(),['@I12@', '@I13@', '@I15@', '@I16@'])
+
 if __name__ == '__main__':
     unittest.main(exit=False, verbosity=2)

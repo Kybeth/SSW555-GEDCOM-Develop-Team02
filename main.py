@@ -300,7 +300,20 @@ class Repo:
                             print('ERROR: FAMILY: US17: Parent ' + key + ' marries with children or parents.')
                             result.append(key)
         return result
-
+    
+    def US18(self): #  US18: Siblings should not marry one another
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.partner != 'NA' and individual.child != 'NA'):
+                for p in individual.partner:
+                    for c in individual.child:
+                        famc = self.family[c]
+                        fams = self.family[p]
+                        if(famc.children != 'NA'):
+                            if(famc.children & set(fams.wife_id) != set() and famc.children & set(fams.husband_id) != set()):
+                                print('ERROR: US18: ' + key + ' Siblings marry')
+                                result.append(key)
+        return result
     """Yuan Zhang"""
 
 def main():
@@ -313,7 +326,7 @@ def main():
     repo1.family_table()
     repo1.US07()
     repo1.US08()
-    repo1.US17()
+    repo1.US18()
 
     repo2 = Repo()
     repo2.read_file('ged/das.ged')
