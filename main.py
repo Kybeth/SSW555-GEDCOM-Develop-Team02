@@ -1,6 +1,7 @@
 from ged import Individual, Family, gedcom_parser
 from prettytable import PrettyTable
 from datetime import datetime
+from collections import defaultdict, Counter
 
 class Repo:
     def __init__(self):
@@ -288,6 +289,35 @@ class Repo:
                             print('ANOMALY: FAMILY: US08: ' + c + ' Child ' + key + ' born ' + individual.birthday + ' before marriage on ' + fam.marriage)
                             result.append(key)
         return result
+
+    def US23(self): # by Anirudh Bezzam
+        """US23 No more than one individual with the same name and birth date should appear in a GEDCOM file"""
+        """Using a counter to flush out duplicates"""
+        result = False
+        count = Counter([individual.name + " " + individual.birthday for individual in self.individual.values()])
+        for extra_copy, value in count.items():
+            if value > 1:
+                print("Error: INDIVIDUAL : US23: Name and age of Person has been repeated: " + extra_copy)
+                result = True
+        return result
+    
+    def US24(self): # by Anirudh Bezzam
+        """US24 No more than one family with the same spouses by name and the same marriage date should appear in a GEDCOM file"""
+        result = False
+        duplicate_family = list()
+        for key, family in self.family.items():
+            wife_name = self.individual[list(family.wife_id)[0]].name
+            marriage_date = family.marriage
+            current_tuple = (wife_name, marriage_date)
+            duplicate_family.append(current_tuple)
+        family_dic = {duplicate: duplicate_family.count(duplicate) for duplicate in duplicate_family}
+        for family_dic_key, family_dic_value in family_dic.items():
+            if family_dic_value > 1:
+                print("Error: FAMILY : US24: " + "More than one family with the same spouses by name " + family_dic_key[0] + " and the same marriage date " + family_dic_key[1])
+                result = True
+        return result
+
+
     
     """Yuan Zhang"""
 def main():
@@ -307,6 +337,8 @@ def main():
     repo2.US04()
     repo2.US13()
     repo2.US14()
+    repo2.US23()
+    repo2.US24()
 
 
     
