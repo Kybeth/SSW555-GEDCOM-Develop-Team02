@@ -266,8 +266,8 @@ class Repo:
         result = list()
         for key, individual in self.individual.items():
             if(individual.age > 150):
-                result.append(key)
                 print("ERROR: INDIVIDUAL: US07: " + key + "  More than 150 years old: Birth date "+ individual.birthday)
+                result.append(key)
         return result
 
     def US08(self): #  US08 Birth before marriage of parents
@@ -319,7 +319,33 @@ class Repo:
 
 
     
+    def US17(self): #  US17: No marriages to children
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.partner != 'NA'):
+                for p in individual.partner:
+                    fam = self.family[p]
+                    if(fam.children != 'NA'):
+                        if (fam.children & set(fam.wife_id) != set() or fam.children & set(fam.husband_id) != set()):
+                            print('ERROR: FAMILY: US17: Parent ' + key + ' marries with children or parents.')
+                            result.append(key)
+        return result
+    
+    def US18(self): #  US18: Siblings should not marry one another
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.partner != 'NA' and individual.child != 'NA'):
+                for p in individual.partner:
+                    for c in individual.child:
+                        famc = self.family[c]
+                        fams = self.family[p]
+                        if(famc.children != 'NA'):
+                            if(famc.children & set(fams.wife_id) != set() and famc.children & set(fams.husband_id) != set()):
+                                print('ERROR: US18: ' + key + ' Siblings marry')
+                                result.append(key)
+        return result
     """Yuan Zhang"""
+
 def main():
     repo1 = Repo()
     repo1.read_file('ged/myfamily.ged')
@@ -330,6 +356,7 @@ def main():
     repo1.family_table()
     repo1.US07()
     repo1.US08()
+    repo1.US18()
 
     repo2 = Repo()
     repo2.read_file('ged/das.ged')
@@ -339,6 +366,10 @@ def main():
     repo2.US14()
     repo2.US23()
     repo2.US24()
+
+    repo3 = Repo()
+    repo3.read_file('ged/us17.ged')
+    repo3.US17()
 
 
     
