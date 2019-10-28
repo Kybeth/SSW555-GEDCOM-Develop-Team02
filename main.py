@@ -343,7 +343,7 @@ class Repo:
                                 result.append(key)
         return result
 
-    def US27(self):
+    def US27(self): #  Include individual ages
         result = list()
         status = True
         for key, individual in self.individual.items():
@@ -355,20 +355,20 @@ class Repo:
             print('US27: All peolple include ages!')
         return result
     
-    # def US28(self):
-    #     result = list()
-    #     for key, family in self.family.items():
-    #         if(family.children != 'NA' and len(family.children) > 1):
-    #             chil = dict()
-    #             for c in family.children:
-    #                 age = self.individual[c].age
-    #                 chil[age] = c
-    #             keys = chil.keys()
-    #             keys.sort()
-    #             for k in keys:
-    #                 print (k, chil[k])
-    #             print('/n')
-    #     return result
+    def US28(self): #  Order siblings by age
+        result = list()
+        for key, family in self.family.items():
+            if(family.children != 'NA' and len(family.children) > 1):
+                chil = dict()
+                for c in family.children:
+                    age = self.individual[c].age
+                    chil[age] = c
+                chil = sorted(chil.items())
+                print('Siblings in '+key+':')
+                for k,v in chil:
+                    print (v+': '+str(k))
+                result.append(chil)
+        return result
 
     """Yuan Zhang"""
 

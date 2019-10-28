@@ -5,7 +5,6 @@ from main import Repo
 
 class UserStoryTest(unittest.TestCase):
     """Vignesh Mohan"""
-    """US01"""
     def test_US01(self):
         repo = Repo()
         repo.read_file("ged/das.ged")
@@ -13,7 +12,6 @@ class UserStoryTest(unittest.TestCase):
         self.assertNotEqual(repo.US01(), False)
         self.assertTrue(repo.US01())
 
-    """US02"""
     def test_US02(self):
         repo = Repo()
         repo.read_file("ged/das.ged")
@@ -22,15 +20,12 @@ class UserStoryTest(unittest.TestCase):
         self.assertTrue(repo.US02())
     
     """Anirudh Bezzam"""
-    """US03"""
     def test_US03(self):
         repo = Repo()
         repo.read_file("ged/das.ged")
         self.assertEqual(repo.US03(), True)
         self.assertNotEqual(repo.US03(), False)
         self.assertTrue(repo.US03())
-
-    """US04"""
 
     def test_US04(self):
         repo = Repo()
@@ -39,16 +34,12 @@ class UserStoryTest(unittest.TestCase):
         self.assertNotEqual(repo.US04(), False)
         self.assertTrue(repo.US04())
 
-    """US13"""
-
     def test_US13(self):
         repo = Repo()
         repo.read_file("ged/das.ged")
         self.assertEqual(repo.US13(), True)
         self.assertNotEqual(repo.US13(), False)
         self.assertTrue(repo.US13())
-
-    """US14"""
 
     def test_US14(self):
         repo = Repo()
@@ -82,6 +73,12 @@ class UserStoryTest(unittest.TestCase):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
         self.assertEqual(repo.US27(),list())
+    
+    def test_US28(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US28()[0],[(-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
+        self.assertEqual(repo.US28()[1],[(85, '@I1@'), (239, '@I24@')])
 
 if __name__ == '__main__':
     unittest.main(exit=False, verbosity=2)
