@@ -49,6 +49,16 @@ class UserStoryTest(unittest.TestCase):
         self.assertNotEqual(repo.US14(), False)
         self.assertTrue(repo.US14())
 
+    def test_US24(self):
+        """US24 - Unique families by spouses"""
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US24(), True)
+        self.assertNotEqual(repo.US24(), False)
+        self.assertTrue(repo.US24())
+        self.assertIsNotNone(repo.US24())
+        self.assertIsNot(repo.US24(), '')
+
     """Lifu Xiao"""
     def test_US07(self):
         repo = Repo()
