@@ -99,6 +99,11 @@ class UserStoryTest(unittest.TestCase):
         expect = ['@F11@']
         self.assertEqual(result, expect)
     
+    def test_US21(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertNotEqual(repo.US21(),list())
+    
     def test_US22(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")

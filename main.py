@@ -150,6 +150,21 @@ class Repo:
                         result = True
         return result
     
+    """US21 Correct gender for role"""
+    def US21(self):
+        result = False
+        for individual in self.individual.items():
+            for key, fam in self.family.items():
+                husband = self.individual["".join(fam.husband_id)]
+                wife = self.individual["".join(fam.wife_id)]
+
+                if husband.gender == "F" or husband.gender == "NA":
+                    print("ANOMALY: FAMILY: US21: Spouse {} in Family {} gender listed as {} but expected {}")
+
+                elif wife.gender == "M" or wife.gender == "NA":
+                    print("ANOMALY: FAMILY: US21: Spouse {} in Family {} gender listed as {} but expected {}")
+        return result
+    
     """Individual ID and Family ID should be unique"""
     def US22(self):
         result = False
@@ -539,5 +554,10 @@ def main():
     repo1.US29()
     repo1.US30()
     
+    """Ged for US21"""
+    repo4 = Repo()
+    repo4.read_file('ged/My-Family-28-Oct-2019-667.ged')
+    repo4.US21()
+
 if __name__ == '__main__':
     main()
