@@ -149,6 +149,31 @@ class Repo:
                             "ANOMALY: FAMILY: US02: " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
                         result = True
         return result
+    
+    """Individual ID and Family ID should be unique"""
+    def US22(self):
+        result = False
+
+        #Dictionary of the family
+        fam ={}
+        #Dictionary of the individual
+        indi ={}
+         
+        IndiID = []
+        Namelist1 = []
+        FamID = []
+        famlist1 = []
+        for individual_id in indi:
+            individual = indi[individual_id]
+            IndiID.append(individual_id)
+        Namelist1 = set (IndiID)
+        print("US22: Number of duplicate Individual IDs:-",len(IndiID)-len(Namelist1),"\n")
+        for family_id in fam:
+            family = fam[family_id]
+            FamID.append(family_id)   
+        famlist1 = set (FamID)
+        print("US22: Number of duplicate Family IDs:-",len(FamID)-len(famlist1),"\n")
+        return result
 
     """Anirudh Bezzam"""
 
@@ -498,6 +523,7 @@ def main():
     repo2.US04()
     repo2.US13()
     repo2.US14()
+    repo2.US22()
     repo2.US23()
     repo2.US24()
 
