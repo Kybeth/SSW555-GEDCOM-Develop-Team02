@@ -58,6 +58,17 @@ class UserStoryTest(unittest.TestCase):
         self.assertTrue(repo.US24())
         self.assertIsNotNone(repo.US24())
         self.assertIsNot(repo.US24(), '')
+    
+    def test_US23(self):
+        """US23 - No more than one individual with the same name and birth date should appear in a GEDCOM file"""
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US23(), True)
+        self.assertNotEqual(repo.US23(), False)
+        self.assertTrue(repo.US23())
+        self.assertIsNotNone(repo.US23())
+        self.assertIsNot(repo.US23(), '')
+    
 
     """Lifu Xiao"""
     def test_US07(self):
