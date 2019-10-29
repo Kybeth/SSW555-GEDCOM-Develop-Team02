@@ -290,7 +290,7 @@ class Repo:
         family_dic = {duplicate: duplicate_family.count(duplicate) for duplicate in duplicate_family}
         for family_dic_key, family_dic_value in family_dic.items():
             if family_dic_value > 1:
-                print("Error: FAMILY : US24: " + "More than one family with the same spouses by name " + family_dic_key[0] + " and the same marriage date " + family_dic_key[1])
+                print("Error: FAMILY : US24: " + str(family.line_num) + "More than one family with the same spouses by name " + family_dic_key[0] + " and the same marriage date " + family_dic_key[1])
                 result = True
         return result
 
