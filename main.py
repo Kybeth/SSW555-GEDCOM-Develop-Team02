@@ -149,7 +149,7 @@ class Repo:
                 if individual.birthday != 'NA' or family.marriage != 'NA':
                     if family.marriage > individual.birthday :
                         print(
-                            "ANOMALY: FAMILY: US02: " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
+                            "ANOMALY: FAMILY: US02: " + str(family.line_num) + " : " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
                         result = True
         return result
     
@@ -162,10 +162,10 @@ class Repo:
                 wife = self.individual["".join(fam.wife_id)]
 
                 if husband.gender == "F" or husband.gender == "NA":
-                    print('ANOMALY: FAMILY: US21: In family ' + key + ' husband gender is ' + husband.gender)
+                    print('ANOMALY: FAMILY: US21: In family: ' + str(fam.line_num) + " : "  + key + ' husband gender is ' + husband.gender)
 
                 elif wife.gender == "M" or wife.gender == "NA":
-                    print('ANOMALY: FAMILY: US21: In family ' + key + ' wife gender is ' + wife.gender)
+                    print('ANOMALY: FAMILY: US21: In family: ' + str(fam.line_num) + " : "  + key + ' wife gender is ' + wife.gender)
         return result
     
     """Individual ID and Family ID should be unique"""
@@ -528,6 +528,8 @@ def main():
 
     print("\n Family Summary")
     repo1.family_table()
+    repo1.US01()
+    repo1.US02()
     repo1.US07()
     repo1.US08()
     repo1.US18()
