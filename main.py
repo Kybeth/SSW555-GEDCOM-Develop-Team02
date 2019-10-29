@@ -224,6 +224,33 @@ class Repo:
                     "Error: FAMILY : US14: " + key + "Number of children born in a single birth should not be greater than 5")
         return result
 
+    def US23(self): # by Anirudh Bezzam
+        """US23 No more than one individual with the same name and birth date should appear in a GEDCOM file"""
+        """Using a counter to flush out duplicates"""
+        result = False
+        count = Counter([individual.name + " " + individual.birthday for individual in self.individual.values()])
+        for extra_copy, value in count.items():
+            if value > 1:
+                print("Error: INDIVIDUAL : US23: Name and age of Person has been repeated: " + extra_copy)
+                result = True
+        return result
+    
+    def US24(self): # by Anirudh Bezzam
+        """US24 No more than one family with the same spouses by name and the same marriage date should appear in a GEDCOM file"""
+        result = False
+        duplicate_family = list()
+        for key, family in self.family.items():
+            wife_name = self.individual[list(family.wife_id)[0]].name
+            marriage_date = family.marriage
+            current_tuple = (wife_name, marriage_date)
+            duplicate_family.append(current_tuple)
+        family_dic = {duplicate: duplicate_family.count(duplicate) for duplicate in duplicate_family}
+        for family_dic_key, family_dic_value in family_dic.items():
+            if family_dic_value > 1:
+                print("Error: FAMILY : US24: " + "More than one family with the same spouses by name " + family_dic_key[0] + " and the same marriage date " + family_dic_key[1])
+                result = True
+        return result
+
     """Tanvi Hanamshet"""
     """unique first name in families"""
     def US25(self):
@@ -291,35 +318,6 @@ class Repo:
                             result.append(key)
         return result
 
-    def US23(self): # by Anirudh Bezzam
-        """US23 No more than one individual with the same name and birth date should appear in a GEDCOM file"""
-        """Using a counter to flush out duplicates"""
-        result = False
-        count = Counter([individual.name + " " + individual.birthday for individual in self.individual.values()])
-        for extra_copy, value in count.items():
-            if value > 1:
-                print("Error: INDIVIDUAL : US23: Name and age of Person has been repeated: " + extra_copy)
-                result = True
-        return result
-    
-    def US24(self): # by Anirudh Bezzam
-        """US24 No more than one family with the same spouses by name and the same marriage date should appear in a GEDCOM file"""
-        result = False
-        duplicate_family = list()
-        for key, family in self.family.items():
-            wife_name = self.individual[list(family.wife_id)[0]].name
-            marriage_date = family.marriage
-            current_tuple = (wife_name, marriage_date)
-            duplicate_family.append(current_tuple)
-        family_dic = {duplicate: duplicate_family.count(duplicate) for duplicate in duplicate_family}
-        for family_dic_key, family_dic_value in family_dic.items():
-            if family_dic_value > 1:
-                print("Error: FAMILY : US24: " + "More than one family with the same spouses by name " + family_dic_key[0] + " and the same marriage date " + family_dic_key[1])
-                result = True
-        return result
-
-
-    
     def US17(self): #  US17: No marriages to children
         result = list()
         for key, individual in self.individual.items():
@@ -345,7 +343,34 @@ class Repo:
                                 print('ERROR: US18: ' + key + ' Siblings marry')
                                 result.append(key)
         return result
+
+    def US27(self): #  Include individual ages
+        result = list()
+        status = True
+        for key, individual in self.individual.items():
+            if(individual.age == 'NA'):
+                status = False
+                print('ERROR: US27: ' + key + ' lacks age information')
+                result.append(key)
+        if(status):
+            print('US27: All peolple include ages!')
+        return result
     
+    def US28(self): #  Order siblings by age
+        result = list()
+        for key, family in self.family.items():
+            if(family.children != 'NA' and len(family.children) > 1):
+                chil = dict()
+                for c in family.children:
+                    age = self.individual[c].age
+                    chil[age] = c
+                chil = sorted(chil.items())
+                print('Siblings in '+key+':')
+                for k,v in chil:
+                    print (v+': '+str(k))
+                result.append(chil)
+        return result
+
     """Yuan Zhang"""
     def US09(self): # US09 Birth before death of parents - by Yuan
         error = list()
@@ -452,6 +477,7 @@ class Repo:
 
 def main():
     # there are several gedcom files
+    """ myfamily.ged """
     repo1 = Repo()
     repo1.read_file('ged/myfamily.ged')
     print("\n Individual Summary")
@@ -462,7 +488,10 @@ def main():
     repo1.US07()
     repo1.US08()
     repo1.US18()
+    repo1.US27()
+    repo1.US28()
 
+    """ das.ged """
     repo2 = Repo()
     repo2.read_file('ged/das.ged')
     repo2.US03()
@@ -472,6 +501,7 @@ def main():
     repo2.US23()
     repo2.US24()
 
+    """us17.ged"""
     repo3 = Repo()
     repo3.read_file('ged/us17.ged')
     repo3.US17()
