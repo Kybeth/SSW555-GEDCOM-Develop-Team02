@@ -2,6 +2,7 @@ from datetime import datetime
 # from dateutil.relativedelta import relativedelta
 # from collections import defaultdict
 
+
 def gedcom_parser(path):
     """Read the contains of file"""
     try:
@@ -15,10 +16,12 @@ def gedcom_parser(path):
                 if len(fields) >= 3:
                     fields = line.strip().split(" ", 2)
                 elif len(fields) < 1:
-                    raise ValueError("Excepted number of fields is not present in row.")
+                    raise ValueError(
+                        "Excepted number of fields is not present in row.")
                 else:
                     fields = line.strip().split()
                     fields.append("")
+                fields.append(line_num)  # try add line num
                 yield fields
 
 
@@ -36,6 +39,7 @@ class Individual:
         self.death = 'NA'
         self.child = set()
         self.partner = set()
+        self.line_num = 0
 
     def add_name(self, name):
         self.name = name
@@ -53,7 +57,8 @@ class Individual:
         else:
             birthday = datetime.strptime(self.birthday, '%Y-%m-%d')
             end_date = datetime.today()
-        age = end_date.year - birthday.year - ((end_date.month, end_date.day) < (birthday.month, birthday.day))
+        age = end_date.year - birthday.year - \
+            ((end_date.month, end_date.day) < (birthday.month, birthday.day))
         self.age = age
 
     def add_death(self, death):
@@ -75,6 +80,9 @@ class Individual:
             self.partner = "NA"
         return [self.id, self.name, self.gender, self.birthday, self.age, self.alive, self.death, self.child,
                 self.partner]
+
+    def add_line_num(self, line_num):
+        self.line_num = line_num
 
 
 class Family:
@@ -116,3 +124,6 @@ class Family:
             self.children = 'NA'
         return [self.id, self.marriage, self.divorced, self.husband_id, self.husband_name, self.wife_id,
                 self.wife_name, self.children]
+
+    def add_line_num(self, line_num):
+        self.line_num = line_num

@@ -10,11 +10,13 @@ class Repo:
         self.individual = dict()
         self.family = dict()
 
-    def add_individual(self, level, argument, tag):
+    def add_individual(self, level, argument, tag, line_num): ## 
         self.individual[argument] = Individual(argument)
+        self.individual[argument].add_line_num(line_num) ## add line number
 
-    def add_family(self, level, argument, tag):
+    def add_family(self, level, argument, tag, line_num): ##
         self.family[argument] = Family(argument)
+        self.family[argument].add_line_num(line_num) ## add line number
 
     def individual_table(self):
         pt = PrettyTable(
@@ -31,50 +33,51 @@ class Repo:
         print(pt)
 
     def read_file(self, path):
-        for level, tag, argument in gedcom_parser(path):
+        for level, tag, argument, line_num in gedcom_parser(path): ##
             # print(level, tag, argument)
             result = list()
             valid_tags = {'NAME': '1', 'SEX': '1', 'MARR': '1',
                           'BIRT': '1', 'DEAT': '1', 'FAMC': '1', 'FAMS': '1',
                           'HUSB': '1', 'WIFE': '1', 'CHIL': '1',
-                          'DIV': '1', 'DATE': '2', 'HEAD': '0', 'TRLR': '0', 'NOTE': '0'}
-            special_valid_tags = {'INDI': '0', 'FAM': '0'}
+                          'DIV': '1', 'DATE': '2', 'HEAD': '0', 'TRLR': '0', 'NOTE': '0'} # valid gedcom tags except INDI and FAM
+            special_valid_tags = {'INDI': '0', 'FAM': '0'} # tags for INDI and FAM
 
-            valid_tag_level = False
-            if argument in ['INDI', 'FAM']:
+            valid_tag_level = False 
+            if argument in ['INDI', 'FAM']: # when the line record is valid with "0 xx INDI" or "0 xx FAM"
                 special_tags = True
                 for current_tag, current_level in special_valid_tags.items():
                     if level == current_level and argument == current_tag:
                         valid_tag_level = True
                         break
-            else:
+            else: ## other valid tag
                 special_tags = False
                 for current_tag, current_level in valid_tags.items():
                     if level == current_level and tag == current_tag:
                         valid_tag_level = True
                         break
 
-            if valid_tag_level and special_tags:
+            if valid_tag_level and special_tags: # if the line is valid top level i.e. "0 xx INDI" or "0 xx FAM"
                 result.append(level)
                 result.append(argument)
                 result.append("Y")
                 result.append(tag)
                 if argument in ["INDI"]:
-                    self.add_individual(level, tag, argument)
+                    self.add_individual(level, tag, argument, line_num) # ## initiate a new individual with id and line number
                     current_id = tag
                 else:
-                    self.add_family(level, tag, argument)
+                    self.add_family(level, tag, argument, line_num) # ## initiate a new family with id and line number
                     current_id = tag
-            elif not valid_tag_level and not special_tags:
+            elif not valid_tag_level and not special_tags: # if not valid
                 result.append(level)
                 result.append(tag)
                 result.append("N")
                 result.append(argument)
-            elif valid_tag_level and not special_tags:
+            elif valid_tag_level and not special_tags: # if valid but not top level
                 result.append(level)
                 result.append(tag)
                 result.append("Y")
                 result.append(argument)
+                # add the record to the individual/family
                 if tag == "NAME":
                     self.individual[current_id].add_name(argument)
                 elif tag == "SEX":
@@ -422,11 +425,11 @@ class Repo:
                     mother = self.individual[''.join(fam.wife_id)]
                     if father.alive != "TRUE":
                         if individual.birthday > father.death:
-                            print('ERROR: FAMILY: US09: ' + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after father's death on " + father.death)
+                            print('ERROR: FAMILY: US09: ' + str(fam.line_num) + ": " + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after father's death on " + father.death)
                             error.append(key)
                     if mother.alive != "TRUE":
                         if individual.birthday > mother.death:
-                            print('ERROR: FAMILY: US09: ' + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after mother's death on " + mother.death)
+                            print('ERROR: FAMILY: US09: ' + str(fam.line_num) + ": " + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after mother's death on " + mother.death)
                             error.append(key)
         return error
 
@@ -441,7 +444,7 @@ class Repo:
                         marr_date = datetime.strptime(fam.marriage, '%Y-%m-%d')
                         if marr_date - birt_date < timedelta(days = 5110): # 365days/yr * 14yr = 5110
                             error.append(key)
-                            print('ANOMALY: FAMILY: US10: ' + individual.id + ' married on ' + fam.marriage + ' before 14 years old (born on ' + individual.birthday + ')')
+                            print('ANOMALY: INDIVIDUAL: US10: ' + str(individual.line_num) + ": " + individual.id + ' married on ' + fam.marriage + ' before 14 years old (born on ' + individual.birthday + ')')
         return error      
     
     def US19(self): # US19 First cousins should not marry - by Yuan
@@ -465,7 +468,7 @@ class Repo:
                                     # if the parents are siblings, the husband and wife are first cousons
                                     if husb_parent.child != "NA" and wife_parent.child != "NA" and "".join(husb_parent.child) == "".join(wife_parent.child): 
                                         error.append(key)
-                                        print('ANOMALY: FAMILY: US19: In family ' + fam.id + ' husband ' + husb.id + ' and wife ' + wife.id + " are cousins ")
+                                        print('ANOMALY: FAMILY: US19: ' + str(fam.line_num) + ": In family " + fam.id + ' husband ' + husb.id + ' and wife ' + wife.id + " are cousins ")
         return error
 
     def US20(self): # US20 Aunts and uncles - by Yuan
@@ -486,13 +489,13 @@ class Repo:
                             for husb_parent in husb_parents:
                                 if husb_parent.child != "NA" and "".join(husb_parent.child) == "".join(wife.child): 
                                     error.append(key)
-                                    print('ANOMALY: FAMILY: US20: In family ' + fam.id + ' wife ' + wife.id + ' is husband ' + husb.id + "'s aunt")
+                                    print('ANOMALY: FAMILY: US20: ' + str(fam.line_num) + ": In family " + fam.id + ' wife ' + wife.id + ' is husband ' + husb.id + "'s aunt")
                             # identify wife's parents to see if they're the husband's siblings
                             wife_parents = self.individual["".join(wife_fam.husband_id)], self.individual["".join(wife_fam.wife_id)]
                             for wife_parent in wife_parents:
                                 if wife_parent.child != "NA" and "".join(wife_parent.child) == "".join(husb.child): 
                                     error.append(key)
-                                    print('ANOMALY: FAMILY: US20: In family ' + fam.id + ' husband ' + husb.id + ' is wife ' + wife.id + "'s uncle")
+                                    print('ANOMALY: FAMILY: US20: ' + str(fam.line_num) + ": In family " + fam.id + ' husband ' + husb.id + ' is wife ' + wife.id + "'s uncle")
         return error
 
     def US29(self): # List all deceased individuals in a GEDCOM file - Yuan Zhang
