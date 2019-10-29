@@ -1,6 +1,7 @@
 from ged import Individual, Family, gedcom_parser
 from prettytable import PrettyTable
 from datetime import datetime
+from datetime import timedelta
 from collections import defaultdict, Counter
 
 class Repo:
@@ -344,9 +345,113 @@ class Repo:
                                 print('ERROR: US18: ' + key + ' Siblings marry')
                                 result.append(key)
         return result
+    
     """Yuan Zhang"""
+    def US09(self): # US09 Birth before death of parents - by Yuan
+        error = list()
+        for key, individual in self.individual.items(): # scan children
+            if (individual.child != 'NA'): # if the individual is a child of some family
+                for c in individual.child: # each family the individual is a child of
+                    fam = self.family[c]
+                    father = self.individual[''.join(fam.husband_id)]
+                    mother = self.individual[''.join(fam.wife_id)]
+                    if father.alive != "TRUE":
+                        if individual.birthday > father.death:
+                            print('ERROR: FAMILY: US09: ' + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after father's death on " + father.death)
+                            error.append(key)
+                    if mother.alive != "TRUE":
+                        if individual.birthday > mother.death:
+                            print('ERROR: FAMILY: US09: ' + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after mother's death on " + mother.death)
+                            error.append(key)
+        return error
+
+    def US10(self): # US10 Marriage after 14 - by Yuan
+        error = list()
+        for key, individual in self.individual.items(): # scan individual
+            birt_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
+            if individual.partner != 'NA':
+                for f in individual.partner:
+                    fam = self.family[f]
+                    if fam.marriage != 'NA':
+                        marr_date = datetime.strptime(fam.marriage, '%Y-%m-%d')
+                        if marr_date - birt_date < timedelta(days = 5110): # 365days/yr * 14yr = 5110
+                            error.append(key)
+                            print('ANOMALY: FAMILY: US10: ' + individual.id + ' married on ' + fam.marriage + ' before 14 years old (born on ' + individual.birthday + ')')
+        return error      
+    
+    def US19(self): # US19 First cousins should not marry - by Yuan
+        error = list()
+        for key, fam in self.family.items(): # scan families
+            # identify the husband and wife
+            husb = self.individual["".join(fam.husband_id)]
+            wife = self.individual["".join(fam.wife_id)]
+            # if the husband/wife is the child of some family
+            if husb.child != "NA":
+                for h_c in husb.child:
+                    if wife.child != "NA": 
+                        for w_c in wife.child:
+                            husb_fam = self.family[h_c]
+                            wife_fam = self.family[w_c]
+                            # identify the parents of husband and wife to see if they are siblings
+                            husb_parents = self.individual["".join(husb_fam.husband_id)], self.individual["".join(husb_fam.wife_id)]
+                            wife_parents = self.individual["".join(wife_fam.husband_id)], self.individual["".join(wife_fam.wife_id)]
+                            for husb_parent in husb_parents:
+                                for wife_parent in wife_parents:
+                                    # if the parents are siblings, the husband and wife are first cousons
+                                    if husb_parent.child != "NA" and wife_parent.child != "NA" and "".join(husb_parent.child) == "".join(wife_parent.child): 
+                                        error.append(key)
+                                        print('ANOMALY: FAMILY: US19: In family ' + fam.id + ' husband ' + husb.id + ' and wife ' + wife.id + " are cousins ")
+        return error
+
+    def US20(self): # US20 Aunts and uncles - by Yuan
+        error = list()
+        for key, fam in self.family.items(): # scan families
+            # identify the husband and wife
+            husb = self.individual["".join(fam.husband_id)]
+            wife = self.individual["".join(fam.wife_id)]
+            # if the husband/wife is the child of some family
+            if husb.child != "NA":
+                for h_c in husb.child:
+                    if wife.child != "NA": 
+                        for w_c in wife.child:
+                            husb_fam = self.family[h_c]
+                            wife_fam = self.family[w_c]
+                            # identify husband's parents to see if they're the wife's siblings
+                            husb_parents = self.individual["".join(husb_fam.husband_id)], self.individual["".join(husb_fam.wife_id)]
+                            for husb_parent in husb_parents:
+                                if husb_parent.child != "NA" and "".join(husb_parent.child) == "".join(wife.child): 
+                                    error.append(key)
+                                    print('ANOMALY: FAMILY: US20: In family ' + fam.id + ' wife ' + wife.id + ' is husband ' + husb.id + "'s aunt")
+                            # identify wife's parents to see if they're the husband's siblings
+                            wife_parents = self.individual["".join(wife_fam.husband_id)], self.individual["".join(wife_fam.wife_id)]
+                            for wife_parent in wife_parents:
+                                if wife_parent.child != "NA" and "".join(wife_parent.child) == "".join(husb.child): 
+                                    error.append(key)
+                                    print('ANOMALY: FAMILY: US20: In family ' + fam.id + ' husband ' + husb.id + ' is wife ' + wife.id + "'s uncle")
+        return error
+
+    def US29(self): # List all deceased individuals in a GEDCOM file - Yuan Zhang
+        error = list()
+        print("--- US29: All deceased individuals ---")
+        for key, individual in self.individual.items(): # scan individual
+            if individual.alive != "TRUE":
+                print(individual.id + ": " + individual.name)
+                error.append(key)
+        print("--- End of all deceased individuals ---")
+        return error
+
+    def US30(self): # List all living married people in a GEDCOM file - Yuan Zhang
+        error = list()
+        print("--- US30: All living married people ---")
+        for key, individual in self.individual.items(): # scan individual
+            if individual.alive == "TRUE" and individual.partner != "NA":
+                print(individual.id + " " + individual.name)
+                error.append(key)
+        print("--- End of all living married people ---")
+        return error
 
 def main():
+    # there are several gedcom files
     repo1 = Repo()
     repo1.read_file('ged/myfamily.ged')
     print("\n Individual Summary")
@@ -371,7 +476,12 @@ def main():
     repo3.read_file('ged/us17.ged')
     repo3.US17()
 
-
+    repo1.US09()
+    repo1.US10()
+    repo1.US19()
+    repo1.US20()
+    repo1.US29()
+    repo1.US30()
     
 if __name__ == '__main__':
     main()
