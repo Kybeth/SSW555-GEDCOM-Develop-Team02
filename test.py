@@ -101,7 +101,7 @@ class UserStoryTest(unittest.TestCase):
     
     def test_US21(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/My-Family-28-Oct-2019-667.ged")
         self.assertNotEqual(repo.US21(),list())
     
     def test_US22(self):

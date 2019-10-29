@@ -159,10 +159,10 @@ class Repo:
                 wife = self.individual["".join(fam.wife_id)]
 
                 if husband.gender == "F" or husband.gender == "NA":
-                    print("ANOMALY: FAMILY: US21: Spouse {} in Family {} gender listed as {} but expected {}")
+                    print('ANOMALY: FAMILY: US21: In family ' + key + ' husband gender is ' + husband.gender)
 
                 elif wife.gender == "M" or wife.gender == "NA":
-                    print("ANOMALY: FAMILY: US21: Spouse {} in Family {} gender listed as {} but expected {}")
+                    print('ANOMALY: FAMILY: US21: In family ' + key + ' wife gender is ' + wife.gender)
         return result
     
     """Individual ID and Family ID should be unique"""
