@@ -37,6 +37,12 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(repo.US04(), True)
         self.assertNotEqual(repo.US04(), False)
         self.assertTrue(repo.US04())
+    
+    def test_US11(self):
+        repo = Repo()
+        repo.read_file("ged/My-Family-29-Oct-2019-620.ged")
+        self.assertNotEqual(repo.US11(), True)
+        self.assertFalse(repo.US11())
 
     def test_US13(self):
         repo = Repo()
@@ -94,6 +100,18 @@ class UserStoryTest(unittest.TestCase):
         repo.read_file("ged/myfamily.ged")
         self.assertEqual(repo.US18(), ['@I12@', '@I13@', '@I15@', '@I16@'])
 
+    def test_US27(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US27(), list())
+
+    def test_US28(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US28()[0], [
+                         (-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
+        self.assertEqual(repo.US28()[1], [(85, '@I1@'), (239, '@I24@')])
+
     """Yuan Zhang"""
 
     def test_US09(self):  # Birth before death of parents
@@ -148,17 +166,6 @@ class UserStoryTest(unittest.TestCase):
         expect = {'I2', 'I3', 'I4', 'I6', 'I7', 'I8', 'I9', 'I10'}
         self.assertEqual(result, expect)
 
-    def test_US27(self):
-        repo = Repo()
-        repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US27(), list())
-
-    def test_US28(self):
-        repo = Repo()
-        repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US28()[0], [
-                         (-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
-        self.assertEqual(repo.US28()[1], [(85, '@I1@'), (239, '@I24@')])
 
     """Test for sprint3: US35 & US25- By Tanvi"""
 
