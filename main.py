@@ -337,7 +337,7 @@ class Repo:
         result = list()
         for key, individual in self.individual.items():
             if(individual.age > 150):
-                print("ERROR: INDIVIDUAL: US07: " + key + "  More than 150 years old: Birth date "+ individual.birthday)
+                print("ERROR: INDIVIDUAL: US07: " + str(individual.line_num) + key + "  More than 150 years old: Birth date "+ individual.birthday)
                 result.append(key)
         return result
 
@@ -357,7 +357,7 @@ class Repo:
                         marr_date = datetime.strptime(fam.marriage, '%Y-%m-%d')
                         child_birth_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
                         if(marr_date > child_birth_date):
-                            print('ANOMALY: FAMILY: US08: ' + c + ' Child ' + key + ' born ' + individual.birthday + ' before marriage on ' + fam.marriage)
+                            print('ANOMALY: FAMILY: US08: ' + str(individual.line_num) + c + ' Child ' + key + ' born ' + individual.birthday + ' before marriage on ' + fam.marriage)
                             result.append(key)
         return result
 
@@ -369,7 +369,7 @@ class Repo:
                     fam = self.family[p]
                     if(fam.children != 'NA'):
                         if (fam.children & set(fam.wife_id) != set() or fam.children & set(fam.husband_id) != set()):
-                            print('ERROR: FAMILY: US17: Parent ' + key + ' marries with children or parents.')
+                            print('ERROR: FAMILY: US17: Parent ' + str(individual.line_num) + key + ' marries with children or parents.')
                             result.append(key)
         return result
     
@@ -383,7 +383,7 @@ class Repo:
                         fams = self.family[p]
                         if(famc.children != 'NA'):
                             if(famc.children & set(fams.wife_id) != set() and famc.children & set(fams.husband_id) != set()):
-                                print('ERROR: US18: ' + key + ' Siblings marry')
+                                print('ERROR: US18: ' + str(individual.line_num) + key + ' Siblings marry')
                                 result.append(key)
         return result
 
@@ -393,7 +393,7 @@ class Repo:
         for key, individual in self.individual.items():
             if(individual.age == 'NA'):
                 status = False
-                print('ERROR: US27: ' + key + ' lacks age information')
+                print('ERROR: US27: ' + str(individual.line_num) + key + ' lacks age information')
                 result.append(key)
         if(status):
             print('US27: All peolple include ages!')
