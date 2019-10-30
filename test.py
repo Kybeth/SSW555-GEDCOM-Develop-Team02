@@ -3,9 +3,11 @@
 import unittest
 from main import Repo
 
+
 class UserStoryTest(unittest.TestCase):
 
     """Vignesh Mohan"""
+
     def test_US01(self):
         repo = Repo()
         repo.read_file("ged/das.ged")
@@ -19,8 +21,9 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(repo.US02(), True)
         self.assertNotEqual(repo.US02(), False)
         self.assertTrue(repo.US02())
-    
+
     """Anirudh Bezzam"""
+
     def test_US03(self):
         repo = Repo()
         repo.read_file("ged/das.ged")
@@ -58,7 +61,7 @@ class UserStoryTest(unittest.TestCase):
         self.assertTrue(repo.US24())
         self.assertIsNotNone(repo.US24())
         self.assertIsNot(repo.US24(), '')
-    
+
     def test_US23(self):
         """US23 - No more than one individual with the same name and birth date should appear in a GEDCOM file"""
         repo = Repo()
@@ -68,105 +71,108 @@ class UserStoryTest(unittest.TestCase):
         self.assertTrue(repo.US23())
         self.assertIsNotNone(repo.US23())
         self.assertIsNot(repo.US23(), '')
-    
 
     """Lifu Xiao"""
+
     def test_US07(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US07(),['@I22@', '@I24@', '@I25@'])
+        self.assertEqual(repo.US07(), ['@I22@', '@I24@', '@I25@'])
 
     def test_US08(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US08(),['@I1@', '@I24@'])
+        self.assertEqual(repo.US08(), ['@I1@', '@I24@'])
 
     def test_US17(self):
         repo = Repo()
         repo.read_file("ged/us17.ged")
-        self.assertEqual(repo.US17(),['@I1@', '@I3@'])
+        self.assertEqual(repo.US17(), ['@I1@', '@I3@'])
 
     def test_US18(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US18(),['@I12@', '@I13@', '@I15@', '@I16@'])
-    
+        self.assertEqual(repo.US18(), ['@I12@', '@I13@', '@I15@', '@I16@'])
+
     """Yuan Zhang"""
-    def test_US09(self):
+
+    def test_US09(self):  # Birth before death of parents
         repo = Repo()
-        repo.read_file("ged/test_yz.ged") ##
+        repo.read_file("ged/test_yz.ged")
         result = repo.US09()
-        expect = ['@I5@', '@I5@', '@I20@', '@I21@']
+        expect = {'I7', 'I9'}
         self.assertEqual(result, expect)
-    
-    def test_US10(self):
+
+    def test_US10(self):  # Marriage after 14
         repo = Repo()
-        repo.read_file("ged/test_yz.ged") ##
+        repo.read_file("ged/test_yz.ged")
         result = repo.US10()
-        expect = ['@I3@', '@I3@', '@I5@', '@I15@', '@I18@', '@I19@', '@I20@', '@I21@', '@I23@', '@I26@']
+        expect = {'I2', 'I3'}
         self.assertEqual(result, expect)
 
-    def test_US19(self):
+    def test_US19(self):  # First cousins should not marry
         repo = Repo()
-        repo.read_file("ged/test_yz.ged") ##
+        repo.read_file("ged/test_yz.ged")
         result = repo.US19()
-        expect = ['@F7@', '@F7@', '@F8@', '@F8@', '@F10@', '@F10@', '@F11@']
+        expect = {'F4', 'F5'}
         self.assertEqual(result, expect)
 
-    def test_US20(self):
+    def test_US20(self):  # Aunts and uncles
         repo = Repo()
-        repo.read_file("ged/test_yz.ged") ##
+        repo.read_file("ged/test_yz.ged")
         result = repo.US20()
-        expect = ['@F11@']
+        expect = {'F5'}
         self.assertEqual(result, expect)
-    
+
     def test_US21(self):
         repo = Repo()
         repo.read_file("ged/My-Family-28-Oct-2019-667.ged")
-        self.assertNotEqual(repo.US21(),list())
-    
+        self.assertNotEqual(repo.US21(), list())
+
     def test_US22(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
-        self.assertNotEqual(repo.US22(),list())
+        self.assertNotEqual(repo.US22(), list())
 
-    def test_US29(self):
+    def test_US29(self):  # List deceased
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/test_yz.ged")
         result = repo.US29()
-        expect = ['@I1@', '@I2@', '@I4@', '@I14@', '@I22@']
+        expect = {'I1', 'I5'}
         self.assertEqual(result, expect)
 
-    def test_US30(self):
+    def test_US30(self):  # List living married
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/test_yz.ged")
         result = repo.US30()
-        expect = ['@I3@', '@I5@', '@I6@', '@I7@', '@I8@', '@I9@', '@I10@', '@I11@', '@I12@', '@I13@', '@I15@', '@I16@', '@I17@', '@I18@', '@I19@', '@I20@', '@I21@','@I23@','@I24@','@I25@','@I26@']
+        expect = {'I2', 'I3', 'I4', 'I6', 'I7', 'I8', 'I9', 'I10'}
         self.assertEqual(result, expect)
-
 
     def test_US27(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US27(),list())
-    
+        self.assertEqual(repo.US27(), list())
+
     def test_US28(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US28()[0],[(-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
-        self.assertEqual(repo.US28()[1],[(85, '@I1@'), (239, '@I24@')])
-
-
+        self.assertEqual(repo.US28()[0], [
+                         (-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
+        self.assertEqual(repo.US28()[1], [(85, '@I1@'), (239, '@I24@')])
 
     """Test for sprint3: US35 & US25- By Tanvi"""
+
     def test_US25(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US25(),[['Surinder '], ['Nirmal '], ['Boney '], ['Sridevi '], ['Anil '], ['Sunita '], ['Sanjay '], ['Maheep '], ['Sonam '], ['Rhea '], ['Harshvardhan '], ['Shanaya '], ['Jahaan '], ['Mona '], ['Arjun '], ['Anshula '], ['Khushi '], ['Janhvi '], ['John '], ['Allen '], ['Lily '], ['Vu '], ['Sue '], ['Shilpy '], ['Das '], ['Deepa ']])
+        self.assertEqual(repo.US25(), [['Surinder '], ['Nirmal '], ['Boney '], ['Sridevi '], ['Anil '], ['Sunita '], ['Sanjay '], ['Maheep '], ['Sonam '], ['Rhea '], ['Harshvardhan '], [
+                         'Shanaya '], ['Jahaan '], ['Mona '], ['Arjun '], ['Anshula '], ['Khushi '], ['Janhvi '], ['John '], ['Allen '], ['Lily '], ['Vu '], ['Sue '], ['Shilpy '], ['Das '], ['Deepa ']])
+
     def test_US35(self):
         repo = Repo()
         repo.read_file("ged/My-Family-29-Oct-2019-793.ged")
-        self.assertEqual(repo.US35(),['@I27@'])
+        self.assertEqual(repo.US35(), ['@I27@'])
+
 
 if __name__ == '__main__':
     unittest.main(exit=False, verbosity=2)
