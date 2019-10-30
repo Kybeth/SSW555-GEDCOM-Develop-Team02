@@ -591,6 +591,7 @@ def main():
     """ myfamily.ged """
     repo1 = Repo()
     repo1.read_file('ged/myfamily.ged')
+    print("\n\nTest file: myfamily.ged")
     print("\n Individual Summary")
     repo1.individual_table()
 
@@ -611,6 +612,12 @@ def main():
     """ das.ged """
     repo2 = Repo()
     repo2.read_file('ged/das.ged')
+    print("\n\n Test file: das.ged")
+    print("\n Individual Summary")
+    repo2.individual_table()
+
+    print("\n Family Summary")
+    repo2.family_table()
     repo2.US03()
     repo2.US04()
     repo2.US13()
@@ -622,28 +629,58 @@ def main():
     """us17.ged"""
     repo3 = Repo()
     repo3.read_file('ged/us17.ged')
+    print("\n\n Test file: us17.ged")
+    print("\n Individual Summary")
+    repo3.individual_table()
+
+    print("\n Family Summary")
+    repo3.family_table()
     repo3.US17()
 
-    repo1.US09()
-    repo1.US10()
-    repo1.US19()
-    repo1.US20()
-    repo1.US29()
-    repo1.US30()
+    """Yuan"""
+    repo6 = Repo()
+    repo6.read_file('ged/test_yz.ged')
+    print("\n\n Test file: test_yz.ged")
+    print("\n Individual Summary")
+    repo6.individual_table()
+    print("\n Family Summary")
+    repo6.family_table()
+    repo6.US09()
+    repo6.US10()
+    repo6.US19()
+    repo6.US20()
+    repo6.US29()
+    repo6.US30()
     
     """Ged for US21"""
     repo4 = Repo()
     repo4.read_file('ged/My-Family-28-Oct-2019-667.ged')
+    print("\n\n Test file: My-Family-28-Oct-2019-667.ged")
+    print("\n Individual Summary")
+    repo4.individual_table()
+
+    print("\n Family Summary")
+    repo4.family_table()
     repo4.US21()
 
     """Ged for US11"""
     repo5 = Repo()
     repo5.read_file('ged/My-Family-29-Oct-2019-620.ged')
+    print("\n\n Test file: My-Family-29-Oct-2019-620.ged")
+    print("\n Individual Summary")
+    repo5.individual_table()
+    print("\n Family Summary")
+    repo5.family_table()
     repo5.US11()
 
     """Ged for US35"""
     repo5 = Repo()
     repo5.read_file('ged/My-Family-29-Oct-2019-793.ged')
+    print("\n Test file: My-Family-29-Oct-2019-793.ged")
+    print("\n Individual Summary")
+    repo5.individual_table()
+    print("\n Family Summary")
+    repo5.family_table()
     repo5.US35()
 
 if __name__ == '__main__':
