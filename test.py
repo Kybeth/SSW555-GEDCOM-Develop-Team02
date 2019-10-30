@@ -94,28 +94,28 @@ class UserStoryTest(unittest.TestCase):
     """Yuan Zhang"""
     def test_US09(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/test_yz.ged") ##
         result = repo.US09()
         expect = ['@I5@', '@I5@', '@I20@', '@I21@']
         self.assertEqual(result, expect)
     
     def test_US10(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/test_yz.ged") ##
         result = repo.US10()
         expect = ['@I3@', '@I3@', '@I5@', '@I15@', '@I18@', '@I19@', '@I20@', '@I21@', '@I23@', '@I26@']
         self.assertEqual(result, expect)
 
     def test_US19(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/test_yz.ged") ##
         result = repo.US19()
         expect = ['@F7@', '@F7@', '@F8@', '@F8@', '@F10@', '@F10@', '@F11@']
         self.assertEqual(result, expect)
 
     def test_US20(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/test_yz.ged") ##
         result = repo.US20()
         expect = ['@F11@']
         self.assertEqual(result, expect)

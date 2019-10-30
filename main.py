@@ -416,7 +416,7 @@ class Repo:
 
     """Yuan Zhang"""
     def US09(self): # US09 Birth before death of parents - by Yuan
-        error = list()
+        error = set()
         for key, individual in self.individual.items(): # scan children
             if (individual.child != 'NA'): # if the individual is a child of some family
                 for c in individual.child: # each family the individual is a child of
@@ -426,15 +426,15 @@ class Repo:
                     if father.alive != "TRUE":
                         if individual.birthday > father.death:
                             print('ERROR: FAMILY: US09: ' + str(fam.line_num) + ": " + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after father's death on " + father.death)
-                            error.append(key)
+                            error.add(key)
                     if mother.alive != "TRUE":
                         if individual.birthday > mother.death:
                             print('ERROR: FAMILY: US09: ' + str(fam.line_num) + ": " + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after mother's death on " + mother.death)
-                            error.append(key)
+                            error.add(key)
         return error
 
     def US10(self): # US10 Marriage after 14 - by Yuan
-        error = list()
+        error = set()
         for key, individual in self.individual.items(): # scan individual
             birt_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
             if individual.partner != 'NA':
@@ -443,12 +443,12 @@ class Repo:
                     if fam.marriage != 'NA':
                         marr_date = datetime.strptime(fam.marriage, '%Y-%m-%d')
                         if marr_date - birt_date < timedelta(days = 5110): # 365days/yr * 14yr = 5110
-                            error.append(key)
+                            error.add(key)
                             print('ANOMALY: INDIVIDUAL: US10: ' + str(individual.line_num) + ": " + individual.id + ' married on ' + fam.marriage + ' before 14 years old (born on ' + individual.birthday + ')')
         return error      
     
     def US19(self): # US19 First cousins should not marry - by Yuan
-        error = list()
+        error = set()
         for key, fam in self.family.items(): # scan families
             # identify the husband and wife
             husb = self.individual["".join(fam.husband_id)]
@@ -467,12 +467,12 @@ class Repo:
                                 for wife_parent in wife_parents:
                                     # if the parents are siblings, the husband and wife are first cousons
                                     if husb_parent.child != "NA" and wife_parent.child != "NA" and "".join(husb_parent.child) == "".join(wife_parent.child): 
-                                        error.append(key)
+                                        error.add(key)
                                         print('ANOMALY: FAMILY: US19: ' + str(fam.line_num) + ": In family " + fam.id + ' husband ' + husb.id + ' and wife ' + wife.id + " are cousins ")
         return error
 
     def US20(self): # US20 Aunts and uncles - by Yuan
-        error = list()
+        error = set()
         for key, fam in self.family.items(): # scan families
             # identify the husband and wife
             husb = self.individual["".join(fam.husband_id)]
@@ -488,33 +488,33 @@ class Repo:
                             husb_parents = self.individual["".join(husb_fam.husband_id)], self.individual["".join(husb_fam.wife_id)]
                             for husb_parent in husb_parents:
                                 if husb_parent.child != "NA" and "".join(husb_parent.child) == "".join(wife.child): 
-                                    error.append(key)
+                                    error.add(key)
                                     print('ANOMALY: FAMILY: US20: ' + str(fam.line_num) + ": In family " + fam.id + ' wife ' + wife.id + ' is husband ' + husb.id + "'s aunt")
                             # identify wife's parents to see if they're the husband's siblings
                             wife_parents = self.individual["".join(wife_fam.husband_id)], self.individual["".join(wife_fam.wife_id)]
                             for wife_parent in wife_parents:
                                 if wife_parent.child != "NA" and "".join(wife_parent.child) == "".join(husb.child): 
-                                    error.append(key)
+                                    error.add(key)
                                     print('ANOMALY: FAMILY: US20: ' + str(fam.line_num) + ": In family " + fam.id + ' husband ' + husb.id + ' is wife ' + wife.id + "'s uncle")
         return error
 
     def US29(self): # List all deceased individuals in a GEDCOM file - Yuan Zhang
-        error = list()
+        error = set()
         print("--- US29: All deceased individuals ---")
         for key, individual in self.individual.items(): # scan individual
             if individual.alive != "TRUE":
                 print(individual.id + ": " + individual.name)
-                error.append(key)
+                error.add(key)
         print("--- End of all deceased individuals ---")
         return error
 
     def US30(self): # List all living married people in a GEDCOM file - Yuan Zhang
-        error = list()
+        error = set()
         print("--- US30: All living married people ---")
         for key, individual in self.individual.items(): # scan individual
             if individual.alive == "TRUE" and individual.partner != "NA":
                 print(individual.id + " " + individual.name)
-                error.append(key)
+                error.add(key)
         print("--- End of all living married people ---")
         return error
 
