@@ -4,6 +4,25 @@ from datetime import datetime
 from datetime import timedelta
 from collections import defaultdict, Counter
 
+months = {"JAN":1,"FEB":2,"MAR":3,"APR":4,"MAY":5,"JUN":6,"JUL":7,"AUG":8,"SEP":9,"OCT":10,"NOV":11,"DEC":12}
+
+def stringToDate(date1):
+    date1year = int(date1[-4:])
+    date1month = date1[-8:-5].upper()
+    date1date = int(date1[:-9])
+    return date1(date1year,months[date1month],date1date)
+
+def dateDiff(date1,date2):
+    # Parse dates
+    date1 = stringToDate(date1)
+    date2 = stringToDate(date2)
+
+    difference = date2 - date1
+    return difference.days
+
+def dates_check(date1,date2,diffYear=0):
+    return (dateDiff(date1, date2) - diffYear * 360) >= 0
+
 class Repo:
     def __init__(self):
         """All information about Individual and Family"""
@@ -152,6 +171,55 @@ class Repo:
                             "ANOMALY: FAMILY: US02: " + str(family.line_num) + " : " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
                         result = True
         return result
+    
+    """US11 - No Bigamy"""
+    def US11(self):
+        result = False
+        for f, fam in self.family.items(): 
+            bigamy_check = {}
+            families = {}
+            for parent_id in bigamy_check:
+                family_group = filter(lambda fam: families[fam].f_key("MARR"),bigamy_check[parent_id])
+                if len(family_group) < 2: 
+                    continue
+                def sortByMarr(family_id, family_idate2):
+                    return dateDiff(families[family_idate2]['MARR'], families[fam.id]['MARR'])
+                family_group = sorted(family_group, sortByMarr)
+
+                for i in range(len(family_group) - 1):
+                    if families[family_group[i]].has_key('DIV'):
+                        if dates_check(families[family_group[i]]['DIV'], families[family_group[i + 1]]['MARR']): 
+                            continue
+                        #error.append(['ANOMALY: FAMILY: US11:', self.indi[i]['id']])
+                        print ("User Story 11 - No bigamy.\n")
+                        print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
+        return result
+    
+    '''
+    """US12 - Parents not too old"""
+    def US12(self):    
+    
+        result = False
+        problem_families = {}
+        for key, individual in self.individual.items():
+            for key, fam in self.family.items():
+                husb = self.individual["".join(fam.husband_id)]
+                husband_age = husb.age
+                wife = self.individual["".join(fam.wife_id)]
+                wife_age = wife.age
+
+                if(individual.child != 'NA'):
+                    for c in individual.child:
+                        #child = individual_data[person]
+                        child_age = datetime.strptime(individual.birthday, '%Y-%m-%d')
+                        if len(wife_age - child_age) > 60:
+                            print("US12 ANOMALY: Fam " + fam.id + ": The mother",wife.id," is more than 60 years older than her child")
+                        elif len(husband_age - child_age) > 80:
+                            print("US12 ANOMALY: Fam " + fam.id + ": The father", husb.id," is more than 60 years older than his child") 
+
+        return problem_families
+        return result
+        '''
     
     """US21 Correct gender for role"""
     def US21(self):
@@ -532,6 +600,7 @@ def main():
     repo1.US02()
     repo1.US07()
     repo1.US08()
+    repo1.US11()
     repo1.US18()
     repo1.US27()
     repo1.US28()
@@ -566,6 +635,12 @@ def main():
     repo4 = Repo()
     repo4.read_file('ged/My-Family-28-Oct-2019-667.ged')
     repo4.US21()
+
+    """Ged for US11"""
+    repo5 = Repo()
+    repo5.read_file('ged/My-Family-29-Oct-2019-620.ged')
+    repo5.US11()
+
     """Ged for US35"""
     repo5 = Repo()
     repo5.read_file('ged/My-Family-29-Oct-2019-793.ged')
