@@ -297,11 +297,7 @@ class Repo:
     """Tanvi Hanamshet"""
     """unique first name in families"""
     def US25(self):
-        
-        
-        # for key, family in self.family.items():
-        #     print(family.husband_name[key])
-        # for key, family in self.family.items():
+        result = list()
         for key, individual in self.individual.items():
             unique_names = []
             names = []
@@ -311,26 +307,30 @@ class Repo:
                 if i not in unique_names:
                     unique_names.append(i)
             for name in unique_names:
-                print("ANOMALY: FAMILY : US25: " + key + " Unique name in family: "+ name)
-            # unique_names = []
-            # names = []
-            # list_of_names = family.husband_name.split("/")[0]
-            # list_of_names2 = family.wife_name.split("/")[0]
-            # # list_of_names = family.children.split("/")[0]
-            # names.append(list_of_names)
-            # names.append(list_of_names2)
-            # for i in names:
-            #     if i not in unique_names:
-            #         unique_names.append(i)
-            #         print(key, i)
-            # del names[:]
-            # del unique_names
-                     
+                print("ANOMALY: INDIVIDUAL : US25: " + str(individual.line_num) + " : " + key + " Unique name in family: "+ name)
+            result.append(unique_names)
+        return result
+            
         
 
-            # print(key,family.husband_name)
+    """ List all people in a GEDCOM file who were born in the last 30 days.-Tanvi """
+    def US35(self):
+        result = list()
+        for key, individual in self.individual.items():
+            d1 = datetime.strptime(individual.birthday, '%Y-%m-%d')
+            d2 = (datetime.today().strftime('%Y-%m-%d'))
+            d2 = datetime.strptime(d2, '%Y-%m-%d')
+            conversion = {'days':1,'months':30.4,'years':365.25}
+            diff = abs((d1 - d2).days)
+            
+            if diff >= 0 and diff <30.4:
+                time_typ = 'days'
+                diff1 = diff/conversion[time_typ]
+                if time_typ == 'days' and diff1 <= 30:
+                    print("ANOMALY: INDIVIDUAL: US35: " + str(individual.line_num) + " : " + key +" People who were born in the last 30 days are "+ individual.name + " on "+individual.birthday)
+                    result.append(key)
+        return result
 
-    # def US26(self): #corresponding enteries
 
     """Lifu Xiao"""
     def US07(self): #  US07 Less then 150 years old
@@ -535,6 +535,9 @@ def main():
     repo1.US18()
     repo1.US27()
     repo1.US28()
+    repo1.US25()
+    
+    
 
     """ das.ged """
     repo2 = Repo()
@@ -563,6 +566,10 @@ def main():
     repo4 = Repo()
     repo4.read_file('ged/My-Family-28-Oct-2019-667.ged')
     repo4.US21()
+    """Ged for US35"""
+    repo5 = Repo()
+    repo5.read_file('ged/My-Family-29-Oct-2019-793.ged')
+    repo5.US35()
 
 if __name__ == '__main__':
     main()

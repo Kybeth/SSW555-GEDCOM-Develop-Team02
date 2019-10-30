@@ -156,5 +156,17 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(repo.US28()[0],[(-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
         self.assertEqual(repo.US28()[1],[(85, '@I1@'), (239, '@I24@')])
 
+
+
+    """Test for sprint3: US35 & US25- By Tanvi"""
+    def test_US25(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US25(),[['Surinder '], ['Nirmal '], ['Boney '], ['Sridevi '], ['Anil '], ['Sunita '], ['Sanjay '], ['Maheep '], ['Sonam '], ['Rhea '], ['Harshvardhan '], ['Shanaya '], ['Jahaan '], ['Mona '], ['Arjun '], ['Anshula '], ['Khushi '], ['Janhvi '], ['John '], ['Allen '], ['Lily '], ['Vu '], ['Sue '], ['Shilpy '], ['Das '], ['Deepa ']])
+    def test_US35(self):
+        repo = Repo()
+        repo.read_file("ged/My-Family-29-Oct-2019-793.ged")
+        self.assertEqual(repo.US35(),['@I27@'])
+
 if __name__ == '__main__':
     unittest.main(exit=False, verbosity=2)
