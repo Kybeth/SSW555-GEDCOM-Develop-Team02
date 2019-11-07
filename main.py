@@ -1,30 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-#Project           : GEDCOM SSW 555 
-#Program name      : main.py
-#Author            : Tanvi Hanamshet, Anirudh Bezzam, Yuan Zhang, Vignesh Mohan, Lifu Xiao
-#Purpose           : User story Implementation of US11, US12, US13, US14, US15, US16, US17, US18, US19, US20
-# US11:  No Bigamy
-# US12:  Parents not too old
-# US13:  Siblings spacing
-# US14:  Multiple Births <= 5
-# US15:  Fewer than 15 siblings
-# US16:  Male last name
-# US17:  No marriages to children
-# US18:  Siblings should not marry
-# US19:  First cousins should not marry
-# US20:  Aunts and Uncles
-
-from datetime import date, datetime, timedelta
-from collections import defaultdict
-from prettytable import PrettyTable as pt
-
-def calculate_age(birthday):
-    """ Calculate the induviduals date and DOB """
-
-    current = datetime.today()
-    return current.year - birthday.year - ((current.month, current.day) < (birthday.month, birthday.day))
+from ged import Individual, Family, gedcom_parser
+from prettytable import PrettyTable
+from datetime import datetime
+from datetime import timedelta
+from collections import defaultdict, Counter
 
 months = {"JAN":1,"FEB":2,"MAR":3,"APR":4,"MAY":5,"JUN":6,"JUL":7,"AUG":8,"SEP":9,"OCT":10,"NOV":11,"DEC":12}
 
@@ -32,7 +10,7 @@ def stringToDate(date1):
     date1year = int(date1[-4:])
     date1month = date1[-8:-5].upper()
     date1date = int(date1[:-9])
-    return date(date1year,months[date1month],date1date)
+    return date1(date1year,months[date1month],date1date)
 
 def dateDiff(date1,date2):
     # Parse dates
@@ -45,582 +23,632 @@ def dateDiff(date1,date2):
 def dates_check(date1,date2,diffYear=0):
     return (dateDiff(date1, date2) - diffYear * 360) >= 0
 
-class Gedcom(object):
-    """Define all the valid tags"""
-    valid = {
-    '0':(['INDI','FAM'],'HEAD','TRLR','NOTE'),
-    '1':('NAME','SEX','BIRT','DEAT','FAMC','FAMS','MARR','HUSB','WIFE','CHIL','DIV'),
-    '2':('DATE'),
-    }
+class Repo:
+    def __init__(self):
+        """All information about Individual and Family"""
+        self.individual = dict()
+        self.family = dict()
 
-    def __init__(self, path):
-        self.path = path
-        file = self.parse_file()
-        self.fam = file['fam']
-        self.indi = file['indi']
+    def add_individual(self, level, argument, tag, line_num): ## 
+        self.individual[argument] = Individual(argument)
+        self.individual[argument].add_line_num(line_num) ## add line number
 
+    def add_family(self, level, argument, tag, line_num): ##
+        self.family[argument] = Family(argument)
+        self.family[argument].add_line_num(line_num) ## add line number
 
-    def parse_file(self):
-        """Reads the file from the path and stores all the information in a dictionary. Uses Pretty table to print out further information about the family.
-        """
-        try:
-            gp = open(self.path, 'r', encoding='utf-8')
-        except FileNotFoundError:
-            raise FileNotFoundError('%s not exist' % (self.path))
-        else:
-            with gp:
-                isValid = 'N'
-                IsIND = True
-                indi = {}
-                fam = {}
-                currentDate = ''                        
-                currentInd = ''
-                currentFam = ''
-                
-                for line in gp:    
-                    family = line.strip().split()
-                    arguments = ''.join(family[2:])
-                    tag = 'NA'
-                    level = 'NA'
+    def individual_table(self):
+        pt = PrettyTable(
+            field_names=['ID', 'Name', 'Gender', 'Birthday', 'Age', 'Alive', 'Death', 'Child', 'partner'])
+        for key in sorted(self.individual.keys()):
+            pt.add_row(self.individual[key].pt_row())
+        print(pt)
 
-                    if len(family) == 1:
-                        level = family[0]
-                    elif len(family) > 1:
-                        level = family[0]
-                        tag = family[1]
+    def family_table(self):
+        pt = PrettyTable(
+            field_names=['ID', 'Married', 'Divorced', 'Husband ID', 'Husband Name', 'Wife ID', 'Wife Name', 'Children'])
+        for key in sorted(self.family.keys()):
+            pt.add_row(self.family[key].pt_row())
+        print(pt)
 
-                    if len(family) == 3 and family[0] == '0' and family[2] in ('INDI', 'FAM'):
-                        isValid = 'Y'
-                        tag = family[2]
-                    elif len(family) > 1 and level in Gedcom.valid and tag in Gedcom.valid[level]:
-                        isValid = 'Y'
-                    
-                    if isValid == 'Y':
-                        if level== '0' and tag == 'INDI':
-                            currentInd = family[1]
-                            IsIND = True
+    def read_file(self, path):
+        for level, tag, argument, line_num in gedcom_parser(path): ##
+            # print(level, tag, argument)
+            result = list()
+            valid_tags = {'NAME': '1', 'SEX': '1', 'MARR': '1',
+                          'BIRT': '1', 'DEAT': '1', 'FAMC': '1', 'FAMS': '1',
+                          'HUSB': '1', 'WIFE': '1', 'CHIL': '1',
+                          'DIV': '1', 'DATE': '2', 'HEAD': '0', 'TRLR': '0', 'NOTE': '0'} # valid gedcom tags except INDI and FAM
+            special_valid_tags = {'INDI': '0', 'FAM': '0'} # tags for INDI and FAM
 
-                            ''' Implement the unique key identifier'''
-                            
-                            indi[currentInd] = {'id':family[1]}
+            valid_tag_level = False 
+            if argument in ['INDI', 'FAM']: # when the line record is valid with "0 xx INDI" or "0 xx FAM"
+                special_tags = True
+                for current_tag, current_level in special_valid_tags.items():
+                    if level == current_level and argument == current_tag:
+                        valid_tag_level = True
+                        break
+            else: ## other valid tag
+                special_tags = False
+                for current_tag, current_level in valid_tags.items():
+                    if level == current_level and tag == current_tag:
+                        valid_tag_level = True
+                        break
 
-                        if IsIND:
-                            if level == '1' and tag == 'NAME':
-                                indi[currentInd]['name'] = arguments
-                            if level == '1' and tag == 'BIRT' or tag == 'DEAT':
-                                currentDate = tag 
-                            if level == '2' and currentDate != '' and tag == 'DATE':
-                                indi[currentInd][currentDate] = datetime.strptime(arguments,'%d%b%Y')   
+            if valid_tag_level and special_tags: # if the line is valid top level i.e. "0 xx INDI" or "0 xx FAM"
+                result.append(level)
+                result.append(argument)
+                result.append("Y")
+                result.append(tag)
+                if argument in ["INDI"]:
+                    self.add_individual(level, tag, argument, line_num) # ## initiate a new individual with id and line number
+                    current_id = tag
+                else:
+                    self.add_family(level, tag, argument, line_num) # ## initiate a new family with id and line number
+                    current_id = tag
+            elif not valid_tag_level and not special_tags: # if not valid
+                result.append(level)
+                result.append(tag)
+                result.append("N")
+                result.append(argument)
+            elif valid_tag_level and not special_tags: # if valid but not top level
+                result.append(level)
+                result.append(tag)
+                result.append("Y")
+                result.append(argument)
+                # add the record to the individual/family
+                if tag == "NAME":
+                    self.individual[current_id].add_name(argument)
+                elif tag == "SEX":
+                    self.individual[current_id].add_gender(argument)
+                elif tag == "FAMC":
+                    self.individual[current_id].add_child(argument)
+                elif tag == "FAMS":
+                    self.individual[current_id].add_partner(argument)
+                elif tag in "HUSB":
+                    self.family[current_id].add_husband_id(argument)
+                    self.family[current_id].add_husband_name(self.individual[argument].name)
+                elif tag in "WIFE":
+                    self.family[current_id].add_wife_id(argument)
+                    self.family[current_id].add_wife_name(self.individual[argument].name)
+                elif tag in "CHIL":
+                    self.family[current_id].add_children(argument)
+                elif tag in ["BIRT", "DEAT", "DIV", "MARR"]:
+                    check_date_tag = True
+                    previous_tag = tag
+                elif tag == "DATE" and check_date_tag is True:
+                    argument = datetime.strptime(argument, '%d %b %Y').strftime('%Y-%m-%d')
+                    if previous_tag == "BIRT":
+                        self.individual[current_id].add_birthday(argument)
+                        self.individual[current_id].add_age('Birth', argument)
+                    elif previous_tag == "DEAT":
+                        self.individual[current_id].add_death(argument)
+                        self.individual[current_id].add_alive("False")
+                        self.individual[current_id].add_age('Death', argument)
+                    elif previous_tag == "MARR":
+                        self.family[current_id].add_marriage(argument)
+                    elif previous_tag == "DIV":
+                        self.family[current_id].add_divorce(argument)
 
-                            if level == '1' and tag == 'SEX':
-                                indi[currentInd]['sex'] = arguments   
-                            if level == '1' and tag in ('FAMC','FAMS'):
-                                if tag in indi[currentInd]:
-                                    indi[currentInd][tag].add(arguments)
-                                else:
-                                    indi[currentInd][tag] = {arguments}  
-        
-                        if level=='0' and tag == 'FAM':
-                            IsIND = False
-                            currentFam = family[1]
-                            fam[currentFam] = {'fam':currentFam}
-                            
-                        if IsIND == False:
-                            if level == '1' and family[1] == 'MARR' or family[1] == 'DIV':
-                                currentDate = tag
-                            if level == '2' and tag == 'DATE':
-                                fam[currentFam][currentDate] =datetime.strptime(arguments,'%d%b%Y')
-                            if level == '1' and tag in ('HUSB','WIFE'):
-                                fam[currentFam][tag] = arguments
-                            if level == '1' and tag == 'CHIL':
-                                if tag in fam[currentFam]:
-                                    fam[currentFam][tag].add(arguments)
-                                else:
-                                    fam[currentFam][tag] = {arguments}
-
-        return {'fam':fam, 'indi':indi}
-
-    def print_table(self):
-        """Pretty Table info for induvidual"""
-
-        indiTable = pt(["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"])
-        
-        for key in self.indi.keys():
-            # print birth date
-            birth_str = self.indi[key]['BIRT'].strftime('%Y-%m-%d')
-            
-            """Condition for alive"""
-            if 'DEAT' in self.indi[key]:
-                death = self.indi[key]['DEAT']
-                death_str = 'False'
             else:
-                death_str ='True'
+                result.append(level)
+                result.append(argument)
+                result.append("N")
+                result.append(tag)
 
-            """Condition for Death column"""  #Note that I am using same "deat" keyword for alive and dead
-            if 'DEAT' in self.indi[key]:
-                alive = self.indi[key]['DEAT']
-                alive_str = death.strftime('%Y-%m-%d')
-            else:
-                alive_str ='NA'
+    """Vignesh Mohan"""
 
-            """Condition for Children"""
-            if 'FAMC' in self.indi[key]:
-                child = self.indi[key]['FAMC']
-            else:
-                child = None
-            
-            """Spouse Situation LOL"""
-            if 'FAMS' in self.indi[key]:
-                spouse = self.indi[key]['FAMS']
-            else:
-                spouse = 'NA'
-
-            age = calculate_age(self.indi[key]['BIRT'])
-            indiTable.add_row([self.indi[key]['id'],self.indi[key]['name'],self.indi[key]['sex'], birth_str, age, death_str, alive_str, child, spouse])
-        
-        """Pretty table info for family relations"""
-
-        famTable =pt(['ID','Married','Divorced','hubID ID','hubID Name','Wife ID','Wife name','Children'])
-        for key in self.fam.keys():
-            if 'DIV' in self.fam[key]:
-                div_str = self.fam[key]['DIV'].strftime('%Y-%m-%d')
-
-            else: 
-                div_str = "NA"
-
-            if "HUSB" in self.fam[key]:
-                hubID = self.fam[key]['HUSB']
-                hubName = self.indi[hubID]['name']
-            else:
-                hubID = "NA"
-                hubName = "NA"
-
-            if "WIFE" in self.fam[key]:
-                wife_id = self.fam[key]['WIFE']
-                wifeName = self.indi[wife_id]['name']
-            else:
-                wife_id = "NA"
-                wifeName = "NA"
-
-            if 'CHIL' in self.fam[key] :
-                chil = self.fam[key]['CHIL']
-            else:
-                chil = "NA"
-
-            if 'MARR' in self.fam[key]:
-                marr_str = self.fam[key]['MARR'].strftime('%Y-%m-%d')
-            else:
-                marr_str = "NA"
-
-            famTable.add_row([key, marr_str, div_str, hubID, hubName, wife_id, wifeName, chil])
-        
-        print(indiTable)
-        print(famTable)
-
-    def US01(self): #  US01 - Dates before current date - By Vignesh Mohan
-        
+    """US01 Dates before current date"""
+    def US01(self):
         #getting todays date 
         today = datetime.today().strftime('%Y-%m-%d')
 
-        error = list()
+        result = False
+        for key, individual in self.individual.items():
+            for key, family in self.family.items():
+                if individual.birthday > today:
+                    print("Error US01:-Birthdate ", individual.birthday ,"is after current date")
+                    result = True
+                if individual.death > today:
+                    print("Error US01:- Deathdate ", individual.death ,"is after current date")
+                    result = True
+                if family.marriage > today:
+                    print("Error US01:- MarriageDate ", family.marriage ,"is after current date")
+                    result = True
+                if family.divorced > today:
+                    print("Error US01:- DivorceDate ", family.divorced,"is after current date")
+                    result = True
+        return result
 
-        for i in self.indi:
-
-            individual = self.indi[i]
-            if 'BIRT' in self.indi[i].keys():
-                birt_dt = self.indi[i]['BIRT'].date()
-            if 'DEAT' in self.indi[i].keys():
-                death_dt = self.indi[i]['DEAT'].date()
-        
-            if 'BIRT' in individual.keys():
-                Bdate = birt_dt.strftime('%Y-%m-%d')
-                if Bdate > today:
-                    error.append(['ERROR US01', self.indi[i]['id']])
-                    print("Error US01:-Birthdate ",Bdate,"is after current date")
-            
-            if 'DEAT' in individual.keys():
-                Ddate = death_dt.strftime('%Y-%m-%d')
-                if Ddate > today:
-                    error.append(['ERROR US01', self.indi[i]['id']])
-                    print("Error US01:- Deathdate ",Ddate,"is after current date")
+    """US02 Birth before Marriage"""
+    def US02(self):
+        result = False
+        for key, individual in self.individual.items():  #Implementing as a dictionary.
+            for key, family in self.family.items():
+                if individual.birthday != 'NA' or family.marriage != 'NA':
+                    if family.marriage > individual.birthday :
+                        print(
+                            "ANOMALY: FAMILY: US02: " + str(family.line_num) + " : " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
+                        result = True
+        return result
     
-            for i in self.fam:
-                family = self.fam[i]
+    """US11 - No Bigamy"""
+    def US11(self):
+        result = False
+        for f, fam in self.family.items(): 
+            bigamy_check = {}
+            families = {}
+            for parent_id in bigamy_check:
+                family_group = filter(lambda fam: families[fam].f_key("MARR"),bigamy_check[parent_id])
+                if len(family_group) < 2: 
+                    continue
+                def sortByMarr(family_id, family_idate2):
+                    return dateDiff(families[family_idate2]['MARR'], families[fam.id]['MARR'])
+                family_group = sorted(family_group, sortByMarr)
 
-                if "FAMC" in self.fam[i].keys():
-                    fam_id = ''.join(self.indi[i]['FAMC'])
-                    
-                    if 'MARR'in self.fam[i].keys():
-                        marry_date = self.fam[fam_id]['MARR']
-
-                    if 'DIV' in self.fam[i].keys():
-                        div_date = self.fam[fam_id]['DIV']
-                            
-                        self.fam_id = i
-
-                        hubID = self.fam[i]['HUSB']
-                        wife_id = self.fam[i]['WIFE']
-                    
-                        if family not in ['HUSB']: hubID = family['HUSB']
-                        if family not in ['WIFE']: wife_id = family['WIFE']
-                        if family not in ['MARR']: marry_date = family['MARR']
-                        if family not in ['DIV']: div_date = family['DIV']
-            
-                        if marry_date:
-                            WD = marry_date.strftime('%Y-%m-%d')
-                            if WD > today:
-                                error.append(['ERROR US01', self.indi[i]['id']])
-                                print("Error US01:- marriageDate ",WD,"is after current date")
-                        
-                        if div_date:
-                            DD = div_date.strftime('%Y-%m-%d')
-                            if DD > today:
-                                error.append(['ERROR US01', self.indi[i]['id']])
-                                print("Error US01:- marriageDate ",DD,"is after current date")
-        return error
+                for i in range(len(family_group) - 1):
+                    if families[family_group[i]].has_key('DIV'):
+                        if dates_check(families[family_group[i]]['DIV'], families[family_group[i + 1]]['MARR']): 
+                            continue
+                        #error.append(['ANOMALY: FAMILY: US11:', self.indi[i]['id']])
+                        print ("User Story 11 - No bigamy.\n")
+                        print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
+        return result
     
-    def US02(self): #  US02 - Birth before marriage of an individual - By Vignesh Mohan
-        error = list()
-        for i in self.indi:
-            if "FAMC" in self.indi[i].keys():
-                child_birt = self.indi[i]['BIRT']
-                fam_id = ''.join(self.indi[i]['FAMC'])
-                if 'MARR' in self.fam[fam_id].keys():
-                    marry_date = self.fam[fam_id]['MARR']
-                    if marry_date > child_birt:
-                        error.append(['ANOMALY US02', self.indi[i]['id']])
-                        print('ANOMALY: FAMILY: US02: ' + self.fam[fam_id]['fam'] + ' individual ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
-        return error
-
-    def US03(self): #  US 03 - Birth before death of individual - Anirudh
-        error = list()
-        for i in self.indi:
-            if 'BIRT' in self.indi.keys():
-                child_birt = self.indi[i]['BIRT']
-                if self.indi[i]['BIRT'] > self.indi[i]['DEAT']:
-                    error.append(['ERROR: INDIVIDUAL: US03:', self.indi[i]['id']])
-                    print('ERROR: INDIVIDUAL: US03:' + self.indi[i]['id'] + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + 'was born before' + self.indi[i]['DEAT'].strftime('%Y-%m-%d'))
-        return error
-        
-    def US04(self): #  US 04 - Marriage before Divorce of Parents by Anirudh
-        error = list()
-        for i in self.fam:
-            if 'MARR'in self.fam[i].keys():
-                marry_date = self.fam[i]['MARR']
-                if 'DIV' in self.fam[i].keys():
-                    div_date = self.fam[i]['DIV']
-                    if marry_date < div_date:
-                        error.append(['ERROR: FAMILY: US04: ', self.fam[i]['fam']])
-                        print('ERROR: FAMILY: US04: ' + self.fam[i]['fam']  +  'Married before'  + self.fam[i]['MARR'].strftime('%Y-%m-%d') +  'Divorce'  + self.fam[i]['DIV'].strftime('%Y-%m-%d'))
-        return error
+    '''
+    """US12 - Parents not too old"""
+    def US12(self):    
     
-    def US05(self): #  US05 Marriage before death - By Tanvi
-        j = list()
-        for i in self.indi:
-            if 'DEAT' in self.indi[i].keys():
-                death_dt = self.indi[i]['DEAT']
-            if "FAMC" in self.indi[i].keys():
-                fam_id = ''.join(self.indi[i]['FAMC'])
-                if 'MARR' in self.fam[fam_id].keys():
-                    marriage_dt = self.fam[fam_id]['MARR']
-                    if  death_dt > marriage_dt:
-                        j.append(['ANOMALY US05', self.indi[i]['id']])
-                        print('ANOMALY: FAMILY: US05: ' + self.fam[fam_id]['fam'] + ' individual ' + self.indi[i]['id'] + ' Marriage ' + marriage_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
-        return j
+        result = False
+        problem_families = {}
+        for key, individual in self.individual.items():
+            for key, fam in self.family.items():
+                husb = self.individual["".join(fam.husband_id)]
+                husband_age = husb.age
+                wife = self.individual["".join(fam.wife_id)]
+                wife_age = wife.age
 
-   
-    def US06(self): #  US06 Divorce before death - By Tanvi
-        error = list()
-        for i in self.indi:
-            if 'DEAT' in self.indi[i].keys():
-                death_dt = self.indi[i]['DEAT']
-            if "FAMC" in self.indi[i].keys():
-                fam_id = ''.join(self.indi[i]['FAMC'])
-                
-                if 'DIV' in self.fam[fam_id].keys():
-                    div_dt = self.fam[fam_id]['MARR']
-                    marriage_dt = self.fam[fam_id]['MARR']
-                    if  death_dt > marriage_dt:
-                        print('ANOMALY: FAMILY: US06: ' + self.fam[fam_id]['fam'] + ' individual ' + self.indi[i]['id'] + ' Marriage ' + div_dt.strftime('%Y-%m-%d') + ' before death on ' + death_dt.strftime('%Y-%m-%d'))
-                        error.append(['ANOMALY US06', self.indi[i]['id']])
-        return error
+                if(individual.child != 'NA'):
+                    for c in individual.child:
+                        #child = individual_data[person]
+                        child_age = datetime.strptime(individual.birthday, '%Y-%m-%d')
+                        if len(wife_age - child_age) > 60:
+                            print("US12 ANOMALY: Fam " + fam.id + ": The mother",wife.id," is more than 60 years older than her child")
+                        elif len(husband_age - child_age) > 80:
+                            print("US12 ANOMALY: Fam " + fam.id + ": The father", husb.id," is more than 60 years older than his child") 
 
-
-    def US07(self): #  US07 Less then 150 years old - By Lifu
-        error = list()
-        for i in self.indi:
-            if 'DEAT' in self.indi[i].keys():
-                if self.indi[i]['DEAT'] - self.indi[i]['BIRT'] > timedelta(days = 54750):
-                    error.append(['ERROR US07', self.indi[i]['id']])
-                    print('ERROR: INDIVIDUAL: US07: ' + self.indi[i]['id'] + ' More than 150 years old at death - Birth ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + ' Death ' + self.indi[i]['DEAT'].strftime('%Y-%m-%d'))
-            else:
-                if datetime.today() - self.indi[i]['BIRT'] > timedelta(days = 54750):
-                    print('ERROR: INDIVIDUAL: US07: ' + self.indi[i]['id'] + ' More than 150 years old - Birth '  + self.indi[i]['BIRT'].strftime('%Y-%m-%d'))
-                    error.append(['ERROR US07', self.indi[i]['id']])
-        return error
-
-    def US08(self): #  US08 Birth before marriage of parents - By Lifu
-        error = list()
-        for i in self.indi:
-            if "FAMC" in self.indi[i].keys():
-                child_birt = self.indi[i]['BIRT']
-                fam_id = ''.join(self.indi[i]['FAMC'])
-                if 'MARR' in self.fam[fam_id].keys():
-                    marry_date = self.fam[fam_id]['MARR']
-                    if marry_date > child_birt:
-                        error.append(['ANOMALY: FAMILY: US08:', self.indi[i]['id']])
-                        print('ANOMALY: FAMILY: US08: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' before marriage on ' + marry_date.strftime('%Y-%m-%d'))
-                if 'DIV' in self.fam[fam_id].keys():
-                    div_date = self.fam[fam_id]['DIV']
-                    if div_date < child_birt:
-                        error.append(['ANOMALY: FAMILY: US08:', self.indi[i]['id']])
-                        print('ANOMALY: FAMILY: US08: ' + self.fam[fam_id]['fam'] + ' Child ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' after divorce on ' + div_date.strftime('%Y-%m-%d'))
-        return error
-
-    def US09(self): #  US09 Birth before death of parents - by Yuan
-        error = list()
-        for i in self.indi:
-            if 'FAMC' in self.indi[i].keys():
-                child_birt = self.indi[i]['BIRT']
-                fam_id = ''.join(self.indi[i]['FAMC'])
-                wife_id = self.fam[fam_id]['WIFE']
-                hubID = self.fam[fam_id]['HUSB']
-                if 'DEAT' in self.indi[wife_id].keys():
-                    mom_deat = self.indi[wife_id]['DEAT']
-                    if child_birt > mom_deat:
-                        error.append(['ERROR US09', self.indi[i]['id']])
-                        print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + self.indi[i]['id'] + ' born ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + " after mother's death on " + mom_deat.strftime('%Y-%m-%d'))
-                if 'DEAT' in self.indi[hubID].keys():
-                    dad_deat = self.indi[hubID]['DEAT']
-                    if dad_deat - child_birt < timedelta(days = 270):
-                        error.append(['ERROR US09', self.indi[i]['id']])
-                        print('ERROR: FAMILY: US09: ' + fam_id + ' Child ' + self.indi[i]['id'] + ' born ' + self.indi[i]['BIRT'].strftime('%Y-%m-%d') + " after nine months after father's death on " + dad_deat.strftime('%Y-%m-%d'))
-        return error
-
-    def US10(self): #  US10 Marriage after 14 - by Yuan
-        error = list()
-        for i in self.fam:
-            if 'MARR'in self.fam[i].keys():
-                marry_date = self.fam[i]['MARR']
-                self.fam_id = i
-                husb_id = self.fam[i]['HUSB']
-                wife_id = self.fam[i]['WIFE']
-                husb_birt = self.indi[husb_id]['BIRT']
-                wife_birt = self.indi[wife_id]['BIRT']
-                if marry_date - husb_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110
-                    error.append(['ANOMALY US10', self.fam_id])
-                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Husband ' + self.indi[husb_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + husb_birt.strftime('%Y-%m-%d') + ')')
-                if marry_date - wife_birt < timedelta(days = 5110): # 365days/yr * 14yr = 5110:
-                    error.append(['ANOMALY US10', self.fam_id])
-                    print('ANOMALY: FAMILY: US10: ' + self.fam_id + ' Wife ' + self.indi[wife_id]['id'] + ' married on ' + marry_date.strftime('%Y-%m-%d') + ' before 14 years old (born on ' + wife_birt.strftime('%Y-%m-%d') + ')')
-        return error
+        return problem_families
+        return result
+        '''
     
-    def US11(self): # US11 No Bigamy - by Vignesh Mohan
-        error = list()
-        for f in self.fam: 
-            if 'MARR'in self.fam[f].keys():
-                bigamy_check = {}
-                families = {}
-                for parent_id in bigamy_check:
-                    family_group = filter(lambda fam: families[fam].has_key("MARR"),bigamy_check[parent_id])
-                    if len(family_group) < 2: 
-                        continue
-                    def sortByMarr(family_id, family_idate2):
-                        return dateDiff(families[family_idate2]['MARR'], families[family_id]['MARR'])
-                    family_group = sorted(family_group, sortByMarr)
+    """US21 Correct gender for role"""
+    def US21(self):
+        result = False
+        for individual in self.individual.items():
+            for key, fam in self.family.items():
+                husband = self.individual["".join(fam.husband_id)]
+                wife = self.individual["".join(fam.wife_id)]
 
-                    for i in range(len(family_group) - 1):
-                        if families[family_group[i]].has_key('DIV'):
-                            if dates_check(families[family_group[i]]['DIV'], families[family_group[i + 1]]['MARR']): 
-                                continue
+                if husband.gender == "F" or husband.gender == "NA":
+                    print('ANOMALY: FAMILY: US21: In family: ' + str(fam.line_num) + " : "  + key + ' husband gender is ' + husband.gender)
 
-                            error.append(['ANOMALY: FAMILY: US11:', self.indi[i]['id']])
-                            print ("User Story 11 - No bigamy.\n")
-                            print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
-        return error
-        
-
-    def US12(self): #US12 - Parents not too old - By Vignesh Mohan 
-        error = list()
-        for i in self.indi:
-            if 'FAMC' in self.indi[i].keys():
-                child_birt = self.indi[i]['BIRT']
-                for key in self.fam.keys():
-                    fam_id = ''.join(self.indi[i]['FAMC'])
-                    if "HUSB" in self.fam[key]:
-                        hubID = self.fam[key]['HUSB']
-                    if "WIFE" in self.fam[key]:
-                        wife_id = self.fam[key]['WIFE']
-                    fam_id = ''.join(self.indi[i]['FAMC'])
-                    husb_birt = self.indi[hubID]['BIRT']
-                    wife_birt = self.indi[wife_id]['BIRT'] 
-                    while wife_id:
-                        dates_diff = (datetime.strptime(self.indi[child_birt],'%Y-%m-%d')).year - (datetime.strptime(self.indi[wife_birt],'%Y-%m-%d')).year
-                        if dates_diff > 60:
-                            print("US12 ANOMALY: Fam " + self.fam_id + ": The mother",self.indi[wife_id]['name']," is more than 60 years older than her child," + self.indi[child_birt]['name'],"\n")
-                    while hubID:
-                        dates_diff = (datetime.strptime(self.indi[child_birt],'%Y-%m-%d')).year - (datetime.strptime(self.indi[husb_birt],'%Y-%m-%d')).year
-                        if dates_diff > 80:
-                            print("US12 ANOMALY: Fam " + self.fam_id + ": The father", self.indi[hubID]['name']," is more than 60 years older than his child," + self.indi[child_birt]['name'],"\n") 
-        return error
+                elif wife.gender == "M" or wife.gender == "NA":
+                    print('ANOMALY: FAMILY: US21: In family: ' + str(fam.line_num) + " : "  + key + ' wife gender is ' + wife.gender)
+        return result
     
-    def US13(self): # By Anirudh Bezzam
-        '''Siblings spacing - Birth Dates of Sibilings should be more than 8 months apart or less than 2 days apart'''
+    """Individual ID and Family ID should be unique"""
+    def US22(self):
+        result = False
+
+        #Dictionary of the family
+        fam ={}
+        #Dictionary of the individual
+        indi ={}
+         
+        IndiID = []
+        Namelist1 = []
+        FamID = []
+        famlist1 = []
+        for individual_id in indi:
+            individual = indi[individual_id]
+            IndiID.append(individual_id)
+        Namelist1 = set (IndiID)
+        print("US22: Number of duplicate Individual IDs:-",len(IndiID)-len(Namelist1),"\n")
+        for family_id in fam:
+            family = fam[family_id]
+            FamID.append(family_id)   
+        famlist1 = set (FamID)
+        print("US22: Number of duplicate Family IDs:-",len(FamID)-len(famlist1),"\n")
+        return result
+
+    """Anirudh Bezzam"""
+
+    """US03 Birth before Death of Individual"""
+    def US03(self):
+        result = False
+        for key, individual in self.individual.items():  #dict implementation
+            if individual.birthday != 'NA' or individual.death != 'NA':
+                if individual.birthday > individual.death:
+                    print(
+                        "Error: Individual: US03: " + key + " Birth " + individual.birthday + "should occur before death " + individual.death)
+                    result = True
+        return result
+
+    """US04	Marriage before divorce"""
+    def US04(self):
+        result = False
+        for key, family in self.family.items():
+            if family.marriage < family.divorced:
+                print(
+                    "Error: FAMILY : US04 : " + key + " Marriage " + family.marriage + " should occur before divorce " + family.divorced)
+                result = True
+        return result
+
+    """US13 - Birth Dates of Sibilings should be more than 8 months apart or less than 2 days apart"""
+    def US13(self):
         result = False
         sibday = []
         sibmonth = []
-        for key, family in self.fam.items():
-            children_list = list(family.self.fam['CHIL'])
-            if self.indi[list(family.self.fam['CHIL'])[0]].id in family.self.fam['CHIL']:
+        for key, family in self.family.items():
+            children_list = list(family.children)
+            if self.individual[list(family.children)[0]].id in family.children:
                 for each_sibiling in children_list:
-                    sib_birthday_month = datetime.today().strptime(self.indi[each_sibiling].birthday, '%Y-%m-%d').month
-                    sib_birthday_day = datetime.today().strptime(self.indi[each_sibiling].birthday,  '%Y-%m-%d').day
+                    sib_birthday_month = datetime.today().strptime(self.individual[each_sibiling].birthday,
+                                                                   '%Y-%m-%d').month
+                    sib_birthday_day = datetime.today().strptime(self.individual[each_sibiling].birthday,
+                                                                 '%Y-%m-%d').day
                     sibday.append(sib_birthday_day)
                     sibmonth.append(sib_birthday_month)
-                    for each_month_element in range(len(sibmonth)-1):
-                        month_diff = sibmonth[each_month_element+1]-sibmonth[each_month_element]
+                    for each_month_element in range(len(sibmonth) - 1):
+                        month_diff = sibmonth[each_month_element + 1] - sibmonth[each_month_element]
                         if month_diff > 8:
                             result = True
-                    for each_day_element in range(len(sibday)-1):
-                        day_diff = sibday[each_day_element+1]-sibday[each_day_element]
-                        print(day_diff)
+                        else:
+                            print(
+                                "Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart",
+                                key)
+
+                    for each_day_element in range(len(sibday) - 1):
+                        day_diff = sibday[each_day_element + 1] - sibday[each_day_element]
                         if day_diff < 2:
                             result = True
+                        else:
+                            print(
+                                "Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart",
+                                key)
+        return result
+
+    """US14 - Multiple births <= 5"""
+    def US14(self):
+        result = False
+        for key, family in self.family.items():
+            birthday_list = list()
+            list_of_children = family.children
+            for child in list_of_children:
+                birthday_list.append(self.individual[child].birthday)
+            count_dict = dict((i, birthday_list.count(i)) for i in birthday_list)
+            list_birthdays = count_dict.values()
+            if max(list_birthdays) <= 5:
+                result = True
+            else:
+                print(
+                    "Error: FAMILY : US14: " + key + "Number of children born in a single birth should not be greater than 5")
+        return result
+
+    def US23(self): # by Anirudh Bezzam
+        """US23 No more than one individual with the same name and birth date should appear in a GEDCOM file"""
+        """Using a counter to flush out duplicates"""
+        result = False
+        count = Counter([individual.name + " " + individual.birthday for individual in self.individual.values()])
+        for extra_copy, value in count.items():
+            if value > 1:
+                print("Error: INDIVIDUAL : US23: Name and age of Person has been repeated: " + extra_copy)
+                result = True
         return result
     
-    def US14(self): # By Anirudh Bezzam
-        """ US14 Multiple Births <= 5 - No more than five siblings should be born at the same time """
-        error = list()
-        for i in self.indi:
-            if "FAMC" in self.indi[i].keys():
-                for key in self.fam.keys():
-                    if 'CHIL' in self.fam[key]:
-                        chil = self.fam[key]['CHIL']
-                        child_birt = self.indi[i]['BIRT']
-                        fam_id = ''.join(self.indi[i]['FAMC'])
-                        if len(chil) > 5:  # Check logic
-                            error.append(['ANOMALY: FAMILY: US14:', self.indi[i]['id']])
-            print('ANOMALY: FAMILY: US14: ' + self.fam[fam_id]['fam'] + ' Sibling ' + self.indi[i]['id'] + ' born ' + child_birt.strftime('%Y-%m-%d') + ' at the same time on ' + child_birt.strftime('%Y-%m-%d'))
-        return error
+    def US24(self): # by Anirudh Bezzam
+        """US24 No more than one family with the same spouses by name and the same marriage date should appear in a GEDCOM file"""
+        result = False
+        duplicate_family = list()
+        for key, family in self.family.items():
+            wife_name = self.individual[list(family.wife_id)[0]].name
+            marriage_date = family.marriage
+            current_tuple = (wife_name, marriage_date)
+            duplicate_family.append(current_tuple)
+        family_dic = {duplicate: duplicate_family.count(duplicate) for duplicate in duplicate_family}
+        for family_dic_key, family_dic_value in family_dic.items():
+            if family_dic_value > 1:
+                print("Error: FAMILY : US24: " + str(family.line_num) + "More than one family with the same spouses by name " + family_dic_key[0] + " and the same marriage date " + family_dic_key[1])
+                result = True
+        return result
+
+    """Tanvi Hanamshet"""
+    """unique first name in families"""
+    def US25(self):
+        result = list()
+        for key, individual in self.individual.items():
+            unique_names = []
+            names = []
+            list_of_names = individual.name.split("/")[0]
+            names.append(list_of_names)
+            for i in names:
+                if i not in unique_names:
+                    unique_names.append(i)
+            for name in unique_names:
+                print("ANOMALY: INDIVIDUAL : US25: " + str(individual.line_num) + " : " + key + " Unique name in family: "+ name)
+            result.append(unique_names)
+        return result
+            
+        
+
+    """ List all people in a GEDCOM file who were born in the last 30 days.-Tanvi """
+    def US35(self):
+        result = list()
+        for key, individual in self.individual.items():
+            d1 = datetime.strptime(individual.birthday, '%Y-%m-%d')
+            d2 = (datetime.today().strftime('%Y-%m-%d'))
+            d2 = datetime.strptime(d2, '%Y-%m-%d')
+            conversion = {'days':1,'months':30.4,'years':365.25}
+            diff = abs((d1 - d2).days)
+            
+            if diff >= 0 and diff <30.4:
+                time_typ = 'days'
+                diff1 = diff/conversion[time_typ]
+                if time_typ == 'days' and diff1 <= 30:
+                    print("ANOMALY: INDIVIDUAL: US35: " + str(individual.line_num) + " : " + key +" People who were born in the last 30 days are "+ individual.name + " on "+individual.birthday)
+                    result.append(key)
+        return result
+
+
+    """Lifu Xiao"""
+    def US07(self): #  US07 Less then 150 years old
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.age > 150):
+                print("ERROR: INDIVIDUAL: US07: " + str(individual.line_num) + key + "  More than 150 years old: Birth date "+ individual.birthday)
+                result.append(key)
+        return result
+
+    def US08(self): #  US08 Birth before marriage of parents
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.child != 'NA'):
+                for c in individual.child:
+                    fam = self.family[c]
+                    if(fam.divorced != 'NA'):
+                        div_date = datetime.strptime(fam.divorced, '%Y-%m-%d')
+                        child_birth_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
+                        if(child_birth_date > div_date):
+                            print('ANOMALY: FAMILY: US08: ' + c + ' Child ' + key + ' born ' + individual.birthday + ' after divorce on ' + fam.divorced)
+                            result.append(key)
+                    if(fam.marriage != 'NA'):
+                        marr_date = datetime.strptime(fam.marriage, '%Y-%m-%d')
+                        child_birth_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
+                        if(marr_date > child_birth_date):
+                            print('ANOMALY: FAMILY: US08: ' + str(individual.line_num) + c + ' Child ' + key + ' born ' + individual.birthday + ' before marriage on ' + fam.marriage)
+                            result.append(key)
+        return result
+
+    def US17(self): #  US17: No marriages to children
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.partner != 'NA'):
+                for p in individual.partner:
+                    fam = self.family[p]
+                    if(fam.children != 'NA'):
+                        if (fam.children & set(fam.wife_id) != set() or fam.children & set(fam.husband_id) != set()):
+                            print('ERROR: FAMILY: US17: Parent ' + str(individual.line_num) + key + ' marries with children or parents.')
+                            result.append(key)
+        return result
     
-    def us15(self): # Tanvi - Fewer than 15 siblings
-        false = False
-        for key in self.fam.keys():
-            if 'CHIL' in self.fam[key] :
-                chil = self.fam[key]['CHIL']
-                if len(chil) < 15:
-                    print(f"Error: FAMILY: US15: Family '{key}'  has '{len(chil)}' number of children. No more than fourteen children should be born in each family.")
-                    false = True
-        return false
+    def US18(self): #  US18: Siblings should not marry one another
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.partner != 'NA' and individual.child != 'NA'):
+                for p in individual.partner:
+                    for c in individual.child:
+                        famc = self.family[c]
+                        fams = self.family[p]
+                        if(famc.children != 'NA'):
+                            if(famc.children & set(fams.wife_id) != set() and famc.children & set(fams.husband_id) != set()):
+                                print('ERROR: US18: ' + str(individual.line_num) + key + ' Siblings marry')
+                                result.append(key)
+        return result
 
-    def us16(self): #Tanvi - Male last names
-        error = list()
-        for i in self.indi:
-            if 'FAMC' in self.indi[i].keys():
-                fam_id = ''.join(self.indi[i]['FAMC'])
-                if self.indi[i]['sex'] == 'M':
-                    error.append(['ANOMALY US16', i])
-                    last_name_male = self.indi[i]['name'].split('/')[1]
-                    print(f" ANOMALY: FAMILY: US16: Male {self.indi[i]['id']} whose last name is {last_name_male}")
-                    
-        return error
-
-                
+    def US27(self): #  Include individual ages
+        result = list()
+        status = True
+        for key, individual in self.individual.items():
+            if(individual.age == 'NA'):
+                status = False
+                print('ERROR: US27: ' + str(individual.line_num) + key + ' lacks age information')
+                result.append(key)
+        if(status):
+            print('US27: All peolple include ages!')
+        return result
     
-    def US17(self): # US17: No marriages to children - by Lifu
-        error = list()
-        for i in self.indi:
-            if('FAMS' in self.indi[i].keys()):
-                fam_list = list(self.indi[i]['FAMS'])
-                for j in fam_list:
-                    if('CHIL' in self.fam[j].keys()):
-                        if(self.fam[j]['WIFE'] in self.fam[j]['CHIL'] or self.fam[j]['HUSB'] in self.fam[j]['CHIL']):
-                            error.append(['ERROR: FAMILY: US17'], j)
-                            print('ERROR: FAMILY: US17: Parent ' + i + ' marries with children.')
+    def US28(self): #  Order siblings by age
+        result = list()
+        for key, family in self.family.items():
+            if(family.children != 'NA' and len(family.children) > 1):
+                chil = dict()
+                for c in family.children:
+                    age = self.individual[c].age
+                    chil[age] = c
+                chil = sorted(chil.items())
+                print('Siblings in '+key+':')
+                for k,v in chil:
+                    print (v+': '+str(k))
+                result.append(chil)
+        return result
+
+    """Yuan Zhang"""
+    def US09(self): # US09 Birth before death of parents - by Yuan
+        error = set()
+        for key, individual in self.individual.items(): # scan children
+            if (individual.child != 'NA'): # if the individual is a child of some family
+                for c in individual.child: # each family the individual is a child of
+                    fam = self.family[c]
+                    father = self.individual[''.join(fam.husband_id)]
+                    mother = self.individual[''.join(fam.wife_id)]
+                    if father.alive != "TRUE":
+                        if individual.birthday > father.death:
+                            print('ERROR: FAMILY: US09: ' + str(fam.line_num) + ": " + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after father's death on " + father.death)
+                            error.add(key)
+                    if mother.alive != "TRUE":
+                        if individual.birthday > mother.death:
+                            print('ERROR: FAMILY: US09: ' + str(fam.line_num) + ": " + fam.id + ' Child ' + individual.id + ' born ' + individual.birthday + " after mother's death on " + mother.death)
+                            error.add(key)
         return error
 
-    def US18(self): # US18: Siblings should not marry one another - by Lifu
-        error = list()
-        for i in self.indi:
-            if('FAMS' in self.indi[i].keys() and 'FAMC' in self.indi[i].keys()):
-                fams_list = list(self.indi[i]['FAMS'])
-                famc_list = list(self.indi[i]['FAMC'])
-                for j in fams_list:
-                    for c in famc_list:
-                        if('CHIL' in self.fam[c].keys()):
-                            if(self.fam[j]['WIFE'] in self.fam[c]['CHIL'] and self.fam[j]['HUSB'] in self.fam[c]['CHIL']):
-                                error.append([['ERROR: US18'], self.fam[j]['HUSB'], self.fam[j]['WIFE']])
-                                print('ERROR: US18: Siblings marry Husband: ' + self.fam[j]['HUSB'] + ' Wife: ' + self.fam[j]['WIFE'])
-        return error
-
+    def US10(self): # US10 Marriage after 14 - by Yuan
+        error = set()
+        for key, individual in self.individual.items(): # scan individual
+            birt_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
+            if individual.partner != 'NA':
+                for f in individual.partner:
+                    fam = self.family[f]
+                    if fam.marriage != 'NA':
+                        marr_date = datetime.strptime(fam.marriage, '%Y-%m-%d')
+                        if marr_date - birt_date < timedelta(days = 5110): # 365days/yr * 14yr = 5110
+                            error.add(key)
+                            print('ANOMALY: INDIVIDUAL: US10: ' + str(individual.line_num) + ": " + individual.id + ' married on ' + fam.marriage + ' before 14 years old (born on ' + individual.birthday + ')')
+        return error      
+    
     def US19(self): # US19 First cousins should not marry - by Yuan
-        error = list()
-        for f in self.fam: 
-            if 'MARR'in self.fam[f].keys():
-                # identify the husband and wife
-                husb_id = self.fam[f]['HUSB']
-                wife_id = self.fam[f]['WIFE']
-                if 'FAMC' in self.indi[husb_id].keys() and 'FAMC' in self.indi[wife_id].keys():
-                    husb_fam = ''.join(self.indi[husb_id]['FAMC'])
-                    wife_fam = ''.join(self.indi[wife_id]['FAMC'])
-                    # identify the parents of husband and wife to see if they are siblings
-                    husb_parents = self.fam[husb_fam]['HUSB'], self.fam[husb_fam]['WIFE']
-                    wife_parents = self.fam[wife_fam]['HUSB'], self.fam[wife_fam]['WIFE']
-                    for husb_parent in husb_parents:
-                        for wife_parent in wife_parents:
-                            if 'FAMC' in self.indi[husb_parent].keys() and 'FAMC' in self.indi[wife_parent].keys() and ''.join(self.indi[husb_parent]['FAMC']) == ''.join(self.indi[wife_parent]['FAMC']):
-                                error.append(['ANOMALY US19', f])
-                                print('ANOMALY: FAMILY: US19: ' + f + ' Husband ' + self.indi[husb_id]['id'] + ' and wife ' + self.indi[wife_id]['id'] + " are cousins ")
-        return error
-    
-    def US20(self): # US20 Aunts and uncles - by Yuan
-        error = list()
-        for f in self.fam: 
-            if 'MARR'in self.fam[f].keys():
-                # identify the husband and wife
-                husb_id = self.fam[f]['HUSB']
-                wife_id = self.fam[f]['WIFE']
-                if 'FAMC' in self.indi[husb_id].keys() and 'FAMC' in self.indi[wife_id].keys():
-                    husb_fam = ''.join(self.indi[husb_id]['FAMC'])
-                    wife_fam = ''.join(self.indi[wife_id]['FAMC'])
-                    # identify husband's parents to see if they're the wife's siblings
-                    husb_parents = self.fam[husb_fam]['HUSB'], self.fam[husb_fam]['WIFE']
-                    for husb_parent in husb_parents:
-                        if 'FAMC' in self.indi[husb_parent].keys() and ''.join(self.indi[husb_parent]['FAMC']) == ''.join(self.indi[wife_id]['FAMC']):
-                            error.append(['ANOMALY US20', f])
-                            print('ANOMALY: FAMILY: US20: ' + f + ' Wife ' + self.indi[wife_id]['id']  + ' is husband ' + self.indi[husb_id]['id'] + "'s aunt")
-                    # identify wife's parents to see if they're the husband's siblings
-                    wife_parents = self.fam[wife_fam]['HUSB'], self.fam[wife_fam]['WIFE']
-                    for wife_parent in wife_parents:
-                        if 'FAMC' in self.indi[wife_parent].keys() and ''.join(self.indi[wife_parent]['FAMC']) == ''.join(self.indi[husb_id]['FAMC']):
-                            error.append(['ANOMALY US20', f])
-                            print('ANOMALY: FAMILY: US20: ' + f + 'Husband ' + self.indi[husb_id]['id']  + ' is wife ' + self.indi[wife_id]['id'] + "'s uncle")
+        error = set()
+        for key, fam in self.family.items(): # scan families
+            # identify the husband and wife
+            husb = self.individual["".join(fam.husband_id)]
+            wife = self.individual["".join(fam.wife_id)]
+            # if the husband/wife is the child of some family
+            if husb.child != "NA":
+                for h_c in husb.child:
+                    if wife.child != "NA": 
+                        for w_c in wife.child:
+                            husb_fam = self.family[h_c]
+                            wife_fam = self.family[w_c]
+                            # identify the parents of husband and wife to see if they are siblings
+                            husb_parents = self.individual["".join(husb_fam.husband_id)], self.individual["".join(husb_fam.wife_id)]
+                            wife_parents = self.individual["".join(wife_fam.husband_id)], self.individual["".join(wife_fam.wife_id)]
+                            for husb_parent in husb_parents:
+                                for wife_parent in wife_parents:
+                                    # if the parents are siblings, the husband and wife are first cousons
+                                    if husb_parent.child != "NA" and wife_parent.child != "NA" and "".join(husb_parent.child) == "".join(wife_parent.child): 
+                                        error.add(key)
+                                        print('ANOMALY: FAMILY: US19: ' + str(fam.line_num) + ": In family " + fam.id + ' husband ' + husb.id + ' and wife ' + wife.id + " are cousins ")
         return error
 
+    def US20(self): # US20 Aunts and uncles - by Yuan
+        error = set()
+        for key, fam in self.family.items(): # scan families
+            # identify the husband and wife
+            husb = self.individual["".join(fam.husband_id)]
+            wife = self.individual["".join(fam.wife_id)]
+            # if the husband/wife is the child of some family
+            if husb.child != "NA":
+                for h_c in husb.child:
+                    if wife.child != "NA": 
+                        for w_c in wife.child:
+                            husb_fam = self.family[h_c]
+                            wife_fam = self.family[w_c]
+                            # identify husband's parents to see if they're the wife's siblings
+                            husb_parents = self.individual["".join(husb_fam.husband_id)], self.individual["".join(husb_fam.wife_id)]
+                            for husb_parent in husb_parents:
+                                if husb_parent.child != "NA" and "".join(husb_parent.child) == "".join(wife.child): 
+                                    error.add(key)
+                                    print('ANOMALY: FAMILY: US20: ' + str(fam.line_num) + ": In family " + fam.id + ' wife ' + wife.id + ' is husband ' + husb.id + "'s aunt")
+                            # identify wife's parents to see if they're the husband's siblings
+                            wife_parents = self.individual["".join(wife_fam.husband_id)], self.individual["".join(wife_fam.wife_id)]
+                            for wife_parent in wife_parents:
+                                if wife_parent.child != "NA" and "".join(wife_parent.child) == "".join(husb.child): 
+                                    error.add(key)
+                                    print('ANOMALY: FAMILY: US20: ' + str(fam.line_num) + ": In family " + fam.id + ' husband ' + husb.id + ' is wife ' + wife.id + "'s uncle")
+        return error
+
+    def US29(self): # List all deceased individuals in a GEDCOM file - Yuan Zhang
+        error = set()
+        print("--- US29: All deceased individuals ---")
+        for key, individual in self.individual.items(): # scan individual
+            if individual.alive != "TRUE":
+                print(individual.id + ": " + individual.name)
+                error.add(key)
+        print("--- End of all deceased individuals ---")
+        return error
+
+    def US30(self): # List all living married people in a GEDCOM file - Yuan Zhang
+        error = set()
+        print("--- US30: All living married people ---")
+        for key, individual in self.individual.items(): # scan individual
+            if individual.alive == "TRUE" and individual.partner != "NA":
+                print(individual.id + " " + individual.name)
+                error.add(key)
+        print("--- End of all living married people ---")
+        return error
 
 def main():
-    my_family = Gedcom('My-Family-15-Oct-2019-228.ged')
-    my_family.print_table()
+    # there are several gedcom files
+    """ myfamily.ged """
+    repo1 = Repo()
+    repo1.read_file('ged/myfamily.ged')
+    print("\n\nTest file: myfamily.ged")
+    print("\n Individual Summary")
+    repo1.individual_table()
 
-    my_family.US01()
-    my_family.US02()
-    my_family.US03()
-    my_family.US04()
-    my_family.US05()
-    my_family.US06()
-    my_family.US07()
-    my_family.US08()
-    my_family.US09()
-    my_family.US10()
-    my_family.US11()
-    my_family.US12()
-    my_family.US14()
-    my_family.us15()
-    my_family.us16()
-    my_family.US17()
-    my_family.US18()
-    my_family.US19()
-    my_family.US20()
+    print("\n Family Summary")
+    repo1.family_table()
+    repo1.US01()
+    repo1.US02()
+    repo1.US07()
+    repo1.US08()
+    repo1.US11()
+    repo1.US18()
+    repo1.US27()
+    repo1.US28()
+    repo1.US25()
+    
+    
+
+    """ das.ged """
+    repo2 = Repo()
+    repo2.read_file('ged/das.ged')
+    repo2.US03()
+    repo2.US04()
+    repo2.US13()
+    repo2.US14()
+    repo2.US22()
+    repo2.US23()
+    repo2.US24()
+
+    """us17.ged"""
+    repo3 = Repo()
+    repo3.read_file('ged/us17.ged')
+
+    repo3.US17()
+
+    """Yuan"""
+    repo1.US09()
+    repo1.US10()
+    repo1.US19()
+    repo1.US20()
+    repo1.US29()
+    repo1.US30()
+    
+    """Ged for US21"""
+    repo4 = Repo()
+    repo4.read_file('ged/My-Family-28-Oct-2019-667.ged')
+
+    repo4.US21()
+
+    """Ged for US11"""
+    repo5 = Repo()
+    repo5.read_file('ged/My-Family-29-Oct-2019-620.ged')
+    repo5.US11()
+
+    """Ged for US35"""
+    repo5 = Repo()
+    repo5.read_file('ged/My-Family-29-Oct-2019-793.ged')
+    repo5.US35()
 
 if __name__ == '__main__':
     main()

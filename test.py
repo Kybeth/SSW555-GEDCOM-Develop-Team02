@@ -1,122 +1,184 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-"""
-Test cases for user stories 
-"""
-
 import unittest
-from main import Gedcom
+from main import Repo
 
 
 class UserStoryTest(unittest.TestCase):
-    test_file = Gedcom('myfamily.ged')
 
-    def test_us01(self):  # - By Vignesh Mohan
-        expect = [['ERROR US01'], ['ERROR US01']]
-        result = UserStoryTest.test_file.US01()
-        self.assertNotEqual(expect, result)
+    """Vignesh Mohan"""
 
-    def test_us02(self):  # - By Vignesh Mohan
-        expect = [['ANOMALY US02', '@I1@'], ['ANOMALY US02', '@I24@']]
-        result = UserStoryTest.test_file.US02()
-        self.assertEqual(expect, result)
+    def test_US01(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US01(), True)
+        self.assertNotEqual(repo.US01(), False)
+        self.assertTrue(repo.US01())
 
-    def test_us03(self):  # - By Anirudh Bezzam
-        expect = []
-        result = UserStoryTest.test_file.US03()
-        self.assertEqual(expect, result)
+    def test_US02(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US02(), True)
+        self.assertNotEqual(repo.US02(), False)
+        self.assertTrue(repo.US02())
 
-    def test_us04(self):  # - By Anirudh Bezzam
-        expect = [['ERROR: FAMILY: US04: ', '@F4@']]
-        result = UserStoryTest.test_file.US04()
-        self.assertEqual(expect, result)
+    """Anirudh Bezzam"""
 
-    def test_us05(self):
-        expect = [['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I9@'], ['ANOMALY US05', '@I10@'], ['ANOMALY US05', '@I11@'], ['ANOMALY US05', '@I12@'], ['ANOMALY US05', '@I13@'], [
-            'ANOMALY US05', '@I15@'], ['ANOMALY US05', '@I16@'], ['ANOMALY US05', '@I17@'], ['ANOMALY US05', '@I18@'], ['ANOMALY US05', '@I19@'], ['ANOMALY US05', '@I20@'], ['ANOMALY US05', '@I24@']]
-        result = UserStoryTest.test_file.US05()
-        self.assertEqual(expect, result)
+    def test_US03(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US03(), True)
+        self.assertNotEqual(repo.US03(), False)
+        self.assertTrue(repo.US03())
 
-    def test_us06(self):
-        expect = [['ANOMALY US06', '@I15@'], ['ANOMALY US06', '@I16@']]
-        result = UserStoryTest.test_file.US06()
-        self.assertEqual(expect, result)
+    def test_US04(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US04(), True)
+        self.assertNotEqual(repo.US04(), False)
+        self.assertTrue(repo.US04())
+    
+    def test_US11(self):
+        repo = Repo()
+        repo.read_file("ged/My-Family-29-Oct-2019-620.ged")
+        self.assertNotEqual(repo.US11(), True)
+        self.assertFalse(repo.US11())
 
-    def test_us07(self):  # - By Lifu Xiao
-        expect = [['ERROR US07', '@I22@'], [
-            'ERROR US07', '@I24@'], ['ERROR US07', '@I25@']]
-        result = UserStoryTest.test_file.US07()
-        self.assertEqual(expect, result)
+    def test_US13(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US13(), True)
+        self.assertNotEqual(repo.US13(), False)
+        self.assertTrue(repo.US13())
 
-    def test_us08(self):  # - By Lifu Xiao
-        expect = [['ANOMALY: FAMILY: US08:', '@I1@'],
-                  ['ANOMALY: FAMILY: US08:', '@I24@']]
-        result = UserStoryTest.test_file.US08()
-        self.assertEqual(expect, result)
+    def test_US14(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US14(), True)
+        self.assertNotEqual(repo.US14(), False)
+        self.assertTrue(repo.US14())
 
-    def test_us09(self):  # - By Yuan Zhang
-        expect = [['ERROR US09', '@I5@'], ['ERROR US09', '@I5@'],
-                  ['ERROR US09', '@I20@'], ['ERROR US09', '@I21@']]
-        result = UserStoryTest.test_file.US09()
-        self.assertEqual(expect, result)
+    def test_US24(self):
+        """US24 - Unique families by spouses"""
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US24(), True)
+        self.assertNotEqual(repo.US24(), False)
+        self.assertTrue(repo.US24())
+        self.assertIsNotNone(repo.US24())
+        self.assertIsNot(repo.US24(), '')
 
-    def test_us10(self):  # - By Yuan Zhang
-        expect = [['ANOMALY US10', '@F2@'], ['ANOMALY US10', '@F3@'], ['ANOMALY US10', '@F4@'], ['ANOMALY US10', '@F5@'], [
-            'ANOMALY US10', '@F8@'], ['ANOMALY US10', '@F8@'], ['ANOMALY US10', '@F9@'], ['ANOMALY US10', '@F9@']]
-        result = UserStoryTest.test_file.US10()
-        self.assertEqual(expect, result)
+    def test_US23(self):
+        """US23 - No more than one individual with the same name and birth date should appear in a GEDCOM file"""
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertEqual(repo.US23(), True)
+        self.assertNotEqual(repo.US23(), False)
+        self.assertTrue(repo.US23())
+        self.assertIsNotNone(repo.US23())
+        self.assertIsNot(repo.US23(), '')
 
-    def test_us11(self):  # - By Vignesh Mohan
-        expect = []
-        result = UserStoryTest.test_file.US11()
-        self.assertEqual(expect, result)
+    """Lifu Xiao"""
 
-    def test_us12(self):  # - By Vignesh Mohan
-        expect = []
-        result = UserStoryTest.test_file.US12()
-        self.assertEqual(expect, result)
+    def test_US07(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US07(), ['@I22@', '@I24@', '@I25@'])
 
-    def test_us13(self):  # - Anirudh Bezzam
-        expect = [['ANOMALY US13', '@F1@']]
-        result = UserStoryTest.test_file.US13()
+    def test_US08(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US08(), ['@I1@', '@I24@'])
 
-        self.assertEqual(expect, result)
+    def test_US17(self):
+        repo = Repo()
+        repo.read_file("ged/us17.ged")
+        self.assertEqual(repo.US17(), ['@I1@', '@I3@'])
 
-    def test_us14(self):  # - Anirudh Bezzam
-        expect = []
-        result = UserStoryTest.test_file.US14()
-        self.assertEqual(expect, result)
+    def test_US18(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US18(), ['@I12@', '@I13@', '@I15@', '@I16@'])
 
-    def test_us15(self):  # - By Tanvi Hanamshet
-        expect = [['ERROR US15'], ['ERROR US15']]
-        result = UserStoryTest.test_file.us15()
-        self.assertNotEqual(expect, result)
-        
-    def test_us16(self): # - By Tanvi Hanamshet
-        expect = [['ANOMALY US16', '@I1@'],['ANOMALY US16', '@I3@'], ['ANOMALY US16', '@I4@'], ['ANOMALY US16', '@I5@'], ['ANOMALY US16', '@I9@'], ['ANOMALY US16', '@I12@'], ['ANOMALY US16', '@I14@'], ['ANOMALY US16', '@I19@'], ['ANOMALY US16', '@I21@'], ['ANOMALY US16', '@I24@']]
-        result = UserStoryTest.test_file.us16()
-        self.assertEqual(expect, result)
+    def test_US27(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US27(), list())
 
-    def test_us17(self):  # - By Lifu Xiao
-        expect = [[['ERROR: US18'], '@I13@'], [['ERROR: US18'], '@I13@']]
-        result = UserStoryTest.test_file.US17()
-        self.assertNotEqual(expect, result)
+    def test_US28(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US28()[0], [
+                         (-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
+        self.assertEqual(repo.US28()[1], [(85, '@I1@'), (239, '@I24@')])
 
-    def test_us18(self):  # - By Lifu Xiao
-        expect = [[['ERROR: US18'], '@I13@', '@I12@'], [['ERROR: US18'], '@I13@', '@I12@']]
-        result = UserStoryTest.test_file.US18()
-        self.assertEqual(expect, result)
+    """Yuan Zhang"""
 
-    def test_us19(self):  # - By Yuan Zhang
-        expect = [['ANOMALY US19', '@F8@']]
-        result = UserStoryTest.test_file.US19()
-        self.assertEqual(expect, result)
+    def test_US09(self):  # Birth before death of parents
+        repo = Repo()
+        repo.read_file("ged/test_yz.ged")
+        result = repo.US09()
+        expect = {'I7', 'I9'}
+        self.assertEqual(result, expect)
 
-    def test_us20(self):  # - By Yuan Zhang
-        expect = [['ANOMALY US20', '@F9@']]
-        result = UserStoryTest.test_file.US20()
-        self.assertEqual(expect, result)
+    def test_US10(self):  # Marriage after 14
+        repo = Repo()
+        repo.read_file("ged/test_yz.ged")
+        result = repo.US10()
+        expect = {'I2', 'I3'}
+        self.assertEqual(result, expect)
+
+    def test_US19(self):  # First cousins should not marry
+        repo = Repo()
+        repo.read_file("ged/test_yz.ged")
+        result = repo.US19()
+        expect = {'F4', 'F5'}
+        self.assertEqual(result, expect)
+
+    def test_US20(self):  # Aunts and uncles
+        repo = Repo()
+        repo.read_file("ged/test_yz.ged")
+        result = repo.US20()
+        expect = {'F5'}
+        self.assertEqual(result, expect)
+
+    def test_US21(self):
+        repo = Repo()
+        repo.read_file("ged/My-Family-28-Oct-2019-667.ged")
+        self.assertNotEqual(repo.US21(), list())
+
+    def test_US22(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertNotEqual(repo.US22(), list())
+
+    def test_US29(self):  # List deceased
+        repo = Repo()
+        repo.read_file("ged/test_yz.ged")
+        result = repo.US29()
+        expect = {'I1', 'I5'}
+        self.assertEqual(result, expect)
+
+    def test_US30(self):  # List living married
+        repo = Repo()
+        repo.read_file("ged/test_yz.ged")
+        result = repo.US30()
+        expect = {'I2', 'I3', 'I4', 'I6', 'I7', 'I8', 'I9', 'I10'}
+        self.assertEqual(result, expect)
+
+
+    """Test for sprint3: US35 & US25- By Tanvi"""
+
+    def test_US25(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US25(), [['Surinder '], ['Nirmal '], ['Boney '], ['Sridevi '], ['Anil '], ['Sunita '], ['Sanjay '], ['Maheep '], ['Sonam '], ['Rhea '], ['Harshvardhan '], [
+                         'Shanaya '], ['Jahaan '], ['Mona '], ['Arjun '], ['Anshula '], ['Khushi '], ['Janhvi '], ['John '], ['Allen '], ['Lily '], ['Vu '], ['Sue '], ['Shilpy '], ['Das '], ['Deepa ']])
+
+    def test_US35(self):
+        repo = Repo()
+        repo.read_file("ged/My-Family-29-Oct-2019-793.ged")
+        self.assertEqual(repo.US35(), ['@I27@'])
 
 
 if __name__ == '__main__':

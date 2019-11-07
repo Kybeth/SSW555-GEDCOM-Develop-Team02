@@ -1,0 +1,1342 @@
+
+
+Test file: myfamily.ged
+
+ Individual Summary
++-------+-----------------------+--------+------------+-------+-------+------------+----------+------------------+
+|   ID  |          Name         | Gender |  Birthday  |  Age  | Alive |   Death    |  Child   |     partner      |
++-------+-----------------------+--------+------------+-------+-------+------------+----------+------------------+
+| @I10@ |     Rhea /Kapoor/     |   F    | 1987-03-05 |   32  |  TRUE |     NA     | {'@F5@'} |        NA        |
+| @I11@ | Harshvardhan /Kapoor/ |   M    | 1990-11-09 |   28  |  TRUE |     NA     | {'@F5@'} |        NA        |
+| @I12@ |    Shanaya /Kapoor/   |   F    | 1999-11-03 |   19  |  TRUE |     NA     | {'@F6@'} |     {'@F7@'}     |
+| @I13@ |    Jahaan /Kapoor/    |   M    | 2005-07-08 |   14  |  TRUE |     NA     | {'@F6@'} |     {'@F7@'}     |
+| @I14@ |     Mona /Shourie/    |   F    | 1964-02-03 |   48  | False | 2012-03-25 |    NA    |     {'@F4@'}     |
+| @I15@ |     Arjun /Kapoor/    |   M    | 1985-06-26 |   34  |  TRUE |     NA     | {'@F4@'} | {'@F8@', '@F9@'} |
+| @I16@ |    Anshula /Kapoor/   |   F    | 1992-12-29 |   26  |  TRUE |     NA     | {'@F4@'} |     {'@F8@'}     |
+| @I17@ |    Khushi /Kapoor/    |   F    | 2000-11-05 |   18  |  TRUE |     NA     | {'@F3@'} |        NA        |
+| @I18@ |    Janhvi /Kapoor/    |   F    | 1997-03-06 |   22  |  TRUE |     NA     | {'@F3@'} |    {'@F10@'}     |
+| @I19@ |     John /Kapoor/     |   M    | 1996-02-01 |   23  |  TRUE |     NA     | {'@F6@'} |    {'@F10@'}     |
+|  @I1@ |   Surinder /Kapoor/   |   M    | 1925-12-23 |   85  | False | 2011-09-24 | {'@F2@'} |     {'@F1@'}     |
+| @I20@ |     Allen /Kapoor/    |   M    | 2018-03-03 |   1   |  TRUE |     NA     | {'@F3@'} |    {'@F11@'}     |
+| @I21@ |     Lily /Kapoor/     |   F    | 2012-09-03 |   7   |  TRUE |     NA     | {'@F1@'} |    {'@F11@'}     |
+| @I22@ |      Vu /Kapoor/      |   M    | 1850-04-11 |  160  | False | 2010-08-08 |    NA    |     {'@F2@'}     |
+| @I23@ |      Sue /Kapoor/     |   F    | 3000-08-06 |  -981 |  TRUE |     NA     |    NA    |     {'@F2@'}     |
+| @I24@ |    Shilpy /Kapoor/    |   M    | 1780-05-05 |  239  |  TRUE |     NA     | {'@F2@'} |    {'@F12@'}     |
+| @I25@ |      Das /Kapoor/     |   M    | 1780-03-02 |  239  |  TRUE |     NA     |    NA    |    {'@F12@'}     |
+| @I26@ |     Deepa /Kapoor/    |   F    | 1920-02-03 |   99  |  TRUE |     NA     |    NA    |     {'@F9@'}     |
+|  @I2@ |    Nirmal /Kapoor/    |   F    | 1931-08-12 |   84  | False | 2016-07-09 |    NA    |     {'@F1@'}     |
+|  @I3@ |     Boney /Kapoor/    |   M    | 1983-09-10 |   36  |  TRUE |     NA     | {'@F1@'} | {'@F4@', '@F3@'} |
+|  @I4@ |    Sridevi /Kapoor/   |   F    | 1963-08-13 |   54  | False | 2018-02-24 |    NA    |     {'@F3@'}     |
+|  @I5@ |     Anil /Kapoor/     |   M    | 5000-12-24 | -2982 |  TRUE |     NA     | {'@F1@'} |     {'@F5@'}     |
+|  @I6@ |    Sunita /Kapoor/    |   F    | 1965-08-20 |   54  |  TRUE |     NA     |    NA    |     {'@F5@'}     |
+|  @I7@ |    Sanjay /Kapoor/    |   M    | 1965-10-17 |   54  |  TRUE |     NA     | {'@F1@'} |     {'@F6@'}     |
+|  @I8@ |    Maheep /Sandhu/    |   F    | 1970-07-10 |   49  |  TRUE |     NA     |    NA    |     {'@F6@'}     |
+|  @I9@ |     Sonam /Kapoor/    |   F    | 1985-06-09 |   34  |  TRUE |     NA     | {'@F5@'} |        NA        |
++-------+-----------------------+--------+------------+-------+-------+------------+----------+------------------+
+
+ Family Summary
++-------+------------+------------+------------+-------------------+-----------+------------------+-----------------------------------+
+|   ID  |  Married   |  Divorced  | Husband ID |    Husband Name   |  Wife ID  |    Wife Name     |              Children             |
++-------+------------+------------+------------+-------------------+-----------+------------------+-----------------------------------+
+| @F10@ | 2007-03-03 |     NA     | {'@I19@'}  |   John /Kapoor/   | {'@I18@'} | Janhvi /Kapoor/  |                 NA                |
+| @F11@ | 2019-01-01 |     NA     | {'@I20@'}  |   Allen /Kapoor/  | {'@I21@'} |  Lily /Kapoor/   |                 NA                |
+| @F12@ | 2800-03-02 |     NA     | {'@I24@'}  |  Shilpy /Kapoor/  | {'@I25@'} |   Das /Kapoor/   |                 NA                |
+|  @F1@ |     NA     |     NA     |  {'@I1@'}  | Surinder /Kapoor/ |  {'@I2@'} | Nirmal /Kapoor/  | {'@I3@', '@I5@', '@I7@', '@I21@'} |
+|  @F2@ | 1940-09-07 |     NA     | {'@I22@'}  |    Vu /Kapoor/    | {'@I23@'} |   Sue /Kapoor/   |         {'@I1@', '@I24@'}         |
+|  @F3@ | 1995-10-15 |     NA     |  {'@I3@'}  |   Boney /Kapoor/  |  {'@I4@'} | Sridevi /Kapoor/ |    {'@I20@', '@I18@', '@I17@'}    |
+|  @F4@ | 1982-08-12 | 1993-07-28 |  {'@I3@'}  |   Boney /Kapoor/  | {'@I14@'} |  Mona /Shourie/  |         {'@I16@', '@I15@'}        |
+|  @F5@ | 1982-06-06 |     NA     |  {'@I5@'}  |   Anil /Kapoor/   |  {'@I6@'} | Sunita /Kapoor/  |     {'@I10@', '@I9@', '@I11@'}    |
+|  @F6@ | 1995-06-22 |     NA     |  {'@I7@'}  |  Sanjay /Kapoor/  |  {'@I8@'} | Maheep /Sandhu/  |    {'@I13@', '@I12@', '@I19@'}    |
+|  @F7@ |     NA     |     NA     | {'@I13@'}  |  Jahaan /Kapoor/  | {'@I12@'} | Shanaya /Kapoor/ |                 NA                |
+|  @F8@ |     NA     |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I16@'} | Anshula /Kapoor/ |                 NA                |
+|  @F9@ | 1920-01-02 |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I26@'} |  Deepa /Kapoor/  |                 NA                |
++-------+------------+------------+------------+-------------------+-----------+------------------+-----------------------------------+
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  5000-12-24 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:-Birthdate  3000-08-06 is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- DivorceDate  NA is after current date
+Error US01:- Deathdate  NA is after current date
+Error US01:- MarriageDate  2800-03-02 is after current date
+Error US01:- DivorceDate  NA is after current date
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1925-12-23 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 278 : @F2@ Birth 1925-12-23 should not occur before marriage  1940-09-07
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1925-12-23 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1925-12-23 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1925-12-23 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1925-12-23 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1925-12-23 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1925-12-23 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1925-12-23 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1925-12-23 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1925-12-23 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1931-08-12 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 278 : @F2@ Birth 1931-08-12 should not occur before marriage  1940-09-07
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1931-08-12 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1931-08-12 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1931-08-12 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1931-08-12 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1931-08-12 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1931-08-12 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1931-08-12 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1931-08-12 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1931-08-12 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1983-09-10 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1983-09-10 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1983-09-10 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1983-09-10 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1983-09-10 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1983-09-10 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1983-09-10 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1983-09-10 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1963-08-13 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1963-08-13 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1963-08-13 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1963-08-13 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1963-08-13 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1963-08-13 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1963-08-13 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1963-08-13 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1963-08-13 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1963-08-13 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 5000-12-24 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 5000-12-24 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 5000-12-24 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1965-08-20 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1965-08-20 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1965-08-20 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1965-08-20 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1965-08-20 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1965-08-20 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1965-08-20 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1965-08-20 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1965-08-20 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1965-08-20 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1965-10-17 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1965-10-17 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1965-10-17 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1965-10-17 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1965-10-17 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1965-10-17 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1965-10-17 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1965-10-17 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1965-10-17 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1965-10-17 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1970-07-10 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1970-07-10 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1970-07-10 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1970-07-10 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1970-07-10 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1970-07-10 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1970-07-10 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1970-07-10 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1970-07-10 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1970-07-10 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1985-06-09 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1985-06-09 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1985-06-09 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1985-06-09 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1985-06-09 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1985-06-09 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1985-06-09 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1985-06-09 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1987-03-05 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1987-03-05 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1987-03-05 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1987-03-05 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1987-03-05 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1987-03-05 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1987-03-05 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1987-03-05 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1990-11-09 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1990-11-09 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1990-11-09 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1990-11-09 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1990-11-09 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1990-11-09 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1990-11-09 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1990-11-09 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1999-11-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1999-11-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1999-11-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1999-11-03 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1999-11-03 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1999-11-03 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 2005-07-08 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 2005-07-08 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 2005-07-08 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 2005-07-08 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 2005-07-08 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 2005-07-08 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1964-02-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1964-02-03 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1964-02-03 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1964-02-03 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1964-02-03 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1964-02-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1964-02-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1964-02-03 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1964-02-03 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1964-02-03 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1985-06-26 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1985-06-26 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1985-06-26 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1985-06-26 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1985-06-26 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1985-06-26 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1985-06-26 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1985-06-26 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1992-12-29 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1992-12-29 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1992-12-29 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1992-12-29 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1992-12-29 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1992-12-29 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1992-12-29 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1992-12-29 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 2000-11-05 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 2000-11-05 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 2000-11-05 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 2000-11-05 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 2000-11-05 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 2000-11-05 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1997-03-06 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1997-03-06 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1997-03-06 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1997-03-06 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1997-03-06 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1997-03-06 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1996-02-01 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1996-02-01 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1996-02-01 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1996-02-01 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1996-02-01 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1996-02-01 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 2018-03-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 2018-03-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 2018-03-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 2018-03-03 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 2018-03-03 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 2012-09-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 2012-09-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 2012-09-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 2012-09-03 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 2012-09-03 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1850-04-11 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 278 : @F2@ Birth 1850-04-11 should not occur before marriage  1940-09-07
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1850-04-11 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1850-04-11 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1850-04-11 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1850-04-11 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1850-04-11 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1850-04-11 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 331 : @F9@ Birth 1850-04-11 should not occur before marriage  1920-01-02
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1850-04-11 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1850-04-11 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1850-04-11 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 3000-08-06 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 3000-08-06 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 3000-08-06 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1780-05-05 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 278 : @F2@ Birth 1780-05-05 should not occur before marriage  1940-09-07
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1780-05-05 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1780-05-05 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1780-05-05 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1780-05-05 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1780-05-05 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1780-05-05 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 331 : @F9@ Birth 1780-05-05 should not occur before marriage  1920-01-02
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1780-05-05 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1780-05-05 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1780-05-05 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1780-03-02 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 278 : @F2@ Birth 1780-03-02 should not occur before marriage  1940-09-07
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1780-03-02 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1780-03-02 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1780-03-02 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1780-03-02 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1780-03-02 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1780-03-02 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 331 : @F9@ Birth 1780-03-02 should not occur before marriage  1920-01-02
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1780-03-02 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1780-03-02 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1780-03-02 should not occur before marriage  2800-03-02
+ANOMALY: FAMILY: US02: 270 : @F1@ Birth 1920-02-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 278 : @F2@ Birth 1920-02-03 should not occur before marriage  1940-09-07
+ANOMALY: FAMILY: US02: 286 : @F3@ Birth 1920-02-03 should not occur before marriage  1995-10-15
+ANOMALY: FAMILY: US02: 295 : @F4@ Birth 1920-02-03 should not occur before marriage  1982-08-12
+ANOMALY: FAMILY: US02: 305 : @F5@ Birth 1920-02-03 should not occur before marriage  1982-06-06
+ANOMALY: FAMILY: US02: 314 : @F6@ Birth 1920-02-03 should not occur before marriage  1995-06-22
+ANOMALY: FAMILY: US02: 323 : @F7@ Birth 1920-02-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 327 : @F8@ Birth 1920-02-03 should not occur before marriage  NA
+ANOMALY: FAMILY: US02: 339 : @F10@ Birth 1920-02-03 should not occur before marriage  2007-03-03
+ANOMALY: FAMILY: US02: 345 : @F11@ Birth 1920-02-03 should not occur before marriage  2019-01-01
+ANOMALY: FAMILY: US02: 351 : @F12@ Birth 1920-02-03 should not occur before marriage  2800-03-02
+ERROR: INDIVIDUAL: US07: 222@I22@  More than 150 years old: Birth date 1850-04-11
+ERROR: INDIVIDUAL: US07: 242@I24@  More than 150 years old: Birth date 1780-05-05
+ERROR: INDIVIDUAL: US07: 252@I25@  More than 150 years old: Birth date 1780-03-02
+ANOMALY: FAMILY: US08: 13@F2@ Child @I1@ born 1925-12-23 before marriage on 1940-09-07
+ANOMALY: FAMILY: US08: 242@F2@ Child @I24@ born 1780-05-05 before marriage on 1940-09-07
+ERROR: US18: 122@I12@ Siblings marry
+ERROR: US18: 132@I13@ Siblings marry
+ERROR: US18: 153@I15@ Siblings marry
+ERROR: US18: 164@I16@ Siblings marry
+US27: All peolple include ages!
+Siblings in @F1@:
+@I5@: -2982
+@I21@: 7
+@I3@: 36
+@I7@: 54
+Siblings in @F2@:
+@I1@: 85
+@I24@: 239
+Siblings in @F3@:
+@I20@: 1
+@I17@: 18
+@I18@: 22
+Siblings in @F4@:
+@I16@: 26
+@I15@: 34
+Siblings in @F5@:
+@I11@: 28
+@I10@: 32
+@I9@: 34
+Siblings in @F6@:
+@I13@: 14
+@I12@: 19
+@I19@: 23
+ANOMALY: INDIVIDUAL : US25: 13 : @I1@ Unique name in family: Surinder 
+ANOMALY: INDIVIDUAL : US25: 25 : @I2@ Unique name in family: Nirmal 
+ANOMALY: INDIVIDUAL : US25: 36 : @I3@ Unique name in family: Boney 
+ANOMALY: INDIVIDUAL : US25: 47 : @I4@ Unique name in family: Sridevi 
+ANOMALY: INDIVIDUAL : US25: 57 : @I5@ Unique name in family: Anil 
+ANOMALY: INDIVIDUAL : US25: 67 : @I6@ Unique name in family: Sunita 
+ANOMALY: INDIVIDUAL : US25: 76 : @I7@ Unique name in family: Sanjay 
+ANOMALY: INDIVIDUAL : US25: 86 : @I8@ Unique name in family: Maheep 
+ANOMALY: INDIVIDUAL : US25: 95 : @I9@ Unique name in family: Sonam 
+ANOMALY: INDIVIDUAL : US25: 104 : @I10@ Unique name in family: Rhea 
+ANOMALY: INDIVIDUAL : US25: 113 : @I11@ Unique name in family: Harshvardhan 
+ANOMALY: INDIVIDUAL : US25: 122 : @I12@ Unique name in family: Shanaya 
+ANOMALY: INDIVIDUAL : US25: 132 : @I13@ Unique name in family: Jahaan 
+ANOMALY: INDIVIDUAL : US25: 142 : @I14@ Unique name in family: Mona 
+ANOMALY: INDIVIDUAL : US25: 153 : @I15@ Unique name in family: Arjun 
+ANOMALY: INDIVIDUAL : US25: 164 : @I16@ Unique name in family: Anshula 
+ANOMALY: INDIVIDUAL : US25: 174 : @I17@ Unique name in family: Khushi 
+ANOMALY: INDIVIDUAL : US25: 183 : @I18@ Unique name in family: Janhvi 
+ANOMALY: INDIVIDUAL : US25: 193 : @I19@ Unique name in family: John 
+ANOMALY: INDIVIDUAL : US25: 203 : @I20@ Unique name in family: Allen 
+ANOMALY: INDIVIDUAL : US25: 212 : @I21@ Unique name in family: Lily 
+ANOMALY: INDIVIDUAL : US25: 222 : @I22@ Unique name in family: Vu 
+ANOMALY: INDIVIDUAL : US25: 233 : @I23@ Unique name in family: Sue 
+ANOMALY: INDIVIDUAL : US25: 242 : @I24@ Unique name in family: Shilpy 
+ANOMALY: INDIVIDUAL : US25: 252 : @I25@ Unique name in family: Das 
+ANOMALY: INDIVIDUAL : US25: 261 : @I26@ Unique name in family: Deepa 
+
+
+ Test file: das.ged
+
+ Individual Summary
++-----+-------------------+--------+------------+-----+-------+------------+---------+---------+
+|  ID |        Name       | Gender |  Birthday  | Age | Alive |   Death    |  Child  | partner |
++-----+-------------------+--------+------------+-----+-------+------------+---------+---------+
+| I01 | Surinder /Kapoor/ |   M    | 2060-07-15 | -84 | False | 1976-12-31 |    NA   | {'F23'} |
+| I07 |   Boney /Kapoor/  |   F    | 1760-09-23 | 259 |  TRUE |     NA     |    NA   | {'F23'} |
+| I19 |  Sanjay /Kapoor/  |   M    | 1979-02-01 |  40 |  TRUE |     NA     | {'F23'} |    NA   |
+| I26 |  Sridevi /Kapoor/ |   F    | 1983-06-02 |  36 |  TRUE |     NA     | {'F23'} |    NA   |
+| I27 |   Anil /Kapoor/   |   M    | 1980-02-01 |  39 |  TRUE |     NA     |    NA   |    NA   |
+| I28 |   Anil /Kapoor/   |   M    | 1980-02-01 |  39 |  TRUE |     NA     |    NA   |    NA   |
++-----+-------------------+--------+------------+-----+-------+------------+---------+---------+
+
+ Family Summary
++-----+------------+------------+------------+-------------------+---------+------------------+----------------+
+|  ID |  Married   |  Divorced  | Husband ID |    Husband Name   | Wife ID |    Wife Name     |    Children    |
++-----+------------+------------+------------+-------------------+---------+------------------+----------------+
+| F23 | 1980-02-14 | 1985-02-14 |  {'I01'}   | Surinder /Kapoor/ | {'I07'} |  Boney /Kapoor/  | {'I26', 'I19'} |
+| F24 | 1982-02-14 |     NA     |  {'I01'}   | Surinder /Kapoor/ | {'I27'} |  Anil /Kapoor/   | {'I26', 'I19'} |
+| F25 | 1982-02-14 |     NA     |  {'I01'}   | Surinder /Kapoor/ | {'I26'} | Sridevi /Kapoor/ | {'I26', 'I19'} |
+| F26 | 1982-02-14 |     NA     |  {'I19'}   |  Sanjay /Kapoor/  | {'I26'} | Sridevi /Kapoor/ | {'I26', 'I19'} |
++-----+------------+------------+------------+-------------------+---------+------------------+----------------+
+Error: Individual: US03: I01 Birth 2060-07-15should occur before death 1976-12-31
+Error: FAMILY : US04 : F23 Marriage 1980-02-14 should occur before divorce 1985-02-14
+Error: FAMILY : US04 : F24 Marriage 1982-02-14 should occur before divorce NA
+Error: FAMILY : US04 : F25 Marriage 1982-02-14 should occur before divorce NA
+Error: FAMILY : US04 : F26 Marriage 1982-02-14 should occur before divorce NA
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F23
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+US22: Number of duplicate Individual IDs:- 0 
+
+US22: Number of duplicate Family IDs:- 0 
+
+Error: INDIVIDUAL : US23: Name and age of Person has been repeated: Anil /Kapoor/ 1980-02-01
+Error: FAMILY : US24: 74More than one family with the same spouses by name Sridevi /Kapoor/ and the same marriage date 1982-02-14
+
+
+ Test file: us17.ged
+
+ Individual Summary
++------+---------------+--------+------------+-----+-------+-------+----------+------------------+
+|  ID  |      Name     | Gender |  Birthday  | Age | Alive | Death |  Child   |     partner      |
++------+---------------+--------+------------+-----+-------+-------+----------+------------------+
+| @I1@ | David /Brown/ |   M    | 1980-07-08 |  39 |  TRUE |   NA  |    NA    | {'@F1@', '@F2@'} |
+| @I2@ |  Lucy /Brown/ |   F    | 1980-05-06 |  39 |  TRUE |   NA  |    NA    |     {'@F1@'}     |
+| @I3@ |  July /Brown/ |   F    | 2001-10-06 |  18 |  TRUE |   NA  | {'@F1@'} |     {'@F2@'}     |
++------+---------------+--------+------------+-----+-------+-------+----------+------------------+
+
+ Family Summary
++------+------------+------------+------------+---------------+----------+--------------+----------+
+|  ID  |  Married   |  Divorced  | Husband ID |  Husband Name | Wife ID  |  Wife Name   | Children |
++------+------------+------------+------------+---------------+----------+--------------+----------+
+| @F1@ | 2000-05-09 | 2001-08-08 |  {'@I1@'}  | David /Brown/ | {'@I2@'} | Lucy /Brown/ | {'@I3@'} |
+| @F2@ | 2012-07-10 |     NA     |  {'@I1@'}  | David /Brown/ | {'@I3@'} | July /Brown/ | {'@I3@'} |
++------+------------+------------+------------+---------------+----------+--------------+----------+
+ERROR: FAMILY: US17: Parent 13@I1@ marries with children or parents.
+ERROR: FAMILY: US17: Parent 32@I3@ marries with children or parents.
+
+
+ Test file: test_yz.ged
+
+ Individual Summary
++-----+---------------+--------+------------+-----+-------+------------+--------+---------+
+|  ID |      Name     | Gender |  Birthday  | Age | Alive |   Death    | Child  | partner |
++-----+---------------+--------+------------+-----+-------+------------+--------+---------+
+|  I1 |  One /Black/  |   M    | 1920-01-01 |  47 | False | 1967-01-01 |   NA   |  {'F1'} |
+| I10 |  Ten /Black/  |   F    | 1966-01-01 |  53 |  TRUE |     NA     | {'F3'} |  {'F5'} |
+|  I2 |  Two /Green/  |   F    | 1930-01-01 |  89 |  TRUE |     NA     |   NA   |  {'F1'} |
+|  I3 | Three /Brown/ |   M    | 1955-01-01 |  64 |  TRUE |     NA     |   NA   |  {'F2'} |
+|  I4 |  Four /Black/ |   F    | 1946-01-01 |  73 |  TRUE |     NA     | {'F1'} |  {'F2'} |
+|  I5 |  Five /White/ |   F    | 1945-01-01 |  23 | False | 1968-01-01 |   NA   |  {'F3'} |
+|  I6 |  Six /Black/  |   M    | 1945-01-01 |  74 |  TRUE |     NA     | {'F1'} |  {'F3'} |
+|  I7 | Seven /Black/ |   M    | 1967-12-01 |  51 |  TRUE |     NA     | {'F1'} |  {'F5'} |
+|  I8 | Eight /Brown/ |   F    | 1968-01-01 |  51 |  TRUE |     NA     | {'F2'} |  {'F4'} |
+|  I9 |  Four /Black/ |   M    | 1970-01-01 |  49 |  TRUE |     NA     | {'F3'} |  {'F4'} |
++-----+---------------+--------+------------+-----+-------+------------+--------+---------+
+
+ Family Summary
++----+------------+----------+------------+---------------+---------+---------------+--------------------+
+| ID |  Married   | Divorced | Husband ID |  Husband Name | Wife ID |   Wife Name   |      Children      |
++----+------------+----------+------------+---------------+---------+---------------+--------------------+
+| F1 | 1940-01-01 |    NA    |   {'I1'}   |  One /Black/  |  {'I2'} |  Two /Green/  | {'I4', 'I6', 'I7'} |
+| F2 | 1966-11-25 |    NA    |   {'I3'}   | Three /Brown/ |  {'I4'} |  Four /Black/ |       {'I8'}       |
+| F3 | 1965-05-05 |    NA    |   {'I6'}   |  Six /Black/  |  {'I5'} |  Five /White/ |   {'I10', 'I9'}    |
+| F4 | 1995-05-07 |    NA    |   {'I9'}   |  Four /Black/ |  {'I8'} | Eight /Brown/ |         NA         |
+| F5 | 1990-11-28 |    NA    |   {'I7'}   | Seven /Black/ | {'I10'} |  Ten /Black/  |         NA         |
++----+------------+----------+------------+---------------+---------+---------------+--------------------+
+ERROR: FAMILY: US09: 71: F1 Child I7 born 1967-12-01 after father's death on 1967-01-01
+ERROR: FAMILY: US09: 85: F3 Child I9 born 1970-01-01 after mother's death on 1968-01-01
+ANOMALY: INDIVIDUAL: US10: 9: I2 married on 1940-01-01 before 14 years old (born on 1930-01-01)
+ANOMALY: INDIVIDUAL: US10: 15: I3 married on 1966-11-25 before 14 years old (born on 1955-01-01)
+ANOMALY: FAMILY: US19: 92: In family F4 husband I9 and wife I8 are cousins 
+ANOMALY: FAMILY: US20: 97: In family F5 husband I7 is wife I10's uncle
+--- US29: All deceased individuals ---
+I1: One /Black/
+I5: Five /White/
+--- End of all deceased individuals ---
+--- US30: All living married people ---
+I2 Two /Green/
+I3 Three /Brown/
+I4 Four /Black/
+I6 Six /Black/
+I7 Seven /Black/
+I8 Eight /Brown/
+I9 Four /Black/
+I10 Ten /Black/
+--- End of all living married people ---
+
+
+ Test file: My-Family-28-Oct-2019-667.ged
+
+ Individual Summary
++-------+-----------------------+--------+------------+-------+-------+------------+----------+------------------+
+|   ID  |          Name         | Gender |  Birthday  |  Age  | Alive |   Death    |  Child   |     partner      |
++-------+-----------------------+--------+------------+-------+-------+------------+----------+------------------+
+| @I10@ |     Rhea /Kapoor/     |   F    | 1987-03-05 |   32  |  TRUE |     NA     | {'@F5@'} |        NA        |
+| @I11@ | Harshvardhan /Kapoor/ |   M    | 1990-11-09 |   28  |  TRUE |     NA     | {'@F5@'} |        NA        |
+| @I12@ |    Shanaya /Kapoor/   |   F    | 1999-11-03 |   19  |  TRUE |     NA     | {'@F6@'} |     {'@F7@'}     |
+| @I13@ |    Jahaan /Kapoor/    |   M    | 2005-07-08 |   14  |  TRUE |     NA     | {'@F6@'} |     {'@F7@'}     |
+| @I14@ |     Mona /Shourie/    |   F    | 1964-02-03 |   48  | False | 2012-03-25 |    NA    |     {'@F4@'}     |
+| @I15@ |     Arjun /Kapoor/    |   M    | 1985-06-26 |   34  |  TRUE |     NA     | {'@F4@'} | {'@F8@', '@F9@'} |
+| @I16@ |    Anshula /Kapoor/   |   F    | 1992-12-29 |   26  |  TRUE |     NA     | {'@F4@'} |     {'@F8@'}     |
+| @I17@ |    Khushi /Kapoor/    |   F    | 2000-11-05 |   18  |  TRUE |     NA     | {'@F3@'} |        NA        |
+| @I18@ |    Janhvi /Kapoor/    |   F    | 1997-03-06 |   22  |  TRUE |     NA     | {'@F3@'} |    {'@F10@'}     |
+| @I19@ |     John /Kapoor/     |   M    | 1996-02-01 |   23  |  TRUE |     NA     | {'@F6@'} |    {'@F10@'}     |
+|  @I1@ |   Surinder /Kapoor/   |   F    | 1925-12-23 |   85  | False | 2011-09-24 | {'@F2@'} |     {'@F1@'}     |
+| @I20@ |     Allen /Kapoor/    |   M    | 2018-03-03 |   1   |  TRUE |     NA     | {'@F3@'} |    {'@F11@'}     |
+| @I21@ |     Lily /Kapoor/     |   F    | 2012-09-03 |   7   |  TRUE |     NA     | {'@F1@'} |    {'@F11@'}     |
+| @I22@ |      Vu /Kapoor/      |   M    | 1850-04-11 |  160  | False | 2010-08-08 |    NA    |     {'@F2@'}     |
+| @I23@ |      Sue /Kapoor/     |   F    | 3000-08-06 |  -981 |  TRUE |     NA     |    NA    |     {'@F2@'}     |
+| @I24@ |    Shilpy /Kapoor/    |   M    | 1780-05-05 |  239  |  TRUE |     NA     | {'@F2@'} |    {'@F12@'}     |
+| @I25@ |      Das /Kapoor/     |   M    | 1780-03-02 |  239  |  TRUE |     NA     |    NA    |    {'@F12@'}     |
+| @I26@ |     Deepa /Kapoor/    |   F    | 1920-02-03 |   99  |  TRUE |     NA     |    NA    |     {'@F9@'}     |
+|  @I2@ |    Nirmal /Kapoor/    |   F    | 1931-08-12 |   84  | False | 2016-07-09 |    NA    |     {'@F1@'}     |
+|  @I3@ |     Boney /Kapoor/    |   M    | 1983-09-10 |   36  |  TRUE |     NA     | {'@F1@'} | {'@F3@', '@F4@'} |
+|  @I4@ |    Sridevi /Kapoor/   |   F    | 1963-08-13 |   54  | False | 2018-02-24 |    NA    |     {'@F3@'}     |
+|  @I5@ |     Anil /Kapoor/     |   M    | 5000-12-24 | -2982 |  TRUE |     NA     | {'@F1@'} |     {'@F5@'}     |
+|  @I6@ |    Sunita /Kapoor/    |   F    | 1965-08-20 |   54  |  TRUE |     NA     |    NA    |     {'@F5@'}     |
+|  @I7@ |    Sanjay /Kapoor/    |   M    | 1965-10-17 |   54  |  TRUE |     NA     | {'@F1@'} |     {'@F6@'}     |
+|  @I8@ |    Maheep /Sandhu/    |   F    | 1970-07-10 |   49  |  TRUE |     NA     |    NA    |     {'@F6@'}     |
+|  @I9@ |     Sonam /Kapoor/    |   F    | 1985-06-09 |   34  |  TRUE |     NA     | {'@F5@'} |        NA        |
++-------+-----------------------+--------+------------+-------+-------+------------+----------+------------------+
+
+ Family Summary
++-------+------------+------------+------------+-------------------+-----------+------------------+-----------------------------------+
+|   ID  |  Married   |  Divorced  | Husband ID |    Husband Name   |  Wife ID  |    Wife Name     |              Children             |
++-------+------------+------------+------------+-------------------+-----------+------------------+-----------------------------------+
+| @F10@ | 2007-03-03 |     NA     | {'@I19@'}  |   John /Kapoor/   | {'@I18@'} | Janhvi /Kapoor/  |                 NA                |
+| @F11@ | 2019-01-01 |     NA     | {'@I20@'}  |   Allen /Kapoor/  | {'@I21@'} |  Lily /Kapoor/   |                 NA                |
+| @F12@ | 2800-03-02 |     NA     | {'@I24@'}  |  Shilpy /Kapoor/  | {'@I25@'} |   Das /Kapoor/   |                 NA                |
+|  @F1@ |     NA     |     NA     |  {'@I1@'}  | Surinder /Kapoor/ |  {'@I2@'} | Nirmal /Kapoor/  | {'@I5@', '@I3@', '@I21@', '@I7@'} |
+|  @F2@ | 1940-09-07 |     NA     | {'@I22@'}  |    Vu /Kapoor/    | {'@I23@'} |   Sue /Kapoor/   |         {'@I24@', '@I1@'}         |
+|  @F3@ | 1995-10-15 |     NA     |  {'@I3@'}  |   Boney /Kapoor/  |  {'@I4@'} | Sridevi /Kapoor/ |    {'@I17@', '@I20@', '@I18@'}    |
+|  @F4@ | 1982-08-12 | 1993-07-28 |  {'@I3@'}  |   Boney /Kapoor/  | {'@I14@'} |  Mona /Shourie/  |         {'@I16@', '@I15@'}        |
+|  @F5@ | 1982-06-06 |     NA     |  {'@I5@'}  |   Anil /Kapoor/   |  {'@I6@'} | Sunita /Kapoor/  |     {'@I10@', '@I11@', '@I9@'}    |
+|  @F6@ | 1995-06-22 |     NA     |  {'@I7@'}  |  Sanjay /Kapoor/  |  {'@I8@'} | Maheep /Sandhu/  |    {'@I13@', '@I19@', '@I12@'}    |
+|  @F7@ |     NA     |     NA     | {'@I13@'}  |  Jahaan /Kapoor/  | {'@I12@'} | Shanaya /Kapoor/ |                 NA                |
+|  @F8@ |     NA     |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I16@'} | Anshula /Kapoor/ |                 NA                |
+|  @F9@ | 1920-01-02 |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I26@'} |  Deepa /Kapoor/  |                 NA                |
++-------+------------+------------+------------+-------------------+-----------+------------------+-----------------------------------+
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 270 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 351 : @F12@ wife gender is M
+
+
+ Test file: My-Family-29-Oct-2019-620.ged
+
+ Individual Summary
++-------+-----------------------+--------+------------+-------+-------+------------+----------+-------------------+
+|   ID  |          Name         | Gender |  Birthday  |  Age  | Alive |   Death    |  Child   |      partner      |
++-------+-----------------------+--------+------------+-------+-------+------------+----------+-------------------+
+| @I10@ |     Rhea /Kapoor/     |   F    | 1987-03-05 |   32  |  TRUE |     NA     | {'@F6@'} |         NA        |
+| @I11@ | Harshvardhan /Kapoor/ |   M    | 1990-11-09 |   28  |  TRUE |     NA     | {'@F6@'} |         NA        |
+| @I12@ |    Shanaya /Kapoor/   |   F    | 1999-11-03 |   19  |  TRUE |     NA     | {'@F7@'} |      {'@F8@'}     |
+| @I13@ |    Jahaan /Kapoor/    |   M    | 2005-07-08 |   14  |  TRUE |     NA     | {'@F7@'} |      {'@F8@'}     |
+| @I14@ |     Mona /Shourie/    |   F    | 1964-02-03 |   48  | False | 2012-03-25 |    NA    |  {'@F1@', '@F5@'} |
+| @I15@ |     Arjun /Kapoor/    |   M    | 1985-06-26 |   34  |  TRUE |     NA     | {'@F5@'} | {'@F10@', '@F9@'} |
+| @I16@ |    Anshula /Kapoor/   |   F    | 1992-12-29 |   26  |  TRUE |     NA     | {'@F5@'} |      {'@F9@'}     |
+| @I17@ |    Khushi /Kapoor/    |   F    | 2000-11-05 |   18  |  TRUE |     NA     | {'@F4@'} |         NA        |
+| @I18@ |    Janhvi /Kapoor/    |   F    | 1997-03-06 |   22  |  TRUE |     NA     | {'@F4@'} |     {'@F11@'}     |
+| @I19@ |     John /Kapoor/     |   M    | 1996-02-01 |   23  |  TRUE |     NA     | {'@F7@'} |     {'@F11@'}     |
+|  @I1@ |   Surinder /Kapoor/   |   F    | 1925-12-23 |   85  | False | 2011-09-24 | {'@F3@'} |  {'@F1@', '@F2@'} |
+| @I20@ |     Allen /Kapoor/    |   M    | 2018-03-03 |   1   |  TRUE |     NA     | {'@F4@'} |     {'@F12@'}     |
+| @I21@ |     Lily /Kapoor/     |   F    | 2012-09-03 |   7   |  TRUE |     NA     | {'@F2@'} |     {'@F12@'}     |
+| @I22@ |      Vu /Kapoor/      |   M    | 1850-04-11 |  160  | False | 2010-08-08 |    NA    |      {'@F3@'}     |
+| @I23@ |      Sue /Kapoor/     |   F    | 3000-08-06 |  -981 |  TRUE |     NA     |    NA    |      {'@F3@'}     |
+| @I24@ |    Shilpy /Kapoor/    |   M    | 1780-05-05 |  239  |  TRUE |     NA     | {'@F3@'} |     {'@F13@'}     |
+| @I25@ |      Das /Kapoor/     |   M    | 1780-03-02 |  239  |  TRUE |     NA     |    NA    |     {'@F13@'}     |
+| @I26@ |     Deepa /Kapoor/    |   F    | 1920-02-03 |   99  |  TRUE |     NA     |    NA    |     {'@F10@'}     |
+| @I27@ |    Shreya /Kapoor/    |   F    | 2019-10-13 |   0   |  TRUE |     NA     | {'@F6@'} |         NA        |
+|  @I2@ |    Nirmal /Kapoor/    |   F    | 1931-08-12 |   84  | False | 2016-07-09 |    NA    |      {'@F2@'}     |
+|  @I3@ |     Boney /Kapoor/    |   M    | 1983-09-10 |   36  |  TRUE |     NA     | {'@F2@'} |  {'@F4@', '@F5@'} |
+|  @I4@ |    Sridevi /Kapoor/   |   F    | 1963-08-13 |   54  | False | 2018-02-24 |    NA    |      {'@F4@'}     |
+|  @I5@ |     Anil /Kapoor/     |   M    | 5000-12-24 | -2982 |  TRUE |     NA     | {'@F2@'} |      {'@F6@'}     |
+|  @I6@ |    Sunita /Kapoor/    |   F    | 1965-08-20 |   54  |  TRUE |     NA     |    NA    |      {'@F6@'}     |
+|  @I7@ |    Sanjay /Kapoor/    |   M    | 1965-10-17 |   54  |  TRUE |     NA     | {'@F2@'} |      {'@F7@'}     |
+|  @I8@ |    Maheep /Sandhu/    |   F    | 1970-07-10 |   49  |  TRUE |     NA     |    NA    |      {'@F7@'}     |
+|  @I9@ |     Sonam /Kapoor/    |   F    | 1985-06-09 |   34  |  TRUE |     NA     | {'@F6@'} |         NA        |
++-------+-----------------------+--------+------------+-------+-------+------------+----------+-------------------+
+
+ Family Summary
++-------+------------+------------+------------+-------------------+-----------+------------------+-------------------------------------+
+|   ID  |  Married   |  Divorced  | Husband ID |    Husband Name   |  Wife ID  |    Wife Name     |               Children              |
++-------+------------+------------+------------+-------------------+-----------+------------------+-------------------------------------+
+| @F10@ | 1920-01-02 |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I26@'} |  Deepa /Kapoor/  |                  NA                 |
+| @F11@ | 2007-03-03 |     NA     | {'@I19@'}  |   John /Kapoor/   | {'@I18@'} | Janhvi /Kapoor/  |                  NA                 |
+| @F12@ | 2019-01-01 |     NA     | {'@I20@'}  |   Allen /Kapoor/  | {'@I21@'} |  Lily /Kapoor/   |                  NA                 |
+| @F13@ | 2800-03-02 |     NA     | {'@I24@'}  |  Shilpy /Kapoor/  | {'@I25@'} |   Das /Kapoor/   |                  NA                 |
+|  @F1@ | 1920-02-02 |     NA     |  {'@I1@'}  | Surinder /Kapoor/ | {'@I14@'} |  Mona /Shourie/  |                  NA                 |
+|  @F2@ | 1920-02-03 |     NA     |  {'@I1@'}  | Surinder /Kapoor/ |  {'@I2@'} | Nirmal /Kapoor/  |  {'@I5@', '@I3@', '@I21@', '@I7@'}  |
+|  @F3@ | 1940-09-07 |     NA     | {'@I22@'}  |    Vu /Kapoor/    | {'@I23@'} |   Sue /Kapoor/   |          {'@I24@', '@I1@'}          |
+|  @F4@ | 1995-10-15 |     NA     |  {'@I3@'}  |   Boney /Kapoor/  |  {'@I4@'} | Sridevi /Kapoor/ |     {'@I17@', '@I20@', '@I18@'}     |
+|  @F5@ | 1982-08-12 | 1993-07-28 |  {'@I3@'}  |   Boney /Kapoor/  | {'@I14@'} |  Mona /Shourie/  |          {'@I16@', '@I15@'}         |
+|  @F6@ | 1982-06-06 |     NA     |  {'@I5@'}  |   Anil /Kapoor/   |  {'@I6@'} | Sunita /Kapoor/  | {'@I10@', '@I27@', '@I11@', '@I9@'} |
+|  @F7@ | 1995-06-22 |     NA     |  {'@I7@'}  |  Sanjay /Kapoor/  |  {'@I8@'} | Maheep /Sandhu/  |     {'@I13@', '@I19@', '@I12@'}     |
+|  @F8@ |     NA     |     NA     | {'@I13@'}  |  Jahaan /Kapoor/  | {'@I12@'} | Shanaya /Kapoor/ |                  NA                 |
+|  @F9@ |     NA     |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I16@'} | Anshula /Kapoor/ |                  NA                 |
++-------+------------+------------+------------+-------------------+-----------+------------------+-------------------------------------+
+
+ Test file: My-Family-29-Oct-2019-793.ged
+
+ Individual Summary
++-------+-----------------------+--------+------------+-------+-------+------------+----------+------------------+
+|   ID  |          Name         | Gender |  Birthday  |  Age  | Alive |   Death    |  Child   |     partner      |
++-------+-----------------------+--------+------------+-------+-------+------------+----------+------------------+
+| @I10@ |     Rhea /Kapoor/     |   F    | 1987-03-05 |   32  |  TRUE |     NA     | {'@F5@'} |        NA        |
+| @I11@ | Harshvardhan /Kapoor/ |   M    | 1990-11-09 |   28  |  TRUE |     NA     | {'@F5@'} |        NA        |
+| @I12@ |    Shanaya /Kapoor/   |   F    | 1999-11-03 |   19  |  TRUE |     NA     | {'@F6@'} |     {'@F7@'}     |
+| @I13@ |    Jahaan /Kapoor/    |   M    | 2005-07-08 |   14  |  TRUE |     NA     | {'@F6@'} |     {'@F7@'}     |
+| @I14@ |     Mona /Shourie/    |   F    | 1964-02-03 |   48  | False | 2012-03-25 |    NA    |     {'@F4@'}     |
+| @I15@ |     Arjun /Kapoor/    |   M    | 1985-06-26 |   34  |  TRUE |     NA     | {'@F4@'} | {'@F8@', '@F9@'} |
+| @I16@ |    Anshula /Kapoor/   |   F    | 1992-12-29 |   26  |  TRUE |     NA     | {'@F4@'} |     {'@F8@'}     |
+| @I17@ |    Khushi /Kapoor/    |   F    | 2000-11-05 |   18  |  TRUE |     NA     | {'@F3@'} |        NA        |
+| @I18@ |    Janhvi /Kapoor/    |   F    | 1997-03-06 |   22  |  TRUE |     NA     | {'@F3@'} |    {'@F10@'}     |
+| @I19@ |     John /Kapoor/     |   M    | 1996-02-01 |   23  |  TRUE |     NA     | {'@F6@'} |    {'@F10@'}     |
+|  @I1@ |   Surinder /Kapoor/   |   F    | 1925-12-23 |   85  | False | 2011-09-24 | {'@F2@'} |     {'@F1@'}     |
+| @I20@ |     Allen /Kapoor/    |   M    | 2018-03-03 |   1   |  TRUE |     NA     | {'@F3@'} |    {'@F11@'}     |
+| @I21@ |     Lily /Kapoor/     |   F    | 2012-09-03 |   7   |  TRUE |     NA     | {'@F1@'} |    {'@F11@'}     |
+| @I22@ |      Vu /Kapoor/      |   M    | 1850-04-11 |  160  | False | 2010-08-08 |    NA    |     {'@F2@'}     |
+| @I23@ |      Sue /Kapoor/     |   F    | 3000-08-06 |  -981 |  TRUE |     NA     |    NA    |     {'@F2@'}     |
+| @I24@ |    Shilpy /Kapoor/    |   M    | 1780-05-05 |  239  |  TRUE |     NA     | {'@F2@'} |    {'@F12@'}     |
+| @I25@ |      Das /Kapoor/     |   M    | 1780-03-02 |  239  |  TRUE |     NA     |    NA    |    {'@F12@'}     |
+| @I26@ |     Deepa /Kapoor/    |   F    | 1920-02-03 |   99  |  TRUE |     NA     |    NA    |     {'@F9@'}     |
+| @I27@ |    Shreya /Kapoor/    |   F    | 2019-10-13 |   0   |  TRUE |     NA     | {'@F5@'} |        NA        |
+|  @I2@ |    Nirmal /Kapoor/    |   F    | 1931-08-12 |   84  | False | 2016-07-09 |    NA    |     {'@F1@'}     |
+|  @I3@ |     Boney /Kapoor/    |   M    | 1983-09-10 |   36  |  TRUE |     NA     | {'@F1@'} | {'@F3@', '@F4@'} |
+|  @I4@ |    Sridevi /Kapoor/   |   F    | 1963-08-13 |   54  | False | 2018-02-24 |    NA    |     {'@F3@'}     |
+|  @I5@ |     Anil /Kapoor/     |   M    | 5000-12-24 | -2982 |  TRUE |     NA     | {'@F1@'} |     {'@F5@'}     |
+|  @I6@ |    Sunita /Kapoor/    |   F    | 1965-08-20 |   54  |  TRUE |     NA     |    NA    |     {'@F5@'}     |
+|  @I7@ |    Sanjay /Kapoor/    |   M    | 1965-10-17 |   54  |  TRUE |     NA     | {'@F1@'} |     {'@F6@'}     |
+|  @I8@ |    Maheep /Sandhu/    |   F    | 1970-07-10 |   49  |  TRUE |     NA     |    NA    |     {'@F6@'}     |
+|  @I9@ |     Sonam /Kapoor/    |   F    | 1985-06-09 |   34  |  TRUE |     NA     | {'@F5@'} |        NA        |
++-------+-----------------------+--------+------------+-------+-------+------------+----------+------------------+
+
+ Family Summary
++-------+------------+------------+------------+-------------------+-----------+------------------+-------------------------------------+
+|   ID  |  Married   |  Divorced  | Husband ID |    Husband Name   |  Wife ID  |    Wife Name     |               Children              |
++-------+------------+------------+------------+-------------------+-----------+------------------+-------------------------------------+
+| @F10@ | 2007-03-03 |     NA     | {'@I19@'}  |   John /Kapoor/   | {'@I18@'} | Janhvi /Kapoor/  |                  NA                 |
+| @F11@ | 2019-01-01 |     NA     | {'@I20@'}  |   Allen /Kapoor/  | {'@I21@'} |  Lily /Kapoor/   |                  NA                 |
+| @F12@ | 2800-03-02 |     NA     | {'@I24@'}  |  Shilpy /Kapoor/  | {'@I25@'} |   Das /Kapoor/   |                  NA                 |
+|  @F1@ |     NA     |     NA     |  {'@I1@'}  | Surinder /Kapoor/ |  {'@I2@'} | Nirmal /Kapoor/  |  {'@I5@', '@I3@', '@I21@', '@I7@'}  |
+|  @F2@ | 1940-09-07 |     NA     | {'@I22@'}  |    Vu /Kapoor/    | {'@I23@'} |   Sue /Kapoor/   |          {'@I24@', '@I1@'}          |
+|  @F3@ | 1995-10-15 |     NA     |  {'@I3@'}  |   Boney /Kapoor/  |  {'@I4@'} | Sridevi /Kapoor/ |     {'@I17@', '@I20@', '@I18@'}     |
+|  @F4@ | 1982-08-12 | 1993-07-28 |  {'@I3@'}  |   Boney /Kapoor/  | {'@I14@'} |  Mona /Shourie/  |          {'@I16@', '@I15@'}         |
+|  @F5@ | 1982-06-06 |     NA     |  {'@I5@'}  |   Anil /Kapoor/   |  {'@I6@'} | Sunita /Kapoor/  | {'@I10@', '@I27@', '@I11@', '@I9@'} |
+|  @F6@ | 1995-06-22 |     NA     |  {'@I7@'}  |  Sanjay /Kapoor/  |  {'@I8@'} | Maheep /Sandhu/  |     {'@I13@', '@I19@', '@I12@'}     |
+|  @F7@ |     NA     |     NA     | {'@I13@'}  |  Jahaan /Kapoor/  | {'@I12@'} | Shanaya /Kapoor/ |                  NA                 |
+|  @F8@ |     NA     |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I16@'} | Anshula /Kapoor/ |                  NA                 |
+|  @F9@ | 1920-01-02 |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I26@'} |  Deepa /Kapoor/  |                  NA                 |
++-------+------------+------------+------------+-------------------+-----------+------------------+-------------------------------------+
+ANOMALY: INDIVIDUAL: US35: 270 : @I27@ People who were born in the last 30 days are Shreya /Kapoor/ on 2019-10-13
+KybethdeMBP:SSW555-GEDCOM-Develop-Team02 kybeth$ 

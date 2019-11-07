@@ -2,7 +2,7 @@
 1 SOUR Family Echo
 2 WWW http://www.familyecho.com/
 1 FILE My Family
-1 DATE 15 OCT 2019
+1 DATE 28 OCT 2019
 1 DEST ANSTFILE
 1 GEDC
 2 VERS 5.5.1
@@ -16,7 +16,7 @@
 2 GIVN Surinder
 2 SURN Kapoor
 2 _MARNM Kapoor
-1 SEX M
+1 SEX F
 1 BIRT
 2 DATE 23 DEC 1925
 1 DEAT Y
