@@ -2,6 +2,7 @@ from ged import Individual, Family, gedcom_parser
 from prettytable import PrettyTable
 from datetime import datetime
 from datetime import timedelta
+from dateutil.relativedelta import relativedelta
 from collections import defaultdict, Counter
 
 months = {"JAN":1,"FEB":2,"MAR":3,"APR":4,"MAY":5,"JUN":6,"JUL":7,"AUG":8,"SEP":9,"OCT":10,"NOV":11,"DEC":12}
@@ -362,8 +363,29 @@ class Repo:
                 result = True
         return result
 
+
+    def US38(self): # by Anirudh Bezzam
+        """List upcoming birthdays""" 
+        result = False
+        list_result = list()
+        today_date = datetime.today().strftime('%m-%d');
+        today_date_plus30 = datetime.now() + relativedelta(days=30)
+        today_date_plus30 = today_date_plus30.strftime('%m-%d')
+        for key, individual in self.individual.items():
+            if individual.death == 'NA':
+                birthday = datetime.strptime(individual.birthday, '%Y-%m-%d')
+                birthday = birthday.strftime('%m-%d')
+                if today_date < birthday < today_date_plus30:
+                    list_result.append("Name: " + individual.name + " Birthday: " + individual.birthday)
+                    result = True
+        print("List of upcoming birthday :")
+        print('\n'.join(str(p) for p in list_result))
+        return result
+    
+
+
     """Tanvi Hanamshet"""
-    """unique first name in families"""
+    """unique first name in family"""
     def US25(self):
         result = list()
         for key, individual in self.individual.items():
@@ -606,6 +628,7 @@ def main():
     repo1.US27()
     repo1.US28()
     repo1.US25()
+    repo1.US38()
     
     
 
@@ -619,6 +642,7 @@ def main():
     repo2.US22()
     repo2.US23()
     repo2.US24()
+    
 
     """us17.ged"""
     repo3 = Repo()
