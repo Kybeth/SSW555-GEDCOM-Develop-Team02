@@ -502,7 +502,7 @@ class Repo:
         return error
 
     def US10(self): # US10 Marriage after 14 - by Yuan
-        error = set()
+        res = set()
         for key, individual in self.individual.items(): # scan individual
             birt_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
             if individual.partner != 'NA':
@@ -510,10 +510,22 @@ class Repo:
                     fam = self.family[f]
                     if fam.marriage != 'NA':
                         marr_date = datetime.strptime(fam.marriage, '%Y-%m-%d')
-                        if marr_date - birt_date < timedelta(days = 5110): # 365days/yr * 14yr = 5110
-                            error.add(key)
+                        if (not(key in res)) and marr_date - birt_date < timedelta(days = 5110): # 365days/yr * 14yr = 5110
+                            res.add(key)
                             print('ANOMALY: INDIVIDUAL: US10: ' + str(individual.line_num) + ": " + individual.id + ' married on ' + fam.marriage + ' before 14 years old (born on ' + individual.birthday + ')')
-        return error      
+        return res 
+        '''
+        for key, fam in self.family.items():
+            # identify the husband and wife
+            husb = self.individual["".join(fam.husband_id)]
+            wife = self.individual["".join(fam.wife_id)]
+            if fam.marriage != "NA":
+                pt.add_row([husb.id, husb.name, husb.alive, fam.id, wife.id])
+                pt.add_row([wife.id, wife.name, wife.alive, fam.id, husb.id])
+                error.add(husb.id)
+                error.add(wife.id)
+        print(pt)
+        return error   '''  
     
     def US19(self): # US19 First cousins should not marry - by Yuan
         error = set()
@@ -568,35 +580,77 @@ class Repo:
 
     def US29(self): # List all deceased individuals in a GEDCOM file - Yuan Zhang
         error = set()
-        print("--- US29: All deceased individuals ---")
+        print("US29: List all deceased individuals")
+        pt = PrettyTable(
+            ##field_names=['ID', 'Name', 'Gender', 'Birthday', 'Age', 'Alive', 'Death', 'Child', 'partner'])
+            field_names=['ID', 'Name', 'Alive', 'Birthday', 'Death Date'])
         for key, individual in self.individual.items(): # scan individual
             if individual.alive != "TRUE":
-                print(individual.id + ": " + individual.name)
+                pt.add_row([individual.id, individual.name, individual.alive, individual.birthday, individual.death])
+                ##print(individual.id + ": " + individual.name)
                 error.add(key)
-        print("--- End of all deceased individuals ---")
+        print(pt)
         return error
 
     def US30(self): # List all living married people in a GEDCOM file - Yuan Zhang
         error = set()
-        print("--- US30: All living married people ---")
-        for key, individual in self.individual.items(): # scan individual
-            if individual.alive == "TRUE" and individual.partner != "NA":
-                print(individual.id + " " + individual.name)
-                error.add(key)
-        print("--- End of all living married people ---")
+        print("US30: List all living married people")
+        pt = PrettyTable(
+            field_names=['ID', 'Name', 'Alive',  'Family ID', 'Partner'])
+        for key, fam in self.family.items():
+            # identify the husband and wife
+            husb = self.individual["".join(fam.husband_id)]
+            wife = self.individual["".join(fam.wife_id)]
+            if fam.divorced == "NA" and husb.alive == "TRUE" and wife.alive == "TRUE":
+                pt.add_row([husb.id, husb.name, husb.alive, fam.id, wife.id])
+                pt.add_row([wife.id, wife.name, wife.alive, fam.id, husb.id])
+                error.add(husb.id)
+                error.add(wife.id)
+        print(pt)
         return error
+
+    def US39(self): # List all living couples whose marriage anniversaries occur in the next 30 days
+        res = set()
+        print("US39: List upcoming anniversaries")
+        pt = PrettyTable(
+            field_names=['Family ID', 'Husband ID', 'Husband Name', 'Wife ID', 'Wife Name', 'Aniversary'])
+        for key, fam in self.family.items():
+            # identify the husband and wife
+            husb = self.individual["".join(fam.husband_id)]
+            wife = self.individual["".join(fam.wife_id)]
+            if fam.divorced == "NA" and fam.marriage != "NA" and husb.alive == "TRUE" and wife.alive == "TRUE" :
+                marr_date = datetime.strptime(fam.marriage, '%Y-%m-%d')
+                today_date = datetime.today()
+                if (marr_date.month, marr_date.day) > (today_date.month, today_date.day):
+                    anniversary = marr_date.replace(year=today_date.year)
+                else:
+                    anniversary = marr_date.replace(year=today_date.year + 1)
+                if  timedelta(days = 0) < anniversary - today_date < timedelta(days = 30): # 
+                    pt.add_row([fam.id, husb.id, husb.name, wife.id, wife.name, fam.marriage])
+                    res.add(fam.id)
+        print(pt)
+        return res
+    
+    def US40(self):
+        print("US40: List line numbers from GEDCOM source file when reporting errors")
+        print(" - Demostrated in all previous user stories")
+        print("   Example: ", end="")
+        self.US20()
+        return self.family['@F11@'].line_num # for test: the line num of @F11@
+        
 
 def main():
     # there are several gedcom files
     """ myfamily.ged """
     repo1 = Repo()
-    repo1.read_file('ged/myfamily.ged')
+    repo1.read_file('ged/My-Family.ged')
     print("\n\nTest file: myfamily.ged")
     print("\n Individual Summary")
     repo1.individual_table()
 
     print("\n Family Summary")
     repo1.family_table()
+    
     repo1.US01()
     repo1.US02()
     repo1.US07()
@@ -623,7 +677,6 @@ def main():
     """us17.ged"""
     repo3 = Repo()
     repo3.read_file('ged/us17.ged')
-
     repo3.US17()
 
     """Yuan"""
@@ -633,6 +686,8 @@ def main():
     repo1.US20()
     repo1.US29()
     repo1.US30()
+    repo1.US39()
+    repo1.US40()
     
     """Ged for US21"""
     repo4 = Repo()

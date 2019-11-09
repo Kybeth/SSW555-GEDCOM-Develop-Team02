@@ -22,6 +22,16 @@ class UserStoryTest(unittest.TestCase):
         self.assertNotEqual(repo.US02(), False)
         self.assertTrue(repo.US02())
 
+    def test_US21(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertNotEqual(repo.US21(), list())
+
+    def test_US22(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertNotEqual(repo.US22(), list())
+
     """Anirudh Bezzam"""
 
     def test_US03(self):
@@ -116,56 +126,59 @@ class UserStoryTest(unittest.TestCase):
 
     def test_US09(self):  # Birth before death of parents
         repo = Repo()
-        repo.read_file("ged/test_yz.ged")
+        repo.read_file("ged/My-Family.ged")
         result = repo.US09()
-        expect = {'I7', 'I9'}
+        expect = {'@I21@', '@I20@', '@I5@'}
         self.assertEqual(result, expect)
 
     def test_US10(self):  # Marriage after 14
         repo = Repo()
-        repo.read_file("ged/test_yz.ged")
+        repo.read_file("ged/My-Family.ged")
         result = repo.US10()
-        expect = {'I2', 'I3'}
+        expect = {'@I20@', '@I19@', '@I2@', '@I21@', '@I15@', '@I14@', '@I18@', '@I23@', '@I26@', '@I5@', '@I1@', '@I3@'}
         self.assertEqual(result, expect)
 
     def test_US19(self):  # First cousins should not marry
         repo = Repo()
-        repo.read_file("ged/test_yz.ged")
+        repo.read_file("ged/My-Family.ged")
         result = repo.US19()
-        expect = {'F4', 'F5'}
+        expect = {'@F9@', '@F8@', '@F12@', '@F11@'}
         self.assertEqual(result, expect)
 
     def test_US20(self):  # Aunts and uncles
         repo = Repo()
-        repo.read_file("ged/test_yz.ged")
+        repo.read_file("ged/My-Family.ged")
         result = repo.US20()
-        expect = {'F5'}
+        expect = {'@F12@'}
         self.assertEqual(result, expect)
-
-    def test_US21(self):
-        repo = Repo()
-        repo.read_file("ged/My-Family-28-Oct-2019-667.ged")
-        self.assertNotEqual(repo.US21(), list())
-
-    def test_US22(self):
-        repo = Repo()
-        repo.read_file("ged/myfamily.ged")
-        self.assertNotEqual(repo.US22(), list())
 
     def test_US29(self):  # List deceased
         repo = Repo()
-        repo.read_file("ged/test_yz.ged")
+        repo.read_file("ged/My-Family.ged")
         result = repo.US29()
-        expect = {'I1', 'I5'}
+        expect = {'@I1@', '@I22@', '@I2@', '@I14@', '@I4@'}
         self.assertEqual(result, expect)
 
     def test_US30(self):  # List living married
         repo = Repo()
-        repo.read_file("ged/test_yz.ged")
+        repo.read_file("ged/My-Family.ged")
         result = repo.US30()
-        expect = {'I2', 'I3', 'I4', 'I6', 'I7', 'I8', 'I9', 'I10'}
+        expect = {'@I19@', '@I26@', '@I8@', '@I15@', '@I20@', '@I12@', '@I13@', '@I16@', '@I18@', '@I5@', '@I24@', '@I21@', '@I25@', '@I6@', '@I7@'}
         self.assertEqual(result, expect)
 
+    def test_US39(self):  # List living married
+        repo = Repo()
+        repo.read_file("ged/My-Family.ged")
+        result = repo.US39()
+        expect = {'@F11@', '@F12@'}
+        self.assertEqual(result, expect)
+    
+    def test_US40(self):  # List living married
+        repo = Repo()
+        repo.read_file("ged/My-Family.ged")
+        result = repo.US40()
+        expect = 361
+        self.assertEqual(result, expect)
 
     """Test for sprint3: US35 & US25- By Tanvi"""
 
