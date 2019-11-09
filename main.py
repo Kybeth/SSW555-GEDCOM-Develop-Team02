@@ -385,6 +385,59 @@ class Repo:
 
 
     """Tanvi Hanamshet"""
+    def US05(self):#  US05 Marriage before death - By Tanvi
+        j = list()
+        for key, individual in self.individual.items():
+            for k, family in self.family.items():
+                if individual.death != 'NA' and family.marriage != 'NA':
+                    if individual.death > family.marriage:
+                        j.append(['ANOMALY US05', key])
+                        print('ANOMALY: FAMILY: US05: ' + str(family.line_num) + str(key) + ' individual ' + str(key) + ' Divorced ' + family.marriage + ' before death on ' + individual.death)
+        print(j)##test case
+        return j
+
+
+    """US06 Divorce before death - By Tanvi"""
+    def US06(self):
+        error = list()
+        for key, individual in self.individual.items():
+            for k, family in self.family.items():
+                if individual.death != 'NA' and family.divorced != 'NA':
+                    error.append(['ANOMALY US06', key])
+                    print('ANOMALY: FAMILY: US06: ' + str(family.line_num) + str(key) + ' individual ' + str(key) + ' Marriage ' + family.divorced + ' before death on ' + individual.death)
+
+        return error
+
+
+
+    def US15(self): # Tanvi - Fewer than 15 siblings
+        false = False
+        for key, individual in self.individual.items():
+            if(individual.partner != 'NA' and individual.child != 'NA'):
+                for p in individual.partner:
+                    for c in individual.child:
+                        famc = self.family[c]
+                        if(famc.children != 'NA'):
+                            if len(famc.children) < 15:
+                                print(f"Error: FAMILY: US15: Family '{key}'  has '{len(famc.children)}' number of children. No more than fourteen children should be born in each family.")
+                                false = True
+        
+        return false
+
+
+    """Tanvi - Male last names"""
+    def US16(self):
+        error = list()
+        for key, individual in self.individual.items():
+            if individual.gender != 'NA':
+                if individual.gender == 'M':
+                    error.append(['ANOMALY US16', key])
+                    last_name_male = individual.name.split('/')[1]
+                    print(f" ANOMALY: FAMILY: US16: Male {key} whose last name is {last_name_male}")
+                   
+        return error
+
+
     """unique first name in family"""
     def US25(self):
         result = list()
@@ -615,10 +668,10 @@ def main():
     repo1.read_file('ged/myfamily.ged')
     print("\n\nTest file: myfamily.ged")
     print("\n Individual Summary")
-    repo1.individual_table()
+    # repo1.individual_table()
 
     print("\n Family Summary")
-    repo1.family_table()
+    # repo1.family_table()
     repo1.US01()
     repo1.US02()
     repo1.US07()
@@ -629,6 +682,10 @@ def main():
     repo1.US28()
     repo1.US25()
     repo1.US38()
+    repo1.US05()
+    repo1.US06()
+    repo1.US15()
+    repo1.US16()
     
     
 
