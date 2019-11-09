@@ -167,7 +167,7 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(result, expect)
 
 
-    """Test for sprint3: US35 & US25- By Tanvi"""
+    """By Tanvi"""
     def test_US05(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
