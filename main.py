@@ -363,6 +363,83 @@ class Repo:
         return result
 
     """Tanvi Hanamshet"""
+    def US05(self):#  US05 Marriage before death - By Tanvi
+        j = list()
+        for key, individual in self.individual.items():
+            for k, family in self.family.items():
+                if individual.death != 'NA' and family.marriage != 'NA':
+                    if individual.death > family.marriage:
+                        j.append(['ANOMALY US05', key])
+                        print('ANOMALY: FAMILY: US05: ' + str(family.line_num) + str(key) + ' individual ' + str(key) + ' Divorced ' + family.marriage + ' before death on ' + individual.death)
+        print(j)##test case
+        return j
+
+    """US06 Divorce before death - By Tanvi"""
+    def US06(self):
+        error = list()
+        for key, individual in self.individual.items():
+            for k, family in self.family.items():
+                if individual.death != 'NA' and family.divorced != 'NA':
+                    error.append(['ANOMALY US06', key])
+                    print('ANOMALY: FAMILY: US06: ' + str(family.line_num) + str(key) + ' individual ' + str(key) + ' Marriage ' + family.divorced + ' before death on ' + individual.death)
+
+        print(error)##test case
+        return error
+
+
+    def US15(self): # Tanvi - Fewer than 15 siblings
+        false = False
+        for key, individual in self.individual.items():
+            if(individual.partner != 'NA' and individual.child != 'NA'):
+                for p in individual.partner:
+                    for c in individual.child:
+                        famc = self.family[c]
+                        if(famc.children != 'NA'):
+                            if len(famc.children) < 15:
+                                print(f"Error: FAMILY: US15: Family '{key}'  has '{len(famc.children)}' number of children. No more than fourteen children should be born in each family.")
+                                false = True
+        print(false)
+        # return false
+
+
+    """Tanvi - Male last names"""
+    def US16(self):
+        error = list()
+        for key, individual in self.individual.items():
+            if individual.gender != 'NA':
+                if individual.gender == 'M':
+                    error.append(['ANOMALY US16', key])
+                    last_name_male = individual.name.split('/')[1]
+                    print(f" ANOMALY: FAMILY: US16: Male {key} whose last name is {last_name_male}")
+        print(error)           
+        return error
+
+
+    def US26(self):
+        invalid_list = list()
+        fam_id = list()
+        for k, individual in self.individual.items():
+            for key, fam in self.family.items(): 
+                fam_id.append(key) 
+                                
+                husband = self.individual["".join(fam.husband_id)]
+                wife = self.individual["".join(fam.wife_id)]
+                if husband.gender != 'M':
+                    invalid_list.append("Misgendered husband in family: " + key)
+                else:
+                    invalid_list.append("Missing husband: " + husband.id +" in family: " + key)
+                if wife.gender != 'M':
+                    invalid_list.append("Misgendered husband in family: " + key)
+                else:
+                    invalid_list.append("Missing wife: " + wife.id + " in family: " + key)
+                if(individual.child != 'NA'):
+                    for child in individual.child:
+                        if child not in fam_id:
+                            invalid_list.append("Missing child: " + child + " in family: " + key)
+                       
+                            
+        # print(invalid_list)
+
     """unique first name in families"""
     def US25(self):
         result = list()
@@ -398,6 +475,26 @@ class Repo:
                     print("ANOMALY: INDIVIDUAL: US35: " + str(individual.line_num) + " : " + key +" People who were born in the last 30 days are "+ individual.name + " on "+individual.birthday)
                     result.append(key)
         return result
+
+    """ List all people who were death in the last 30 days.-Tanvi """
+    def US36(self):
+        result = list()
+        for key, individual in self.individual.items():
+            if individual.death != 'NA':
+                d1 = datetime.strptime(individual.death, '%Y-%m-%d')
+                d2 = (datetime.today().strftime('%Y-%m-%d'))
+                d2 = datetime.strptime(d2, '%Y-%m-%d')
+                # print(d1, d2)
+                conversion = {'days':1,'months':30.4,'years':365.25}
+                diff = abs((d1 - d2).days)
+                if diff >= 0 and diff <30.4:
+                    time_typ = 'days'
+                    diff1 = diff/conversion[time_typ]
+                    if time_typ == 'days' and diff1 <= 30:
+                        print("ANOMALY: INDIVIDUAL: US35: " + str(individual.line_num) + " : " + key +" People who were dead in the last 30 days are "+ individual.name + " on "+individual.birthday)
+                        result.append(key)
+        return result
+
 
 
     """Lifu Xiao"""
