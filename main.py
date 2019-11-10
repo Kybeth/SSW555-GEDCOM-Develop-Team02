@@ -137,6 +137,18 @@ class Repo:
                 result.append("N")
                 result.append(tag)
 
+    
+    """These 2 modules is to convert an integer result for the datetime modules as we were facing attribute errors""" # by Das
+    def calculate_abs_date(self, date1, date2, limit, unit):
+        """Function to check dates are in given range(limit)"""
+        standardunit = {'days': 1, 'months': 30.4, 'year': 365.25}
+        return abs((date1 - date2).days / standardunit[unit]) >= limit
+
+    def stringify_date(self, value):
+        """Function to convert string to date having format as YYYY-MM-DD"""
+        value = datetime.strptime(value, '%Y-%m-%d')
+        return value
+
     """Vignesh Mohan"""
 
     """US01 Dates before current date"""
@@ -196,31 +208,8 @@ class Repo:
                         print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
         return result
     
-    '''
-    """US12 - Parents not too old"""
-    def US12(self):    
-    
-        result = False
-        problem_families = {}
-        for key, individual in self.individual.items():
-            for key, fam in self.family.items():
-                husb = self.individual["".join(fam.husband_id)]
-                husband_age = husb.age
-                wife = self.individual["".join(fam.wife_id)]
-                wife_age = wife.age
 
-                if(individual.child != 'NA'):
-                    for c in individual.child:
-                        #child = individual_data[person]
-                        child_age = datetime.strptime(individual.birthday, '%Y-%m-%d')
-                        if len(wife_age - child_age) > 60:
-                            print("US12 ANOMALY: Fam " + fam.id + ": The mother",wife.id," is more than 60 years older than her child")
-                        elif len(husband_age - child_age) > 80:
-                            print("US12 ANOMALY: Fam " + fam.id + ": The father", husb.id," is more than 60 years older than his child") 
 
-        return problem_families
-        return result
-        '''
     
     """US21 Correct gender for role"""
     def US21(self):
@@ -628,6 +617,7 @@ def main():
     repo1.US27()
     repo1.US28()
     repo1.US25()
+    #repo1.US33()
     repo1.US38()
     
     
@@ -637,6 +627,7 @@ def main():
     repo2.read_file('ged/das.ged')
     repo2.US03()
     repo2.US04()
+    repo2.US12()
     repo2.US13()
     repo2.US14()
     repo2.US22()
