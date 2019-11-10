@@ -136,16 +136,15 @@ class Repo:
                 result.append("N")
                 result.append(tag)
 
-    def stringify_date(self, value):
-        """String to date conversion for resolving US12"""
-        value = datetime.strptime(value, '%Y-%m-%d')
-        return value
+    def stringify_dates(self, value):
+            """String the instance of the datetime"""
+            value = datetime.strptime(value, '%Y-%m-%d')
+            return value
 
-    def calc_abs_date(self, date1, date2, limit, unit):
-        """Returns abs value of ranges in dates"""
+    def calc_abs_dates(self, date1, date2, limit, unit):
+        """Calculate the absolute values and limit ranges of dates"""
         standardunit = {'days': 1, 'months': 30.4, 'year': 365.25}
         return abs((date1 - date2).days / standardunit[unit]) >= limit
-        
         
 
     """Vignesh Mohan"""
@@ -215,18 +214,17 @@ class Repo:
             mother = list(family.wife_id)[0]
             father = list(family.husband_id)[0]
             for child in listofchildren:
-                if self.stringify_date(self.calc_abs_date(self.individual[mother].birthday),
-                                  self.calc_abs_date(self.individual[child].birthday), 60, "year"):
+                if self.calc_abs_dates(self.stringify_dates(self.individual[mother].birthday),
+                                  self.stringify_dates(self.individual[child].birthday), 60, "year"):
                     print(
                         "Error: FAMILY : US12 : " + key + " : Mother " + mother + " should not be less than 60 years older than her child " + child)
                     result = True
-                if self.stringify_date(self.calc_abs_date(self.individual[father].birthday),
-                                  self.calc_abs_date(self.individual[child].birthday), 80, "year"):
+                if self.calc_abs_dates(self.stringify_dates(self.individual[father].birthday),
+                                  self.stringify_dates(self.individual[child].birthday), 80, "year"):
                     print(
                         "Error: FAMILY : US12 : " + key + " : Father " + father + " should not be less than 80 years older than his child " + child)
                     result = True
         return result
-                
     
     """US21 Correct gender for role"""
     def US21(self):
@@ -852,6 +850,7 @@ def main():
     repo2.US22()
     repo2.US23()
     repo2.US24()
+    repo2.US12()
 
     """us17.ged"""
     repo3 = Repo()
