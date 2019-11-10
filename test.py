@@ -167,7 +167,33 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(result, expect)
 
 
-    """Test for sprint3: US35 & US25- By Tanvi"""
+    """By Tanvi"""
+    def test_US05(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US05(), [['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@']])
+
+    def test_US06(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US06(), [['ANOMALY US06', '@I1@'], ['ANOMALY US06', '@I2@'], ['ANOMALY US06', '@I4@'], ['ANOMALY US06', '@I14@'], ['ANOMALY US06', '@I22@']])
+
+
+    def test_US15(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US15(), True)
+
+
+    def test_US16(self):
+        repo = Repo()
+        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/myfamily.ged")
+        self.assertEqual(repo.US16(), [['ANOMALY US16', '@I1@'], ['ANOMALY US16', '@I3@'], ['ANOMALY US16', '@I5@'], ['ANOMALY US16', '@I7@'], ['ANOMALY US16', '@I11@'], ['ANOMALY US16', '@I13@'], ['ANOMALY US16', '@I15@'], ['ANOMALY US16', '@I19@'], ['ANOMALY US16', '@I20@'], ['ANOMALY US16', '@I22@'], ['ANOMALY US16', '@I24@'], ['ANOMALY US16', '@I25@']])
+        
 
     def test_US25(self):
         repo = Repo()
