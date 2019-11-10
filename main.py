@@ -136,6 +136,17 @@ class Repo:
                 result.append("N")
                 result.append(tag)
 
+    def stringify_date(self, value):
+    """String to date conversion for resolving US12"""
+        value = datetime.strptime(value, '%Y-%m-%d')
+        return value
+
+    def calc_abs_date(self, date1, date2, limit, unit):
+        """Returns abs value of ranges in dates"""
+        standardunit = {'days': 1, 'months': 30.4, 'year': 365.25}
+        return abs((date1 - date2).days / standardunit[unit]) >= limit
+        
+
     """Vignesh Mohan"""
 
     """US01 Dates before current date"""
@@ -292,6 +303,7 @@ class Repo:
             return_flag = False   
         return return_flag 
     '''
+
 
     """List Multiple Births"""
     def US32(self):
