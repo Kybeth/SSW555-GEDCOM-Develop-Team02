@@ -118,9 +118,18 @@ class UserStoryTest(unittest.TestCase):
     def test_US28(self):
         repo = Repo()
         repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US28()[0], [
-                         (-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
+        self.assertEqual(repo.US28()[0], [(-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
         self.assertEqual(repo.US28()[1], [(85, '@I1@'), (239, '@I24@')])
+
+    def test_US37(self):
+        repo = Repo()
+        repo.read_file("ged/My-Family.ged")
+        self.assertEqual(repo.US37(), ['@I7@'])
+    
+    def test_US38(self):
+        repo = Repo()
+        repo.read_file("ged/My-Family.ged")
+        self.assertEqual(repo.US38(), ['@I13@'])
 
     """Yuan Zhang"""
 
@@ -156,14 +165,14 @@ class UserStoryTest(unittest.TestCase):
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US29()
-        expect = {'@I1@', '@I22@', '@I2@', '@I14@', '@I4@'}
+        expect = {'@I1@', '@I7@', '@I22@', '@I4@', '@I14@', '@I2@'}
         self.assertEqual(result, expect)
 
     def test_US30(self):  # List living married
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US30()
-        expect = {'@I19@', '@I26@', '@I8@', '@I15@', '@I20@', '@I12@', '@I13@', '@I16@', '@I18@', '@I5@', '@I24@', '@I21@', '@I25@', '@I6@', '@I7@'}
+        expect = {'@I19@', '@I6@', '@I13@', '@I21@', '@I18@', '@I20@', '@I25@', '@I26@', '@I16@', '@I15@', '@I24@', '@I5@', '@I12@'}
         self.assertEqual(result, expect)
 
     def test_US39(self):  # List living married
@@ -177,7 +186,7 @@ class UserStoryTest(unittest.TestCase):
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US40()
-        expect = 361
+        expect = 363
         self.assertEqual(result, expect)
 
     """Test for sprint3: US35 & US25- By Tanvi"""

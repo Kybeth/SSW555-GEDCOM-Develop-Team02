@@ -483,7 +483,7 @@ class Repo:
                     for child in individual.child:
                         if child not in fam_id:
                             invalid_list.append("Missing child: " + child + " in family: " + key)
-                       
+
                             
         # print(invalid_list)
 
@@ -620,10 +620,43 @@ class Repo:
                     age = self.individual[c].age
                     chil[age] = c
                 chil = sorted(chil.items())
-                print('Siblings in '+key+':')
+                print('US28: Siblings in '+key+':')
                 for k,v in chil:
                     print (v+': '+str(k))
                 result.append(chil)
+        return result
+
+    def US37(self): #  List recent survivors
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.death != 'NA'):
+                death_date = datetime.today() - datetime.strptime(individual.death, '%Y-%m-%d')
+                if(death_date <= timedelta(days=30) and death_date > timedelta(days=0)):
+                    if(individual.partner != 'NA'):
+                        for family in individual.partner:
+                            fam = self.family[family]
+                            indi = fam.wife_id | fam.husband_id | fam.children
+                            namelist = str()
+                            for i in indi:
+                                if(self.individual[i].alive == 'TRUE'):
+                                    namelist +=(i + ' ')
+                            print('US37: living spouses and descendants of ' + individual.id + ' :' + namelist)
+                            result.append(individual.id)
+        return result
+    
+    def US38(self): #  List upcoming birthdays
+        result = list()
+        for key, individual in self.individual.items():
+            if(individual.birthday != 'NA'):
+                birthday = datetime.strptime(individual.birthday, '%Y-%m-%d')
+                today = datetime.today()
+                if(birthday.month, birthday.day) >= (today.month, today.day):
+                    birthday = birthday.replace(year=today.year)
+                else:
+                    birthday = birthday.replace(year=today.year + 1)
+                if(birthday - today <= timedelta(days=30)):
+                    print('US38: upcoming birthdays:' + key)
+                    result.append(key)
         return result
 
     """Yuan Zhang"""
@@ -805,8 +838,8 @@ def main():
     repo1.US28()
     repo1.US25()
     repo1.US32()
-    
-    
+    repo1.US37()
+    repo1.US38()
 
     """ das.ged """
     repo2 = Repo()
