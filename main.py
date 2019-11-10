@@ -206,31 +206,7 @@ class Repo:
                         print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
         return result
     
-    '''
-    """US12 - Parents not too old"""
-    def US12(self):    
-    
-        result = False
-        problem_families = {}
-        for key, individual in self.individual.items():
-            for key, fam in self.family.items():
-                husb = self.individual["".join(fam.husband_id)]
-                husband_age = husb.age
-                wife = self.individual["".join(fam.wife_id)]
-                wife_age = wife.age
 
-                if(individual.child != 'NA'):
-                    for c in individual.child:
-                        #child = individual_data[person]
-                        child_age = datetime.strptime(individual.birthday, '%Y-%m-%d')
-                        if len(wife_age - child_age) > 60:
-                            print("US12 ANOMALY: Fam " + fam.id + ": The mother",wife.id," is more than 60 years older than her child")
-                        elif len(husband_age - child_age) > 80:
-                            print("US12 ANOMALY: Fam " + fam.id + ": The father", husb.id," is more than 60 years older than his child") 
-
-        return problem_families
-        return result
-        '''
     
     """US21 Correct gender for role"""
     def US21(self):
