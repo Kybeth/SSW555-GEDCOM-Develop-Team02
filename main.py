@@ -137,7 +137,7 @@ class Repo:
                 result.append(tag)
 
     def stringify_date(self, value):
-    """String to date conversion for resolving US12"""
+        """String to date conversion for resolving US12"""
         value = datetime.strptime(value, '%Y-%m-%d')
         return value
 
