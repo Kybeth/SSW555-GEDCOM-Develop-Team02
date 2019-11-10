@@ -136,6 +136,17 @@ class Repo:
                 result.append("N")
                 result.append(tag)
 
+    def stringify_date(self, value):
+        """String to date conversion for resolving US12"""
+        value = datetime.strptime(value, '%Y-%m-%d')
+        return value
+
+    def calc_abs_date(self, date1, date2, limit, unit):
+        """Returns abs value of ranges in dates"""
+        standardunit = {'days': 1, 'months': 30.4, 'year': 365.25}
+        return abs((date1 - date2).days / standardunit[unit]) >= limit
+        
+
     """Vignesh Mohan"""
 
     """US01 Dates before current date"""
@@ -195,31 +206,15 @@ class Repo:
                         print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
         return result
     
-    '''
-    """US12 - Parents not too old"""
-    def US12(self):    
-    
+    def US12(self):
+        """US12 - Mother should be less than 60 years older than her children and father should be less than 80 years older than his children"""
         result = False
-        problem_families = {}
-        for key, individual in self.individual.items():
-            for key, fam in self.family.items():
-                husb = self.individual["".join(fam.husband_id)]
-                husband_age = husb.age
-                wife = self.individual["".join(fam.wife_id)]
-                wife_age = wife.age
-
-                if(individual.child != 'NA'):
-                    for c in individual.child:
-                        #child = individual_data[person]
-                        child_age = datetime.strptime(individual.birthday, '%Y-%m-%d')
-                        if len(wife_age - child_age) > 60:
-                            print("US12 ANOMALY: Fam " + fam.id + ": The mother",wife.id," is more than 60 years older than her child")
-                        elif len(husband_age - child_age) > 80:
-                            print("US12 ANOMALY: Fam " + fam.id + ": The father", husb.id," is more than 60 years older than his child") 
-
-        return problem_families
-        return result
-        '''
+        for key, family in self.family.items():
+            listofchildren = list(family.children)
+            mother = list(family.wife_id)[0]
+            father = list(family.husband_id)[0]
+            for child in listofchildren:
+                
     
     """US21 Correct gender for role"""
     def US21(self):
@@ -292,6 +287,7 @@ class Repo:
             return_flag = False   
         return return_flag 
     '''
+
 
     """List Multiple Births"""
     def US32(self):
