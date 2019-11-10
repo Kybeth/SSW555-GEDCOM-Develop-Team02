@@ -214,6 +214,17 @@ class Repo:
             mother = list(family.wife_id)[0]
             father = list(family.husband_id)[0]
             for child in listofchildren:
+                if self.stringify_date(self.calc_abs_date(self.individual[mother].birthday),
+                                  self.calc_abs_date(self.individual[child].birthday), 60, "year"):
+                    print(
+                        "Error: FAMILY : US12 : " + key + " : Mother " + mother + " should not be less than 60 years older than her child " + child)
+                    result = True
+                if self.stringify_date(self.calc_abs_date(self.individual[father].birthday),
+                                  self.calc_abs_date(self.individual[child].birthday), 80, "year"):
+                    print(
+                        "Error: FAMILY : US12 : " + key + " : Father " + father + " should not be less than 80 years older than his child " + child)
+                    result = True
+        return result
                 
     
     """US21 Correct gender for role"""
