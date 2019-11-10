@@ -206,7 +206,15 @@ class Repo:
                         print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
         return result
     
-
+    def US12(self):
+        """US12 - Mother should be less than 60 years older than her children and father should be less than 80 years older than his children"""
+        result = False
+        for key, family in self.family.items():
+            listofchildren = list(family.children)
+            mother = list(family.wife_id)[0]
+            father = list(family.husband_id)[0]
+            for child in listofchildren:
+                
     
     """US21 Correct gender for role"""
     def US21(self):
