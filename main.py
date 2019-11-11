@@ -183,6 +183,7 @@ class Repo:
                         result = True
         return result
     
+    '''
     """US11 - No Bigamy"""
     def US11(self):
         result = False
@@ -205,7 +206,8 @@ class Repo:
                         print ("User Story 11 - No bigamy.\n")
                         print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
         return result
-    
+    '''
+
     def US12(self):
         """US12 - Mother should be less than 60 years older than her children and father should be less than 80 years older than his children"""
         result = False
@@ -297,7 +299,6 @@ class Repo:
             return_flag = False   
         return return_flag 
     '''
-
 
     """List Multiple Births"""
     def US32(self):
@@ -407,6 +408,41 @@ class Repo:
                 print("Error: FAMILY : US24: " + str(family.line_num) + "More than one family with the same spouses by name " + family_dic_key[0] + " and the same marriage date " + family_dic_key[1])
                 result = True
         return result
+    
+    '''
+    def US33(self):
+        return_flag = False
+        error_type = "US33"
+        currentDate = datetime.now()
+        orphans=[]
+        for family in families:
+            hus = family.husbandID
+            wife = family.wifeID
+            children = family.children
+            count = 0
+            for individual in individuals:
+                if hus == individual.uid or wife == individual.uid:
+                    if individual.alive == False:
+                        count = count + 1
+
+            if count == 2:
+                for child in children:
+                    for individual in individuals:
+                        if child == individual.uid:
+                            birthdate = individual.birthday
+                            birthdate = datetime(birthdate.year, birthdate.month, birthdate.day)
+                            age = (currentDate-birthdate).days/365.25
+                            if age < 18:
+                                orphans.append(individual.name)
+                                
+        if orphans!=[]:
+            error_descrip = 'List of Orphans: '+str(orphans)
+            
+            report_list('LIST ', error_type, error_descrip)
+            return_flag = False                                                
+    
+    return return_flag
+    '''
 
     """Tanvi Hanamshet"""
     def US05(self):#  US05 Marriage before death - By Tanvi
@@ -831,12 +867,14 @@ def main():
     repo1.US02()
     repo1.US07()
     repo1.US08()
-    repo1.US11()
+    #repo1.US11()
     repo1.US18()
     repo1.US27()
     repo1.US28()
     repo1.US25()
+    #repo1.US31()
     repo1.US32()
+    #repo2.US33()
     repo1.US37()
     repo1.US38()
 
@@ -873,10 +911,12 @@ def main():
 
     repo4.US21()
 
+    '''
     """Ged for US11"""
     repo5 = Repo()
     repo5.read_file('ged/My-Family-29-Oct-2019-620.ged')
     repo5.US11()
+    '''
 
     """Ged for US35"""
     repo5 = Repo()

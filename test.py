@@ -48,11 +48,13 @@ class UserStoryTest(unittest.TestCase):
         self.assertNotEqual(repo.US04(), False)
         self.assertTrue(repo.US04())
     
+    '''
     def test_US11(self):
         repo = Repo()
         repo.read_file("ged/My-Family-29-Oct-2019-620.ged")
         self.assertNotEqual(repo.US11(), True)
         self.assertFalse(repo.US11())
+    '''
 
     def test_US13(self):
         repo = Repo()
