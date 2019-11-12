@@ -408,6 +408,30 @@ class Repo:
                 result = True
         return result
 
+    def US34(self):
+        """
+        prints all couples that when they married they were twice as old as the other spouse.
+        It doesn't matter if they're alive or dead as this is when they got married.
+        Must have birth and married date.
+        """
+        result = False
+        today = datetime.today()
+        date = today - timedelta(days=30)
+        list_result = list()
+        for indi in self.individual.values():
+            try:
+                bday = datetime.strptime(indi.birthday, '%Y-%m-%d')
+                if today >= bday >= date:
+                    result = True
+                    list_result.append(
+                        "Individual ID: " + indi.id + " Name: " + indi.name + " Large age differences: " + indi.birthday)
+            except ValueError:
+                pass
+        print("US34: List of large age differences are the following:")
+        print('\n'.join(str(age_diff) for age_diff in list_result))
+        return result
+
+
     """Tanvi Hanamshet"""
     def US05(self):#  US05 Marriage before death - By Tanvi
         j = list()
@@ -840,6 +864,7 @@ def main():
     repo1.US32()
     repo1.US37()
     repo1.US38()
+    
 
     """ das.ged """
     repo2 = Repo()
@@ -852,6 +877,8 @@ def main():
     repo2.US22()
     repo2.US23()
     repo2.US24()
+    repo2.US34()
+
 
     """us17&27.ged"""
     repo3 = Repo()
