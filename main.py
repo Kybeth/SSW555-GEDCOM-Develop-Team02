@@ -464,7 +464,7 @@ class Repo:
                     if individual.death > family.marriage:
                         j.append(['ANOMALY US05', key])
                         print('ANOMALY: FAMILY: US05: ' + str(family.line_num) + str(key) + ' individual ' + str(key) + ' Divorced ' + family.marriage + ' before death on ' + individual.death)
-        print(j)##test case
+        
         return j
 
     """US06 Divorce before death - By Tanvi"""
@@ -476,7 +476,7 @@ class Repo:
                     error.append(['ANOMALY US06', key])
                     print('ANOMALY: FAMILY: US06: ' + str(family.line_num) + str(key) + ' individual ' + str(key) + ' Marriage ' + family.divorced + ' before death on ' + individual.death)
 
-        print(error)##test case
+        
         return error
 
 
@@ -491,8 +491,8 @@ class Repo:
                             if len(famc.children) < 15:
                                 print(f"Error: FAMILY: US15: Family '{key}'  has '{len(famc.children)}' number of children. No more than fourteen children should be born in each family.")
                                 false = True
-        print(false)
-        # return false
+        
+        return false
 
 
     """Tanvi - Male last names"""
@@ -504,7 +504,7 @@ class Repo:
                     error.append(['ANOMALY US16', key])
                     last_name_male = individual.name.split('/')[1]
                     print(f" ANOMALY: FAMILY: US16: Male {key} whose last name is {last_name_male}")
-        print(error)           
+                  
         return error
 
 
@@ -889,6 +889,14 @@ def main():
     repo1.US37()
     repo1.US38()
     repo1.US33()
+    repo1.US05()
+    repo1.US06()
+    repo1.US15()
+    repo1.US16()
+    repo1.US25()
+    # repo1.US26()
+    repo1.US35()
+    repo1.US36()
     
 =======
 >>>>>>> 7b0d9d67520c0560f96bf9566a73035448849a3e
