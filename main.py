@@ -152,23 +152,27 @@ class Repo:
     """US01 Dates before current date"""
     def US01(self):
         #getting todays date 
-        today = datetime.today().strftime('%Y-%m-%d')
+        today = str(date.today())
 
         result = False
         for key, individual in self.individual.items():
             for key, family in self.family.items():
-                if individual.birthday > today:
-                    print("Error US01:-Birthdate ", individual.birthday ,"is after current date")
-                    result = True
-                if individual.death > today:
-                    print("Error US01:- Deathdate ", individual.death ,"is after current date")
-                    result = True
-                if family.marriage > today:
-                    print("Error US01:- MarriageDate ", family.marriage ,"is after current date")
-                    result = True
-                if family.divorced > today:
-                    print("Error US01:- DivorceDate ", family.divorced,"is after current date")
-                    result = True
+                if individual.birthday != 'NA':
+                    if individual.birthday > today:
+                        print("Error US01:-Birthdate ", individual.birthday ,"is after current date")
+                        result = True
+                if individual.death != 'NA':
+                    if individual.death > today:
+                        print("Error US01:- Deathdate ", individual.death ,"is after current date")
+                        result = True
+                if family.marriage != 'NA':
+                    if family.marriage > today:
+                        print("Error US01:- MarriageDate ", family.marriage ,"is after current date")
+                        result = True
+                if family.divorced != 'NA':
+                    if family.divorced > today:
+                        print("Error US01:- DivorceDate ", family.divorced,"is after current date")
+                        result = True
         return result
 
     """US02 Birth before Marriage"""
