@@ -866,6 +866,16 @@ def main():
 
     print("\n Family Summary")
     repo1.family_table()
+    
+    """Tanvi Hanamshet"""
+    repo1.US05()
+    repo1.US06()
+    repo1.US15()
+    repo1.US16()
+    repo1.US25()
+    repo1.US26()
+    repo1.US35()
+    repo1.US36()
 
     """Vignesh Mohan"""
     repo1.US01()
@@ -908,10 +918,7 @@ def main():
     repo1.US39()
     repo1.US40()
 
-    """Ged for US35"""
-    repo5 = Repo()
-    repo5.read_file('ged/My-Family-29-Oct-2019-793.ged')
-    repo5.US35()
+    
 
 if __name__ == '__main__':
     main()
