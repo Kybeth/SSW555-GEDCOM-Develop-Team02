@@ -112,8 +112,8 @@ class UserStoryTest(unittest.TestCase):
 
     def test_US27(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US27(), list())
+        repo.read_file("ged/us17.ged")
+        self.assertEqual(repo.US27(),  ['@I1@'])
 
     def test_US28(self):
         repo = Repo()
