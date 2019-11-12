@@ -201,17 +201,17 @@ class Repo:
                             if family.divorced!='NA' and family.divorced>family2.married:
                                 error = "Bigamy detected!"
                                 error_loc = [family.id,family2.id]
-                            print("\n########  US11  ########")
-                            print("ERROR US11: " + str(family.line_num) + ":" +" Marriage should not occur during marriage to another spouse:\n" + family.id)
-                            print("")
+                            #print("\n########  US11  ########")
+                            print("ERROR US11: " + str(family.line_num) + ":" +" Marriage should not occur during marriage to another spouse:" + family.id)
+                            #print("")
 
                         if family.marriage>family2.marriage:
                             if family.divorced!='NA' and family.divorced<family2.marriage:
                                 error = "Bigamy detected!"
                                 error_loc = [family.uid,family2.id]
-                            print("\n########  US11  ########")
-                            print("ERROR US11:" + str(family.line_num) +  ":" + " Marriage should not occur during marriage to another spouse:\n" + family.id)
-                            print("")
+                            #print("\n########  US11  ########")
+                            print("ERROR US11:" + str(family.line_num) +  ":" + " Marriage should not occur during marriage to another spouse:" + family.id)
+                            #print("")
         return result
 
     def US12(self):
@@ -225,12 +225,12 @@ class Repo:
                 if self.calc_abs_dates(self.stringify_dates(self.individual[mother].birthday),
                                   self.stringify_dates(self.individual[child].birthday), 60, "year"):
                     print(
-                        "Error: FAMILY : US12 : " + key + " : Mother " + mother + " should not be less than 60 years older than her child " + child)
+                        "Error: FAMILY : US12 : " + str(family.line_num) + " :" + key + " : Mother " + mother + " should not be less than 60 years older than her child " + child)
                     result = True
                 if self.calc_abs_dates(self.stringify_dates(self.individual[father].birthday),
                                   self.stringify_dates(self.individual[child].birthday), 80, "year"):
                     print(
-                        "Error: FAMILY : US12 : " + key + " : Father " + father + " should not be less than 80 years older than his child " + child)
+                        "Error: FAMILY : US12 : " + str(family.line_num) + " :" + key + " : Father " + father + " should not be less than 80 years older than his child " + child)
                     result = True
         return result
     
@@ -298,7 +298,7 @@ class Repo:
                             people.append(name)
             print("ERROR: INDIVIDUAL: US31: " + str(family.line_num) + ':' +" All living people over 30 in family " + family.id + " who have never been married are: " + individual.name)
         return result   
-
+ 
     """List Multiple Births"""
     def US32(self):
         result = False
@@ -724,6 +724,7 @@ class Repo:
                             error.add(key)
         return error
 
+    '''
     def US10(self): # US10 Marriage after 14 - by Yuan
         res = set()
         for key, individual in self.individual.items(): # scan individual
@@ -737,7 +738,7 @@ class Repo:
                             res.add(key)
                             print('ANOMALY: INDIVIDUAL: US10: ' + str(individual.line_num) + ": " + individual.id + ' married on ' + fam.marriage + ' before 14 years old (born on ' + individual.birthday + ')')
         return res 
-        '''
+        
         for key, fam in self.family.items():
             # identify the husband and wife
             husb = self.individual["".join(fam.husband_id)]
@@ -874,33 +875,16 @@ def main():
 
     print("\n Family Summary")
     repo1.family_table()
-    
-<<<<<<< HEAD
+
+    """Vignesh Mohan"""
     repo1.US01()
     repo1.US02()
-    repo1.US07()
-    repo1.US08()
-    repo1.US18()
+    repo1.US11()
     repo1.US21()
-    repo1.US28()
-    repo1.US25()
+    repo1.US22()
     repo1.US31()
     repo1.US32()
-    repo1.US37()
-    repo1.US38()
-    repo1.US33()
-    repo1.US05()
-    repo1.US06()
-    repo1.US15()
-    repo1.US16()
-    repo1.US25()
-    # repo1.US26()
-    repo1.US35()
-    repo1.US36()
     
-=======
->>>>>>> 7b0d9d67520c0560f96bf9566a73035448849a3e
-
     """ das.ged """
     repo2 = Repo()
     repo2.read_file('ged/das.ged')
@@ -913,7 +897,6 @@ def main():
     repo2.US23()
     repo2.US24()
     repo2.US34()
-    
 
     """Lifu"""
     repo1.US07()
@@ -927,18 +910,13 @@ def main():
     
     """Yuan"""
     repo1.US09()
-    repo1.US10()
+    #repo1.US10()
     repo1.US19()
     repo1.US20()
     repo1.US29()
     repo1.US30()
     repo1.US39()
-    repo1.US40()    
-
-    """Ged for US11"""
-    repo5 = Repo()
-    repo5.read_file('ged/My-Family-29-Oct-2019-620.ged')
-    repo5.US11()
+    repo1.US40()
 
     """Ged for US35"""
     repo5 = Repo()
