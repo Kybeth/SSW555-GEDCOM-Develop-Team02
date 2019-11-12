@@ -270,7 +270,7 @@ class Repo:
     
     """People over 30 who are not married"""
     def US31(self):
-        return_flag = True
+        result = False
         people=[]
         currentDate=str(date.today())
         for key, individual in self.individual.items():
@@ -291,8 +291,7 @@ class Repo:
                         else:
                             people.append(name)
                         print("ERROR: INDIVIDUAL: US31: " + str(family.line_num) + ':' +" All living people over 30 in family " + family.id + " who have never been married are: " + individual.name)
-            return_flag = False   
-        return return_flag 
+        return result   
 
     """List Multiple Births"""
     def US32(self):
@@ -731,7 +730,8 @@ class Repo:
                 error.add(husb.id)
                 error.add(wife.id)
         print(pt)
-        return error   '''  
+        return error   
+        '''  
     
     def US19(self): # US19 First cousins should not marry - by Yuan
         error = set()
@@ -866,7 +866,6 @@ def main():
     repo1.US27()
     repo1.US28()
     repo1.US25()
-    #repo2.US33()
     repo1.US37()
     repo1.US38()
 
