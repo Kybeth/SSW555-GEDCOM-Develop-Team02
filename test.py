@@ -100,35 +100,35 @@ class UserStoryTest(unittest.TestCase):
 
     def test_US07(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/My-Family.ged")
         self.assertEqual(repo.US07(), ['@I22@', '@I24@', '@I25@'])
 
     def test_US08(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US08(), ['@I1@', '@I24@'])
+        repo.read_file("ged/My-Family.ged")
+        self.assertEqual(repo.US08(), ['@I1@', '@I24@', '@I28@', '@I301@'])
 
     def test_US17(self):
         repo = Repo()
-        repo.read_file("ged/us17.ged")
-        self.assertEqual(repo.US17(), ['@I1@', '@I3@'])
+        repo.read_file("ged/My-Family.ged")
+        self.assertEqual(repo.US17(), ['@I101@', '@I301@'])
 
     def test_US18(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
+        repo.read_file("ged/My-Family.ged")
         self.assertEqual(repo.US18(), ['@I12@', '@I13@', '@I15@', '@I16@'])
 
     def test_US27(self):
         repo = Repo()
-        repo.read_file("ged/us17.ged")
-        self.assertEqual(repo.US27(),  ['@I1@'])
+        repo.read_file("ged/My-Family.ged")
+        a = repo.US27()
+        self.assertEqual(repo.US27(),  ['@I101@'])
 
     def test_US28(self):
         repo = Repo()
-        repo.read_file("ged/myfamily.ged")
-        self.assertEqual(repo.US28()[0], [
-                         (-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
-        self.assertEqual(repo.US28()[1], [(85, '@I1@'), (239, '@I24@')])
+        repo.read_file("ged/My-Family.ged")
+        self.assertEqual(repo.US28()[0], [(26, '@I16@'), (34, '@I15@')])
+        self.assertEqual(repo.US28()[1], [(-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
 
     def test_US37(self):
         repo = Repo()
