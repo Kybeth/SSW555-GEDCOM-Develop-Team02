@@ -1,6 +1,6 @@
 from ged import Individual, Family, gedcom_parser
 from prettytable import PrettyTable
-from datetime import datetime
+from datetime import date, datetime
 from datetime import timedelta
 from collections import defaultdict, Counter
 
@@ -268,13 +268,11 @@ class Repo:
         print("US22: Number of duplicate Family IDs:-",len(FamID)-len(famlist1),"\n")
         return result
     
-    '''
     """People over 30 who are not married"""
     def US31(self):
         return_flag = True
-        error_type = "US31"
         people=[]
-        currentDate=datetime.today()
+        currentDate=str(date.today())
         for key, individual in self.individual.items():
             for key, family in self.family.items():
                 birthDate = individual.birthday
@@ -286,26 +284,22 @@ class Repo:
                     if (age > datetime.strptime(currentDate, '%Y-%m-%d')) and datetime.strptime(birthDate, '%Y-%m-%d') > datetime.strptime(currentDate, '%Y-%m-%d'):
                         age = lifeSpan
                     else:
-                        age = lifeSpan-1
-                    if lifeSpan > 30:
+                        age = lifeSpan-timedelta(days=1)
+                    if lifeSpan > timedelta(days=30):
                         if spouse:
                             pass
                         else:
                             people.append(name)
-        if people!=[]:
-            error_descrip = "List of people who are un married is: " + str(people)
-            
-            print('LIST', error_type, error_descrip)
+                        print("ERROR: INDIVIDUAL: US31: " + str(family.line_num) + ':' +" All living people over 30 in family " + family.id + " who have never been married are: " + individual.name)
             return_flag = False   
         return return_flag 
-    '''
 
     """List Multiple Births"""
     def US32(self):
         result = False
         for key, family in self.family.items():
             if len(family.children) > 1:
-                print('ANOMALY: FAMILY: US32: '  + str(family.line_num) + ':' + ' There are multiple births in the family' + ": " + family.id)
+                print('ANOMALY: FAMILY: US32: ' + str(family.line_num) + ':' + ' There are multiple births in the family' + ": " + family.id)
         return result
 
     """Anirudh Bezzam"""
@@ -872,7 +866,6 @@ def main():
     repo1.US27()
     repo1.US28()
     repo1.US25()
-    #repo1.US31()
     repo1.US32()
     #repo2.US33()
     repo1.US37()
@@ -889,6 +882,7 @@ def main():
     repo2.US23()
     repo2.US24()
     repo2.US12()
+    repo2.US31()
 
     """us17.ged"""
     repo3 = Repo()
