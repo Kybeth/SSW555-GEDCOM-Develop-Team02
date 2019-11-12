@@ -183,30 +183,32 @@ class Repo:
                         result = True
         return result
     
-    '''
-    """US11 - No Bigamy"""
+    """No Bigamy"""
     def US11(self):
         result = False
-        for f, fam in self.family.items(): 
-            bigamy_check = {}
-            families = {}
-            for parent_id in bigamy_check:
-                family_group = filter(lambda fam: families[fam].f_key("MARR"),bigamy_check[parent_id])
-                if len(family_group) < 2: 
-                    continue
-                def sortByMarr(family_id, family_idate2):
-                    return dateDiff(families[family_idate2]['MARR'], families[fam.id]['MARR'])
-                family_group = sorted(family_group, sortByMarr)
+        #today=datetime.date.today()
+        for key, family in self.family.items():
+            if family.marriage != 'NA':
+                currentFamId=family.id
+            for key, family2 in self.family.items():
+                if currentFamId!=family.id:
+                    if family.husband_id==family2.husband_id or family.wife_id==family2.wife_id:
+                        if family.marriage<family2.marriage:
+                            if family.divorced!='NA' and family.divorced>family2.married:
+                                error = "Bigamy detected!"
+                                error_loc = [family.id,family2.id]
+                            print("\n########  US11  ########")
+                            print("ERROR US11: " + str(family.line_num) + ":" +" Marriage should not occur during marriage to another spouse:\n" + family.id)
+                            print("")
 
-                for i in range(len(family_group) - 1):
-                    if families[family_group[i]].has_key('DIV'):
-                        if dates_check(families[family_group[i]]['DIV'], families[family_group[i + 1]]['MARR']): 
-                            continue
-                        #error.append(['ANOMALY: FAMILY: US11:', self.indi[i]['id']])
-                        print ("User Story 11 - No bigamy.\n")
-                        print ("ANOMALY: The family " + family_group[i] + " does not divorce before the marriage of family " + family_group[i + 1]  + ".")
+                        if family.marriage>family2.marriage:
+                            if family.divorced!='NA' and family.divorced<family2.marriage:
+                                error = "Bigamy detected!"
+                                error_loc = [family.uid,family2.id]
+                            print("\n########  US11  ########")
+                            print("ERROR US11:" + str(family.line_num) +  ":" + " Marriage should not occur during marriage to another spouse:\n" + family.id)
+                            print("")
         return result
-    '''
 
     def US12(self):
         """US12 - Mother should be less than 60 years older than her children and father should be less than 80 years older than his children"""
@@ -290,7 +292,7 @@ class Repo:
                             pass
                         else:
                             people.append(name)
-                        print("ERROR: INDIVIDUAL: US31: " + str(family.line_num) + ':' +" All living people over 30 in family " + family.id + " who have never been married are: " + individual.name)
+            print("ERROR: INDIVIDUAL: US31: " + str(family.line_num) + ':' +" All living people over 30 in family " + family.id + " who have never been married are: " + individual.name)
         return result   
 
     """List Multiple Births"""
@@ -401,41 +403,6 @@ class Repo:
                 print("Error: FAMILY : US24: " + str(family.line_num) + "More than one family with the same spouses by name " + family_dic_key[0] + " and the same marriage date " + family_dic_key[1])
                 result = True
         return result
-    
-    '''
-    def US33(self):
-        return_flag = False
-        error_type = "US33"
-        currentDate = datetime.now()
-        orphans=[]
-        for family in families:
-            hus = family.husbandID
-            wife = family.wifeID
-            children = family.children
-            count = 0
-            for individual in individuals:
-                if hus == individual.uid or wife == individual.uid:
-                    if individual.alive == False:
-                        count = count + 1
-
-            if count == 2:
-                for child in children:
-                    for individual in individuals:
-                        if child == individual.uid:
-                            birthdate = individual.birthday
-                            birthdate = datetime(birthdate.year, birthdate.month, birthdate.day)
-                            age = (currentDate-birthdate).days/365.25
-                            if age < 18:
-                                orphans.append(individual.name)
-                                
-        if orphans!=[]:
-            error_descrip = 'List of Orphans: '+str(orphans)
-            
-            report_list('LIST ', error_type, error_descrip)
-            return_flag = False                                                
-    
-    return return_flag
-    '''
 
     """Tanvi Hanamshet"""
     def US05(self):#  US05 Marriage before death - By Tanvi
@@ -861,11 +828,13 @@ def main():
     repo1.US02()
     repo1.US07()
     repo1.US08()
-    #repo1.US11()
     repo1.US18()
+    repo1.US21()
     repo1.US27()
     repo1.US28()
     repo1.US25()
+    repo1.US31()
+    repo1.US32()
     repo1.US37()
     repo1.US38()
 
@@ -874,14 +843,12 @@ def main():
     repo2.read_file('ged/das.ged')
     repo2.US03()
     repo2.US04()
+    repo2.US12()
     repo2.US13()
     repo2.US14()
     repo2.US22()
     repo2.US23()
     repo2.US24()
-    repo2.US12()
-    repo2.US31()
-    repo2.US32()
 
     """us17.ged"""
     repo3 = Repo()
@@ -896,20 +863,12 @@ def main():
     repo1.US29()
     repo1.US30()
     repo1.US39()
-    repo1.US40()
-    
-    """Ged for US21"""
-    repo4 = Repo()
-    repo4.read_file('ged/My-Family-28-Oct-2019-667.ged')
+    repo1.US40()    
 
-    repo4.US21()
-
-    '''
     """Ged for US11"""
     repo5 = Repo()
     repo5.read_file('ged/My-Family-29-Oct-2019-620.ged')
     repo5.US11()
-    '''
 
     """Ged for US35"""
     repo5 = Repo()

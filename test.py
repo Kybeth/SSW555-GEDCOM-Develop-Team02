@@ -42,8 +42,10 @@ class UserStoryTest(unittest.TestCase):
     
     def test_US32(self):
         repo = Repo()
-        repo.read_file("ged/das.ged")
-        self.assertNotEqual(repo.US32(), list())
+        repo.read_file("ged/My-Family.ged")
+        result = repo.US32()
+        expect = {'@F1@','@F2@', '@F3@', '@F4@','@F5@', '@F6@', '@F7@', '@F8@', '@F9@', '@F10@', '@F11@', '@F12@', '@F13@'}
+        self.assertEqual(result, expect)
 
     def test_US21(self):
         repo = Repo()
