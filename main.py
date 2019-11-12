@@ -602,7 +602,7 @@ class Repo:
         result = list()
         status = True
         for key, individual in self.individual.items():
-            if(individual.age == 'NA'):
+            if(individual.age == ''):
                 status = False
                 print('ERROR: US27: ' + str(individual.line_num) + key + ' lacks age information')
                 result.append(key)
@@ -834,7 +834,6 @@ def main():
     repo1.US08()
     repo1.US18()
     repo1.US21()
-    repo1.US27()
     repo1.US28()
     repo1.US25()
     repo1.US31()
@@ -854,10 +853,11 @@ def main():
     repo2.US23()
     repo2.US24()
 
-    """us17.ged"""
+    """us17&27.ged"""
     repo3 = Repo()
     repo3.read_file('ged/us17.ged')
     repo3.US17()
+    repo3.US27()
 
     """Yuan"""
     repo1.US09()
