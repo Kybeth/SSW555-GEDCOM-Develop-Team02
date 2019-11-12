@@ -884,7 +884,6 @@ def main():
     repo2.US12()
     repo2.US13()
     repo2.US14()
-    repo2.US22()
     repo2.US23()
     repo2.US24()
     repo2.US34()
