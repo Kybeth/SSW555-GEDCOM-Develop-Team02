@@ -284,7 +284,7 @@ class Repo:
                 birthDate = individual.birthday
                 spouse = family.marriage
                 name = individual.name[0]
-                if birthDate!='NA':
+                if birthDate!='':
                     lifeSpan = datetime.strptime(currentDate, '%Y-%m-%d') - datetime.strptime(birthDate, '%Y-%m-%d')
                     age = datetime.strptime(birthDate, '%Y-%m-%d')
                     if (age > datetime.strptime(currentDate, '%Y-%m-%d')) and datetime.strptime(birthDate, '%Y-%m-%d') > datetime.strptime(currentDate, '%Y-%m-%d'):
@@ -555,18 +555,19 @@ class Repo:
     def US35(self):
         result = list()
         for key, individual in self.individual.items():
-            d1 = datetime.strptime(individual.birthday, '%Y-%m-%d')
-            d2 = (datetime.today().strftime('%Y-%m-%d'))
-            d2 = datetime.strptime(d2, '%Y-%m-%d')
-            conversion = {'days':1,'months':30.4,'years':365.25}
-            diff = abs((d1 - d2).days)
-            
-            if diff >= 0 and diff <30.4:
-                time_typ = 'days'
-                diff1 = diff/conversion[time_typ]
-                if time_typ == 'days' and diff1 <= 30:
-                    print("ANOMALY: INDIVIDUAL: US35: " + str(individual.line_num) + " : " + key +" People who were born in the last 30 days are "+ individual.name + " on "+individual.birthday)
-                    result.append(key)
+            if individual.birthday != '':
+                d1 = datetime.strptime(individual.birthday, '%Y-%m-%d')
+                d2 = (datetime.today().strftime('%Y-%m-%d'))
+                d2 = datetime.strptime(d2, '%Y-%m-%d')
+                conversion = {'days':1,'months':30.4,'years':365.25}
+                diff = abs((d1 - d2).days)
+                
+                if diff >= 0 and diff <30.4:
+                    time_typ = 'days'
+                    diff1 = diff/conversion[time_typ]
+                    if time_typ == 'days' and diff1 <= 30:
+                        print("ANOMALY: INDIVIDUAL: US35: " + str(individual.line_num) + " : " + key +" People who were born in the last 30 days are "+ individual.name + " on "+individual.birthday)
+                        result.append(key)
         return result
 
     """ List all people who were death in the last 30 days.-Tanvi """
