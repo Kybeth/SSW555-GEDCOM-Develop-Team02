@@ -21,7 +21,7 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(repo.US02(), True)
         self.assertNotEqual(repo.US02(), False)
         self.assertTrue(repo.US02())
-    
+
     '''
     def test_US11(self):
         repo = Repo()
@@ -167,7 +167,7 @@ class UserStoryTest(unittest.TestCase):
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         self.assertEqual(repo.US18(), ['@I12@', '@I13@', '@I15@', '@I16@'])
-    
+
     '''
     def test_US27(self):
         repo = Repo()
@@ -180,7 +180,8 @@ class UserStoryTest(unittest.TestCase):
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         self.assertEqual(repo.US28()[0], [(26, '@I16@'), (34, '@I15@')])
-        self.assertEqual(repo.US28()[1], [(-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
+        self.assertEqual(repo.US28()[1], [
+                         (-2982, '@I5@'), (7, '@I21@'), (36, '@I3@'), (54, '@I7@')])
 
     def test_US37(self):
         repo = Repo()
@@ -201,76 +202,72 @@ class UserStoryTest(unittest.TestCase):
         expect = {'@I21@', '@I20@', '@I5@'}
         self.assertEqual(result, expect)
 
-    '''
     def test_US10(self):  # Marriage after 14
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US10()
-        expect = {'@I20@', '@I19@', '@I2@', '@I21@', '@I15@',
-                  '@I14@', '@I18@', '@I23@', '@I26@', '@I5@', '@I1@', '@I3@'}
+        expect = {'@I5@', '@I20@', '@I15@', '@I21@', '@I26@', '@I2@',
+                  '@I1@', '@I19@', '@I18@', '@I23@', '@I14@', '@I3@'}
         self.assertEqual(result, expect)
-    '''
 
     def test_US19(self):  # First cousins should not marry
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US19()
-        expect = {'@F9@', '@F8@', '@F12@', '@F11@'}
+        expect = {'@F8@', '@F13@', '@F11@', '@F9@'}
         self.assertEqual(result, expect)
 
     def test_US20(self):  # Aunts and uncles
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US20()
-        expect = {'@F12@'}
+        expect = {'@F13@'}
         self.assertEqual(result, expect)
 
-    '''
     def test_US29(self):  # List deceased
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US29()
-        expect = {'@I1@', '@I7@', '@I22@', '@I4@', '@I14@', '@I2@'}
+        expect = {'@I14@', '@I28@', '@I1@', '@I2@', '@I7@', '@I4@', '@I22@'}
         self.assertEqual(result, expect)
-    '''
 
     def test_US30(self):  # List living married
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US30()
-        expect = {'@I19@', '@I6@', '@I13@', '@I21@', '@I18@', '@I20@',
-                  '@I25@', '@I26@', '@I16@', '@I15@', '@I24@', '@I5@', '@I12@'}
+        expect = {'@I12@', '@I6@', '@I5@', '@I25@', '@I15@', '@I24@', '@I18@',
+                  '@I16@', '@I21@', '@I29@', '@I26@', '@I19@', '@I20@', '@I13@'}
         self.assertEqual(result, expect)
 
     def test_US39(self):  # List living married
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US39()
-        expect = {'@F11@', '@F12@'}
+        expect = {'@F11@', '@F13@'}
         self.assertEqual(result, expect)
 
-    '''
     def test_US40(self):  # List living married
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         result = repo.US40()
-        expect = 363
+        expect = 393
         self.assertEqual(result, expect)
-    '''
 
     """By Tanvi"""
 
     def test_US05(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
-        self.assertEqual(repo.US05(), [['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', 
-        '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], 
-        ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@']])
-       
+        self.assertEqual(repo.US05(), [['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I1@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05',
+                                                                                                                                                                                                                                                                                                                                                                                                                    '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I2@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'],
+                                       ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I4@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I7@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I14@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I22@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@'], ['ANOMALY US05', '@I28@']])
+
     def test_US06(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
-        self.assertEqual(repo.US06(), [['ANOMALY US06', '@I1@'], ['ANOMALY US06', '@I2@'], ['ANOMALY US06', '@I4@'], ['ANOMALY US06', '@I7@'], ['ANOMALY US06', '@I14@'], ['ANOMALY US06', '@I22@'], ['ANOMALY US06', '@I28@']] )
+        self.assertEqual(repo.US06(), [['ANOMALY US06', '@I1@'], ['ANOMALY US06', '@I2@'], ['ANOMALY US06', '@I4@'], [
+                         'ANOMALY US06', '@I7@'], ['ANOMALY US06', '@I14@'], ['ANOMALY US06', '@I22@'], ['ANOMALY US06', '@I28@']])
+
     def test_US15(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
@@ -279,11 +276,14 @@ class UserStoryTest(unittest.TestCase):
     def test_US16(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
-        self.assertEqual(repo.US16(), [['ANOMALY US16', '@I3@'], ['ANOMALY US16', '@I5@'], ['ANOMALY US16', '@I7@'], ['ANOMALY US16', '@I11@'], ['ANOMALY US16', '@I13@'], ['ANOMALY US16', '@I15@'], ['ANOMALY US16', '@I19@'], ['ANOMALY US16', '@I20@'], ['ANOMALY US16', '@I22@'], ['ANOMALY US16', '@I24@'], ['ANOMALY US16', '@I25@']])
+        self.assertEqual(repo.US16(), [['ANOMALY US16', '@I3@'], ['ANOMALY US16', '@I5@'], ['ANOMALY US16', '@I7@'], ['ANOMALY US16', '@I11@'], ['ANOMALY US16', '@I13@'], [
+                         'ANOMALY US16', '@I15@'], ['ANOMALY US16', '@I19@'], ['ANOMALY US16', '@I20@'], ['ANOMALY US16', '@I22@'], ['ANOMALY US16', '@I24@'], ['ANOMALY US16', '@I25@']])
+
     def test_US25(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
-        self.assertEqual(repo.US25(), [['Surinder '], ['Nirmal '], ['Boney '], ['Sridevi '], ['Anil '], ['Sunita '], ['Sanjay '], ['Maheep '], ['Sonam '], ['Rhea '], ['Harshvardhan '], ['Shanaya '], ['Jahaan '], ['Mona '], ['Arjun '], ['Anshula '], ['Khushi '], ['Janhvi '], ['John '], ['Allen '], ['Lily '], ['Vu '], ['Sue '], ['Shilpy '], ['Das '], ['Deepa '], ['Shreya '], ['SImmi ']])
+        self.assertEqual(repo.US25(), [['Surinder '], ['Nirmal '], ['Boney '], ['Sridevi '], ['Anil '], ['Sunita '], ['Sanjay '], ['Maheep '], ['Sonam '], ['Rhea '], ['Harshvardhan '], ['Shanaya '], [
+                         'Jahaan '], ['Mona '], ['Arjun '], ['Anshula '], ['Khushi '], ['Janhvi '], ['John '], ['Allen '], ['Lily '], ['Vu '], ['Sue '], ['Shilpy '], ['Das '], ['Deepa '], ['Shreya '], ['SImmi ']])
     # def test_US26(self):
     #     repo = Repo()
     #     repo.read_file("ged/My-Family-29-Oct-2019-793.ged")
@@ -294,7 +294,6 @@ class UserStoryTest(unittest.TestCase):
         repo.read_file('ged/My-Family.ged')
         self.assertEqual(repo.US35(), ['@I27@'])
 
-    
     def test_US36(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
