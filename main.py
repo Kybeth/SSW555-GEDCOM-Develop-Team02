@@ -159,19 +159,19 @@ class Repo:
             for key, family in self.family.items():
                 if individual.birthday != 'NA':
                     if individual.birthday > today:
-                        print("Error US01:-Birthdate ", individual.birthday ,"is after current date")
+                        print("Error US01:-" + str(family.line_num) + ": Birthdate" + ": " + individual.birthday + " is after current date")
                         result = True
                 if individual.death != 'NA':
                     if individual.death > today:
-                        print("Error US01:- Deathdate ", individual.death ,"is after current date")
+                        print("Error US01:-"  + str(family.line_num) + ": Deathdate" + ": " + individual.death + " is after current date")
                         result = True
                 if family.marriage != 'NA':
                     if family.marriage > today:
-                        print("Error US01:- MarriageDate ", family.marriage ,"is after current date")
+                        print("Error US01:-" + str(family.line_num) + ": MarriageDate" + ": " + family.marriage + " is after current date")
                         result = True
                 if family.divorced != 'NA':
                     if family.divorced > today:
-                        print("Error US01:- DivorceDate ", family.divorced,"is after current date")
+                        print("Error US01:-" + str(family.line_num) + ": Divorceddate"  + ": " + family.divorced + " is after current date")
                         result = True
         return result
 
@@ -181,9 +181,9 @@ class Repo:
         for key, individual in self.individual.items():  #Implementing as a dictionary.
             for key, family in self.family.items():
                 if individual.birthday != 'NA' or family.marriage != 'NA':
-                    if family.marriage > individual.birthday :
+                    if individual.birthday > family.marriage:
                         print(
-                            "ANOMALY: FAMILY: US02: " + str(family.line_num) + " : " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
+                            "ERROR: FAMILY: US02: " + str(family.line_num) + " : " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
                         result = True
         return result
     
