@@ -21,6 +21,29 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(repo.US02(), True)
         self.assertNotEqual(repo.US02(), False)
         self.assertTrue(repo.US02())
+    
+    '''
+    def test_US11(self):
+        repo = Repo()
+        repo.read_file("ged/My-Family-29-Oct-2019-620.ged")
+        self.assertNotEqual(repo.US11(), True)
+        self.assertFalse(repo.US11())
+    '''
+
+    def test_US12(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertNotEqual(repo.US12(), list())
+    
+    def test_US31(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertNotEqual(repo.US31(), list())
+    
+    def test_US32(self):
+        repo = Repo()
+        repo.read_file("ged/das.ged")
+        self.assertNotEqual(repo.US32(), list())
 
     def test_US21(self):
         repo = Repo()
@@ -47,14 +70,6 @@ class UserStoryTest(unittest.TestCase):
         self.assertEqual(repo.US04(), True)
         self.assertNotEqual(repo.US04(), False)
         self.assertTrue(repo.US04())
-    
-    '''
-    def test_US11(self):
-        repo = Repo()
-        repo.read_file("ged/My-Family-29-Oct-2019-620.ged")
-        self.assertNotEqual(repo.US11(), True)
-        self.assertFalse(repo.US11())
-    '''
 
     def test_US13(self):
         repo = Repo()

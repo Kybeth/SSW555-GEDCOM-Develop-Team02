@@ -866,7 +866,6 @@ def main():
     repo1.US27()
     repo1.US28()
     repo1.US25()
-    repo1.US32()
     #repo2.US33()
     repo1.US37()
     repo1.US38()
@@ -883,6 +882,7 @@ def main():
     repo2.US24()
     repo2.US12()
     repo2.US31()
+    repo2.US32()
 
     """us17.ged"""
     repo3 = Repo()
