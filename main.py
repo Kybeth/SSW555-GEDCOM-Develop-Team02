@@ -724,10 +724,12 @@ class Repo:
                             error.add(key)
         return error
 
-    '''
+    
     def US10(self): # US10 Marriage after 14 - by Yuan
         res = set()
         for key, individual in self.individual.items(): # scan individual
+            if individual.birthday == "":
+                continue
             birt_date = datetime.strptime(individual.birthday, '%Y-%m-%d')
             if individual.partner != 'NA':
                 for f in individual.partner:
@@ -739,18 +741,7 @@ class Repo:
                             print('ANOMALY: INDIVIDUAL: US10: ' + str(individual.line_num) + ": " + individual.id + ' married on ' + fam.marriage + ' before 14 years old (born on ' + individual.birthday + ')')
         return res 
         
-        for key, fam in self.family.items():
-            # identify the husband and wife
-            husb = self.individual["".join(fam.husband_id)]
-            wife = self.individual["".join(fam.wife_id)]
-            if fam.marriage != "NA":
-                pt.add_row([husb.id, husb.name, husb.alive, fam.id, wife.id])
-                pt.add_row([wife.id, wife.name, wife.alive, fam.id, husb.id])
-                error.add(husb.id)
-                error.add(wife.id)
-        print(pt)
-        return error   
-        '''  
+        
     
     def US19(self): # US19 First cousins should not marry - by Yuan
         error = set()
@@ -910,7 +901,7 @@ def main():
     
     """Yuan"""
     repo1.US09()
-    #repo1.US10()
+    repo1.US10()
     repo1.US19()
     repo1.US20()
     repo1.US29()
