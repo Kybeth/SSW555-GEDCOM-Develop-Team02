@@ -88,13 +88,39 @@ class UserStoryTest(unittest.TestCase):
         self.assertIsNotNone(repo.US23())
         self.assertIsNot(repo.US23(), '')
 
+    def test_US33(self):  # orphans
+        repo = Repo()
+        repo.read_file("ged/My-Family.ged")
+        result = repo.US33()
+        expect = {'@I8@',
+                  '@I19@'
+                  '@I16@'
+                  '@I20@'
+                  '@I26@'
+                  '@I10@'
+                  '@I15@'
+                  '@I21@'
+                  '@I18@'
+                  '@I27@'
+                  '@I12@'
+                  '@I9@'
+                  '@I25@'
+                  '@I28@'
+                  '@I17@'
+                  '@I24@'
+                  '@I11@'
+                  '@I23@'
+                  '@I13@'
+                  '@I3@'
+                  '@I5@'
+                  '@I6@'}
+        self.assertEqual(result, expect)
+
     def test_US34(self):
 
         repo = Repo()
         repo.read_file("ged/das.ged")
         self.assertEqual(repo.US34(), True)
-        self.assertNotEqual(repo.US34(), False)
-        
 
     """Lifu Xiao"""
 

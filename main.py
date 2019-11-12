@@ -408,6 +408,29 @@ class Repo:
                 result = True
         return result
 
+    def US33(self):
+        """ US33 - List all result
+        This function will take family data and individual data as input
+        and list all the individuals whoes parents are dead and age is less than 18 years
+        """
+        error = set()
+        print("US33: List all orphans")
+        pt = PrettyTable(
+            field_names = ['ID', 'Name', 'Alive', 'Birthday', 'Death Date'])
+        for key, fam in self.family.items():
+            # identify the individal relations ie mom and dad
+            husb = self.individual["".join(fam.husband_id)]
+            wife = self.individual["".join(fam.wife_id)]
+            if fam.divorced == "NA" and husb.alive != "TRUE" and wife.alive != "TRUE":
+                for key, individual in self.individual.items():
+                    if individual.alive == "TRUE":
+                        pt.add_row([individual.id, individual.name, individual.alive, individual.birthday, individual.death])
+                        error.add(key)
+
+        print(pt)
+        return error
+       
+
     def US34(self):
         """
         prints all couples that when they married they were twice as old as the other spouse.
@@ -852,6 +875,23 @@ def main():
     print("\n Family Summary")
     repo1.family_table()
     
+<<<<<<< HEAD
+    repo1.US01()
+    repo1.US02()
+    repo1.US07()
+    repo1.US08()
+    repo1.US18()
+    repo1.US21()
+    repo1.US28()
+    repo1.US25()
+    repo1.US31()
+    repo1.US32()
+    repo1.US37()
+    repo1.US38()
+    repo1.US33()
+    
+=======
+>>>>>>> 7b0d9d67520c0560f96bf9566a73035448849a3e
 
     """ das.ged """
     repo2 = Repo()
@@ -865,6 +905,7 @@ def main():
     repo2.US23()
     repo2.US24()
     repo2.US34()
+    
 
     """Lifu"""
     repo1.US07()
