@@ -571,7 +571,7 @@ class Repo:
     def US07(self): #  US07 Less then 150 years old
         result = list()
         for key, individual in self.individual.items():
-            if(individual.age > 150):
+            if(isinstance(individual.age, int) and individual.age > 150):
                 print("ERROR: INDIVIDUAL: US07: " + str(individual.line_num) + key + "  More than 150 years old: Birth date "+ individual.birthday)
                 result.append(key)
         return result
@@ -670,7 +670,7 @@ class Repo:
     def US38(self): #  List upcoming birthdays
         result = list()
         for key, individual in self.individual.items():
-            if(individual.birthday != 'NA'):
+            if(individual.birthday != ''):
                 birthday = datetime.strptime(individual.birthday, '%Y-%m-%d')
                 today = datetime.today()
                 if(birthday.month, birthday.day) >= (today.month, today.day):
@@ -852,19 +852,6 @@ def main():
     print("\n Family Summary")
     repo1.family_table()
     
-    repo1.US01()
-    repo1.US02()
-    repo1.US07()
-    repo1.US08()
-    repo1.US18()
-    repo1.US21()
-    repo1.US28()
-    repo1.US25()
-    repo1.US31()
-    repo1.US32()
-    repo1.US37()
-    repo1.US38()
-    
 
     """ das.ged """
     repo2 = Repo()
@@ -879,13 +866,16 @@ def main():
     repo2.US24()
     repo2.US34()
 
-
-    """us17&27.ged"""
-    repo3 = Repo()
-    repo3.read_file('ged/us17.ged')
-    repo3.US17()
-    repo3.US27()
-
+    """Lifu"""
+    repo1.US07()
+    repo1.US08()
+    repo1.US17()
+    repo1.US18()
+    repo1.US27()
+    repo1.US28()
+    repo1.US37()
+    repo1.US38()
+    
     """Yuan"""
     repo1.US09()
     repo1.US10()
