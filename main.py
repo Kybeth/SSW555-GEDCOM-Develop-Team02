@@ -183,7 +183,7 @@ class Repo:
                 if individual.birthday != 'NA' or family.marriage != 'NA':
                     if individual.birthday > family.marriage:
                         print(
-                            "ERROR: FAMILY: US02: " + str(family.line_num) + " : " + key + " Birth " + individual.birthday + " should not occur before marriage  " + family.marriage)
+                            "ERROR: FAMILY: US02: " + str(family.line_num) + " : " + key + " Birth " + individual.birthday + " should occur after marriage  " + family.marriage + " and not before")
                         result = True
         return result
     
