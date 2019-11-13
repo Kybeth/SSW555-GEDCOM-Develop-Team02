@@ -508,9 +508,11 @@ class Repo:
         return error
 
 
+    """corresponding enteries"""
     def US26(self):
         invalid_list = list()
         fam_id = list()
+        invalid_list_final = []
         for k, individual in self.individual.items():
             for key, fam in self.family.items(): 
                 fam_id.append(key) 
@@ -518,20 +520,27 @@ class Repo:
                 husband = self.individual["".join(fam.husband_id)]
                 wife = self.individual["".join(fam.wife_id)]
                 if husband.gender != 'M':
-                    invalid_list.append("Misgendered husband in family: " + key)
+                    print(f" ERROR: FAMILY: US26: Misgendered husband in family: {key}")
+                    invalid_list.append(key)
                 else:
-                    invalid_list.append("Missing husband: " + husband.id +" in family: " + key)
+                    print(f" ERROR: FAMILY: US26: Missing husband: {husband.id} in family:{key}")
+                    invalid_list.append(key)
                 if wife.gender != 'M':
-                    invalid_list.append("Misgendered husband in family: " + key)
+                    print(f" ERROR: FAMILY: US26: Misgendered husband in family: {key}")
+                    invalid_list.append(key)
                 else:
-                    invalid_list.append("Missing wife: " + wife.id + " in family: " + key)
+                    print(f" ERROR: FAMILY: US26: Missing wife: {wife.id} in family: {key}")
                 if(individual.child != 'NA'):
                     for child in individual.child:
                         if child not in fam_id:
-                            invalid_list.append("Missing child: " + child + " in family: " + key)
+                            print(f" ERROR: FAMILY: US26: Missing child: {child} in family: {key}")
+                            invalid_list.append(key)
+        for i in invalid_list:
+            if i not in invalid_list_final:
+                invalid_list_final.append(i)
 
                             
-        # print(invalid_list)
+        return invalid_list_final
 
     """unique first name in families"""
     def US25(self):
