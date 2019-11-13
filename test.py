@@ -22,7 +22,12 @@ class UserStoryTest(unittest.TestCase):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
         self.assertEqual(repo.US11(), ['@F9@'])
-
+    
+    def test_US21(self):
+        repo = Repo()
+        repo.read_file('ged/My-Family.ged')
+        self.assertNotEqual(repo.US21(), True)
+    
     '''
     def test_US12(self):
         repo = Repo()
