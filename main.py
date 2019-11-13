@@ -925,7 +925,8 @@ def main():
     repo2.US14()
     repo2.US23()
     repo2.US24()
-    repo2.US34()
+    repo1.US33()
+    repo1.US34()
 
     """Lifu"""
     repo1.US07()
