@@ -154,26 +154,28 @@ class Repo:
         #getting todays date 
         today = str(date.today())
 
+        invalid_list = list()
+
         result = False
         for key, individual in self.individual.items():
             for key, family in self.family.items():
                 if individual.birthday != 'NA':
                     if individual.birthday > today:
                         print("Error US01:-" + str(family.line_num) + ": Birthdate" + ": " + individual.birthday + " is after current date")
-                        result = True
+                        invalid_list.append(individual.birthday)
                 if individual.death != 'NA':
                     if individual.death > today:
                         print("Error US01:-"  + str(family.line_num) + ": Deathdate" + ": " + individual.death + " is after current date")
-                        result = True
+                        invalid_list.append(individual.death)
                 if family.marriage != 'NA':
                     if family.marriage > today:
                         print("Error US01:-" + str(family.line_num) + ": MarriageDate" + ": " + family.marriage + " is after current date")
-                        result = True
+                        invalid_list.append(family.marriage)
                 if family.divorced != 'NA':
                     if family.divorced > today:
                         print("Error US01:-" + str(family.line_num) + ": Divorceddate"  + ": " + family.divorced + " is after current date")
-                        result = True
-        return result
+                        invalid_list.append(family.divorced)
+        return invalid_list
 
     """US02 Birth before Marriage"""
     def US02(self):
@@ -931,4 +933,5 @@ def main():
     
 
 if __name__ == '__main__':
+
     main()
