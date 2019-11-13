@@ -297,7 +297,7 @@ class UserStoryTest(unittest.TestCase):
     def test_US35(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
-        self.assertEqual(repo.US35(), ['@I27@'])
+        self.assertEqual(repo.US35(), ['@I26@'])
 
     def test_US36(self):
         repo = Repo()
