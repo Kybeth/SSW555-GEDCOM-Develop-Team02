@@ -23,31 +23,28 @@ class UserStoryTest(unittest.TestCase):
         repo.read_file('ged/My-Family.ged')
         self.assertEqual(repo.US11(), ['@F9@'])
 
+    '''
+    def test_US12(self):
+        repo = Repo()
+        repo.read_file('ged/My-Family.ged')
+        self.assertEqual(repo.US12(), ['F23', 'F23', 'F23', 'F24', 'F25'])
+
+
     def test_US21(self):
         repo = Repo()
-        repo.read_file("ged/das.ged")
-        self.assertNotEqual(repo.US21(), list())
+        repo.read_file("ged/My-Family.ged")
+        self.assertNotEqual(repo.US21(), ['@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@'])
+    '''
 
     def test_US22(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
         self.assertNotEqual(repo.US22(), True)
 
-    '''
     def test_US31(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
-        result = repo.US31()
-        
-        expect = {'Surinder /Kapoor/', 'Nirmal /Kapoor/', 'Boney /Kapoor/', 'Sridevi /Kapoor/', 'Anil /Kapoor/', 'Sunita /Kapoor/', 
-        'Sanjay /Kapoor/', 'Maheep /Sandhu/', 'Sonam /Kapoor/', 'Rhea /Kapoor/', 'Harshvardhan /Kapoor/', 'Shanaya /Kapoor/', 
-        'Jahaan /Kapoor/', 'Mona /Shourie/', 'Arjun /Kapoor/', 'Anshula /Kapoor/', 'Khushi /Kapoor/', 'Janhvi /Kapoor/', 
-        'John /Kapoor/', 'Allen /Kapoor/', 'Lily /Kapoor/', 'Vu /Kapoor/', 'Sue /Kapoor/', 'Shilpy /Kapoor/', 'Das /Kapoor/', 
-        'Deepa /Kapoor/', 'Shreya /Kapoor/', 'SImmi /Kapoor/'}
-        self.assertEqual(result, expect)
-        
-        self.assertEqual(repo.US31(), [['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@'], ['ERROR US31', '@F13@']])
-    '''
+        self.assertEqual(repo.US31(), ['@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@'])
 
     """Anirudh Bezzam"""
 
