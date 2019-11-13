@@ -219,12 +219,11 @@ class Repo:
                             print("ERROR US11:" + str(family.line_num) +  ":" + " Marriage should not occur during marriage to another spouse:" + family.id)
                             invalid_list.append(family.id)
                             #print("")
-        print(invalid_list)
         return invalid_list
 
     def US12(self):
         """US12 - Mother should be less than 60 years older than her children and father should be less than 80 years older than his children"""
-        result = False
+        invalid_list = list()
         for key, family in self.family.items():
             listofchildren = list(family.children)
             mother = list(family.wife_id)[0]
@@ -234,17 +233,20 @@ class Repo:
                                   self.stringify_dates(self.individual[child].birthday), 60, "year"):
                     print(
                         "Error: FAMILY : US12 : " + str(family.line_num) + " :" + key + " : Mother " + mother + " should not be less than 60 years older than her child " + child)
+                    invalid_list.append(mother)
                     result = True
                 if self.calc_abs_dates(self.stringify_dates(self.individual[father].birthday),
                                   self.stringify_dates(self.individual[child].birthday), 80, "year"):
                     print(
                         "Error: FAMILY : US12 : " + str(family.line_num) + " :" + key + " : Father " + father + " should not be less than 80 years older than his child " + child)
+                    invalid_list.append(father)
                     result = True
-        return result
+        print(invalid_list)
+        return invalid_list
     
     """US21 Correct gender for role"""
     def US21(self):
-        result = False
+        invalid_list = list()
         for individual in self.individual.items():
             for key, fam in self.family.items():
                 husband = self.individual["".join(fam.husband_id)]
@@ -252,10 +254,14 @@ class Repo:
 
                 if husband.gender == "F" or husband.gender == "NA":
                     print('ANOMALY: FAMILY: US21: In family: ' + str(fam.line_num) + " : "  + key + ' husband gender is ' + husband.gender)
+                    invalid_list.append(key)
 
                 elif wife.gender == "M" or wife.gender == "NA":
                     print('ANOMALY: FAMILY: US21: In family: ' + str(fam.line_num) + " : "  + key + ' wife gender is ' + wife.gender)
-        return result
+                    invalid_list.append(key)
+        
+        print(invalid_list)
+        return invalid_list
     
     """Individual ID and Family ID should be unique"""
     def US22(self):
@@ -284,7 +290,7 @@ class Repo:
     
     """People over 30 who are not married"""
     def US31(self):
-        result = False
+        invalid_list = list()
         people=[]
         currentDate=str(date.today())
         for key, individual in self.individual.items():
@@ -305,7 +311,10 @@ class Repo:
                         else:
                             people.append(name)
             print("ERROR: INDIVIDUAL: US31: " + str(family.line_num) + ':' +" All living people over 30 in family " + family.id + " who have never been married are: " + individual.name)
-        return result   
+            invalid_list.append(family.id)
+
+        print(invalid_list)
+        return invalid_list  
  
     """List Multiple Births"""
     def US32(self):
