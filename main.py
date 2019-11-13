@@ -241,7 +241,7 @@ class Repo:
                         "Error: FAMILY : US12 : " + str(family.line_num) + " :" + key + " : Father " + father + " should not be less than 80 years older than his child " + child)
                     invalid_list.append(father)
                     result = True
-        print(invalid_list)
+                    
         return invalid_list
     
     """US21 Correct gender for role"""
@@ -260,7 +260,6 @@ class Repo:
                     print('ANOMALY: FAMILY: US21: In family: ' + str(fam.line_num) + " : "  + key + ' wife gender is ' + wife.gender)
                     invalid_list.append(key)
         
-        print(invalid_list)
         return invalid_list
     
     """Individual ID and Family ID should be unique"""
@@ -323,7 +322,6 @@ class Repo:
                 print('ANOMALY: FAMILY: US32: ' + str(family.line_num) + ':' + ' There are multiple births in the family' + ": " + family.id)
                 invalid_list.append(family.id)
 
-        print(invalid_list)
         return invalid_list
 
     """Anirudh Bezzam"""
