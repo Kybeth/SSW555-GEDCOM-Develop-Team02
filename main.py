@@ -892,40 +892,8 @@ def main():
     print("\n\nTest file: myfamily.ged")
     print("\n Individual Summary")
     repo1.individual_table()
-
     print("\n Family Summary")
     repo1.family_table()
-    
-    """Tanvi Hanamshet"""
-    repo1.US26()
-    repo1.US05()
-    repo1.US06()
-    repo1.US15()
-    repo1.US16()
-    repo1.US25()
-    repo1.US35()
-    repo1.US36()
-
-    """Vignesh Mohan"""
-    repo1.US01()
-    repo1.US02()
-    repo1.US11()
-    repo1.US21()
-    repo1.US22()
-    repo1.US31()
-    repo1.US32()
-    
-    """ das.ged """
-    repo2 = Repo()
-    repo2.read_file('ged/das.ged')
-    repo2.US03()
-    repo2.US04()
-    repo2.US12()
-    repo2.US13()
-    repo2.US14()
-    repo2.US23()
-    repo2.US24()
-    repo2.US34()
 
     """Lifu"""
     repo1.US07()
@@ -947,7 +915,41 @@ def main():
     repo1.US39()
     repo1.US40()
 
-    
+    """Tanvi Hanamshet"""
+    repo1.US26()
+    repo1.US05()
+    repo1.US06()
+    repo1.US15()
+    repo1.US16()
+    repo1.US25()
+    repo1.US35()
+    repo1.US36()
+
+    """Vignesh Mohan"""
+    repo1.US01()
+    repo1.US02()
+    repo1.US11()
+    repo1.US21()
+    repo1.US22()
+    repo1.US31()
+    repo1.US32()
+
+    """ das.ged """
+    repo2 = Repo()
+    repo2.read_file('ged/das.ged')
+    print("\n\nTest file: das.ged")
+    print("\n Individual Summary")
+    repo2.individual_table()
+    print("\n Family Summary")
+    repo2.family_table()
+    repo2.US03()
+    repo2.US04()
+    repo2.US12()
+    repo2.US13()
+    repo2.US14()
+    repo2.US23()
+    repo2.US24()
+    repo2.US34()
 
 if __name__ == '__main__':
 

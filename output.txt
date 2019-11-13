@@ -1,0 +1,1922 @@
+
+
+Test file: myfamily.ged
+
+ Individual Summary
++--------+-----------------------+--------+------------+-------+-------+------------+------------+----------------------+
+|   ID   |          Name         | Gender |  Birthday  |  Age  | Alive |   Death    |   Child    |       partner        |
++--------+-----------------------+--------+------------+-------+-------+------------+------------+----------------------+
+| @I101@ |     David /Brown/     |   M    |            |       |  TRUE |     NA     |     NA     | {'@F101@', '@F201@'} |
+| @I10@  |     Rhea /Kapoor/     |   F    | 1987-03-05 |   32  |  TRUE |     NA     |  {'@F6@'}  |          NA          |
+| @I11@  | Harshvardhan /Kapoor/ |   M    | 1990-11-09 |   29  |  TRUE |     NA     |  {'@F6@'}  |          NA          |
+| @I12@  |    Shanaya /Kapoor/   |   F    | 1999-11-03 |   20  |  TRUE |     NA     |  {'@F7@'}  |       {'@F8@'}       |
+| @I13@  |    Jahaan /Kapoor/    |   M    | 2005-12-08 |   13  |  TRUE |     NA     |  {'@F7@'}  |       {'@F8@'}       |
+| @I14@  |     Mona /Shourie/    |   F    | 1964-02-03 |   48  | False | 2012-03-25 |     NA     |   {'@F1@', '@F5@'}   |
+| @I15@  |     Arjun /Kapoor/    |   M    | 1985-06-26 |   34  |  TRUE |     NA     |  {'@F5@'}  |  {'@F9@', '@F10@'}   |
+| @I16@  |    Anshula /Kapoor/   |   F    | 1992-12-29 |   26  |  TRUE |     NA     |  {'@F5@'}  |       {'@F9@'}       |
+| @I17@  |    Khushi /Kapoor/    |   F    | 1970-11-05 |   49  |  TRUE |     NA     |  {'@F4@'}  |          NA          |
+| @I18@  |    Janhvi /Kapoor/    |   F    | 1997-03-06 |   22  |  TRUE |     NA     |  {'@F4@'}  |      {'@F11@'}       |
+| @I19@  |     John /Kapoor/     |   M    | 1996-02-01 |   23  |  TRUE |     NA     |  {'@F7@'}  |      {'@F11@'}       |
+|  @I1@  |   Surinder /Kapoor/   |   F    | 1925-12-23 |   85  | False | 2011-09-24 |  {'@F3@'}  |   {'@F1@', '@F2@'}   |
+| @I201@ |      Lucy /Brown/     |   F    | 1980-05-06 |   39  |  TRUE |     NA     |     NA     |      {'@F101@'}      |
+| @I20@  |     Allen /Kapoor/    |   M    | 2018-03-03 |   1   |  TRUE |     NA     |  {'@F4@'}  |  {'@F13@', '@F12@'}  |
+| @I21@  |     Lily /Kapoor/     |   F    | 2012-09-03 |   7   |  TRUE |     NA     |  {'@F2@'}  |      {'@F13@'}       |
+| @I22@  |      Vu /Kapoor/      |   M    | 1850-04-11 |  160  | False | 2010-08-08 |     NA     |       {'@F3@'}       |
+| @I23@  |      Sue /Kapoor/     |   F    | 3000-08-06 |  -981 |  TRUE |     NA     |     NA     |       {'@F3@'}       |
+| @I24@  |    Shilpy /Kapoor/    |   M    | 1780-05-05 |  239  |  TRUE |     NA     |  {'@F3@'}  |      {'@F14@'}       |
+| @I25@  |      Das /Kapoor/     |   M    | 1780-03-02 |  239  |  TRUE |     NA     |     NA     |      {'@F14@'}       |
+| @I26@  |     Deepa /Kapoor/    |   F    | 1920-02-03 |   99  |  TRUE |     NA     |     NA     |      {'@F10@'}       |
+| @I27@  |    Shreya /Kapoor/    |   F    | 2019-10-13 |   0   |  TRUE |     NA     |  {'@F6@'}  |          NA          |
+| @I28@  |     SImmi /Kapoor/    |   F    | 1996-02-01 |   23  | False | 2019-11-07 | {'@F14@'}  |          NA          |
+| @I29@  |     Rani /Kapoor/     |   F    | 1995-04-03 |   24  |  TRUE |     NA     |     NA     |      {'@F12@'}       |
+|  @I2@  |    Nirmal /Kapoor/    |   F    | 1931-08-12 |   84  | False | 2016-07-09 |     NA     |       {'@F2@'}       |
+| @I301@ |      July /Brown/     |   F    | 2001-10-06 |   18  |  TRUE |     NA     | {'@F101@'} |      {'@F201@'}      |
+| @I30@  |      SRK /Kapoor/     |        | 2500-01-02 |  -481 |  TRUE |     NA     |  {'@F8@'}  |          NA          |
+|  @I3@  |     Boney /Kapoor/    |   M    | 1983-09-10 |   36  |  TRUE |     NA     |  {'@F2@'}  |   {'@F5@', '@F4@'}   |
+|  @I4@  |    Sridevi /Kapoor/   |   F    | 1963-08-13 |   54  | False | 2018-02-24 |     NA     |       {'@F4@'}       |
+|  @I5@  |     Anil /Kapoor/     |   M    | 5000-12-24 | -2982 |  TRUE |     NA     |  {'@F2@'}  |       {'@F6@'}       |
+|  @I6@  |    Sunita /Kapoor/    |   F    | 1965-08-20 |   54  |  TRUE |     NA     |     NA     |       {'@F6@'}       |
+|  @I7@  |    Sanjay /Kapoor/    |   M    | 1965-10-17 |   54  | False | 2019-11-06 |  {'@F2@'}  |       {'@F7@'}       |
+|  @I8@  |    Maheep /Sandhu/    |   F    | 1970-07-10 |   49  |  TRUE |     NA     |     NA     |       {'@F7@'}       |
+|  @I9@  |     Sonam /Kapoor/    |   F    | 1985-06-09 |   34  |  TRUE |     NA     |  {'@F6@'}  |          NA          |
++--------+-----------------------+--------+------------+-------+-------+------------+------------+----------------------+
+
+ Family Summary
++--------+------------+------------+------------+-------------------+------------+------------------+-------------------------------------+
+|   ID   |  Married   |  Divorced  | Husband ID |    Husband Name   |  Wife ID   |    Wife Name     |               Children              |
++--------+------------+------------+------------+-------------------+------------+------------------+-------------------------------------+
+| @F101@ | 2000-05-09 | 2001-08-08 | {'@I101@'} |   David /Brown/   | {'@I201@'} |   Lucy /Brown/   |              {'@I301@'}             |
+| @F10@  | 1920-01-02 |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I26@'}  |  Deepa /Kapoor/  |                  NA                 |
+| @F11@  | 2007-11-23 |     NA     | {'@I19@'}  |   John /Kapoor/   | {'@I18@'}  | Janhvi /Kapoor/  |                  NA                 |
+| @F12@  | 2019-05-05 |     NA     | {'@I20@'}  |   Allen /Kapoor/  | {'@I29@'}  |  Rani /Kapoor/   |                  NA                 |
+| @F13@  | 2019-12-07 |     NA     | {'@I20@'}  |   Allen /Kapoor/  | {'@I21@'}  |  Lily /Kapoor/   |                  NA                 |
+| @F14@  | 2800-03-02 |     NA     | {'@I24@'}  |  Shilpy /Kapoor/  | {'@I25@'}  |   Das /Kapoor/   |              {'@I28@'}              |
+|  @F1@  | 1920-02-02 |     NA     |  {'@I1@'}  | Surinder /Kapoor/ | {'@I14@'}  |  Mona /Shourie/  |                  NA                 |
+| @F201@ | 2012-07-10 |     NA     | {'@I101@'} |   David /Brown/   | {'@I301@'} |   July /Brown/   |              {'@I301@'}             |
+|  @F2@  | 1920-02-03 |     NA     |  {'@I1@'}  | Surinder /Kapoor/ |  {'@I2@'}  | Nirmal /Kapoor/  |  {'@I3@', '@I21@', '@I7@', '@I5@'}  |
+|  @F3@  | 1940-09-07 |     NA     | {'@I22@'}  |    Vu /Kapoor/    | {'@I23@'}  |   Sue /Kapoor/   |          {'@I24@', '@I1@'}          |
+|  @F4@  | 1995-10-15 |     NA     |  {'@I3@'}  |   Boney /Kapoor/  |  {'@I4@'}  | Sridevi /Kapoor/ |     {'@I18@', '@I20@', '@I17@'}     |
+|  @F5@  | 1982-08-12 | 1993-07-28 |  {'@I3@'}  |   Boney /Kapoor/  | {'@I14@'}  |  Mona /Shourie/  |          {'@I15@', '@I16@'}         |
+|  @F6@  | 1982-06-06 |     NA     |  {'@I5@'}  |   Anil /Kapoor/   |  {'@I6@'}  | Sunita /Kapoor/  | {'@I11@', '@I10@', '@I9@', '@I27@'} |
+|  @F7@  | 1995-06-22 |     NA     |  {'@I7@'}  |  Sanjay /Kapoor/  |  {'@I8@'}  | Maheep /Sandhu/  |     {'@I12@', '@I19@', '@I13@'}     |
+|  @F8@  |     NA     |     NA     | {'@I13@'}  |  Jahaan /Kapoor/  | {'@I12@'}  | Shanaya /Kapoor/ |              {'@I30@'}              |
+|  @F9@  |     NA     |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I16@'}  | Anshula /Kapoor/ |                  NA                 |
++--------+------------+------------+------------+-------------------+------------+------------------+-------------------------------------+
+ERROR: INDIVIDUAL: US07: 227@I22@  More than 150 years old: Birth date 1850-04-11
+ERROR: INDIVIDUAL: US07: 247@I24@  More than 150 years old: Birth date 1780-05-05
+ERROR: INDIVIDUAL: US07: 257@I25@  More than 150 years old: Birth date 1780-03-02
+ANOMALY: FAMILY: US08: 13@F3@ Child @I1@ born 1925-12-23 before marriage on 1940-09-07
+ANOMALY: FAMILY: US08: 178@F4@ Child @I17@ born 1970-11-05 before marriage on 1995-10-15
+ANOMALY: FAMILY: US08: 247@F3@ Child @I24@ born 1780-05-05 before marriage on 1940-09-07
+ANOMALY: FAMILY: US08: 284@F14@ Child @I28@ born 1996-02-01 before marriage on 2800-03-02
+ANOMALY: FAMILY: US08: @F101@ Child @I301@ born 2001-10-06 after divorce on 2001-08-08
+ERROR: FAMILY: US17: Parent 420@I101@ marries with children or parents.
+ERROR: FAMILY: US17: Parent 437@I301@ marries with children or parents.
+ERROR: US18: 125@I12@ Siblings marry
+ERROR: US18: 135@I13@ Siblings marry
+ERROR: US18: 157@I15@ Siblings marry
+ERROR: US18: 168@I16@ Siblings marry
+ERROR: US27: 420@I101@ lacks age information
+US28: Siblings in @F5@:
+@I16@: 26
+@I15@: 34
+US28: Siblings in @F2@:
+@I5@: -2982
+@I21@: 7
+@I3@: 36
+@I7@: 54
+US28: Siblings in @F3@:
+@I1@: 85
+@I24@: 239
+US28: Siblings in @F4@:
+@I20@: 1
+@I18@: 22
+@I17@: 49
+US28: Siblings in @F6@:
+@I27@: 0
+@I11@: 29
+@I10@: 32
+@I9@: 34
+US28: Siblings in @F7@:
+@I13@: 13
+@I12@: 20
+@I19@: 23
+US37: living spouses and descendants of @I7@ :@I12@ @I19@ @I8@ @I13@ 
+US38: upcoming birthdays:@I13@
+ERROR: FAMILY: US09: 328: @F2@ Child @I5@ born 5000-12-24 after father's death on 2011-09-24
+ERROR: FAMILY: US09: 328: @F2@ Child @I5@ born 5000-12-24 after mother's death on 2016-07-09
+ERROR: FAMILY: US09: 348: @F4@ Child @I20@ born 2018-03-03 after mother's death on 2018-02-24
+ERROR: FAMILY: US09: 328: @F2@ Child @I21@ born 2012-09-03 after father's death on 2011-09-24
+ANOMALY: INDIVIDUAL: US10: 13: @I1@ married on 1920-02-02 before 14 years old (born on 1925-12-23)
+ANOMALY: INDIVIDUAL: US10: 26: @I2@ married on 1920-02-03 before 14 years old (born on 1931-08-12)
+ANOMALY: INDIVIDUAL: US10: 37: @I3@ married on 1982-08-12 before 14 years old (born on 1983-09-10)
+ANOMALY: INDIVIDUAL: US10: 58: @I5@ married on 1982-06-06 before 14 years old (born on 5000-12-24)
+ANOMALY: INDIVIDUAL: US10: 145: @I14@ married on 1920-02-02 before 14 years old (born on 1964-02-03)
+ANOMALY: INDIVIDUAL: US10: 157: @I15@ married on 1920-01-02 before 14 years old (born on 1985-06-26)
+ANOMALY: INDIVIDUAL: US10: 187: @I18@ married on 2007-11-23 before 14 years old (born on 1997-03-06)
+ANOMALY: INDIVIDUAL: US10: 197: @I19@ married on 2007-11-23 before 14 years old (born on 1996-02-01)
+ANOMALY: INDIVIDUAL: US10: 207: @I20@ married on 2019-12-07 before 14 years old (born on 2018-03-03)
+ANOMALY: INDIVIDUAL: US10: 217: @I21@ married on 2019-12-07 before 14 years old (born on 2012-09-03)
+ANOMALY: INDIVIDUAL: US10: 238: @I23@ married on 1940-09-07 before 14 years old (born on 3000-08-06)
+ANOMALY: INDIVIDUAL: US10: 266: @I26@ married on 1920-01-02 before 14 years old (born on 1920-02-03)
+ANOMALY: INDIVIDUAL: US10: 437: @I301@ married on 2012-07-10 before 14 years old (born on 2001-10-06)
+ANOMALY: FAMILY: US19: 376: In family @F8@ husband @I13@ and wife @I12@ are cousins 
+ANOMALY: FAMILY: US19: 381: In family @F9@ husband @I15@ and wife @I16@ are cousins 
+ANOMALY: FAMILY: US19: 393: In family @F11@ husband @I19@ and wife @I18@ are cousins 
+ANOMALY: FAMILY: US20: 405: In family @F13@ wife @I21@ is husband @I20@'s aunt
+US29: List all deceased individuals
++-------+-------------------+-------+------------+------------+
+|   ID  |        Name       | Alive |  Birthday  | Death Date |
++-------+-------------------+-------+------------+------------+
+|  @I1@ | Surinder /Kapoor/ | False | 1925-12-23 | 2011-09-24 |
+|  @I2@ |  Nirmal /Kapoor/  | False | 1931-08-12 | 2016-07-09 |
+|  @I4@ |  Sridevi /Kapoor/ | False | 1963-08-13 | 2018-02-24 |
+|  @I7@ |  Sanjay /Kapoor/  | False | 1965-10-17 | 2019-11-06 |
+| @I14@ |   Mona /Shourie/  | False | 1964-02-03 | 2012-03-25 |
+| @I22@ |    Vu /Kapoor/    | False | 1850-04-11 | 2010-08-08 |
+| @I28@ |   SImmi /Kapoor/  | False | 1996-02-01 | 2019-11-07 |
++-------+-------------------+-------+------------+------------+
+US30: List all living married people
++--------+------------------+-------+-----------+---------+
+|   ID   |       Name       | Alive | Family ID | Partner |
++--------+------------------+-------+-----------+---------+
+|  @I5@  |  Anil /Kapoor/   |  TRUE |    @F6@   |   @I6@  |
+|  @I6@  | Sunita /Kapoor/  |  TRUE |    @F6@   |   @I5@  |
+| @I13@  | Jahaan /Kapoor/  |  TRUE |    @F8@   |  @I12@  |
+| @I12@  | Shanaya /Kapoor/ |  TRUE |    @F8@   |  @I13@  |
+| @I15@  |  Arjun /Kapoor/  |  TRUE |    @F9@   |  @I16@  |
+| @I16@  | Anshula /Kapoor/ |  TRUE |    @F9@   |  @I15@  |
+| @I15@  |  Arjun /Kapoor/  |  TRUE |   @F10@   |  @I26@  |
+| @I26@  |  Deepa /Kapoor/  |  TRUE |   @F10@   |  @I15@  |
+| @I19@  |  John /Kapoor/   |  TRUE |   @F11@   |  @I18@  |
+| @I18@  | Janhvi /Kapoor/  |  TRUE |   @F11@   |  @I19@  |
+| @I20@  |  Allen /Kapoor/  |  TRUE |   @F12@   |  @I29@  |
+| @I29@  |  Rani /Kapoor/   |  TRUE |   @F12@   |  @I20@  |
+| @I20@  |  Allen /Kapoor/  |  TRUE |   @F13@   |  @I21@  |
+| @I21@  |  Lily /Kapoor/   |  TRUE |   @F13@   |  @I20@  |
+| @I24@  | Shilpy /Kapoor/  |  TRUE |   @F14@   |  @I25@  |
+| @I25@  |   Das /Kapoor/   |  TRUE |   @F14@   |  @I24@  |
+| @I101@ |  David /Brown/   |  TRUE |   @F201@  |  @I301@ |
+| @I301@ |   July /Brown/   |  TRUE |   @F201@  |  @I101@ |
++--------+------------------+-------+-----------+---------+
+US39: List upcoming anniversaries
++-----------+------------+----------------+---------+-----------------+------------+
+| Family ID | Husband ID |  Husband Name  | Wife ID |    Wife Name    | Aniversary |
++-----------+------------+----------------+---------+-----------------+------------+
+|   @F11@   |   @I19@    | John /Kapoor/  |  @I18@  | Janhvi /Kapoor/ | 2007-11-23 |
+|   @F13@   |   @I20@    | Allen /Kapoor/ |  @I21@  |  Lily /Kapoor/  | 2019-12-07 |
++-----------+------------+----------------+---------+-----------------+------------+
+US40: List line numbers from GEDCOM source file when reporting errors
+ - Demostrated in all previous user stories
+   Example: ANOMALY: FAMILY: US20: 405: In family @F13@ wife @I21@ is husband @I20@'s aunt
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing child: @F3@ in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Missing child: @F3@ in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing child: @F3@ in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F1@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F5@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F2@
+ ERROR: FAMILY: US26: Missing husband: @I22@ in family:@F3@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F3@
+ ERROR: FAMILY: US26: Missing husband: @I3@ in family:@F4@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F4@
+ ERROR: FAMILY: US26: Missing husband: @I5@ in family:@F6@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F6@
+ ERROR: FAMILY: US26: Missing husband: @I7@ in family:@F7@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F7@
+ ERROR: FAMILY: US26: Missing husband: @I13@ in family:@F8@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F8@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F9@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F9@
+ ERROR: FAMILY: US26: Missing husband: @I15@ in family:@F10@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F10@
+ ERROR: FAMILY: US26: Missing husband: @I19@ in family:@F11@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F11@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F12@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F12@
+ ERROR: FAMILY: US26: Missing husband: @I20@ in family:@F13@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F13@
+ ERROR: FAMILY: US26: Missing husband: @I24@ in family:@F14@
+ ERROR: FAMILY: US26: Missing wife: @I25@ in family: @F14@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F101@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F101@
+ ERROR: FAMILY: US26: Missing husband: @I101@ in family:@F201@
+ ERROR: FAMILY: US26: Misgendered husband in family: @F201@
+ANOMALY: FAMILY: US05: 312@I1@ individual @I1@ Divorced 1920-02-02 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 318@I1@ individual @I1@ Divorced 1982-08-12 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 328@I1@ individual @I1@ Divorced 1920-02-03 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 340@I1@ individual @I1@ Divorced 1940-09-07 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 348@I1@ individual @I1@ Divorced 1995-10-15 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 357@I1@ individual @I1@ Divorced 1982-06-06 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 367@I1@ individual @I1@ Divorced 1995-06-22 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 385@I1@ individual @I1@ Divorced 1920-01-02 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 393@I1@ individual @I1@ Divorced 2007-11-23 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 447@I1@ individual @I1@ Divorced 2000-05-09 before death on 2011-09-24
+ANOMALY: FAMILY: US05: 312@I2@ individual @I2@ Divorced 1920-02-02 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 318@I2@ individual @I2@ Divorced 1982-08-12 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 328@I2@ individual @I2@ Divorced 1920-02-03 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 340@I2@ individual @I2@ Divorced 1940-09-07 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 348@I2@ individual @I2@ Divorced 1995-10-15 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 357@I2@ individual @I2@ Divorced 1982-06-06 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 367@I2@ individual @I2@ Divorced 1995-06-22 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 385@I2@ individual @I2@ Divorced 1920-01-02 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 393@I2@ individual @I2@ Divorced 2007-11-23 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 447@I2@ individual @I2@ Divorced 2000-05-09 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 456@I2@ individual @I2@ Divorced 2012-07-10 before death on 2016-07-09
+ANOMALY: FAMILY: US05: 312@I4@ individual @I4@ Divorced 1920-02-02 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 318@I4@ individual @I4@ Divorced 1982-08-12 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 328@I4@ individual @I4@ Divorced 1920-02-03 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 340@I4@ individual @I4@ Divorced 1940-09-07 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 348@I4@ individual @I4@ Divorced 1995-10-15 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 357@I4@ individual @I4@ Divorced 1982-06-06 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 367@I4@ individual @I4@ Divorced 1995-06-22 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 385@I4@ individual @I4@ Divorced 1920-01-02 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 393@I4@ individual @I4@ Divorced 2007-11-23 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 447@I4@ individual @I4@ Divorced 2000-05-09 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 456@I4@ individual @I4@ Divorced 2012-07-10 before death on 2018-02-24
+ANOMALY: FAMILY: US05: 312@I7@ individual @I7@ Divorced 1920-02-02 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 318@I7@ individual @I7@ Divorced 1982-08-12 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 328@I7@ individual @I7@ Divorced 1920-02-03 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 340@I7@ individual @I7@ Divorced 1940-09-07 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 348@I7@ individual @I7@ Divorced 1995-10-15 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 357@I7@ individual @I7@ Divorced 1982-06-06 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 367@I7@ individual @I7@ Divorced 1995-06-22 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 385@I7@ individual @I7@ Divorced 1920-01-02 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 393@I7@ individual @I7@ Divorced 2007-11-23 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 399@I7@ individual @I7@ Divorced 2019-05-05 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 447@I7@ individual @I7@ Divorced 2000-05-09 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 456@I7@ individual @I7@ Divorced 2012-07-10 before death on 2019-11-06
+ANOMALY: FAMILY: US05: 312@I14@ individual @I14@ Divorced 1920-02-02 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 318@I14@ individual @I14@ Divorced 1982-08-12 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 328@I14@ individual @I14@ Divorced 1920-02-03 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 340@I14@ individual @I14@ Divorced 1940-09-07 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 348@I14@ individual @I14@ Divorced 1995-10-15 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 357@I14@ individual @I14@ Divorced 1982-06-06 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 367@I14@ individual @I14@ Divorced 1995-06-22 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 385@I14@ individual @I14@ Divorced 1920-01-02 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 393@I14@ individual @I14@ Divorced 2007-11-23 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 447@I14@ individual @I14@ Divorced 2000-05-09 before death on 2012-03-25
+ANOMALY: FAMILY: US05: 312@I22@ individual @I22@ Divorced 1920-02-02 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 318@I22@ individual @I22@ Divorced 1982-08-12 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 328@I22@ individual @I22@ Divorced 1920-02-03 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 340@I22@ individual @I22@ Divorced 1940-09-07 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 348@I22@ individual @I22@ Divorced 1995-10-15 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 357@I22@ individual @I22@ Divorced 1982-06-06 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 367@I22@ individual @I22@ Divorced 1995-06-22 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 385@I22@ individual @I22@ Divorced 1920-01-02 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 393@I22@ individual @I22@ Divorced 2007-11-23 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 447@I22@ individual @I22@ Divorced 2000-05-09 before death on 2010-08-08
+ANOMALY: FAMILY: US05: 312@I28@ individual @I28@ Divorced 1920-02-02 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 318@I28@ individual @I28@ Divorced 1982-08-12 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 328@I28@ individual @I28@ Divorced 1920-02-03 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 340@I28@ individual @I28@ Divorced 1940-09-07 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 348@I28@ individual @I28@ Divorced 1995-10-15 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 357@I28@ individual @I28@ Divorced 1982-06-06 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 367@I28@ individual @I28@ Divorced 1995-06-22 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 385@I28@ individual @I28@ Divorced 1920-01-02 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 393@I28@ individual @I28@ Divorced 2007-11-23 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 399@I28@ individual @I28@ Divorced 2019-05-05 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 447@I28@ individual @I28@ Divorced 2000-05-09 before death on 2019-11-07
+ANOMALY: FAMILY: US05: 456@I28@ individual @I28@ Divorced 2012-07-10 before death on 2019-11-07
+ANOMALY: FAMILY: US06: 318@I1@ individual @I1@ Marriage 1993-07-28 before death on 2011-09-24
+ANOMALY: FAMILY: US06: 447@I1@ individual @I1@ Marriage 2001-08-08 before death on 2011-09-24
+ANOMALY: FAMILY: US06: 318@I2@ individual @I2@ Marriage 1993-07-28 before death on 2016-07-09
+ANOMALY: FAMILY: US06: 447@I2@ individual @I2@ Marriage 2001-08-08 before death on 2016-07-09
+ANOMALY: FAMILY: US06: 318@I4@ individual @I4@ Marriage 1993-07-28 before death on 2018-02-24
+ANOMALY: FAMILY: US06: 447@I4@ individual @I4@ Marriage 2001-08-08 before death on 2018-02-24
+ANOMALY: FAMILY: US06: 318@I7@ individual @I7@ Marriage 1993-07-28 before death on 2019-11-06
+ANOMALY: FAMILY: US06: 447@I7@ individual @I7@ Marriage 2001-08-08 before death on 2019-11-06
+ANOMALY: FAMILY: US06: 318@I14@ individual @I14@ Marriage 1993-07-28 before death on 2012-03-25
+ANOMALY: FAMILY: US06: 447@I14@ individual @I14@ Marriage 2001-08-08 before death on 2012-03-25
+ANOMALY: FAMILY: US06: 318@I22@ individual @I22@ Marriage 1993-07-28 before death on 2010-08-08
+ANOMALY: FAMILY: US06: 447@I22@ individual @I22@ Marriage 2001-08-08 before death on 2010-08-08
+ANOMALY: FAMILY: US06: 318@I28@ individual @I28@ Marriage 1993-07-28 before death on 2019-11-07
+ANOMALY: FAMILY: US06: 447@I28@ individual @I28@ Marriage 2001-08-08 before death on 2019-11-07
+Error: FAMILY: US15: Family '@I1@'  has '2' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I1@'  has '2' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I3@'  has '4' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I3@'  has '4' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I5@'  has '4' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I7@'  has '4' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I12@'  has '3' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I13@'  has '3' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I15@'  has '2' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I15@'  has '2' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I16@'  has '2' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I18@'  has '3' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I19@'  has '3' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I20@'  has '3' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I20@'  has '3' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I21@'  has '4' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I24@'  has '2' number of children. No more than fourteen children should be born in each family.
+Error: FAMILY: US15: Family '@I301@'  has '1' number of children. No more than fourteen children should be born in each family.
+ ANOMALY: FAMILY: US16: Male @I3@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I5@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I7@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I11@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I13@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I15@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I19@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I20@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I22@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I24@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I25@ whose last name is Kapoor
+ ANOMALY: FAMILY: US16: Male @I101@ whose last name is Brown
+ANOMALY: INDIVIDUAL : US25: 13 : @I1@ Unique name in family: Surinder 
+ANOMALY: INDIVIDUAL : US25: 26 : @I2@ Unique name in family: Nirmal 
+ANOMALY: INDIVIDUAL : US25: 37 : @I3@ Unique name in family: Boney 
+ANOMALY: INDIVIDUAL : US25: 48 : @I4@ Unique name in family: Sridevi 
+ANOMALY: INDIVIDUAL : US25: 58 : @I5@ Unique name in family: Anil 
+ANOMALY: INDIVIDUAL : US25: 68 : @I6@ Unique name in family: Sunita 
+ANOMALY: INDIVIDUAL : US25: 77 : @I7@ Unique name in family: Sanjay 
+ANOMALY: INDIVIDUAL : US25: 89 : @I8@ Unique name in family: Maheep 
+ANOMALY: INDIVIDUAL : US25: 98 : @I9@ Unique name in family: Sonam 
+ANOMALY: INDIVIDUAL : US25: 107 : @I10@ Unique name in family: Rhea 
+ANOMALY: INDIVIDUAL : US25: 116 : @I11@ Unique name in family: Harshvardhan 
+ANOMALY: INDIVIDUAL : US25: 125 : @I12@ Unique name in family: Shanaya 
+ANOMALY: INDIVIDUAL : US25: 135 : @I13@ Unique name in family: Jahaan 
+ANOMALY: INDIVIDUAL : US25: 145 : @I14@ Unique name in family: Mona 
+ANOMALY: INDIVIDUAL : US25: 157 : @I15@ Unique name in family: Arjun 
+ANOMALY: INDIVIDUAL : US25: 168 : @I16@ Unique name in family: Anshula 
+ANOMALY: INDIVIDUAL : US25: 178 : @I17@ Unique name in family: Khushi 
+ANOMALY: INDIVIDUAL : US25: 187 : @I18@ Unique name in family: Janhvi 
+ANOMALY: INDIVIDUAL : US25: 197 : @I19@ Unique name in family: John 
+ANOMALY: INDIVIDUAL : US25: 207 : @I20@ Unique name in family: Allen 
+ANOMALY: INDIVIDUAL : US25: 217 : @I21@ Unique name in family: Lily 
+ANOMALY: INDIVIDUAL : US25: 227 : @I22@ Unique name in family: Vu 
+ANOMALY: INDIVIDUAL : US25: 238 : @I23@ Unique name in family: Sue 
+ANOMALY: INDIVIDUAL : US25: 247 : @I24@ Unique name in family: Shilpy 
+ANOMALY: INDIVIDUAL : US25: 257 : @I25@ Unique name in family: Das 
+ANOMALY: INDIVIDUAL : US25: 266 : @I26@ Unique name in family: Deepa 
+ANOMALY: INDIVIDUAL : US25: 275 : @I27@ Unique name in family: Shreya 
+ANOMALY: INDIVIDUAL : US25: 284 : @I28@ Unique name in family: SImmi 
+ANOMALY: INDIVIDUAL : US25: 295 : @I29@ Unique name in family: Rani 
+ANOMALY: INDIVIDUAL : US25: 304 : @I30@ Unique name in family: SRK 
+ANOMALY: INDIVIDUAL : US25: 420 : @I101@ Unique name in family: David 
+ANOMALY: INDIVIDUAL : US25: 428 : @I201@ Unique name in family: Lucy 
+ANOMALY: INDIVIDUAL : US25: 437 : @I301@ Unique name in family: July 
+ANOMALY: INDIVIDUAL: US35: 275 : @I27@ People who were born in the last 30 days are Shreya /Kapoor/ on 2019-10-13
+ANOMALY: INDIVIDUAL: US36: 77 : @I7@ People who were dead in the last 30 days are Sanjay /Kapoor/ on 2019-11-06
+ANOMALY: INDIVIDUAL: US36: 284 : @I28@ People who were dead in the last 30 days are SImmi /Kapoor/ on 2019-11-07
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-312: Birthdate: 5000-12-24 is after current date
+Error US01:-318: Birthdate: 5000-12-24 is after current date
+Error US01:-328: Birthdate: 5000-12-24 is after current date
+Error US01:-340: Birthdate: 5000-12-24 is after current date
+Error US01:-348: Birthdate: 5000-12-24 is after current date
+Error US01:-357: Birthdate: 5000-12-24 is after current date
+Error US01:-367: Birthdate: 5000-12-24 is after current date
+Error US01:-376: Birthdate: 5000-12-24 is after current date
+Error US01:-381: Birthdate: 5000-12-24 is after current date
+Error US01:-385: Birthdate: 5000-12-24 is after current date
+Error US01:-393: Birthdate: 5000-12-24 is after current date
+Error US01:-399: Birthdate: 5000-12-24 is after current date
+Error US01:-405: Birthdate: 5000-12-24 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: Birthdate: 5000-12-24 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-447: Birthdate: 5000-12-24 is after current date
+Error US01:-456: Birthdate: 5000-12-24 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-312: Birthdate: 3000-08-06 is after current date
+Error US01:-318: Birthdate: 3000-08-06 is after current date
+Error US01:-328: Birthdate: 3000-08-06 is after current date
+Error US01:-340: Birthdate: 3000-08-06 is after current date
+Error US01:-348: Birthdate: 3000-08-06 is after current date
+Error US01:-357: Birthdate: 3000-08-06 is after current date
+Error US01:-367: Birthdate: 3000-08-06 is after current date
+Error US01:-376: Birthdate: 3000-08-06 is after current date
+Error US01:-381: Birthdate: 3000-08-06 is after current date
+Error US01:-385: Birthdate: 3000-08-06 is after current date
+Error US01:-393: Birthdate: 3000-08-06 is after current date
+Error US01:-399: Birthdate: 3000-08-06 is after current date
+Error US01:-405: Birthdate: 3000-08-06 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: Birthdate: 3000-08-06 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-447: Birthdate: 3000-08-06 is after current date
+Error US01:-456: Birthdate: 3000-08-06 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-312: Birthdate: 2500-01-02 is after current date
+Error US01:-318: Birthdate: 2500-01-02 is after current date
+Error US01:-328: Birthdate: 2500-01-02 is after current date
+Error US01:-340: Birthdate: 2500-01-02 is after current date
+Error US01:-348: Birthdate: 2500-01-02 is after current date
+Error US01:-357: Birthdate: 2500-01-02 is after current date
+Error US01:-367: Birthdate: 2500-01-02 is after current date
+Error US01:-376: Birthdate: 2500-01-02 is after current date
+Error US01:-381: Birthdate: 2500-01-02 is after current date
+Error US01:-385: Birthdate: 2500-01-02 is after current date
+Error US01:-393: Birthdate: 2500-01-02 is after current date
+Error US01:-399: Birthdate: 2500-01-02 is after current date
+Error US01:-405: Birthdate: 2500-01-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: Birthdate: 2500-01-02 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-447: Birthdate: 2500-01-02 is after current date
+Error US01:-456: Birthdate: 2500-01-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+Error US01:-405: MarriageDate: 2019-12-07 is after current date
+Error US01:-413: MarriageDate: 2800-03-02 is after current date
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1925-12-23 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1925-12-23 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1925-12-23 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1931-08-12 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1931-08-12 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1931-08-12 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1983-09-10 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1983-09-10 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1983-09-10 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1983-09-10 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1983-09-10 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1983-09-10 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1963-08-13 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1963-08-13 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1963-08-13 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1963-08-13 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 5000-12-24 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 5000-12-24 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 5000-12-24 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 5000-12-24 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 5000-12-24 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 5000-12-24 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 5000-12-24 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 5000-12-24 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 393 : @F11@ Birth 5000-12-24 should occur after marriage  2007-11-23 and not before
+ERROR: FAMILY: US02: 399 : @F12@ Birth 5000-12-24 should occur after marriage  2019-05-05 and not before
+ERROR: FAMILY: US02: 405 : @F13@ Birth 5000-12-24 should occur after marriage  2019-12-07 and not before
+ERROR: FAMILY: US02: 413 : @F14@ Birth 5000-12-24 should occur after marriage  2800-03-02 and not before
+ERROR: FAMILY: US02: 447 : @F101@ Birth 5000-12-24 should occur after marriage  2000-05-09 and not before
+ERROR: FAMILY: US02: 456 : @F201@ Birth 5000-12-24 should occur after marriage  2012-07-10 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1965-08-20 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1965-08-20 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1965-08-20 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1965-08-20 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1965-10-17 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1965-10-17 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1965-10-17 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1965-10-17 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1970-07-10 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1970-07-10 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1970-07-10 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1970-07-10 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1985-06-09 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1985-06-09 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1985-06-09 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1985-06-09 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1985-06-09 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1985-06-09 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1987-03-05 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1987-03-05 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1987-03-05 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1987-03-05 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1987-03-05 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1987-03-05 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1990-11-09 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1990-11-09 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1990-11-09 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1990-11-09 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1990-11-09 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1990-11-09 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1999-11-03 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1999-11-03 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1999-11-03 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1999-11-03 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 1999-11-03 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1999-11-03 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 1999-11-03 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1999-11-03 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 2005-12-08 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 2005-12-08 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 2005-12-08 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 2005-12-08 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 2005-12-08 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 2005-12-08 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 2005-12-08 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 2005-12-08 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 447 : @F101@ Birth 2005-12-08 should occur after marriage  2000-05-09 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1964-02-03 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1964-02-03 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1964-02-03 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1964-02-03 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1985-06-26 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1985-06-26 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1985-06-26 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1985-06-26 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1985-06-26 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1985-06-26 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1992-12-29 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1992-12-29 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1992-12-29 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1992-12-29 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1992-12-29 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1992-12-29 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1970-11-05 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1970-11-05 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1970-11-05 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1970-11-05 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1997-03-06 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1997-03-06 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1997-03-06 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1997-03-06 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 1997-03-06 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1997-03-06 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 1997-03-06 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1997-03-06 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1996-02-01 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1996-02-01 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1996-02-01 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1996-02-01 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 1996-02-01 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1996-02-01 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 1996-02-01 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1996-02-01 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 2018-03-03 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 2018-03-03 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 2018-03-03 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 2018-03-03 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 2018-03-03 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 2018-03-03 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 2018-03-03 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 2018-03-03 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 393 : @F11@ Birth 2018-03-03 should occur after marriage  2007-11-23 and not before
+ERROR: FAMILY: US02: 447 : @F101@ Birth 2018-03-03 should occur after marriage  2000-05-09 and not before
+ERROR: FAMILY: US02: 456 : @F201@ Birth 2018-03-03 should occur after marriage  2012-07-10 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 2012-09-03 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 2012-09-03 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 2012-09-03 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 2012-09-03 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 2012-09-03 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 2012-09-03 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 2012-09-03 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 2012-09-03 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 393 : @F11@ Birth 2012-09-03 should occur after marriage  2007-11-23 and not before
+ERROR: FAMILY: US02: 447 : @F101@ Birth 2012-09-03 should occur after marriage  2000-05-09 and not before
+ERROR: FAMILY: US02: 456 : @F201@ Birth 2012-09-03 should occur after marriage  2012-07-10 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 3000-08-06 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 3000-08-06 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 3000-08-06 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 3000-08-06 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 3000-08-06 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 3000-08-06 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 3000-08-06 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 3000-08-06 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 393 : @F11@ Birth 3000-08-06 should occur after marriage  2007-11-23 and not before
+ERROR: FAMILY: US02: 399 : @F12@ Birth 3000-08-06 should occur after marriage  2019-05-05 and not before
+ERROR: FAMILY: US02: 405 : @F13@ Birth 3000-08-06 should occur after marriage  2019-12-07 and not before
+ERROR: FAMILY: US02: 413 : @F14@ Birth 3000-08-06 should occur after marriage  2800-03-02 and not before
+ERROR: FAMILY: US02: 447 : @F101@ Birth 3000-08-06 should occur after marriage  2000-05-09 and not before
+ERROR: FAMILY: US02: 456 : @F201@ Birth 3000-08-06 should occur after marriage  2012-07-10 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1920-02-03 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1920-02-03 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 2019-10-13 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 2019-10-13 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 2019-10-13 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 2019-10-13 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 2019-10-13 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 2019-10-13 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 2019-10-13 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 2019-10-13 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 393 : @F11@ Birth 2019-10-13 should occur after marriage  2007-11-23 and not before
+ERROR: FAMILY: US02: 399 : @F12@ Birth 2019-10-13 should occur after marriage  2019-05-05 and not before
+ERROR: FAMILY: US02: 447 : @F101@ Birth 2019-10-13 should occur after marriage  2000-05-09 and not before
+ERROR: FAMILY: US02: 456 : @F201@ Birth 2019-10-13 should occur after marriage  2012-07-10 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1996-02-01 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1996-02-01 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1996-02-01 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1996-02-01 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 1996-02-01 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1996-02-01 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 1996-02-01 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1996-02-01 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1995-04-03 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 1995-04-03 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1995-04-03 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1995-04-03 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 1995-04-03 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1995-04-03 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 2500-01-02 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 2500-01-02 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 2500-01-02 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 2500-01-02 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 2500-01-02 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 2500-01-02 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 2500-01-02 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 2500-01-02 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 393 : @F11@ Birth 2500-01-02 should occur after marriage  2007-11-23 and not before
+ERROR: FAMILY: US02: 399 : @F12@ Birth 2500-01-02 should occur after marriage  2019-05-05 and not before
+ERROR: FAMILY: US02: 405 : @F13@ Birth 2500-01-02 should occur after marriage  2019-12-07 and not before
+ERROR: FAMILY: US02: 447 : @F101@ Birth 2500-01-02 should occur after marriage  2000-05-09 and not before
+ERROR: FAMILY: US02: 456 : @F201@ Birth 2500-01-02 should occur after marriage  2012-07-10 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 1980-05-06 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 1980-05-06 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 1980-05-06 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 1980-05-06 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 312 : @F1@ Birth 2001-10-06 should occur after marriage  1920-02-02 and not before
+ERROR: FAMILY: US02: 318 : @F5@ Birth 2001-10-06 should occur after marriage  1982-08-12 and not before
+ERROR: FAMILY: US02: 328 : @F2@ Birth 2001-10-06 should occur after marriage  1920-02-03 and not before
+ERROR: FAMILY: US02: 340 : @F3@ Birth 2001-10-06 should occur after marriage  1940-09-07 and not before
+ERROR: FAMILY: US02: 348 : @F4@ Birth 2001-10-06 should occur after marriage  1995-10-15 and not before
+ERROR: FAMILY: US02: 357 : @F6@ Birth 2001-10-06 should occur after marriage  1982-06-06 and not before
+ERROR: FAMILY: US02: 367 : @F7@ Birth 2001-10-06 should occur after marriage  1995-06-22 and not before
+ERROR: FAMILY: US02: 385 : @F10@ Birth 2001-10-06 should occur after marriage  1920-01-02 and not before
+ERROR: FAMILY: US02: 447 : @F101@ Birth 2001-10-06 should occur after marriage  2000-05-09 and not before
+ERROR US11:381: Marriage should not occur during marriage to another spouse:@F9@
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+ANOMALY: FAMILY: US21: In family: 312 : @F1@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 328 : @F2@ husband gender is F
+ANOMALY: FAMILY: US21: In family: 413 : @F14@ wife gender is M
+['@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@', '@F1@', '@F2@', '@F14@']
+US22: Number of duplicate Individual IDs:- 0 
+
+US22: Number of duplicate Family IDs:- 0 
+
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Surinder /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Nirmal /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Boney /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Sridevi /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Anil /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Sunita /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Sanjay /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Maheep /Sandhu/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Sonam /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Rhea /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Harshvardhan /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Shanaya /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Jahaan /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Mona /Shourie/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Arjun /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Anshula /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Khushi /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Janhvi /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: John /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Allen /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Lily /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Vu /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Sue /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Shilpy /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Das /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Deepa /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Shreya /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: SImmi /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Rani /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: SRK /Kapoor/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: David /Brown/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: Lucy /Brown/
+ERROR: INDIVIDUAL: US31: 456: All living people over 30 in family @F201@ who have never been married are: July /Brown/
+ANOMALY: FAMILY: US32: 312: There are multiple births in the family: @F1@
+ANOMALY: FAMILY: US32: 318: There are multiple births in the family: @F5@
+ANOMALY: FAMILY: US32: 328: There are multiple births in the family: @F2@
+ANOMALY: FAMILY: US32: 340: There are multiple births in the family: @F3@
+ANOMALY: FAMILY: US32: 348: There are multiple births in the family: @F4@
+ANOMALY: FAMILY: US32: 357: There are multiple births in the family: @F6@
+ANOMALY: FAMILY: US32: 367: There are multiple births in the family: @F7@
+ANOMALY: FAMILY: US32: 381: There are multiple births in the family: @F9@
+ANOMALY: FAMILY: US32: 385: There are multiple births in the family: @F10@
+ANOMALY: FAMILY: US32: 393: There are multiple births in the family: @F11@
+ANOMALY: FAMILY: US32: 399: There are multiple births in the family: @F12@
+ANOMALY: FAMILY: US32: 405: There are multiple births in the family: @F13@
+['@F1@', '@F5@', '@F2@', '@F3@', '@F4@', '@F6@', '@F7@', '@F9@', '@F10@', '@F11@', '@F12@', '@F13@']
+
+
+Test file: das.ged
+
+ Individual Summary
++-----+-------------------+--------+------------+-----+-------+------------+---------+---------+
+|  ID |        Name       | Gender |  Birthday  | Age | Alive |   Death    |  Child  | partner |
++-----+-------------------+--------+------------+-----+-------+------------+---------+---------+
+| I01 | Surinder /Kapoor/ |   M    | 2060-07-15 | -84 | False | 1976-12-31 |    NA   | {'F23'} |
+| I07 |   Boney /Kapoor/  |   F    | 1760-09-23 | 259 |  TRUE |     NA     |    NA   | {'F23'} |
+| I19 |  Sanjay /Kapoor/  |   M    | 1979-02-01 |  40 |  TRUE |     NA     | {'F23'} |    NA   |
+| I26 |  Sridevi /Kapoor/ |   F    | 1983-06-02 |  36 |  TRUE |     NA     | {'F23'} |    NA   |
+| I27 |   Anil /Kapoor/   |   M    | 1980-02-01 |  39 |  TRUE |     NA     |    NA   |    NA   |
+| I28 |   Anil /Kapoor/   |   M    | 1980-02-01 |  39 |  TRUE |     NA     |    NA   |    NA   |
++-----+-------------------+--------+------------+-----+-------+------------+---------+---------+
+
+ Family Summary
++-----+------------+------------+------------+-------------------+---------+------------------+----------------+
+|  ID |  Married   |  Divorced  | Husband ID |    Husband Name   | Wife ID |    Wife Name     |    Children    |
++-----+------------+------------+------------+-------------------+---------+------------------+----------------+
+| F23 | 1980-02-14 | 1985-02-14 |  {'I01'}   | Surinder /Kapoor/ | {'I07'} |  Boney /Kapoor/  | {'I26', 'I19'} |
+| F24 | 1982-02-14 |     NA     |  {'I01'}   | Surinder /Kapoor/ | {'I27'} |  Anil /Kapoor/   | {'I26', 'I19'} |
+| F25 | 1982-02-14 |     NA     |  {'I01'}   | Surinder /Kapoor/ | {'I26'} | Sridevi /Kapoor/ | {'I26', 'I19'} |
+| F26 | 1982-02-14 |     NA     |  {'I19'}   |  Sanjay /Kapoor/  | {'I26'} | Sridevi /Kapoor/ | {'I26', 'I19'} |
++-----+------------+------------+------------+-------------------+---------+------------------+----------------+
+Error: Individual: US03: I01 Birth 2060-07-15should occur before death 1976-12-31
+Error: FAMILY : US04 : F23 Marriage 1980-02-14 should occur before divorce 1985-02-14
+Error: FAMILY : US04 : F24 Marriage 1982-02-14 should occur before divorce NA
+Error: FAMILY : US04 : F25 Marriage 1982-02-14 should occur before divorce NA
+Error: FAMILY : US04 : F26 Marriage 1982-02-14 should occur before divorce NA
+Error: FAMILY : US12 : 44 :F23 : Mother I07 should not be less than 60 years older than her child I26
+Error: FAMILY : US12 : 44 :F23 : Mother I07 should not be less than 60 years older than her child I19
+Error: FAMILY : US12 : 44 :F23 : Father I01 should not be less than 80 years older than his child I19
+Error: FAMILY : US12 : 53 :F24 : Father I01 should not be less than 80 years older than his child I19
+Error: FAMILY : US12 : 60 :F25 : Father I01 should not be less than 80 years older than his child I19
+['I07', 'I07', 'I01', 'I01', 'I01']
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F23
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F24
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F25
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
+Error: INDIVIDUAL : US23: Name and age of Person has been repeated: Anil /Kapoor/ 1980-02-01
+Error: FAMILY : US24: 74More than one family with the same spouses by name Sridevi /Kapoor/ and the same marriage date 1982-02-14
+US34: List of large age differences are the following:
+
