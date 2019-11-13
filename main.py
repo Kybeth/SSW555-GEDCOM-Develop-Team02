@@ -156,7 +156,6 @@ class Repo:
 
         invalid_list = list()
 
-        result = False
         for key, individual in self.individual.items():
             for key, family in self.family.items():
                 if individual.birthday != 'NA':
@@ -179,15 +178,18 @@ class Repo:
 
     """US02 Birth before Marriage"""
     def US02(self):
-        result = False
+       
+        invalid_list = list()
+
         for key, individual in self.individual.items():  #Implementing as a dictionary.
             for key, family in self.family.items():
                 if individual.birthday != 'NA' or family.marriage != 'NA':
                     if individual.birthday > family.marriage:
                         print(
                             "ERROR: FAMILY: US02: " + str(family.line_num) + " : " + key + " Birth " + individual.birthday + " should occur after marriage  " + family.marriage + " and not before")
-                        result = True
-        return result
+                        invalid_list.append(individual.birthday + family.marriage)
+        
+        return invalid_list
     
     """No Bigamy"""
     def US11(self):
