@@ -878,12 +878,12 @@ def main():
     repo1.family_table()
     
     """Tanvi Hanamshet"""
+    repo1.US26()
     repo1.US05()
     repo1.US06()
     repo1.US15()
     repo1.US16()
     repo1.US25()
-    repo1.US26()
     repo1.US35()
     repo1.US36()
 
