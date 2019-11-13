@@ -594,7 +594,7 @@ class Repo:
                     time_typ = 'days'
                     diff1 = diff/conversion[time_typ]
                     if time_typ == 'days' and diff1 <= 30:
-                        print("ANOMALY: INDIVIDUAL: US35: " + str(individual.line_num) + " : " + key +" People who were dead in the last 30 days are "+ individual.name + " on "+individual.birthday)
+                        print("ANOMALY: INDIVIDUAL: US36: " + str(individual.line_num) + " : " + key +" People who were dead in the last 30 days are "+ individual.name + " on "+individual.death)
                         result.append(key)
         return result
 

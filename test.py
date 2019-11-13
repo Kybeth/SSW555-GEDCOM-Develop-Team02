@@ -250,7 +250,7 @@ class UserStoryTest(unittest.TestCase):
         expect = 393
         self.assertEqual(result, expect)
 
-     """By Tanvi"""
+    """By Tanvi"""
 
     def test_US05(self):
         repo = Repo()
@@ -282,6 +282,7 @@ class UserStoryTest(unittest.TestCase):
         repo = Repo()
         repo.read_file("ged/My-Family.ged")
         self.assertEqual(repo.US26(), ['@F1@', '@F5@', '@F2@', '@F3@', '@F4@', '@F6@', '@F7@', '@F8@', '@F9@', '@F10@', '@F11@', '@F12@', '@F13@', '@F14@', '@F101@', '@F201@'])
+
     def test_US35(self):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
