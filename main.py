@@ -193,7 +193,8 @@ class Repo:
     
     """No Bigamy"""
     def US11(self):
-        result = False
+        invalid_list = list()
+
         #today=datetime.date.today()
         for key, family in self.family.items():
             if family.marriage != 'NA':
@@ -207,6 +208,7 @@ class Repo:
                                 error_loc = [family.id,family2.id]
                             #print("\n########  US11  ########")
                             print("ERROR US11: " + str(family.line_num) + ":" +" Marriage should not occur during marriage to another spouse:" + family.id)
+                            invalid_list.append(family.id)
                             #print("")
 
                         if family.marriage>family2.marriage:
@@ -215,8 +217,10 @@ class Repo:
                                 error_loc = [family.uid,family2.id]
                             #print("\n########  US11  ########")
                             print("ERROR US11:" + str(family.line_num) +  ":" + " Marriage should not occur during marriage to another spouse:" + family.id)
+                            invalid_list.append(family.id)
                             #print("")
-        return result
+        print(invalid_list)
+        return invalid_list
 
     def US12(self):
         """US12 - Mother should be less than 60 years older than her children and father should be less than 80 years older than his children"""
