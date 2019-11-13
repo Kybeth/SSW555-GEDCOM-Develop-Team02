@@ -6,20 +6,20 @@ Test file: myfamily.ged
 +--------+-----------------------+--------+------------+-------+-------+------------+------------+----------------------+
 |   ID   |          Name         | Gender |  Birthday  |  Age  | Alive |   Death    |   Child    |       partner        |
 +--------+-----------------------+--------+------------+-------+-------+------------+------------+----------------------+
-| @I101@ |     David /Brown/     |   M    |            |       |  TRUE |     NA     |     NA     | {'@F101@', '@F201@'} |
+| @I101@ |     David /Brown/     |   M    |            |       |  TRUE |     NA     |     NA     | {'@F201@', '@F101@'} |
 | @I10@  |     Rhea /Kapoor/     |   F    | 1987-03-05 |   32  |  TRUE |     NA     |  {'@F6@'}  |          NA          |
 | @I11@  | Harshvardhan /Kapoor/ |   M    | 1990-11-09 |   29  |  TRUE |     NA     |  {'@F6@'}  |          NA          |
 | @I12@  |    Shanaya /Kapoor/   |   F    | 1999-11-03 |   20  |  TRUE |     NA     |  {'@F7@'}  |       {'@F8@'}       |
 | @I13@  |    Jahaan /Kapoor/    |   M    | 2005-12-08 |   13  |  TRUE |     NA     |  {'@F7@'}  |       {'@F8@'}       |
-| @I14@  |     Mona /Shourie/    |   F    | 1964-02-03 |   48  | False | 2012-03-25 |     NA     |   {'@F1@', '@F5@'}   |
-| @I15@  |     Arjun /Kapoor/    |   M    | 1985-06-26 |   34  |  TRUE |     NA     |  {'@F5@'}  |  {'@F9@', '@F10@'}   |
+| @I14@  |     Mona /Shourie/    |   F    | 1964-02-03 |   48  | False | 2012-03-25 |     NA     |   {'@F5@', '@F1@'}   |
+| @I15@  |     Arjun /Kapoor/    |   M    | 1985-06-26 |   34  |  TRUE |     NA     |  {'@F5@'}  |  {'@F10@', '@F9@'}   |
 | @I16@  |    Anshula /Kapoor/   |   F    | 1992-12-29 |   26  |  TRUE |     NA     |  {'@F5@'}  |       {'@F9@'}       |
 | @I17@  |    Khushi /Kapoor/    |   F    | 1970-11-05 |   49  |  TRUE |     NA     |  {'@F4@'}  |          NA          |
 | @I18@  |    Janhvi /Kapoor/    |   F    | 1997-03-06 |   22  |  TRUE |     NA     |  {'@F4@'}  |      {'@F11@'}       |
 | @I19@  |     John /Kapoor/     |   M    | 1996-02-01 |   23  |  TRUE |     NA     |  {'@F7@'}  |      {'@F11@'}       |
-|  @I1@  |   Surinder /Kapoor/   |   F    | 1925-12-23 |   85  | False | 2011-09-24 |  {'@F3@'}  |   {'@F1@', '@F2@'}   |
+|  @I1@  |   Surinder /Kapoor/   |   F    | 1925-12-23 |   85  | False | 2011-09-24 |  {'@F3@'}  |   {'@F2@', '@F1@'}   |
 | @I201@ |      Lucy /Brown/     |   F    | 1980-05-06 |   39  |  TRUE |     NA     |     NA     |      {'@F101@'}      |
-| @I20@  |     Allen /Kapoor/    |   M    | 2018-03-03 |   1   |  TRUE |     NA     |  {'@F4@'}  |  {'@F13@', '@F12@'}  |
+| @I20@  |     Allen /Kapoor/    |   M    | 2018-03-03 |   1   |  TRUE |     NA     |  {'@F4@'}  |  {'@F12@', '@F13@'}  |
 | @I21@  |     Lily /Kapoor/     |   F    | 2012-09-03 |   7   |  TRUE |     NA     |  {'@F2@'}  |      {'@F13@'}       |
 | @I22@  |      Vu /Kapoor/      |   M    | 1850-04-11 |  160  | False | 2010-08-08 |     NA     |       {'@F3@'}       |
 | @I23@  |      Sue /Kapoor/     |   F    | 3000-08-06 |  -981 |  TRUE |     NA     |     NA     |       {'@F3@'}       |
@@ -32,7 +32,7 @@ Test file: myfamily.ged
 |  @I2@  |    Nirmal /Kapoor/    |   F    | 1931-08-12 |   84  | False | 2016-07-09 |     NA     |       {'@F2@'}       |
 | @I301@ |      July /Brown/     |   F    | 2001-10-06 |   18  |  TRUE |     NA     | {'@F101@'} |      {'@F201@'}      |
 | @I30@  |      SRK /Kapoor/     |        | 2500-01-02 |  -481 |  TRUE |     NA     |  {'@F8@'}  |          NA          |
-|  @I3@  |     Boney /Kapoor/    |   M    | 1983-09-10 |   36  |  TRUE |     NA     |  {'@F2@'}  |   {'@F5@', '@F4@'}   |
+|  @I3@  |     Boney /Kapoor/    |   M    | 1983-09-10 |   36  |  TRUE |     NA     |  {'@F2@'}  |   {'@F4@', '@F5@'}   |
 |  @I4@  |    Sridevi /Kapoor/   |   F    | 1963-08-13 |   54  | False | 2018-02-24 |     NA     |       {'@F4@'}       |
 |  @I5@  |     Anil /Kapoor/     |   M    | 5000-12-24 | -2982 |  TRUE |     NA     |  {'@F2@'}  |       {'@F6@'}       |
 |  @I6@  |    Sunita /Kapoor/    |   F    | 1965-08-20 |   54  |  TRUE |     NA     |     NA     |       {'@F6@'}       |
@@ -53,12 +53,12 @@ Test file: myfamily.ged
 | @F14@  | 2800-03-02 |     NA     | {'@I24@'}  |  Shilpy /Kapoor/  | {'@I25@'}  |   Das /Kapoor/   |              {'@I28@'}              |
 |  @F1@  | 1920-02-02 |     NA     |  {'@I1@'}  | Surinder /Kapoor/ | {'@I14@'}  |  Mona /Shourie/  |                  NA                 |
 | @F201@ | 2012-07-10 |     NA     | {'@I101@'} |   David /Brown/   | {'@I301@'} |   July /Brown/   |              {'@I301@'}             |
-|  @F2@  | 1920-02-03 |     NA     |  {'@I1@'}  | Surinder /Kapoor/ |  {'@I2@'}  | Nirmal /Kapoor/  |  {'@I3@', '@I21@', '@I7@', '@I5@'}  |
-|  @F3@  | 1940-09-07 |     NA     | {'@I22@'}  |    Vu /Kapoor/    | {'@I23@'}  |   Sue /Kapoor/   |          {'@I24@', '@I1@'}          |
-|  @F4@  | 1995-10-15 |     NA     |  {'@I3@'}  |   Boney /Kapoor/  |  {'@I4@'}  | Sridevi /Kapoor/ |     {'@I18@', '@I20@', '@I17@'}     |
+|  @F2@  | 1920-02-03 |     NA     |  {'@I1@'}  | Surinder /Kapoor/ |  {'@I2@'}  | Nirmal /Kapoor/  |  {'@I21@', '@I3@', '@I7@', '@I5@'}  |
+|  @F3@  | 1940-09-07 |     NA     | {'@I22@'}  |    Vu /Kapoor/    | {'@I23@'}  |   Sue /Kapoor/   |          {'@I1@', '@I24@'}          |
+|  @F4@  | 1995-10-15 |     NA     |  {'@I3@'}  |   Boney /Kapoor/  |  {'@I4@'}  | Sridevi /Kapoor/ |     {'@I17@', '@I18@', '@I20@'}     |
 |  @F5@  | 1982-08-12 | 1993-07-28 |  {'@I3@'}  |   Boney /Kapoor/  | {'@I14@'}  |  Mona /Shourie/  |          {'@I15@', '@I16@'}         |
-|  @F6@  | 1982-06-06 |     NA     |  {'@I5@'}  |   Anil /Kapoor/   |  {'@I6@'}  | Sunita /Kapoor/  | {'@I11@', '@I10@', '@I9@', '@I27@'} |
-|  @F7@  | 1995-06-22 |     NA     |  {'@I7@'}  |  Sanjay /Kapoor/  |  {'@I8@'}  | Maheep /Sandhu/  |     {'@I12@', '@I19@', '@I13@'}     |
+|  @F6@  | 1982-06-06 |     NA     |  {'@I5@'}  |   Anil /Kapoor/   |  {'@I6@'}  | Sunita /Kapoor/  | {'@I9@', '@I10@', '@I27@', '@I11@'} |
+|  @F7@  | 1995-06-22 |     NA     |  {'@I7@'}  |  Sanjay /Kapoor/  |  {'@I8@'}  | Maheep /Sandhu/  |     {'@I12@', '@I13@', '@I19@'}     |
 |  @F8@  |     NA     |     NA     | {'@I13@'}  |  Jahaan /Kapoor/  | {'@I12@'}  | Shanaya /Kapoor/ |              {'@I30@'}              |
 |  @F9@  |     NA     |     NA     | {'@I15@'}  |   Arjun /Kapoor/  | {'@I16@'}  | Anshula /Kapoor/ |                  NA                 |
 +--------+------------+------------+------------+-------------------+------------+------------------+-------------------------------------+
@@ -101,21 +101,21 @@ US28: Siblings in @F7@:
 @I13@: 13
 @I12@: 20
 @I19@: 23
-US37: living spouses and descendants of @I7@ :@I12@ @I19@ @I8@ @I13@ 
+US37: living spouses and descendants of @I7@ :@I8@ @I13@ @I12@ @I19@ 
 US38: upcoming birthdays:@I13@
 ERROR: FAMILY: US09: 328: @F2@ Child @I5@ born 5000-12-24 after father's death on 2011-09-24
 ERROR: FAMILY: US09: 328: @F2@ Child @I5@ born 5000-12-24 after mother's death on 2016-07-09
 ERROR: FAMILY: US09: 348: @F4@ Child @I20@ born 2018-03-03 after mother's death on 2018-02-24
 ERROR: FAMILY: US09: 328: @F2@ Child @I21@ born 2012-09-03 after father's death on 2011-09-24
-ANOMALY: INDIVIDUAL: US10: 13: @I1@ married on 1920-02-02 before 14 years old (born on 1925-12-23)
+ANOMALY: INDIVIDUAL: US10: 13: @I1@ married on 1920-02-03 before 14 years old (born on 1925-12-23)
 ANOMALY: INDIVIDUAL: US10: 26: @I2@ married on 1920-02-03 before 14 years old (born on 1931-08-12)
-ANOMALY: INDIVIDUAL: US10: 37: @I3@ married on 1982-08-12 before 14 years old (born on 1983-09-10)
+ANOMALY: INDIVIDUAL: US10: 37: @I3@ married on 1995-10-15 before 14 years old (born on 1983-09-10)
 ANOMALY: INDIVIDUAL: US10: 58: @I5@ married on 1982-06-06 before 14 years old (born on 5000-12-24)
 ANOMALY: INDIVIDUAL: US10: 145: @I14@ married on 1920-02-02 before 14 years old (born on 1964-02-03)
 ANOMALY: INDIVIDUAL: US10: 157: @I15@ married on 1920-01-02 before 14 years old (born on 1985-06-26)
 ANOMALY: INDIVIDUAL: US10: 187: @I18@ married on 2007-11-23 before 14 years old (born on 1997-03-06)
 ANOMALY: INDIVIDUAL: US10: 197: @I19@ married on 2007-11-23 before 14 years old (born on 1996-02-01)
-ANOMALY: INDIVIDUAL: US10: 207: @I20@ married on 2019-12-07 before 14 years old (born on 2018-03-03)
+ANOMALY: INDIVIDUAL: US10: 207: @I20@ married on 2019-05-05 before 14 years old (born on 2018-03-03)
 ANOMALY: INDIVIDUAL: US10: 217: @I21@ married on 2019-12-07 before 14 years old (born on 2012-09-03)
 ANOMALY: INDIVIDUAL: US10: 238: @I23@ married on 1940-09-07 before 14 years old (born on 3000-08-06)
 ANOMALY: INDIVIDUAL: US10: 266: @I26@ married on 1920-01-02 before 14 years old (born on 1920-02-03)
@@ -1918,5 +1918,62 @@ Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart
 Error: FAMILY : US13: Family sibiling spacing should be more than 8 months apart or less than 2 days apart F26
 Error: INDIVIDUAL : US23: Name and age of Person has been repeated: Anil /Kapoor/ 1980-02-01
 Error: FAMILY : US24: 74More than one family with the same spouses by name Sridevi /Kapoor/ and the same marriage date 1982-02-14
+US33: List all orphans
++--------+-----------------------+-------+------------+------------+
+|   ID   |          Name         | Alive |  Birthday  | Death Date |
++--------+-----------------------+-------+------------+------------+
+|  @I3@  |     Boney /Kapoor/    |  TRUE | 1983-09-10 |     NA     |
+|  @I5@  |     Anil /Kapoor/     |  TRUE | 5000-12-24 |     NA     |
+|  @I6@  |    Sunita /Kapoor/    |  TRUE | 1965-08-20 |     NA     |
+|  @I8@  |    Maheep /Sandhu/    |  TRUE | 1970-07-10 |     NA     |
+|  @I9@  |     Sonam /Kapoor/    |  TRUE | 1985-06-09 |     NA     |
+| @I10@  |     Rhea /Kapoor/     |  TRUE | 1987-03-05 |     NA     |
+| @I11@  | Harshvardhan /Kapoor/ |  TRUE | 1990-11-09 |     NA     |
+| @I12@  |    Shanaya /Kapoor/   |  TRUE | 1999-11-03 |     NA     |
+| @I13@  |    Jahaan /Kapoor/    |  TRUE | 2005-12-08 |     NA     |
+| @I15@  |     Arjun /Kapoor/    |  TRUE | 1985-06-26 |     NA     |
+| @I16@  |    Anshula /Kapoor/   |  TRUE | 1992-12-29 |     NA     |
+| @I17@  |    Khushi /Kapoor/    |  TRUE | 1970-11-05 |     NA     |
+| @I18@  |    Janhvi /Kapoor/    |  TRUE | 1997-03-06 |     NA     |
+| @I19@  |     John /Kapoor/     |  TRUE | 1996-02-01 |     NA     |
+| @I20@  |     Allen /Kapoor/    |  TRUE | 2018-03-03 |     NA     |
+| @I21@  |     Lily /Kapoor/     |  TRUE | 2012-09-03 |     NA     |
+| @I23@  |      Sue /Kapoor/     |  TRUE | 3000-08-06 |     NA     |
+| @I24@  |    Shilpy /Kapoor/    |  TRUE | 1780-05-05 |     NA     |
+| @I25@  |      Das /Kapoor/     |  TRUE | 1780-03-02 |     NA     |
+| @I26@  |     Deepa /Kapoor/    |  TRUE | 1920-02-03 |     NA     |
+| @I27@  |    Shreya /Kapoor/    |  TRUE | 2019-10-13 |     NA     |
+| @I29@  |     Rani /Kapoor/     |  TRUE | 1995-04-03 |     NA     |
+| @I30@  |      SRK /Kapoor/     |  TRUE | 2500-01-02 |     NA     |
+| @I101@ |     David /Brown/     |  TRUE |            |     NA     |
+| @I201@ |      Lucy /Brown/     |  TRUE | 1980-05-06 |     NA     |
+| @I301@ |      July /Brown/     |  TRUE | 2001-10-06 |     NA     |
+|  @I3@  |     Boney /Kapoor/    |  TRUE | 1983-09-10 |     NA     |
+|  @I5@  |     Anil /Kapoor/     |  TRUE | 5000-12-24 |     NA     |
+|  @I6@  |    Sunita /Kapoor/    |  TRUE | 1965-08-20 |     NA     |
+|  @I8@  |    Maheep /Sandhu/    |  TRUE | 1970-07-10 |     NA     |
+|  @I9@  |     Sonam /Kapoor/    |  TRUE | 1985-06-09 |     NA     |
+| @I10@  |     Rhea /Kapoor/     |  TRUE | 1987-03-05 |     NA     |
+| @I11@  | Harshvardhan /Kapoor/ |  TRUE | 1990-11-09 |     NA     |
+| @I12@  |    Shanaya /Kapoor/   |  TRUE | 1999-11-03 |     NA     |
+| @I13@  |    Jahaan /Kapoor/    |  TRUE | 2005-12-08 |     NA     |
+| @I15@  |     Arjun /Kapoor/    |  TRUE | 1985-06-26 |     NA     |
+| @I16@  |    Anshula /Kapoor/   |  TRUE | 1992-12-29 |     NA     |
+| @I17@  |    Khushi /Kapoor/    |  TRUE | 1970-11-05 |     NA     |
+| @I18@  |    Janhvi /Kapoor/    |  TRUE | 1997-03-06 |     NA     |
+| @I19@  |     John /Kapoor/     |  TRUE | 1996-02-01 |     NA     |
+| @I20@  |     Allen /Kapoor/    |  TRUE | 2018-03-03 |     NA     |
+| @I21@  |     Lily /Kapoor/     |  TRUE | 2012-09-03 |     NA     |
+| @I23@  |      Sue /Kapoor/     |  TRUE | 3000-08-06 |     NA     |
+| @I24@  |    Shilpy /Kapoor/    |  TRUE | 1780-05-05 |     NA     |
+| @I25@  |      Das /Kapoor/     |  TRUE | 1780-03-02 |     NA     |
+| @I26@  |     Deepa /Kapoor/    |  TRUE | 1920-02-03 |     NA     |
+| @I27@  |    Shreya /Kapoor/    |  TRUE | 2019-10-13 |     NA     |
+| @I29@  |     Rani /Kapoor/     |  TRUE | 1995-04-03 |     NA     |
+| @I30@  |      SRK /Kapoor/     |  TRUE | 2500-01-02 |     NA     |
+| @I101@ |     David /Brown/     |  TRUE |            |     NA     |
+| @I201@ |      Lucy /Brown/     |  TRUE | 1980-05-06 |     NA     |
+| @I301@ |      July /Brown/     |  TRUE | 2001-10-06 |     NA     |
++--------+-----------------------+-------+------------+------------+
 US34: List of large age differences are the following:
 
