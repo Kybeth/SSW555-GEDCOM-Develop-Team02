@@ -22,7 +22,12 @@ class UserStoryTest(unittest.TestCase):
         repo = Repo()
         repo.read_file('ged/My-Family.ged')
         self.assertEqual(repo.US11(), ['@F9@'])
-
+    
+    def test_US21(self):
+        repo = Repo()
+        repo.read_file('ged/My-Family.ged')
+        self.assertNotEqual(repo.US21(), True)
+    
     '''
     def test_US12(self):
         repo = Repo()
@@ -46,6 +51,17 @@ class UserStoryTest(unittest.TestCase):
         repo.read_file('ged/My-Family.ged')
         self.assertEqual(repo.US31(), ['@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@', '@F201@'])
 
+    def test_US32(self):
+        repo = Repo()
+        repo.read_file('ged/My-Family.ged')
+        self.assertEqual(repo.US32(), ['@F5@', '@F2@', '@F3@', '@F4@', '@F6@', '@F7@'],
+        ['@F1@',
+         '@F9@',
+          '@F10@',
+           '@F11@',
+            '@F12@',
+             '@F13@'])
+    
     """Anirudh Bezzam"""
 
     def test_US03(self):

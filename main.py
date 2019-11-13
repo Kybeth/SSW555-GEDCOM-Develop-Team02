@@ -313,16 +313,18 @@ class Repo:
             print("ERROR: INDIVIDUAL: US31: " + str(family.line_num) + ':' +" All living people over 30 in family " + family.id + " who have never been married are: " + individual.name)
             invalid_list.append(family.id)
 
-        print(invalid_list)
         return invalid_list  
  
     """List Multiple Births"""
     def US32(self):
-        result = False
+        invalid_list = list()
         for key, family in self.family.items():
             if len(family.children) > 1:
                 print('ANOMALY: FAMILY: US32: ' + str(family.line_num) + ':' + ' There are multiple births in the family' + ": " + family.id)
-        return result
+                invalid_list.append(family.id)
+
+        print(invalid_list)
+        return invalid_list
 
     """Anirudh Bezzam"""
 
